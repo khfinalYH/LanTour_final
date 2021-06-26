@@ -110,6 +110,14 @@ public class MemberDto {
 	public void setMember_secession(String member_secession) {
 		this.member_secession = member_secession;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [member_no=" + member_no + ", member_id=" + member_id + ", member_name=" + member_name
+				+ ", member_passpword=" + member_passpword + ", member_grade=" + member_grade + ", member_age="
+				+ member_age + ", member_gender=" + member_gender + ", member_email=" + member_email + ", member_phone="
+				+ member_phone + ", member_secession=" + member_secession + "]";
+	}
 	
 	
 	

@@ -87,10 +87,8 @@ public class MemberDaoImpl implements MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		if(dto!=null) {
-			return dto;
-		}
-		
+		System.out.println("--------------dao");
+		System.out.println(dto);
 		return dto;
 	}
 

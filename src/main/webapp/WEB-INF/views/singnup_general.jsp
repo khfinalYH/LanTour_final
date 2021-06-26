@@ -12,65 +12,72 @@
 
 <script type="text/javascript">
 
-	// 나이, 전화번호 숫자만 입력
-	function onlyNumber(){
-	    if((event.keyCode > 48 && event.keyCode < 57 ) 
-	        || event.keyCode == 8 //backspace
-	        || event.keyCode == 37 || event.keyCode == 39 //방향키 →, ←
-	        || event.keyCode == 46 //delete키
-	        || event.keyCode == 39){
-	    } else {
-	        event.returnValue=false;
-	    }
-	}
-	
-	// 아이디 중복 확인
-	function idCheck(){
-	    var member_id = document.getElementsByName("member_id")[0];
-	    if (member_id.value.trim() == "" || member_id.value == null) {
-	        alert("아이디를 입력해 주세요");
-	    } else {
-	        $.ajax({
-	            url: '/idCheck.do',
-	            type: 'POST',
-	            dataType: 'text',
-	            data: member_id,
-	            success: function(data) {
-	                if(data) {
-	                    $("#idChk").attr("title", "y");
-	                    alert("사용가능한 아이디입니다.");
-	                } else {
-	                    alert("이미 존재하는 아이디입니다.");
-	                }
-	            },
-	            error: function(){
-	            }
-	        })
-	    }
-	}
-	
-	function idCheckConfirm() {
-	    var chk = document.getElementsByName("member_id")[0].title;
-	    if (chk == "n") {
-	        alert("아이디 중복체크를 먼저 해주세요.");
-	        document.getElementsByName("member_id")[0].focus();
-	    }
-	};
-	
-	
-	// 비밀번호 일치 확인
-	function pwCheck() {
-	    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-	        if(document.getElementById('pw').value==document.getElementById('pw2').value){
-	            document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-	            document.getElementById('check').style.color='blue';
-	        }
-	        else{
-	            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-	            document.getElementById('check').style.color='red';
-	        }
-	    }
-	}
+   // 나이, 전화번호 숫자만 입력
+   function onlyNumber(){
+       if((event.keyCode > 48 && event.keyCode < 57 ) 
+           || event.keyCode == 8 //backspace
+           || event.keyCode == 37 || event.keyCode == 39 //방향키 →, ←
+           || event.keyCode == 46 //delete키
+           || event.keyCode == 39){
+       } else {
+           event.returnValue=false;
+       }
+   }
+   
+   // 아이디 중복 확인
+   function idCheck(){
+       var member_id = document.getElementsByName("member_id")[0].value;
+       
+       var idVal = {
+             "member_id" : member_id
+       }
+       
+       if (member_id.trim() == "" || member_id == null) {
+           alert("아이디를 입력해 주세요");
+       } else {
+           $.ajax({
+              type: 'POST',
+               url: 'idCheck.do',
+               data: JSON.stringify(idVal),
+               contentType: "application/json",
+               dataType: "json",
+               success: function(data) {
+                   if(data.check == false) {
+                       $("#idChk").attr("title", "y");
+                       alert("사용가능한 아이디입니다.");
+                   } else {
+                       alert("이미 존재하는 아이디입니다.");
+                   }
+               },
+               error: function(){
+                  alert("실패냐?");
+               }
+           })
+       }
+   }
+   
+   function idCheckConfirm() {
+       var chk = document.getElementsByName("member_id")[0].title;
+       if (chk == "n") {
+           alert("아이디 중복체크를 먼저 해주세요.");
+           document.getElementsByName("member_id")[0].focus();
+       }
+   };
+   
+   
+   // 비밀번호 일치 확인
+   function pwCheck() {
+       if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+           if(document.getElementById('pw').value==document.getElementById('pw2').value){
+               document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+               document.getElementById('check').style.color='blue';
+           }
+           else{
+               document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+               document.getElementById('check').style.color='red';
+           }
+       }
+   }
 </script>
 
 </head>

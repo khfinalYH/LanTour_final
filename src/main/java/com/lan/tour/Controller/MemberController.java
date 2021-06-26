@@ -1,10 +1,14 @@
 package com.lan.tour.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,13 +54,24 @@ public class MemberController {
 		return "singnup_general";
 	}
 
-	@RequestMapping("/idCheck.do")
-	public boolean idCheck(String member_id) {
-		if (biz.idCheck(member_id) == null) {
-			return true;
+	@ResponseBody
+	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
+	public Map<String, Boolean> idCheck(@RequestBody String member_id) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		MemberDto res = biz.idCheck(member_id);
+		boolean check = false;
+		
+		System.out.println("----------------res 출력");
+		System.out.println(res);
+		
+		if (res != null) {
+			check = true;
 		}
 
-		return false;
+		map.put("check", check);
+
+		System.out.println(map);
+		return map;
 	}
 
 	@RequestMapping("/registerres.do")
