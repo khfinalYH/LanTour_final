@@ -34,62 +34,73 @@ response.setContentType("text/html; charset=UTF-8");
 <body>
 
 	<form action="register.do" method="post">
-
+	<table border="1">
 
 		<!-- ID -->
-		<div>
-			<label for="member_id">ID</label><br>
+		<tr>
+			<th>ID</th>
+			<td>
 			<input type="text" id="memeber_id" name="member_id" placeholder="Id" required="required">
 			<input type="button" value="check" onclick="idCheck();">
-		</div>
+			</td>
+		</tr>
 
 		<!-- PW -->
-		<div>
-			<label for="member_pw">PASSWORD</label><br>
+		<tr>
+			<th>PASSWORD</th>
+			<td>
 			<input type="password" id="memeber_pw" name="member_pw" placeholder="Password" required="required">
-		</div>
+			</td>
+		</tr>
 
 
 		<!-- 이름-->
-		<div>
-			<label for="member_name">이름</label><br>
+		<tr>
+			<th>이름</th>
+			<td>
 			<input type="text" id="memeber_name" name="member_name" placeholder="NAME" required="required">
-		</div>
+			</td>
+		</tr>
 		<!-- 나이 -->
-		<div>
-			<label for="member_age">나이</label>
+		<tr>
+			<th>나이</th>
+			<td>
 			<input type="text" name="member_age" required="required">
-		</div>
+			</td>
+		</tr>			
 
 		<!-- 성별 -->
-		<div>
-			<label for="member_gender"></label><br> <label> 남 </label>
+		<tr>
+			<th>성별</th>
+			<td>
 			<input type="radio" name="member_gender" value="M" checked="checked">
-			<label> 여 </label>
 			<input type="radio" name="member_gender" value="F">
-		</div>
+			</td>
+		</tr>
 
 
 		<!-- 전화번호 -->
-		<div>
-			<label for="member_phone">Phone</label><br>
+		<tr>
+			<th>전화번호</th>
+			<td>
 			<input type="text" id="memeber_phone" name="member_phone" placeholder="ex)010-1234-5678" required="required">
-		</div>
+			</td>
+		</tr>
 
 
 		<!-- Email-->
-		<div>
-			<label for="member_email">Email</label><br>
+		<tr>
+			<th>이메일l</th>
+			<td>
 			<input type="text" id="memeber_email" name="member_email" required="required">
-			<br />
 			<button type="submit" name="submit">이메일 인증받기</button>
-
-		</div>
-
+			</td>
+		</tr>
+</table>
 
 
 		<div>
-			<input type="submit" value="회원가입">
+			<input type="submit" value="JOIN">
 			<input type="button" value="취소" onclick="loction.href=''" />
 		</div>
 
