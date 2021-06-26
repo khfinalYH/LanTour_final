@@ -12,18 +12,6 @@
 
 <script type="text/javascript">
 
-   // 나이, 전화번호 숫자만 입력
-   function onlyNumber(){
-       if((event.keyCode > 48 && event.keyCode < 57 ) 
-           || event.keyCode == 8 //backspace
-           || event.keyCode == 37 || event.keyCode == 39 //방향키 →, ←
-           || event.keyCode == 46 //delete키
-           || event.keyCode == 39){
-       } else {
-           event.returnValue=false;
-       }
-   }
-   
    // 아이디 중복 확인
    function idCheck(){
        var member_id = document.getElementsByName("member_id")[0].value;
@@ -119,7 +107,7 @@
             <tr>
                 <th>나이</th>
                 <td>
-                    <input type="text" name="member_age" onkeydown="return onlyNumber();" required>
+                    <input type="text" name="member_age" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
                 </td>
             </tr>
     
@@ -142,7 +130,7 @@
             <tr>
                 <th>전화번호</th>
                 <td>
-                    <input type="text" name="member_phone" placeholder="-없이 입력하세요" onkeydown="return onlyNumber();" required/>
+                    <input type="text" name="member_phone" placeholder="-없이 입력하세요" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required/>
                 </td>
             </tr>
     
