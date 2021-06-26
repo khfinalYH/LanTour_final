@@ -38,7 +38,7 @@ public class MemberController {
 	public boolean loginCheck(String member_id, String member_passpword, HttpSession session) {
 		MemberDto dto = biz.idCheck(member_id);
 		if (biz.idCheck(member_id) != null) {
-			pwEncoder.matches(dto.getMember_passpword(), member_passpword);
+			pwEncoder.matches(dto.getMember_password(), member_passpword);
 			session.setAttribute("login", dto);
 			return true;
 		}
@@ -76,13 +76,15 @@ public class MemberController {
 
 	@RequestMapping("/registerres.do")
 	public String registerRes(MemberDto dto) {
-		System.out.println("암호화 전 : " + dto.getMember_passpword());
-		dto.setMember_passpword(pwEncoder.encode(dto.getMember_passpword()));
-		System.out.println("암호화 후 : " + dto.getMember_passpword());
+		System.out.println(dto);
+		
+		System.out.println("암호화 전 : " + dto.getMember_password());
+		dto.setMember_password(pwEncoder.encode(dto.getMember_password()));
+		System.out.println("암호화 후 : " + dto.getMember_password());
 		if (biz.insert(dto) > 0) {
 			return "redirect:loginform.do";
 		}
-		return "redircet:registerform.do";
+		return "redirect:registerform.do";
 	}
 
 }

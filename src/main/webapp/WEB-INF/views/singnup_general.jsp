@@ -72,7 +72,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 </head>
 <body>
-	<form action="register.do" method="POST">
+	<form action="./registerres.do" method="post">
 		<input type="hidden" name="member_grade" value="U" />
 		<table border="1">
 
