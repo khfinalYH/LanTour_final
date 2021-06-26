@@ -1,0 +1,73 @@
+package com.lan.tour.Controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.lan.tour.model.biz.MemberBiz;
+import com.lan.tour.model.dto.MemberDto;
+
+@Controller
+public class MemberController {
+
+	@Autowired
+	private MemberBiz biz;
+
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+
+	// ---------------------------------------------
+	// 로그인------------------------------------------
+	@RequestMapping("/loginform.do")
+	public String loginForm() {
+		return "login";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
+	public boolean loginCheck(String member_id, String member_passpword, HttpSession session) {
+		MemberDto dto = biz.idCheck(member_id);
+		if (biz.idCheck(member_id) != null) {
+			pwEncoder.matches(dto.getMember_passpword(), member_passpword);
+			session.setAttribute("login", dto);
+			return true;
+		}
+		return false;
+	}
+
+	// ---------------------------------------------
+	// 회원가입------------------------------------------
+	// singup.do -> registerform.do 로 변경(회원가입 페이지로 가는것이 없음)
+	@RequestMapping("/registerform.do")
+	public String signupform() {
+		// 회원 가입 페이지로 이동 (페이지 이름을 몰라서 register로 작성)
+		return "singnup_general";
+	}
+
+	@RequestMapping("/idCheck.do")
+	public boolean idCheck(String member_id) {
+		if (biz.idCheck(member_id) == null) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@RequestMapping("/registerres.do")
+	public String registerRes(MemberDto dto) {
+		System.out.println("암호화 전 : " + dto.getMember_passpword());
+		dto.setMember_passpword(pwEncoder.encode(dto.getMember_passpword()));
+		System.out.println("암호화 후 : " + dto.getMember_passpword());
+		if (biz.insert(dto) > 0) {
+			return "redirect:loginform.do";
+		}
+		return "redircet:registerform.do";
+	}
+
+}

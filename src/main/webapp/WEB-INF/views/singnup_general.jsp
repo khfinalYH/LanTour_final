@@ -1,0 +1,151 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+
+	// 나이, 전화번호 숫자만 입력
+	function onlyNumber(){
+	    if((event.keyCode > 48 && event.keyCode < 57 ) 
+	        || event.keyCode == 8 //backspace
+	        || event.keyCode == 37 || event.keyCode == 39 //방향키 →, ←
+	        || event.keyCode == 46 //delete키
+	        || event.keyCode == 39){
+	    } else {
+	        event.returnValue=false;
+	    }
+	}
+	
+	// 아이디 중복 확인
+	function idCheck(){
+	    var member_id = document.getElementsByName("member_id")[0];
+	    if (member_id.value.trim() == "" || member_id.value == null) {
+	        alert("아이디를 입력해 주세요");
+	    } else {
+	        $.ajax({
+	            url: '/idCheck.do',
+	            type: 'POST',
+	            dataType: 'text',
+	            data: member_id,
+	            success: function(data) {
+	                if(data) {
+	                    $("#idChk").attr("title", "y");
+	                    alert("사용가능한 아이디입니다.");
+	                } else {
+	                    alert("이미 존재하는 아이디입니다.");
+	                }
+	            },
+	            error: function(){
+	            }
+	        })
+	    }
+	}
+	
+	function idCheckConfirm() {
+	    var chk = document.getElementsByName("member_id")[0].title;
+	    if (chk == "n") {
+	        alert("아이디 중복체크를 먼저 해주세요.");
+	        document.getElementsByName("member_id")[0].focus();
+	    }
+	};
+	
+	
+	// 비밀번호 일치 확인
+	function pwCheck() {
+	    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+	        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+	            document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+	            document.getElementById('check').style.color='blue';
+	        }
+	        else{
+	            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+	            document.getElementById('check').style.color='red';
+	        }
+	    }
+	}
+</script>
+
+</head>
+<body>
+    <form action="register.do" method="POST">
+        <input type="hidden" name="member_grade" value="U" />
+        <table border="1">
+    
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <input type="text" id="idChk" name="member_id" title="n" required>
+                    <input type="button" value="중복체크" onclick="idCheck();">
+                </td>
+            </tr>
+    
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" id="pw" name="member_password" onclick="idCheckConfirm();" onchange="pwCheck()" required>
+                </td>
+            </tr>
+
+            <tr>
+                <th>비밀번호 확인</th>
+                <td>
+                    <input type="password" id="pw2" onclick="idCheckConfirm();" onchange="pwCheck()" required>
+                    &nbsp;<span id="check"></span>
+                </td>
+            </tr>
+    
+            <tr>
+                <th>이름</th>
+                <td>
+                    <input type="text" name="member_name" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <th>나이</th>
+                <td>
+                    <input type="text" name="member_age" onkeydown="return onlyNumber();" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <th>성별</th>
+                <td>
+                    <input type="radio" name="member_gender" value="M" checked>남
+                    <input type="radio" name="member_gender" value="F">여
+                </td>
+            </tr>
+    
+            <tr>
+                <th>이메일</th>
+                <td>
+                    <input type="email" name="member_email" required/>
+                    <input type="button" name="" value="인증" onclick="">
+                </td>
+            </tr>
+    
+            <tr>
+                <th>전화번호</th>
+                <td>
+                    <input type="text" name="member_phone" placeholder="-없이 입력하세요" onkeydown="return onlyNumber();" required/>
+                </td>
+            </tr>
+    
+        </table>
+
+        <div>
+            <input type="submit" value="회원가입" />
+            <input type="button" value="취소" onclick="location.href=''" />
+        </div>
+    
+    </form>
+</body>
+</html>
