@@ -40,7 +40,7 @@ response.setContentType("text/html; charset=UTF-8");
 					}
 				},
 				error : function() {
-					alert("실패냐?");
+					alert("통신 실패");
 				}
 			})
 		}

@@ -35,14 +35,18 @@ public class MemberController {
 
 	@ResponseBody
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
-	public boolean loginCheck(String member_id, String member_passpword, HttpSession session) {
-		MemberDto dto = biz.idCheck(member_id);
-		if (biz.idCheck(member_id) != null) {
-			pwEncoder.matches(dto.getMember_password(), member_passpword);
+	public Map<String, Boolean> loginCheck(@RequestBody MemberDto dto, HttpSession session) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		MemberDto res = biz.idCheck(dto.getMember_id());
+		boolean check = false;
+
+		if (res != null) {
+			pwEncoder.matches(res.getMember_password(), dto.getMember_password());
 			session.setAttribute("login", dto);
-			return true;
+			check = true;
 		}
-		return false;
+		map.put("check", check);
+		return map;
 	}
 
 	// ---------------------------------------------

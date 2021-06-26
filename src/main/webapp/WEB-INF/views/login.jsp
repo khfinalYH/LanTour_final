@@ -22,7 +22,7 @@
 	
 	    var sendByIdPw = {
 	        "member_id" : member_id,
-	        "member_password" : member_pawword
+	        "member_password" : member_password
 	    }
 	
 	    if (member_id == null || member_id == "" || member_password == null || member_password == "") {
@@ -32,6 +32,7 @@
 	            url: 'loginCheck.do',
 	            type: 'post',
 	            data: JSON.stringify(sendByIdPw),
+				contentType : "application/json",
 	            dataType: 'json',
 	            success: function(data) {
 	                if(data) {
