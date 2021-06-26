@@ -19,7 +19,7 @@
 		WHERE MEMBER_NO = #{member_no}
 	</select>
 
-	<select id="idCheck" parameterType="String"
+	<select id="idCheck" parameterType="memberDto"
 		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
 		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,

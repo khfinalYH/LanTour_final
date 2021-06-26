@@ -40,8 +40,8 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public MemberDto idCheck(String member_id) {
-		return dao.idCheck(member_id);
+	public MemberDto idCheck(MemberDto dto) {
+		return dao.idCheck(dto);
 	}
 	
 

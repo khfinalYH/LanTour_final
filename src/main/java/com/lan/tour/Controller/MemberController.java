@@ -37,11 +37,11 @@ public class MemberController {
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
 	public Map<String, Boolean> loginCheck(@RequestBody MemberDto dto, HttpSession session) {
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		MemberDto res = biz.idCheck(dto.getMember_id());
+		MemberDto res = biz.idCheck(dto);
 		boolean check = false;
 
 		if (res != null) {
-			pwEncoder.matches(res.getMember_password(), dto.getMember_password());
+			pwEncoder.matches(dto.getMember_password(), res.getMember_password());
 			session.setAttribute("login", dto);
 			check = true;
 		}
@@ -60,9 +60,9 @@ public class MemberController {
 
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
-	public Map<String, Boolean> idCheck(@RequestBody String member_id) {
+	public Map<String, Boolean> idCheck(@RequestBody MemberDto dto) {
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		MemberDto res = biz.idCheck(member_id);
+		MemberDto res = biz.idCheck(dto);
 		boolean check = false;
 		
 		System.out.println("----------------res 출력");

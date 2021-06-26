@@ -80,16 +80,16 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberDto idCheck(String member_id) {
-		MemberDto dto = null;
+	public MemberDto idCheck(MemberDto dto) {
+		MemberDto res = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"idCheck", member_id);
+			res = sqlSession.selectOne(NAMESPACE+"idCheck", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		System.out.println("--------------dao");
-		System.out.println(dto);
-		return dto;
+		System.out.println(res);
+		return res;
 	}
 
 }

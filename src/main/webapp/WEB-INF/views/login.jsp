@@ -35,7 +35,7 @@
 				contentType : "application/json",
 	            dataType: 'json',
 	            success: function(data) {
-	                if(data) {
+	                if(data.check == true) {
 	                    alert("성공적으로 로그인되었습니다.");
 	                    location.href="home.do";
 	                } else {

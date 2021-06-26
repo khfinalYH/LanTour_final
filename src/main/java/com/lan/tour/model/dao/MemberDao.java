@@ -15,7 +15,7 @@ public interface MemberDao {
 	public int update(MemberDto dto);
 	public int delete(int member_no);
 	public int insert(MemberDto dto);
-	public MemberDto idCheck(String member_id);
+	public MemberDto idCheck(MemberDto dto);
 	
 	
 	
