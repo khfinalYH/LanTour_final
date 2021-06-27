@@ -12,7 +12,7 @@ import com.lan.tour.model.dto.MemberDto;
 public class MemberBizImpl implements MemberBiz {
 
 	@Autowired
-	MemberDao dao;
+	private MemberDao dao;
 
 	@Override
 	public List<MemberDto> selectList() {

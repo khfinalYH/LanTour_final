@@ -39,11 +39,12 @@ public class MemberController {
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		MemberDto res = biz.idCheck(dto);
 		boolean check = false;
-
+		System.out.println(res);
 		if (res != null) {
-			pwEncoder.matches(dto.getMember_password(), res.getMember_password());
-			session.setAttribute("login", dto);
-			check = true;
+			if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
+				session.setAttribute("login", res);
+				check = true;
+			}
 		}
 		map.put("check", check);
 		return map;
@@ -64,10 +65,10 @@ public class MemberController {
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		MemberDto res = biz.idCheck(dto);
 		boolean check = false;
-		
+
 		System.out.println("----------------res 출력");
 		System.out.println(res);
-		
+
 		if (res != null) {
 			check = true;
 		}
@@ -81,7 +82,7 @@ public class MemberController {
 	@RequestMapping("/registerres.do")
 	public String registerRes(MemberDto dto) {
 		System.out.println(dto);
-		
+
 		System.out.println("암호화 전 : " + dto.getMember_password());
 		dto.setMember_password(pwEncoder.encode(dto.getMember_password()));
 		System.out.println("암호화 후 : " + dto.getMember_password());

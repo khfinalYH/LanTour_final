@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$(location).attr('href','main.do');
+	});
+</script>
 </head>
 <body>
-
-	<h1>TEST</h1>
-
-<a href="loginform.do">로그인</a>
-<a href="registerform.do">회원가입</a>
 </body>
 </html>
