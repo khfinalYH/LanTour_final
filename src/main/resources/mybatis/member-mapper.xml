@@ -7,7 +7,7 @@
 		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
-		ORDER BY MYNO DESC
+		ORDER BY MEMBER_NO DESC
 	</select>
 
 	<select id="selectOne" parameterType="int"
@@ -35,12 +35,12 @@
 
 	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER
-		SET MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{memebr_no}
+		SET MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{member_no}
 	</update>
 
 	<update id="delete" parameterType="int">
-		UPDATE MMBER
-		SET MEMBER_SECESSION = 'N' WHERE MEMBER_NO = #{memebr_no}
+		UPDATE MEMBER
+		SET MEMBER_SECESSION = 'Y' WHERE MEMBER_NO = #{member_no}
 	</update>
 
 </mapper>
