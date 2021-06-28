@@ -5,11 +5,13 @@
 	<typeAliases>
 		<typeAlias type="com.lan.tour.model.dto.MemberDto" alias ="memberDto"/>
 		<typeAlias type="com.lan.tour.model.dto.HotelDto" alias = "hotelDto"/>
+		<typeAlias type="com.lan.tour.model.dto.lantourDto" alias = "lantourDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource = "/mybatis/member-mapper.xml"/>
 		<mapper resource = "/mybatis/hotel-mapper.xml"/>
+		<mapper resource = "/mybatis/lantour-mapper.xml"/>
 	</mappers>
 
 </configuration>
