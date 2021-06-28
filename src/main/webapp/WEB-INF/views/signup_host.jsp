@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -34,73 +35,62 @@ response.setContentType("text/html; charset=UTF-8");
 <body>
 
 	<form action="register.do" method="post">
-	<table border="1">
+
 
 		<!-- ID -->
-		<tr>
-			<th>ID</th>
-			<td>
+		<div>
+			<label for="member_id">ID</label><br>
 			<input type="text" id="memeber_id" name="member_id" placeholder="Id" required="required">
 			<input type="button" value="check" onclick="idCheck();">
-			</td>
-		</tr>
+		</div>
 
 		<!-- PW -->
-		<tr>
-			<th>PASSWORD</th>
-			<td>
+		<div>
+			<label for="member_pw">PASSWORD</label><br>
 			<input type="password" id="memeber_pw" name="member_pw" placeholder="Password" required="required">
-			</td>
-		</tr>
+		</div>
 
 
 		<!-- 이름-->
-		<tr>
-			<th>이름</th>
-			<td>
+		<div>
+			<label for="member_name">이름</label><br>
 			<input type="text" id="memeber_name" name="member_name" placeholder="NAME" required="required">
-			</td>
-		</tr>
+		</div>
 		<!-- 나이 -->
-		<tr>
-			<th>나이</th>
-			<td>
+		<div>
+			<label for="member_age">나이</label>
 			<input type="text" name="member_age" required="required">
-			</td>
-		</tr>			
+		</div>
 
 		<!-- 성별 -->
-		<tr>
-			<th>성별</th>
-			<td>
+		<div>
+			<label for="member_gender"></label><br> <label> 남 </label>
 			<input type="radio" name="member_gender" value="M" checked="checked">
+			<label> 여 </label>
 			<input type="radio" name="member_gender" value="F">
-			</td>
-		</tr>
+		</div>
 
 
 		<!-- 전화번호 -->
-		<tr>
-			<th>전화번호</th>
-			<td>
+		<div>
+			<label for="member_phone">Phone</label><br>
 			<input type="text" id="memeber_phone" name="member_phone" placeholder="ex)010-1234-5678" required="required">
-			</td>
-		</tr>
+		</div>
 
 
 		<!-- Email-->
-		<tr>
-			<th>이메일l</th>
-			<td>
+		<div>
+			<label for="member_email">Email</label><br>
 			<input type="text" id="memeber_email" name="member_email" required="required">
+			<br />
 			<button type="submit" name="submit">이메일 인증받기</button>
-			</td>
-		</tr>
-</table>
+
+		</div>
+
 
 
 		<div>
-			<input type="submit" value="JOIN">
+			<input type="submit" value="회원가입">
 			<input type="button" value="취소" onclick="loction.href=''" />
 		</div>
 

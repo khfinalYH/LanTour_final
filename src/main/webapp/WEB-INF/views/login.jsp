@@ -22,7 +22,7 @@
 	
 	    var sendByIdPw = {
 	        "member_id" : member_id,
-	        "member_password" : member_pawword
+	        "member_password" : member_password
 	    }
 	
 	    if (member_id == null || member_id == "" || member_password == null || member_password == "") {
@@ -32,11 +32,12 @@
 	            url: 'loginCheck.do',
 	            type: 'post',
 	            data: JSON.stringify(sendByIdPw),
+				contentType : "application/json",
 	            dataType: 'json',
 	            success: function(data) {
-	                if(data) {
+	                if(data.check == true) {
 	                    alert("성공적으로 로그인되었습니다.");
-	                    location.href="home.do";
+	                    location.href="main.do";
 	                } else {
 	                    $("#loginChk").show();
 	                    $("#loginChk").html("Id 혹은 Password를 다시 확인해주세요.");

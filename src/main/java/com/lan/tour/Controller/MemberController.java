@@ -35,14 +35,19 @@ public class MemberController {
 
 	@ResponseBody
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
-	public boolean loginCheck(String member_id, String member_passpword, HttpSession session) {
-		MemberDto dto = biz.idCheck(member_id);
-		if (biz.idCheck(member_id) != null) {
-			pwEncoder.matches(dto.getMember_passpword(), member_passpword);
-			session.setAttribute("login", dto);
-			return true;
+	public Map<String, Boolean> loginCheck(@RequestBody MemberDto dto, HttpSession session) {
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		MemberDto res = biz.idCheck(dto);
+		boolean check = false;
+		System.out.println(res);
+		if (res != null) {
+			if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
+				session.setAttribute("login", res);
+				check = true;
+			}
 		}
-		return false;
+		map.put("check", check);
+		return map;
 	}
 
 	// ---------------------------------------------
@@ -56,14 +61,14 @@ public class MemberController {
 
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
-	public Map<String, Boolean> idCheck(@RequestBody String member_id) {
+	public Map<String, Boolean> idCheck(@RequestBody MemberDto dto) {
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		MemberDto res = biz.idCheck(member_id);
+		MemberDto res = biz.idCheck(dto);
 		boolean check = false;
-		
+
 		System.out.println("----------------res 출력");
 		System.out.println(res);
-		
+
 		if (res != null) {
 			check = true;
 		}
@@ -76,13 +81,15 @@ public class MemberController {
 
 	@RequestMapping("/registerres.do")
 	public String registerRes(MemberDto dto) {
-		System.out.println("암호화 전 : " + dto.getMember_passpword());
-		dto.setMember_passpword(pwEncoder.encode(dto.getMember_passpword()));
-		System.out.println("암호화 후 : " + dto.getMember_passpword());
+		System.out.println(dto);
+
+		System.out.println("암호화 전 : " + dto.getMember_password());
+		dto.setMember_password(pwEncoder.encode(dto.getMember_password()));
+		System.out.println("암호화 후 : " + dto.getMember_password());
 		if (biz.insert(dto) > 0) {
 			return "redirect:loginform.do";
 		}
-		return "redircet:registerform.do";
+		return "redirect:registerform.do";
 	}
 
 }

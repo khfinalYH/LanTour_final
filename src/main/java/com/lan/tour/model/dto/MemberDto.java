@@ -5,7 +5,7 @@ public class MemberDto {
 	private int member_no;
 	private String member_id;
 	private String member_name;
-	private String member_passpword;
+	private String member_password;
 	private String member_grade;
 	private int member_age;
 	private String member_gender;
@@ -16,13 +16,13 @@ public class MemberDto {
 	public MemberDto() {
 	}
 
-	public MemberDto(int member_no, String member_id, String member_name, String member_passpword, String member_grade,
+	public MemberDto(int member_no, String member_id, String member_name, String member_password, String member_grade,
 			int member_age, String member_gender, String member_email, String member_phone, String member_secession) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
 		this.member_name = member_name;
-		this.member_passpword = member_passpword;
+		this.member_password = member_password;
 		this.member_grade = member_grade;
 		this.member_age = member_age;
 		this.member_gender = member_gender;
@@ -55,12 +55,12 @@ public class MemberDto {
 		this.member_name = member_name;
 	}
 
-	public String getMember_passpword() {
-		return member_passpword;
+	public String getMember_password() {
+		return member_password;
 	}
 
-	public void setMember_passpword(String member_passpword) {
-		this.member_passpword = member_passpword;
+	public void setMember_password(String member_password) {
+		this.member_password = member_password;
 	}
 
 	public String getMember_grade() {
@@ -114,7 +114,7 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [member_no=" + member_no + ", member_id=" + member_id + ", member_name=" + member_name
-				+ ", member_passpword=" + member_passpword + ", member_grade=" + member_grade + ", member_age="
+				+ ", member_password=" + member_password + ", member_grade=" + member_grade + ", member_age="
 				+ member_age + ", member_gender=" + member_gender + ", member_email=" + member_email + ", member_phone="
 				+ member_phone + ", member_secession=" + member_secession + "]";
 	}

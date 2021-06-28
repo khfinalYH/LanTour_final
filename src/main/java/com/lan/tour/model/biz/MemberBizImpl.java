@@ -12,7 +12,7 @@ import com.lan.tour.model.dto.MemberDto;
 public class MemberBizImpl implements MemberBiz {
 
 	@Autowired
-	MemberDao dao;
+	private MemberDao dao;
 
 	@Override
 	public List<MemberDto> selectList() {
@@ -40,8 +40,8 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public MemberDto idCheck(String member_id) {
-		return dao.idCheck(member_id);
+	public MemberDto idCheck(MemberDto dto) {
+		return dao.idCheck(dto);
 	}
 	
 
