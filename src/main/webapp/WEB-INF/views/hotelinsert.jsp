@@ -8,20 +8,20 @@
 <script type="text/javascript">
 	function upload() {
 		var form = new FormData();
-		form.append("mpfile",$("#file1")[0].files[0])
+		form.append("mpfile", $("#file1")[0].files[0])
 		$.ajax({
 			type : "post",
-			enctype: 'multipart/form-data',
+			enctype : 'multipart/form-data',
 			url : "hotelupload.do",
 			processData : false,
 			contentType : false,
-			data : form ,
+			data : form,
 			dataType : "json",
-			success : function (msg) {
-				$("#hotel_img").prop("src",msg.path);
+			success : function(msg) {
+				$("#hotel_img").prop("src", msg.path);
 				$("#hotel_image").val(msg.path);
 			},
-			error : function () {
+			error : function() {
 				alert("통신 실패");
 			}
 		})
@@ -75,7 +75,7 @@
 			<tr>
 				<th>숙소 사진 미리보기</th>
 				<td>
-					<img id="hotel_img" src=""/>
+					<img id="hotel_img" src="" />
 				</td>
 			</tr>
 			<tr>

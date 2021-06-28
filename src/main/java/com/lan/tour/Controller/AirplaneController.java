@@ -30,7 +30,10 @@ import java.io.IOException;
 @Controller
 public class AirplaneController {
 
-
+	private String time1;
+	private String time2;
+	
+	
 	@RequestMapping("/airportSearch.do")
 	public String airportSearch(Model model) {
 		try {
@@ -44,21 +47,25 @@ public class AirplaneController {
 	
 
 	@RequestMapping("/airplaneList.do")
-	public String airplaneList(Model model, String depAirportId, String arrAirportId, String date) {
+	public String airplaneList(Model model, String depAirportId, String arrAirportId, String date, String time) {
+		if(!time.equals("")) {
+			this.time1 = time.substring(0,4);
+			this.time2 = time.substring(4);
+		}else {
+			this.time1=null;
+			this.time2=null;
+		}
+		
 		try {
 			model.addAttribute("portlist", getXMLElement(getArprtList()) );
-
 			model.addAttribute("planelist", getXMLElement(getFlightOpratInfoList(300, 1, depAirportId, arrAirportId, date.replaceAll("-", ""))));
 			model.addAttribute("date", date);
 			model.addAttribute("depAirportId", depAirportId);
 			model.addAttribute("arrAirportId", arrAirportId);
-
-		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return "airplane/airplane_list";
 	}
 	
@@ -154,6 +161,7 @@ public class AirplaneController {
 		    	 NodeList nodec = nodelist.item(i).getChildNodes();
 		    	 for(int j = 0; j<nodec.getLength();j++) {
 	    			 String value = nodec.item(j).getChildNodes().item(0).getNodeValue();
+	    			 
 		    		 map.put(nodec.item(j).getNodeName(), value);
 		    		 if(nodec.item(j).getNodeName().equals("depAirportNm")) {
 		    			 if(value.equals("무안")) {
@@ -217,9 +225,18 @@ public class AirplaneController {
 	    			 }
 		    		 }
 		    	 }
-	    		 list.add(map);
-	    		 
-	    		 
+		    	 if(map.containsKey("airportId")||map.containsKey("airportNm")) {
+		    		 list.add(map);
+		    	 }else {
+			    	 if(time1!=null&&time2!=null) {
+				    	 if(Integer.parseInt(map.get("depPlandTime").substring(8))>=Integer.parseInt(time1)&&Integer.parseInt(map.get("depPlandTime").substring(8))<=Integer.parseInt(time2)) {
+				    		 list.add(map);
+				    	 }
+			    	 }else{
+			    		 list.add(map);
+			    	 }
+		    	 
+		    	 }
 	    	 }
 	    	 
 		} catch (ParserConfigurationException e) {
