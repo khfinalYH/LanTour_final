@@ -5,7 +5,7 @@
 	<typeAliases>
 		<typeAlias type="com.lan.tour.model.dto.MemberDto" alias ="memberDto"/>
 		<typeAlias type="com.lan.tour.model.dto.HotelDto" alias = "hotelDto"/>
-		<typeAlias type="com.lan.tour.model.dto.lantourDto" alias = "lantourDto"/>
+		<typeAlias type="com.lan.tour.model.dto.LantourDto" alias = "lantourDto"/>
 	</typeAliases>
 
 	<mappers>

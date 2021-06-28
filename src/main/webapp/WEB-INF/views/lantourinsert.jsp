@@ -9,7 +9,7 @@
 <body>
 
 	<h1>랜선투어 글쓰기</h1>
-	<form action="./insertres.do" method="post">
+	<form action="./lantourinsertres.do" method="post">
 		<table border="1">
 			<tr>
 				<th>투어 제목</th>

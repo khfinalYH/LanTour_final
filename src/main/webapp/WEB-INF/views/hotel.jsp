@@ -32,7 +32,7 @@
 					<tr>
 						<td>${dto.hotel_no }</td>
 						<td>${dto.hotel_addr }</td>
-						<td>${dto.hotel_title } </td>
+						<td><a href="./hoteldetail.do?hotel_no=${dto.hotel_no } ">${dto.hotel_title } </a></td>
 						<td>${dto.hotel_regdate }</td>
 					</tr>
 				</c:forEach>
