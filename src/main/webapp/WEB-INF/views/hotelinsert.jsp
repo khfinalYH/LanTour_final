@@ -31,7 +31,7 @@
 <body>
 
 	<h1>숙소 insert, ${login.member_id },${login.member_no }</h1>
-	<form action="./insertres.do" method="post" enctype="multipart/form-data">
+	<form action="./hotelinsertres.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="member_no" value="${login.member_no}" />
 		<input type="hidden" id="hotel_image" name="hotel_image" value="aaaaaa" />
 		<table border="1">

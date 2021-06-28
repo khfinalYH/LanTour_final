@@ -22,6 +22,7 @@ import org.springframework.web.util.WebUtils;
 import com.lan.tour.model.biz.HotelBiz;
 import com.lan.tour.model.dto.HotelDto;
 
+
 @Controller
 public class HotelController {
 
@@ -39,7 +40,7 @@ public class HotelController {
 		return "hotelinsert";
 	}
 
-	@RequestMapping("/insertres.do")
+	@RequestMapping("/hotelinsertres.do")
 	public String hotelinsertres(HotelDto dto) {
 		System.out.println(dto);
 

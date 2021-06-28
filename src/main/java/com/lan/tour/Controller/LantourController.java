@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.dto.LantourDto;
+
+
 @Controller
-public class LanTourController {
+public class LantourController {
 
 	@Autowired
 	private LantourBiz biz;
@@ -25,7 +27,8 @@ public class LanTourController {
 		return "lantourinsert";
 		
 	}
-	@RequestMapping("/insertres.do")
+	
+	@RequestMapping("/lantourinsertres.do")
 	public String lantourinsertres(LantourDto dto) {
 		System.out.println(dto);
 		
