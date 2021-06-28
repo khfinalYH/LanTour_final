@@ -19,66 +19,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
-import com.lan.tour.model.biz.HotelBiz;
 import com.lan.tour.model.biz.RoomBiz;
-import com.lan.tour.model.dto.HotelDto;
+import com.lan.tour.model.dto.RoomDto;
 
 @Controller
-public class HotelController {
+public class RoomController {
 
 	@Autowired
-	private HotelBiz biz;
-	
-	@Autowired
-	private RoomBiz biz2;
+	private RoomBiz biz;
 
-	@RequestMapping("/hotellist.do")
-	public String hotellist(Model model) {
-		model.addAttribute("list", biz.selectList());
-		return "hotel";
+	@RequestMapping("/roominsert.do")
+	public String roominsert(int hotel_no, Model model) {
+		model.addAttribute("hotel_no", hotel_no);
+		return "roominsert";
 	}
 
-	@RequestMapping("/hotelinsert.do")
-	public String hotelinsert() {
-		return "hotelinsert";
-	}
-
-	@RequestMapping("/hotelinsertres.do")
-	public String hotelinsertres(HotelDto dto) {
-		System.out.println(dto);
-
+	@RequestMapping("/roominsertres.do")
+	public String roominsertres(RoomDto dto) {
 		if (biz.insert(dto) > 0) {
-			return "redirect:hotellist.do";
+			return "redirect:hoteldetail.do?hotel_no=" + dto.getHotel_no();
 		}
-		return "redirect:hotelinsert.do";
-	}
-
-	@RequestMapping("/hoteldetail.do")
-	public String hoteldetail(Model model, int hotel_no) {
-		model.addAttribute("dto", biz.selectOne(hotel_no));
-		model.addAttribute("roomlist", biz2.selectList(hotel_no));
-
-		return "hoteldetail";
+		return "redirect:roominsert.do?hotel_no=" + dto.getHotel_no();
 	}
 
 	@ResponseBody
-	@RequestMapping("/hotelupload.do")
-	public Map<String, String> hotelupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {
-
+	@RequestMapping("/roomupload.do")
+	public Map<String, String> roomupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {
 		String name = file.getOriginalFilename();
 		String path = "";
 
-		System.out.println(name);
-
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
+
 		try {
 			inputStream = file.getInputStream();
-			path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/hotelimg");
 
-			File hotelimg = new File(path);
-			if (!hotelimg.exists()) {
-				hotelimg.mkdirs();
+			path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/roomimg");
+			File roomimg = new File(path);
+			if (!roomimg.exists()) {
+				roomimg.mkdirs();
 			}
 
 			File newFile = new File(path + "/" + name);
@@ -105,13 +84,13 @@ public class HotelController {
 				e.printStackTrace();
 			}
 		}
-		String return_path = "resources/hotelimg/" + name;
+		String return_path = "resources/roomimg/" + name;
 		System.out.println(return_path);
 
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("path", return_path);
-
+		
 		return map;
 	}
 }
