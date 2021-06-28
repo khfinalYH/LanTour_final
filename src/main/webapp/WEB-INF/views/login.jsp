@@ -37,7 +37,7 @@
 	            success: function(data) {
 	                if(data.check == true) {
 	                    alert("성공적으로 로그인되었습니다.");
-	                    location.href="home.do";
+	                    location.href="main.do";
 	                } else {
 	                    $("#loginChk").show();
 	                    $("#loginChk").html("Id 혹은 Password를 다시 확인해주세요.");

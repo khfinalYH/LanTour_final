@@ -7,6 +7,7 @@ public class HotelDto {
 	private int hotel_no;
 	private int member_no;
 	private String hotel_type;
+	private String hotel_title;
 	private String hotel_content;
 	private Date hotel_regdate;
 	private int hotel_price;
@@ -19,16 +20,15 @@ public class HotelDto {
 	public HotelDto() {
 
 	}
-	
-	
 
-	public HotelDto(int hotel_no, int member_no, String hotel_type, String hotel_content, Date hotel_regdate,
-			int hotel_price, String hotel_addr, String hotel_image, String hotel_convinence, int hotel_maxcount,
-			String hotel_date) {
+	public HotelDto(int hotel_no, int member_no, String hotel_type, String hotel_title, String hotel_content,
+			Date hotel_regdate, int hotel_price, String hotel_addr, String hotel_image, String hotel_convinence,
+			int hotel_maxcount, String hotel_date) {
 
 		this.hotel_no = hotel_no;
 		this.member_no = member_no;
 		this.hotel_type = hotel_type;
+		this.hotel_title = hotel_title;
 		this.hotel_content = hotel_content;
 		this.hotel_regdate = hotel_regdate;
 		this.hotel_price = hotel_price;
@@ -39,7 +39,13 @@ public class HotelDto {
 		this.hotel_date = hotel_date;
 	}
 
+	public String getHotel_title() {
+		return hotel_title;
+	}
 
+	public void setHotel_title(String hotel_title) {
+		this.hotel_title = hotel_title;
+	}
 
 	public int getHotel_no() {
 		return hotel_no;
@@ -129,5 +135,13 @@ public class HotelDto {
 		this.hotel_date = hotel_date;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "HotelDto [hotel_no=" + hotel_no + ", member_no=" + member_no + ", hotel_type=" + hotel_type
+				+ ", hotel_title=" + hotel_title + ", hotel_content=" + hotel_content + ", hotel_regdate="
+				+ hotel_regdate + ", hotel_price=" + hotel_price + ", hotel_addr=" + hotel_addr + ", hotel_image="
+				+ hotel_image + ", hotel_convinence=" + hotel_convinence + ", hotel_maxcount=" + hotel_maxcount
+				+ ", hotel_date=" + hotel_date + "]";
+	}
+
 }
