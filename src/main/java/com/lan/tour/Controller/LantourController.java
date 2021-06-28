@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.dto.LantourDto;
 @Controller
-public class LanTourController {
+public class LantourController {
 
 	@Autowired
 	private LantourBiz biz;
