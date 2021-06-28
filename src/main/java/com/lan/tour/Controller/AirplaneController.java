@@ -56,17 +56,12 @@ public class AirplaneController {
 			this.time2=null;
 		}
 		
-		System.out.println(this.time1+","+this.time2);
 		try {
 			model.addAttribute("portlist", getXMLElement(getArprtList()) );
 			model.addAttribute("planelist", getXMLElement(getFlightOpratInfoList(300, 1, depAirportId, arrAirportId, date.replaceAll("-", ""))));
 			model.addAttribute("date", date);
 			model.addAttribute("depAirportId", depAirportId);
 			model.addAttribute("arrAirportId", arrAirportId);
-			
-			
-
-		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
