@@ -6,7 +6,7 @@ import com.lan.tour.model.dto.LantourDto;
 
 public interface LantourDao {
 
-	String NAMESPACE = "landtour.";
+	String NAMESPACE = "lantour.";
 	
 	public List<LantourDto> selectList();
 	public LantourDto selectOne(int lantour_no);
