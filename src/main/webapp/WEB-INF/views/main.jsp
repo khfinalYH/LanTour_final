@@ -10,5 +10,6 @@
 	<a href="loginform.do">로그인</a>
 	<a href="registerform.do">회원가입</a>
 	<a href="hotellist.do">숙소</a>
+	<a href="lantourlist.do">랜선투어</a>
 </body>
 </html>
