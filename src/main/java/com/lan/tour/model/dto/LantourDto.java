@@ -19,21 +19,27 @@ public class LantourDto {
 	public LantourDto() {
 		
 	}
+	
+	
 
 	public LantourDto(int lantour_no, int member_no, String lantour_title, String lantour_content, Date lantour_regdate,
-			String lantour_rtc, String lantour_image, int lantour_maxcount, int lantour_price, String lantour_date) {
-
+			String lantour_rtc, String lantour_addr, String lantour_image, int lantour_maxcount, int lantour_price,
+			String lantour_date) {
+		super();
 		this.lantour_no = lantour_no;
 		this.member_no = member_no;
 		this.lantour_title = lantour_title;
 		this.lantour_content = lantour_content;
 		this.lantour_regdate = lantour_regdate;
 		this.lantour_rtc = lantour_rtc;
+		this.lantour_addr = lantour_addr;
 		this.lantour_image = lantour_image;
 		this.lantour_maxcount = lantour_maxcount;
 		this.lantour_price = lantour_price;
 		this.lantour_date = lantour_date;
 	}
+
+
 
 	public int getLantour_no() {
 		return lantour_no;
