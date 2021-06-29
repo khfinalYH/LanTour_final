@@ -10,6 +10,7 @@ public class LantourDto {
 	private String lantour_content;
 	private Date lantour_regdate;
 	private String lantour_rtc;
+	private String lantour_addr;
 	private String lantour_image;
 	private int lantour_maxcount;
 	private int lantour_price;
@@ -113,6 +114,7 @@ public class LantourDto {
 	public void setLantour_date(String lantour_date) {
 		this.lantour_date = lantour_date;
 	}
+
 	
 	
 }

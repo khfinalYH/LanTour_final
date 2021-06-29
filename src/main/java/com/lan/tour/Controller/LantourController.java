@@ -28,6 +28,7 @@ public class LantourController {
 		
 	}
 	
+	
 	@RequestMapping("/lantourinsertres.do")
 	public String lantourinsertres(LantourDto dto) {
 		System.out.println(dto);
@@ -36,6 +37,26 @@ public class LantourController {
 			return "redirect:lantourlist.do";
 		}
 		return "redirect:lantourinsert.do";
+		
+	}
+
+	@RequestMapping("/lantourdetail")
+	public String lantourdetail(Model model, int lantour_no) {
+		
+		model.addAttribute("dto", biz.selectOne(lantour_no));
+		
+		return "lantourdetail";
+	}
+	
+	
+	@RequestMapping("/lantourdelete.do")
+	public String lantourdelete(int lantour_no) {
+		
+		if(biz.delete(lantour_no) > 0) {
+			return "redirect:lantourlist.do";
+		}
+		
+		return "redirect:lantourdetail";
 		
 	}
 	

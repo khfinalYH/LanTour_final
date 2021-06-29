@@ -56,17 +56,12 @@ public class AirplaneController {
 			this.time2=null;
 		}
 		
-		System.out.println(this.time1+","+this.time2);
 		try {
 			model.addAttribute("portlist", getXMLElement(getArprtList()) );
 			model.addAttribute("planelist", getXMLElement(getFlightOpratInfoList(300, 1, depAirportId, arrAirportId, date.replaceAll("-", ""))));
 			model.addAttribute("date", date);
 			model.addAttribute("depAirportId", depAirportId);
 			model.addAttribute("arrAirportId", arrAirportId);
-			
-			
-
-		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,28 +172,29 @@ public class AirplaneController {
 		    				 map.put("dep", "RSU");
 		    			 }else if(value.equals("양양")) {
 		    				 map.put("dep", "YNY");
-		    				 
 		    			 }else if(value.equals("제주")) {
 		    				 map.put("dep", "CJU");
-		    				 
 		    			 }else if(value.equals("부산")) {
-		    				 map.put("dep", "PUS");
-		    				 		    				 
+		    				 map.put("dep", "PUS");	 
 		    			 }else if(value.equals("울산")) {
 		    				 map.put("dep", "USN");
-		    				 
 		    			 }else if(value.equals("인천")) {
 		    				 map.put("dep", "ICN");
-		    				 
 		    			 }else if(value.equals("김포")) {
-		    				 map.put("dep", "GMP");
-		    				 		    				 
+		    				 map.put("dep", "GMP");	 
 		    			 }else if(value.equals("대구")) {
 		    				 map.put("dep", "TAE");
-		    				 
 		    			 }else if(value.equals("청주")) {
 		    				 map.put("dep", "CJJ");
-		    			 }else {
+		    			 }else if(value.equals("군산")) {
+		    				 map.put("dep", "KUV");
+		    			 }else if(value.equals("원주")){
+		    				 map.put("dep", "WJU");
+		    			 }else if(value.equals("사천")) {
+		    				 map.put("dep", "HIN");
+		    			 }else if(value.equals("포항")){
+	    					 map.put("dep", "KPO");
+		    			 }else{
 		    				 map.put("dep", "X");
 		    			 }
 		    		 }
@@ -225,9 +221,17 @@ public class AirplaneController {
 		    				 map.put("arr", "TAE");
 		    			 }else if(value.equals("청주")) {
 		    				 map.put("arr", "CJJ");
-		    			 }else {
+		    			 }else if(value.equals("군산")) {
+		    				 map.put("arr", "KUV");
+		    			 }else if(value.equals("원주")){
+		    				 map.put("arr", "WJU");
+		    			 }else if(value.equals("사천")) {
+		    				 map.put("arr", "HIN");
+		    			 }else if(value.equals("포항")){
+	    					 map.put("arr", "KPO");
+		    			 } else {
 		    				 map.put("arr", "X");
-	    			 }
+		    			 }
 		    		 }
 		    	 }
 		    	 if(map.containsKey("airportId")||map.containsKey("airportNm")) {
