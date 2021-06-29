@@ -4,33 +4,32 @@
   
   
   
-  <!-- lantour_no, member_no, lantour_title, lantour_content, lantour_regdate, lantour_rtc, lantour_addr, lantour_image, lantour_maxcount, lantour_price, lantour_date -->
-  <select id="lantour_selectlist" resultType="lantourDto">
-		SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_REGDATE, LANTOUR_RTC, LANTOUR_ADDR, LANTOUR_ IMAGE, LANTOUR_MAXCOUNT, LANTOUR_DATE
-		FORM LANTOUR
-		ORDER BY LANTOUR_NO DESC
-	</select>
-	
-	<select id="lantour_selectOne" parameterType="int" resultType="LANTOURDto">
-		SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_REGDATE, LANTOUR_RTC, LANTOUR_ADDR, LANTOUR_ IMAGE, LANTOUR_MAXCOUNT, LANTOUR_DATE
-		FORM LANTOUR
-		WHERE LANTOUR_NO = #{lantour_no}
-	</select>
-	
-	<!-- regdate 뒤 lantourrtc 일단 안넣어놨는데 넣어야하는값인지 잘 모르겠네요 -->
-	<insert id="lantour_insert" parameterType="lantourDto">
-		INSERT INTO LANTOUR 
-		VALUES (lantour_NO_SEQ.NEXTVAL,#{member_no},#{lantour_title},#{lantour_content},#{lantour_regdate}, #{lantour_addr}, #{lantour_image}, #{lantour_maxcount}, #{lantour_price}, sysdate)
-	</insert>
-	
-	<delete id="lantour_delete" parameterType="int">
-		DELETE FROM LANTOUR
-		WHERE LANTOUR_NO = #{lantour_no} 
-	</delete>
-	
-	<update id="lantour_update" parameterType="int">
-		UPDATE LANTOUR
-		SET LANTOUR_TITLE = #{lantour_title} , lANTOUR_CONTENT = #{lantour_content}, lANTOUR_ADDR = #{lantour_addr}, lANTOUR_IMAGE = #{lantour_image}, lANTOUR_PRICE = #{lantour_price}
-	</update>
+  
+  <select id="lantourlist" resultType="lantourDto">
+      SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_REGDATE, LANTOUR_RTC, LANTOUR_ADDR, LANTOUR_ IMAGE, LANTOUR_MAXCOUNT, LANTOUR_DATE
+      FORM LANTOUR
+      ORDER BY LANTOUR_NO DESC
+   </select>
+   
+   <select id="lantourOne" parameterType="int" resultType="lantourDto">
+      SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_REGDATE, LANTOUR_RTC, LANTOUR_ADDR, LANTOUR_ IMAGE, LANTOUR_MAXCOUNT, LANTOUR_DATE
+      FORM LANTOUR
+      WHERE LANTOUR_NO = #{lantour_no}
+   </select>
+   
+   <insert id="lantourinsert" parameterType="lantourDto">
+      INSERT INTO LANTOUR 
+      VALUES (lantour_NO_SEQ.NEXTVAL,#{member_no},#{lantour_title},#{lantour_content},#{lantour_regdate}, #{lantour_addr}, #{lantour_image}, #{lantour_maxcount}, #{lantour_price}, sysdate)
+   </insert>
+   
+   <delete id="lantourdelete" parameterType="int">
+      DELETE FROM LANTOUR
+      WHERE LANTOUR_NO = #{lantour_no} 
+   </delete>
+   
+   <update id="lantourupdate" parameterType="int">
+      UPDATE LANTOUR
+      SET LANTOUR_TITLE = #{lantour_title} , lANTOUR_CONTENT = #{lantour_content}, lANTOUR_ADDR = #{lantour_addr}, lANTOUR_IMAGE = #{lantour_image}, lANTOUR_PRICE = #{lantour_price}
+   </update>
   
 </mapper>
