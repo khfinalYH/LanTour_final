@@ -28,7 +28,7 @@ public class HotelController {
 
 	@Autowired
 	private HotelBiz biz;
-	
+
 	@Autowired
 	private RoomBiz biz2;
 
@@ -59,6 +59,31 @@ public class HotelController {
 		model.addAttribute("roomlist", biz2.selectList(hotel_no));
 
 		return "hoteldetail";
+	}
+
+	@RequestMapping("/hoteldelete.do")
+	public String hoteldelete(int hotel_no) {
+		if (biz.delete(hotel_no) > 0) {
+			return "redirect:hotellist.do";
+		}
+
+		return "redirect:hoteldetail.do?hotel_no=" + hotel_no;
+	}
+
+	@RequestMapping("/hotelupdate.do")
+	public String updateform(Model model, int hotel_no) {
+		model.addAttribute("dto", biz.selectOne(hotel_no));
+
+		return "hotelupdate";
+	}
+
+	@RequestMapping("/hotelupdateres.do")
+	public String updateres(HotelDto dto) {
+		if (biz.update(dto) > 0) {
+			return "redirect:hoteldetail.do?hotel_no=" + dto.getHotel_no();
+		}
+
+		return "redirect:hotelupdate.do?hotel_no=" + dto.getHotel_no();
 	}
 
 	@ResponseBody

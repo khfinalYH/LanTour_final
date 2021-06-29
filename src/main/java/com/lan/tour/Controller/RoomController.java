@@ -43,6 +43,19 @@ public class RoomController {
 	}
 
 	@ResponseBody
+	@RequestMapping("/roomdelete.do")
+	public Map<String, Boolean> roomdelete(int room_no) {
+		Boolean check = false;
+		if (biz.delete(room_no) > 0) {
+			check = true;
+		}
+		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		map.put("check", check);
+		
+		return map;
+	}
+
+	@ResponseBody
 	@RequestMapping("/roomupload.do")
 	public Map<String, String> roomupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {
 		String name = file.getOriginalFilename();
@@ -90,7 +103,13 @@ public class RoomController {
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("path", return_path);
-		
+
 		return map;
+	}
+
+	@RequestMapping("/roomdetail.do")
+	public String roomdetail(Model model, int room_no) {
+		model.addAttribute("dto", biz.selectOne(room_no));
+		return "roomdetail";
 	}
 }

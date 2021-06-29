@@ -13,7 +13,7 @@ public class HotelBizImpl implements HotelBiz {
 
 	@Autowired
 	private HotelDao dao;
-	
+
 	@Override
 	public List<HotelDto> selectList() {
 		// TODO Auto-generated method stub
@@ -36,6 +36,12 @@ public class HotelBizImpl implements HotelBiz {
 	public int delete(int hotel_no) {
 		// TODO Auto-generated method stub
 		return dao.delete(hotel_no);
+	}
+
+	@Override
+	public int update(HotelDto dto) {
+		// TODO Auto-generated method stub
+		return dao.update(dto);
 	}
 
 }
