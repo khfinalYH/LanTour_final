@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<!-- view -> controller전달(res.do) ->모델 통해 db에 저장. 다오에서 (마이바티스: 쿼리문 만들기) 디비. lantour_no_seq(seq:1씩 증가)   -->
 	<h1>랜선투어 글쓰기</h1>
 	<form action="./lantourinsertres.do" method="post">
 		<table border="1">
@@ -44,7 +44,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="글쓰기"/>
-					<input type="button" value="취소"	 onclick="location.href='lantour.do';"/>
+					<input type="button" value="취소"	 onclick="location.href='lantourlist.do';"/>
 				</td>
 			</tr>
 		</table>
