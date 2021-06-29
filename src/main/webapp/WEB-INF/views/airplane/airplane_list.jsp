@@ -38,19 +38,19 @@ function paging(i){
 
 <form action="airplaneList.do">
 	<div>
-		<sapn>출발 공항:도착공항</sapn>
+		<span>출발 공항:도착공항</span>
 		<select name = "depAirportId">
 		<%for(Map<String, String> map : portlist){ %>
 			<option <%if(map.get("airportId").equals((String)request.getAttribute("depAirportId"))){ %>selected<%} %> value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
 		</select>
-		<sapn>:</sapn>
+		<span>:</span>
 		<select name = "arrAirportId">
 		<%for(Map<String, String> map : portlist){ %>
 			<option <%if(map.get("airportId").equals((String)request.getAttribute("arrAirportId"))){ %>selected<%} %> value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
 		</select>
-		<sapn>출발일자</sapn>
+		<span>출발일자</span>
 		<input type="date" name="date" value="<%= date%>" >
 		<span>출발 시간</span>
 		<select name="time">
@@ -79,23 +79,32 @@ function paging(i){
 		<%for(Map<String, String> map : planelist){ %>
 			<div id = "ticket<%=j%>"class="airplanedetail" <%if(j>=10){ %>style="display: none"<%} %>>
 			<%j++; %>
-				<span>항공편명</span><span><%=map.get("vihicleId") %></span>
-				<span>항공사명</span><%=map.get("airlineNm") %></span>
-				<span>출발시간</span><%=map.get("depPlandTime") %></span>
-				<span>도착시간</span><%=map.get("arrPlandTime") %></span>
-				<span>일반석운임</span><%=map.get("economyCharge") %></span>
-				<span>비즈니스석운임</span><%=map.get("prestigeCharge") %></span>
-				<span>출발공항</span><%=map.get("depAirportNm") %></span>
-				<span>도착공항</span><%=map.get("arrAirportNm") %></span>
+				<span>항공편명</span>
+				<span><%=map.get("vihicleId") %></span><br/>
+				<span>항공사명</span>
+				<span><%=map.get("airlineNm") %></span><br/>
+				<span>출발시간</span>
+				<span><%=map.get("depPlandTime") %></span><br/>
+				<span>도착시간</span>
+				<span><%=map.get("arrPlandTime") %></span><br/>
+				<span>일반석운임</span>
+				<span><%=map.get("economyCharge") %></span><br/>
+				<span>비즈니스석운임</span>
+				<span><%=map.get("prestigeCharge") %></span><br/>
+				<span>출발공항</span>
+				<span><%=map.get("depAirportNm") %></span><br/>
+				<span>도착공항</span>
+				<span><%=map.get("arrAirportNm") %></span><br/>
 				<%if(map.get("dep").equals("X")||map.get("arr").equals("X")){ %>
-					예약가능한 항공사와 협약되어있지 않습니다.
+					예약가능한 항공사와 협약되어있지 않습니다.<br/>
 				<%}else{ %>
 				<a href="https://flight.naver.com/flights/results/domestic?trip=OW&fareType=YC&scity1=<%=map.get("dep") %>&ecity1=<%=map.get("arr") %>&adult=1&child=0&infant=0&sdate1=<%=date.replaceAll("-",".")+"."%>">예약하기</a>
+			<br/>
 				<%} %>
 			</div>
 		<%} %>
 		<%for(int i = 0;i<=planelist.size()/10;i++){%>
-			<span onclick="paging(<%=i%>)">[<%=i+1 %>]</span>
+			<span onclick="paging(<%=i%>)"><a href="#">[<%=i+1 %>]</a></span>
 		
 		<% }%>
 	<%} %>

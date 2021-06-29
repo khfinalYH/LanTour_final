@@ -30,7 +30,9 @@ import org.xml.sax.SAXException;
 @Controller
 public class RentCarController {
 
-	private String addr;
+	private String[] content;
+	private String cartype;
+	private String searchtype;
 	private String rentcar = "rentcar/rentcar_";
 	
 
@@ -42,12 +44,28 @@ public class RentCarController {
 	
 
 	@RequestMapping("/rentCarList.do")
-	public String rentCarList(Model model, String addr) {
-		if(!addr.equals("")) {
-			this.addr = addr;
+	public String rentCarList(Model model, String searchtype,String content, String cartype) {
+		if(!content.equals("")) {
+			this.content = content.split(" ");
+			model.addAttribute("content", content);
 		}else {
-			this.addr=null;
+			this.content=null;
 		}
+		if(!cartype.equals("")) {
+			this.cartype = cartype;
+			model.addAttribute("cartype", cartype);
+		}else {
+			this.cartype=null;
+		}
+		if(!searchtype.equals("")) {
+			this.searchtype = searchtype;
+			model.addAttribute("searchtype", searchtype);
+		}else {
+			this.searchtype=null;
+		}
+		
+		
+		
 		try {
 			model.addAttribute("list", getXMLElement(getCarRental()));
 			
@@ -79,14 +97,36 @@ public class RentCarController {
 			    		 map.put(nodec.item(j).getNodeName(), value);		    			 
 		    		 }
 		    	 }
-		    	 if(addr!=null) {
-			    	 if(map.get("rdnmadr") != null) {
-			    		 if(map.get("rdnmadr").indexOf(addr)>=0) {
-				    		 list.add(map);	    		 
-				    	 } 
+		    	 if(content!=null) {
+			    	 if(map.get(searchtype) != null) {
+			    		 int k = 0;
+			    		 for(int j = 0; j<content.length;j++) {
+				    		 if(map.get(searchtype).indexOf(content[j])>=0) {
+				    			 k++;
+					    	 } 
+			    		 }
+			    		 if(k==content.length) {
+			    			 if(cartype !=null){
+				    			 if(map.get(cartype)!=null) {
+					    			 if(Integer.parseInt(map.get(cartype))>0) {
+					    				 list.add(map);	 
+					    			 }   		 
+				    			 }			    				 
+			    			 }else {
+			    				 list.add(map);	 
+			    			 }
+			    		 }
 			    	 }
 		    	 }else {
-		    		 list.add(map);
+	    			 if(cartype !=null){
+		    			 if(map.get(cartype)!=null) {
+			    			 if(Integer.parseInt(map.get(cartype))>0) {
+			    				 list.add(map);	 
+			    			 }   		 
+		    			 }			    				 
+	    			 }else {
+	    				 list.add(map);	 
+	    			 }
 		    	 }
 	    	 }
 	    	 
@@ -100,10 +140,6 @@ public class RentCarController {
 		}
 		return list;
     }
-
-
-
-
 
 	 public String getCarRental() throws IOException {
 	        StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/tn_pubr_public_car_rental_api"); /*URL*/

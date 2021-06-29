@@ -65,3 +65,4 @@ public class LantourDaoImpl implements LantourDao {
 	}
 
 }
+  
