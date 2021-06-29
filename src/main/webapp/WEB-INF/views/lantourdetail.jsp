@@ -8,7 +8,6 @@
 <body>
 	<h1>랜선투어 상세페이지</h1>
 
-no, title, content, 작성일, rtc방, 주소, 사진, 최대인원, 가격, 제한요일
 	<table border="1">
 		<col width ="100">
 		<col width ="100">
@@ -26,7 +25,7 @@ no, title, content, 작성일, rtc방, 주소, 사진, 최대인원, 가격, 제
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea rows="10" cols="60" readonly="readonly">${dto.lantourcontent }</textarea></td>
+			<td><textarea rows="10" cols="60" readonly="readonly">${dto.lantour_content }</textarea></td>
 		</tr>
 		<tr>
 			<th>작성일</th>
