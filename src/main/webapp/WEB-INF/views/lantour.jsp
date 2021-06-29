@@ -32,7 +32,7 @@
 				<c:forEach items="${list }" var="dto">
 				<tr>
 					<td>${dto.lantour_no }</td>
-					<td>${dto.lantour_title }</td>
+					<td><a href="./lantourdetail.do?lantour_no=${dto.lantour_no }">${dto.lantour_title }</a></td>
 					<td>${dto.lantour_content }</td>
 					<td>${dto.lantour_regdate }</td>
 				</tr>
