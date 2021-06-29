@@ -28,13 +28,6 @@ public class LantourController {
 		
 	}
 	
-	@RequestMapping("/lantourdetail")
-	public String lantourdetail(Model model, int lantour_no) {
-		
-		model.addAttribute("dto", biz.selectOne(lantour_no));
-		
-		return "lantourdetail";
-	}
 	
 	@RequestMapping("/lantourinsertres.do")
 	public String lantourinsertres(LantourDto dto) {
@@ -46,6 +39,15 @@ public class LantourController {
 		return "redirect:lantourinsert.do";
 		
 	}
+
+	@RequestMapping("/lantourdetail")
+	public String lantourdetail(Model model, int lantour_no) {
+		
+		model.addAttribute("dto", biz.selectOne(lantour_no));
+		
+		return "lantourdetail";
+	}
+	
 	
 	@RequestMapping("/lantourdelete.do")
 	public String lantourdelete(int lantour_no) {
