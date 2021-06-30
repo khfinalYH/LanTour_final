@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>LanTour</title>
 </head>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c5ac74b7ae612d28cecba47461784705"></script>
 
 <script type="text/javascript">
 function pagingcar(i){
@@ -27,7 +28,6 @@ function pagingcar(i){
 	
 }
 </script>
-
 
 
 <body>
@@ -69,7 +69,6 @@ function pagingcar(i){
 		int j = 0;%>
 		<%for(Map<String, String> map : list){ %>
 			<div id = "ticket<%=j%>" class="cars"<%if(j>=10){ %>style="display: none"<%} %>>
-			<%j++; %>
 				<span>업체명 </span>
 				<span><%=map.get("entrpsNm") %></span><br/>
 				<span>사업장구분</span>
@@ -92,14 +91,36 @@ function pagingcar(i){
 				<span><%=map.get("weekdayOperOpenHhmm")+" ~ "+map.get("weekdayOperColseHhmm") %></span><br/>
 				<span>전화번호</span>
 				<span><%=map.get("phoneNumber") %></span><br/>
-				<%if(map.get("homepageUrl")!=null){ %>
-				<a href="<%=map.get("homepageUrl") %>">홈페이지</a><br/>
+				<%if(map.get("homepageUrl")!=null&&!map.get("homepageUrl").equals("없음")){ %>
+				<a href="<%="http://"+map.get("homepageUrl") %>">홈페이지</a><br/>
 				<%}else{%>
 				<span><b>홈페이지 X</b></span><br/>
-				<%} %>
-				<span><a href="#">지도연결</a></span>
+				<%} %>				
+				<div id="<%="carId"+j %>" style="width:500px;height:400px;"></div>				
+				<script type="text/javascript">
+					var container<%=j%> = document.getElementById("<%="carId"+j %>"); //지도를 담을 영역의 DOM 레퍼런스
+					var options<%=j%> = { //지도를 생성할 때 필요한 기본 옵션
+						center: new kakao.maps.LatLng(<%=map.get("latitude") %>, <%=map.get("longitude") %>), //지도의 중심좌표.
+						level: 3 //지도의 레벨(확대, 축소 정도)
+					};
+	
+					var map<%=j%> = new kakao.maps.Map(container<%=j%>, options<%=j%>); //지도 생성 및 객체 리턴
+					
+					// 마커가 표시될 위치입니다 
+					var markerPosition<%=j%>  = new kakao.maps.LatLng(<%=map.get("latitude") %>, <%=map.get("longitude") %>); 
+
+					// 마커를 생성합니다
+					var marker<%=j%> = new kakao.maps.Marker({
+					    position: markerPosition<%=j%>
+					});
+					
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker<%=j%>.setMap(map<%=j%>);
+				</script>
 				<br/>
 			</div>
+				<%j++; %>
+			
 		<%} %>
 		<%for(int i = 0;i<=list.size()/10;i++){%>
 			<span onclick="pagingcar(<%=i%>)"><a href="#">[<%=i+1 %>]</a></span>
