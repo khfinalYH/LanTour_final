@@ -7,6 +7,10 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+	$(function () {
+		$("#second").css("display","none");
+		$("#third").css("display","none");
+	});
 	function upload() {
 		var form = new FormData();
 		form.append("mpfile", $("#file1")[0].files[0])
@@ -51,6 +55,22 @@
             }
         }).open();
     }
+	function before_first() {
+		$("#first").css("display","");
+		$("#second").css("display","none");
+	}
+	function next_second() {
+		$("#first").css("display","none");
+		$("#second").css("display","");
+	}
+	function before_second() {
+		$("#third").css("display","none");
+		$("#second").css("display","");
+	}
+	function next_third() {
+		$("#third").css("display","");
+		$("#second").css("display","none");
+	}
 </script>
 </head>
 <body>
@@ -58,79 +78,56 @@
 	<h1>숙소 insert, ${login.member_id },${login.member_no }</h1>
 	<form action="./hotelinsertres.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="member_no" value="${login.member_no}" />
-		<input type="hidden" id="hotel_image" name="hotel_image" value="aaaaaa" />
-		<table border="1">
-			<tr>
-				<th>숙소 종류</th>
-				<td>
-					<input type="text" name="hotel_type">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 이름</th>
-				<td>
-					<input type="text" name="hotel_title">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 설명</th>
-				<td>
-					<input type="text" name="hotel_content">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 가격</th>
-				<td>
-					<input type="text" name="hotel_price">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 주소</th>
-				<td>
+		<input type="hidden" id="hotel_image" name="hotel_image" value="" />
+		<div id = "first">
+			<span>숙소 종류</span>
+			<span><input type="text" name="hotel_type"></span>
+			<br>
+			<span>숙소 이름</span>
+			<span><input type="text" name="hotel_title"></span>
+			<br>
+			<span>숙소 인원</span>
+			<span><input type="text" name="hotel_maxcount"></span>
+			<br>
+			<span>숙소 위치</span>
+			<span></span>
+			<span>
 					<input type="text" id="sample6_postcode" placeholder="우편번호">
 					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 					<br>
 					<input type="text" id="sample6_address" name="hotel_addr" placeholder="주소">
 					<br>
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 사진</th>
-				<td>
+			</span>
+			<br>
+			<button type="button" onclick="next_second()">계속</button>
+		</div>
+		<div id="second">
+			<span>숙소 설명</span>
+			<span><textarea rows="10" cols="60" name="hotel_content"></textarea></span>
+			<br>
+			<span>대여 가격</span>
+			<span><input type="text" name="hotel_price"></span>
+			<br>
+			<span>사진 등록</span>
+			<span>
+					<img id="hotel_img" src="" />					
 					<input type="file" id="file1" name="file1">
 					<button type="button" id="img_button" onclick="upload()">사진 업로드</button>
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 사진 미리보기</th>
-				<td>
-					<img id="hotel_img" src="" />
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 편의시설</th>
-				<td>
-					<input type="text" name="hotel_convinence">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 최대 인원</th>
-				<td>
-					<input type="text" name="hotel_maxcount">
-				</td>
-			</tr>
-			<tr>
-				<th>숙소 쉬는 요일</th>
-				<td>
-					<input type="text" name="hotel_date">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="작성" />
-				</td>
-			</tr>
-		</table>
+			</span>
+			<br>
+			<button type="button" onclick="before_first()">이전</button>
+			<button type="button" onclick="next_third()">계속</button>
+		</div>
+		<div id="third">
+			<span>사용 가능 일정</span>
+			<span><input type="text" name="hotel_date"></span>
+			<br>
+			<span>편의 시설</span>
+			<span><input type="text" name="hotel_convinence"></span>
+			<br>
+			<button type="button" onclick="before_second()">이전</button>
+			<button type="submit">제출</button>
+		</div>
 	</form>
 </body>
 </html>

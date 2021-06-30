@@ -24,7 +24,7 @@
 		<c:choose>
 			<c:when test="${empty list}">
 				<tr >
-					<th colspan="4">------------등록된  호텔이 없습니다-----------</th>
+					<th colspan="4">------------등록된 숙소가 없습니다-----------</th>
 				</tr>
 			</c:when>
 			<c:otherwise>
