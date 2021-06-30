@@ -14,6 +14,14 @@
 <script type="text/javascript">
 
 
+	window.onload = function(){
+		var d = document.getElementById("dep")
+		port(d.options[d.selectedIndex])
+		let [today] = new Date().toISOString().split("T");
+		document.getElementById("date").setAttribute("min", today);
+	}
+
+
 	var all=["NAARKJBa","NAARKJJa","NAARKJKa", "NAARKJYa","NAARKNWa","NAARKNYa","NAARKPCa","NAARKPKa","NAARKPSa","NAARKPSa","NAARKPUa","NAARKSSa","NAARKTNa","NAARKTUa"]
 	var dp_kp = "NAARKSS" //김포
 	var dp_KK = ["NAARKJJ","NAARKPK"] //광주 김해
@@ -91,13 +99,6 @@
 			}
 		}
 	}
-	
-	
-	window.onload = function(){
-		let [today] = new Date().toISOString().split("T");
-		document.getElementById("date").setAttribute("min", today);
-		port(document.getElementById("dep"))
-	}
 
 	
 	function paging(i){
@@ -170,21 +171,21 @@
 			<div id = "ticket<%=j%>"class="airplanedetail" <%if(j>=10){ %>style="display: none"<%} %>>
 			<%j++; %>
 				<span>항공편명</span>
-				<span><%=map.get("vihicleId") %></span><br/>
+				<span><%=map.get("vihicleId")==null?"제공되지 않음" :map.get("vihicleId") %></span><br/>
 				<span>항공사명</span>
-				<span><%=map.get("airlineNm") %></span><br/>
+				<span><%=map.get("airlineNm")==null?"제공되지 않음" :map.get("airlineNm") %></span><br/>
 				<span>출발시간</span>
-				<span><%=map.get("depPlandTime") %></span><br/>
+				<span><%=map.get("depPlandTime")==null?"제공되지 않음" :map.get("depPlandTime") %></span><br/>
 				<span>도착시간</span>
-				<span><%=map.get("arrPlandTime") %></span><br/>
+				<span><%=map.get("arrPlandTime")==null?"제공되지 않음" :map.get("arrPlandTime") %></span><br/>
 				<span>일반석운임</span>
-				<span><%=map.get("economyCharge") %></span><br/>
+				<span><%=map.get("economyCharge")==null?"제공되지 않음" :map.get("economyCharge") %></span><br/>
 				<span>비즈니스석운임</span>
-				<span><%=map.get("prestigeCharge") %></span><br/>
+				<span><%=map.get("prestigeCharge")==null?"제공되지 않음" :map.get("prestigeCharge") %></span><br/>
 				<span>출발공항</span>
-				<span><%=map.get("depAirportNm") %></span><br/>
+				<span><%=map.get("depAirportNm")==null?"제공되지 않음" :map.get("depAirportNm") %></span><br/>
 				<span>도착공항</span>
-				<span><%=map.get("arrAirportNm") %></span><br/>
+				<span><%=map.get("arrAirportNm")==null?"제공되지 않음" :map.get("arrAirportNm") %></span><br/>
 				<%if(map.get("dep").equals("X")||map.get("arr").equals("X")){ %>
 					예약가능한 항공사와 협약되어있지 않습니다.<br/>
 				<%}else{ %>
