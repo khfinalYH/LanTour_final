@@ -10,6 +10,97 @@
 <meta charset="UTF-8">
 <title>LanTour</title>
 </head>
+<script type="text/javascript">
+	
+
+	var all=["NAARKJBa","NAARKJJa","NAARKJKa", "NAARKJYa","NAARKNWa","NAARKNYa","NAARKPCa","NAARKPKa","NAARKPSa","NAARKPSa","NAARKPUa","NAARKSSa","NAARKTNa","NAARKTUa"]
+	var dp_kp = "NAARKSS" //김포
+	var dp_KK = ["NAARKJJ","NAARKPK"] //광주 김해
+	var dp_jj = "NAARKPC" // 제주
+	var dp_YY = "NAARKNY" // 양양
+	var dp_CKW=["NAARKJK","NAARKNW","NAARKTU"] //창원 청주 원주
+	
+	//광주, 대구, 무안, 김해, 양양, 여수, 울산, 제주, 사천, 포항
+	var arr_kimpo=["NAARKJJa", "NAARKTNa","NAARKJBa","NAARKPKa","NAARKNYa","NAARKJYa","NAARKPUa","NAARKPKa","NAARKPSa","NAARKTHa"]
+	
+	//13개
+	var arr_jeju=["NAARKJJa","NAARKJKa", "NAARKTNa","NAARKJBa","NAARKPKa","NAARKSSa","NAARKNYa","NAARKJYa","NAARKPUa","NAARKNWa","NAARKPSa","NAARKTUa","NAARKTHa"]
+	
+	var arr_KK=["NAARKSSa","NAARKPCa","NAARKNYa"]
+	
+	var arr_YY=["NAARKJJa","NAARKPCa","NAARKSSa","NAARKPKa"]
+	
+	var arr_one="NAARKPCa"
+	
+	var arr_else=["NAARKSSa","NAARKPCa"]
+	
+	function port(dep){
+		var check = true
+		for(arr in all){
+			document.getElementById(all[arr]).setAttribute("disabled","disabled")
+		}
+		
+		
+		if(dep.value==dp_kp){
+			for(var arr in arr_kimpo){
+				var ar = document.getElementById(arr_kimpo[arr])
+				ar.removeAttribute("disabled")
+				check= false
+			}
+			
+		}else if(dep.value==dp_jj){
+			for(var arr in arr_jeju){
+				var ar = document.getElementById(arr_jeju[arr])
+				ar.removeAttribute("disabled")
+				check= false
+			}
+		}else if(dep.value==dp_YY){
+			for(var arr in arr_YY){
+				var ar = document.getElementById(arr_YY[arr])
+				ar.removeAttribute("disabled")
+				check= false
+			}
+			
+		}else{
+			if(check){
+				for(dp in dp_KK){
+					if(dep.value== dp_KK[dp]){
+						for(var arr in arr_KK){
+							var ar = document.getElementById(arr_KK[arr])
+							ar.removeAttribute("disabled")
+						}
+					
+					}
+				}
+			}
+			if(check){
+				for(dp in dp_CKW){
+					if(dep.value== dp_CKW[dp]){
+						var ar = document.getElementById(arr_one)
+						ar.removeAttribute("disabled")
+						check= false
+					}	
+				}
+			}
+			if(check){
+				for(var arr in arr_else){
+					var ar = document.getElementById(arr_else[arr])
+					ar.removeAttribute("disabled")
+				}
+				
+			}
+		}
+	}
+	
+	window.onload = function(){
+		let [today] = new Date().toISOString().split("T");
+		document.getElementById("date").setAttribute("min", today);
+		port(document.getgetElementById("dep"))
+	}
+	
+
+
+</script>
 <body>
 <% List<Map<String, String>> list = (List<Map<String, String>>)request.getAttribute("list");  %>
 
@@ -19,19 +110,19 @@
 <form action="airplaneList.do">
 	<div>
 		<sapn>출발 공항</sapn>
-		<select name = "depAirportId">
+		<select id="dep" onchange="port(this)" name = "depAirportId">
 		<%for(Map<String, String> map : list){ %>
-			<option value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+			<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
 		</select>
 		<sapn>도착 공항</sapn>
 		<select name = "arrAirportId">
 		<%for(Map<String, String> map : list){ %>
-			<option value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+			<option disabled="disabled" id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
 		</select>
 		<sapn>출발일자</sapn>
-		<input type="date" name="date" >
+		<input id = "date"type="date" name="date" >
 		<span>출발 시간</span>
 		<select name="time">
 			<option value="">전체조회</option>

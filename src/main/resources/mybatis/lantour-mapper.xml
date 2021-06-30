@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="lantour">
   
-  
-  
-  
   <select id="lantourlist" resultType="lantourDto">
 		SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_REGDATE, LANTOUR_RTC, LANTOUR_ADDR, LANTOUR_IMAGE, LANTOUR_MAXCOUNT, LANTOUR_PRICE, LANTOUR_DATE
 		FROM LANTOUR

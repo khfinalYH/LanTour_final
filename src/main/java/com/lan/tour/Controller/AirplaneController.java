@@ -33,6 +33,15 @@ public class AirplaneController {
 	private String time1;
 	private String time2;
 	
+	public static void main(String[] args) {
+		AirplaneController air = new AirplaneController();
+		try {
+			air.getXMLElement(air.getArprtList());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	@RequestMapping("/airportSearch.do")
 	public String airportSearch(Model model) {
@@ -62,6 +71,7 @@ public class AirplaneController {
 			model.addAttribute("date", date);
 			model.addAttribute("depAirportId", depAirportId);
 			model.addAttribute("arrAirportId", arrAirportId);
+			model.addAttribute("time", time);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,7 +105,6 @@ public class AirplaneController {
 	        }
 	        rd.close();
 	        conn.disconnect();
-	        System.out.println(sb.toString());
 	        
 	        return sb.toString();
 	        
@@ -161,6 +170,7 @@ public class AirplaneController {
 		    	 NodeList nodec = nodelist.item(i).getChildNodes();
 		    	 for(int j = 0; j<nodec.getLength();j++) {
 	    			 String value = nodec.item(j).getChildNodes().item(0).getNodeValue();
+	    			 System.out.println(value);
 	    			 
 		    		 map.put(nodec.item(j).getNodeName(), value);
 		    		 if(nodec.item(j).getNodeName().equals("depAirportNm")) {
@@ -174,7 +184,7 @@ public class AirplaneController {
 		    				 map.put("dep", "YNY");
 		    			 }else if(value.equals("제주")) {
 		    				 map.put("dep", "CJU");
-		    			 }else if(value.equals("부산")) {
+		    			 }else if(value.equals("김해")) {
 		    				 map.put("dep", "PUS");	 
 		    			 }else if(value.equals("울산")) {
 		    				 map.put("dep", "USN");
@@ -209,7 +219,7 @@ public class AirplaneController {
 		    				 map.put("arr", "YNY");
 		    			 }else if(value.equals("제주")) {
 		    				 map.put("arr", "CJU");
-		    			 }else if(value.equals("부산")) {
+		    			 }else if(value.equals("김해")) {
 		    				 map.put("arr", "PUS");
 		    			 }else if(value.equals("울산")) {
 		    				 map.put("arr", "USN");
@@ -234,18 +244,37 @@ public class AirplaneController {
 		    			 }
 		    		 }
 		    	 }
-		    	 if(map.containsKey("airportId")||map.containsKey("airportNm")) {
-		    		 list.add(map);
+		    	 if(map.get("airportNm")!=null) {
+			    	 if(!map.get("airportNm").equals("인천")) {
+			    		 if(map.containsKey("airportId")||map.containsKey("airportNm")) {
+				    		 list.add(map);
+				    	 }else {
+					    	 if(time1!=null&&time2!=null) {
+						    	 if(Integer.parseInt(map.get("depPlandTime").substring(8))>=Integer.parseInt(time1)&&Integer.parseInt(map.get("depPlandTime").substring(8))<=Integer.parseInt(time2)) {
+						    		 list.add(map);
+						    	 }
+					    	 }else{
+					    		 list.add(map);
+					    	 }
+				    	 
+				    	 }
+	    			 }
+		    		 
 		    	 }else {
-			    	 if(time1!=null&&time2!=null) {
-				    	 if(Integer.parseInt(map.get("depPlandTime").substring(8))>=Integer.parseInt(time1)&&Integer.parseInt(map.get("depPlandTime").substring(8))<=Integer.parseInt(time2)) {
+		    		 if(map.containsKey("airportId")||map.containsKey("airportNm")) {
+			    		 list.add(map);
+			    	 }else {
+				    	 if(time1!=null&&time2!=null) {
+					    	 if(Integer.parseInt(map.get("depPlandTime").substring(8))>=Integer.parseInt(time1)&&Integer.parseInt(map.get("depPlandTime").substring(8))<=Integer.parseInt(time2)) {
+					    		 list.add(map);
+					    	 }
+				    	 }else{
 				    		 list.add(map);
 				    	 }
-			    	 }else{
-			    		 list.add(map);
+			    	 
 			    	 }
-		    	 
 		    	 }
+		    	 
 	    	 }
 	    	 
 		} catch (ParserConfigurationException e) {

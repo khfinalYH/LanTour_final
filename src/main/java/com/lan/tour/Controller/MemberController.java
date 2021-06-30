@@ -50,6 +50,11 @@ public class MemberController {
 		return map;
 	}
 
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:main.do";
+	}
 	// ---------------------------------------------
 	// 회원가입------------------------------------------
 	// singup.do -> registerform.do 로 변경(회원가입 페이지로 가는것이 없음)

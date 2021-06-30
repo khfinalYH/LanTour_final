@@ -28,6 +28,7 @@
 			<option value="eleCarHoldCo">전기 승용차</option>
 			<option value="eleVansCarHoldCo">전기 승합차</option>
 		</select>
+		
 		<input type="submit" value="검색">
 		
 	</div>

@@ -88,30 +88,34 @@
 					var pageCount = 5;
 					var totalPage = Math.ceil(totalCount/numOfRows);
 					var pageGroup = Math.ceil(pageNo/pageCount);
+					
+					
 					var last = pageGroup * pageCount;
 					if (last > totalPage) {
 						last = totalPage;
 					}
 					var first = last - (pageCount-1);
+					if (last%pageCount != 0 && pageGroup != 1) {
+						first = (pageCount * (pageGroup - 1)) + 1
+					}
+					if (first < 1) {
+						first = 1;
+					}
 					var next = last + 1;
 					var prev = first - 1;
 
-					// <input type="button" value="검색" onclick="festivalSearch();">
 
 					var page = "";
 					
 					if(prev > 0) {
-						//page += "<a href='' id='prev'>이전</a> ";
 						page += "<input type=\"button\" name=\""+prev+"\" value=\"이전\" onclick=\"festivalSearch(this.name);\">"
 					}
 
 					for(var i=first; i <= last; i++){
-						// page += "<a href=\"location.href=''\">" + i + "</a> ";
 						page += "<input type=\"button\" value=\""+i+"\" onclick=\"festivalSearch(this.value);\">"
 					}
 
 					if(last < totalPage) {
-						//page += "<a href='' id='next'>다음</a>";
 						page += "<input type=\"button\" name=\""+next+"\" value=\"다음\" onclick=\"festivalSearch(this.name);\"></input>"
 					}
 					document.getElementById("paging").innerHTML += page;
