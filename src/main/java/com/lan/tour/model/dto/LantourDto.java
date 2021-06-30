@@ -45,81 +45,133 @@ public class LantourDto {
 		return lantour_no;
 	}
 
+
+
 	public void setLantour_no(int lantour_no) {
 		this.lantour_no = lantour_no;
 	}
+
+
 
 	public int getMember_no() {
 		return member_no;
 	}
 
+
+
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
+
+
 
 	public String getLantour_title() {
 		return lantour_title;
 	}
 
+
+
 	public void setLantour_title(String lantour_title) {
 		this.lantour_title = lantour_title;
 	}
+
+
 
 	public String getLantour_content() {
 		return lantour_content;
 	}
 
+
+
 	public void setLantour_content(String lantour_content) {
 		this.lantour_content = lantour_content;
 	}
+
+
 
 	public Date getLantour_regdate() {
 		return lantour_regdate;
 	}
 
+
+
 	public void setLantour_regdate(Date lantour_regdate) {
 		this.lantour_regdate = lantour_regdate;
 	}
+
+
 
 	public String getLantour_rtc() {
 		return lantour_rtc;
 	}
 
+
+
 	public void setLantour_rtc(String lantour_rtc) {
 		this.lantour_rtc = lantour_rtc;
 	}
+
+
+
+	public String getLantour_addr() {
+		return lantour_addr;
+	}
+
+
+
+	public void setLantour_addr(String lantour_addr) {
+		this.lantour_addr = lantour_addr;
+	}
+
+
 
 	public String getLantour_image() {
 		return lantour_image;
 	}
 
+
+
 	public void setLantour_image(String lantour_image) {
 		this.lantour_image = lantour_image;
 	}
+
+
 
 	public int getLantour_maxcount() {
 		return lantour_maxcount;
 	}
 
+
+
 	public void setLantour_maxcount(int lantour_maxcount) {
 		this.lantour_maxcount = lantour_maxcount;
 	}
+
+
 
 	public int getLantour_price() {
 		return lantour_price;
 	}
 
+
+
 	public void setLantour_price(int lantour_price) {
 		this.lantour_price = lantour_price;
 	}
+
+
 
 	public String getLantour_date() {
 		return lantour_date;
 	}
 
+
+
 	public void setLantour_date(String lantour_date) {
 		this.lantour_date = lantour_date;
 	}
+
+
 
 	
 	
