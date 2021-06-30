@@ -5,8 +5,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+</script>
 <body>
 	<h1>랜선투어 상세페이지</h1>
+
 
 	<table border="1">
 		<col width ="100">
@@ -41,7 +45,7 @@
 		</tr>
 		<tr>
 			<th>사진</th>
-			<td>${dto.lantour_image }</td>
+			<td><img src = "${dto.lantour_image }"></td>
 		</tr>
 		<tr>
 			<th>최대인원</th>

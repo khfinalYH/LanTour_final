@@ -64,5 +64,18 @@ public class LantourDaoImpl implements LantourDao {
 		return res;
 	}
 
+	@Override
+	public int update(HotelDto dto) {
+		// TODO Auto-generated method stub
+				int res = 0;
+				try {
+					res = sqlSession.update(NAMESPACE + "lantourupdate", dto);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				return res;
+	}
+
 }
   
