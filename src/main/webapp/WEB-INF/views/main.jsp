@@ -20,5 +20,6 @@
 	<a href="airportSearch.do">항공검색</a>
 	<a href="rentCarSearch.do">렌트카 검색</a>
 	<a href="festival.do">축제 검색</a>
+	<a href="papago.do">번역 test</a>
 </body>
 </html>
