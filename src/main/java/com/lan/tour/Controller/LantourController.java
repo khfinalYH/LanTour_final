@@ -7,22 +7,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.LantourBiz;
@@ -74,7 +73,14 @@ public class LantourController {
 
 		return "lantourupdate";
 	}
-	
+	@RequestMapping("/lantourupdateres.do")
+	public String updateres(LantourDto dto) {
+		if (biz.update(dto) > 0) {
+			return "redirect:lantourdetail.do?lantour_no=" + dto.getLantour_no();
+		}
+
+		return "redirect:lantourupdate.do?lantour_no=" + dto.getLantour_no();
+	}
 	
 	@RequestMapping("/lantourdelete.do")
 	public String lantourdelete(int lantour_no) {

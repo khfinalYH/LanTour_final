@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lan.tour.model.dao.LantourDao;
-import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.LantourDto;
 @Service
 public class LantourBizImpl implements LantourBiz {
@@ -38,8 +37,10 @@ public class LantourBizImpl implements LantourBiz {
 		return dao.delete(lantour_no);
 	}
 
+	
+
 	@Override
-	public int update(HotelDto dto) {
+	public int update(LantourDto dto) {
 		// TODO Auto-generated method stub
 		return dao.update(dto);
 	}

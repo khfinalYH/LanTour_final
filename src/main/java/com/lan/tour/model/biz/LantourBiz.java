@@ -2,7 +2,6 @@ package com.lan.tour.model.biz;
 
 import java.util.List;
 
-import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.LantourDto;
 
 public interface LantourBiz {
@@ -11,5 +10,5 @@ public interface LantourBiz {
 	public LantourDto selectOne(int lantour_no);
 	public int insert(LantourDto dto);
 	public int delete(int lantour_no);
-	public int update (HotelDto dto);
+	public int update (LantourDto dto);
 }

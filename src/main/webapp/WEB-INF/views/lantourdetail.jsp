@@ -7,6 +7,12 @@
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+function update_hotel() {
+	var update = confirm("투어 정보를 수정하시겠습니까?")
+	if(update){
+		location.href="./lantourupdate.do?lantour_no=${dto.lantour_no }";
+	}
+}
 </script>
 <body>
 	<h1>랜선투어 상세페이지</h1>
@@ -56,11 +62,12 @@
 			<td>${dto.lantour_price }</td>
 		</tr>
 		<tr>
-			<th>제한요일</th>
+			<th>투어 일정</th>
 			<td>${dto.lantour_date }</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
+				<input type="button" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
 				<input type="button" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
 				<input type="button" value="목록" onclick="location.href='lantourlist.do'" />
 			</td>

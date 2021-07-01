@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.LantourDto;
 @Repository
 public class LantourDaoImpl implements LantourDao {
@@ -65,7 +64,7 @@ public class LantourDaoImpl implements LantourDao {
 	}
 
 	@Override
-	public int update(HotelDto dto) {
+	public int update(LantourDto dto) {
 		// TODO Auto-generated method stub
 				int res = 0;
 				try {

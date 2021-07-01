@@ -80,7 +80,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>제한 요일</th>
+				<th>투어 일정</th>
 				<td>
 					<input type="text" name="lantour_date">
 				</td>
