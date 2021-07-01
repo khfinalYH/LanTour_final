@@ -33,16 +33,6 @@ public class AirplaneController {
 	private String time1;
 	private String time2;
 	
-	public static void main(String[] args) {
-		AirplaneController air = new AirplaneController();
-		try {
-			air.getXMLElement(air.getArprtList());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	@RequestMapping("/airportSearch.do")
 	public String airportSearch(Model model) {
 		try {

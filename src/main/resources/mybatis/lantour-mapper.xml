@@ -24,6 +24,12 @@
 		WHERE LANTOUR_NO = #{lantour_no} 
 	</delete>
 	
+	<update id="lantourupdate" parameterType="lantourDto">
+		UPDATE LANTOUR
+		SET LANTOUR_TITLE =#{lantour_title}, LANTOUR_CONTENT = #{lantour_content}, LANTOUR_RTC = #{lantour_rtc}, LANTOUR_ADDR = #{lantour_addr}, LANTOUR_IMAGE = #{lantour_image}, LANTOUR_MAXCOUNT = #{lantour_maxcount}, LANTOUR_PRICE = #{lantour_price}, LANTOUR_DATE = #{lantour_date}
+		WHERE LANTOUR_NO = #{lantour_no}
+	</update>
+	
 	<update id="rtcupdate" parameterType="lantourDto">
 		UPDATE LANTOUR
 		SET LANTOUR_RTC = #{lantour_rtc} 
