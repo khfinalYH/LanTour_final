@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -30,33 +29,31 @@
 	}
 	
 </script>
+</head>
 <body>
-
-	
-<!-- view -> controller전달(res.do) ->모델 통해 db에 저장. 다오에서 (마이바티스: 쿼리문 만들기) 디비. lantour_no_seq(seq:1씩 증가)   -->
-	<h1>랜선투어 글쓰기</h1>
-	<form action="./lantourinsertres.do" method="post" enctype ="multipart/form-data">
-	<input type ="hidden" name = "member_no" value = "${login.member_no }">
-	<input type ="hidden" name = "lantour_rtc" value = "aaa">
-	<input type="hidden" id="lantour_image" name="lantour_image" value="aaaaaa" />
-	
+	<h1>랜선투어 글수정</h1>
+		<form action="./lantourupdateres.do" method="post" enctype ="multipart/form-data">
+		<input type ="hidden" name = "member_no" value = "${login.member_no }">
+		<input type ="hidden" name = "lantour_rtc" value = "aaa">
+		<input type="hidden" id="lantour_image" name="lantour_image" />
+		
 		<table border="1">
 			<tr>
 				<th>투어 제목</th>
 				<td>
-					<input type="text" name="lantour_title">
+					<input type="text" name="lantour_title" value="${dto.lantour_title}"/>
 				</td>
 			</tr>
 			<tr>
 				<th>투어 내용</th>
 				<td>
-					<textarea rows="10" cols="60" name="lantour_content"></textarea>
+					<input type="text" name="lantour_content" value="${dto.lantour_content}"/>
 				</td>
 			</tr>
 			<tr>
 				<th>투어 주소</th>
 				<td>
-					<input type="text" name="lantour_addr">
+					<input type="text" name="lantour_addr" value="${dto.lantour_addr}"/>
 				</td>
 			</tr>
 			<tr>
@@ -70,13 +67,13 @@
 			<tr>
 				<th>최대 인원</th>
 				<td>
-					<input type="text" name="lantour_maxcount">
+					<input type="text" name="lantour_maxcount" value="${dto.lantour_maxcount }">
 				</td>
 			</tr>
 			<tr>
 				<th>투어 가격</th>
 				<td>
-					<input type="text" name="lantour_price">
+					<input type="text" name="lantour_price" value="${dto.lantour_price}"/>
 				</td>
 			</tr>
 			<tr>
@@ -87,12 +84,10 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="글쓰기"/>
-					<input type="button" value="취소"	 onclick="location.href='lantourlist.do';"/>
+					<input type="submit" value="글 수정" onclick="location.href='lantourinsert.do?lantour_no=${dto.lantour_no}'"/>
 				</td>
 			</tr>
 		</table>
 	</form>
-
 </body>
 </html>

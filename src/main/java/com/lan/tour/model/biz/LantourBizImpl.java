@@ -37,4 +37,12 @@ public class LantourBizImpl implements LantourBiz {
 		return dao.delete(lantour_no);
 	}
 
+	
+
+	@Override
+	public int update(LantourDto dto) {
+		// TODO Auto-generated method stub
+		return dao.update(dto);
+	}
+
 }
