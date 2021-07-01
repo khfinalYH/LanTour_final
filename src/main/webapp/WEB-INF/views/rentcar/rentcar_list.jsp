@@ -13,9 +13,21 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c5ac74b7ae612d28cecba47461784705"></script>
 
 <script type="text/javascript">
+<% List<Map<String, String>> list = (List<Map<String, String>>)request.getAttribute("list");  %>
+<% String cartype = (String)request.getAttribute("cartype");  %>
+<% String searchtype = (String)request.getAttribute("searchtype");  %>
+<% String content = (String)request.getAttribute("content");  %>
 window.onload = function(){
-	for(var k = 0; k<10;k++){
-		eval('remap'+k+"()")		
+	if(<%=list.size()%><10){
+		for(var k = 0; k<<%=list.size()%>;k++){
+			eval('remap'+k+"()")		
+		}
+		
+	}else{
+		for(var k = 0; k<10;k++){
+			eval('remap'+k+"()")		
+		}
+		
 	}
 }
 function pagingcar(i){
@@ -37,10 +49,6 @@ function pagingcar(i){
 
 
 <body>
-<% List<Map<String, String>> list = (List<Map<String, String>>)request.getAttribute("list");  %>
-<% String cartype = (String)request.getAttribute("cartype");  %>
-<% String searchtype = (String)request.getAttribute("searchtype");  %>
-<% String content = (String)request.getAttribute("content");  %>
 
 <h1>렌트카 검색</h1>
 

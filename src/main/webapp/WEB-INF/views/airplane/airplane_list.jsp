@@ -46,27 +46,27 @@
 	function port(dep){
 		var check = true
 		for(arr in all){
-			document.getElementById(all[arr]).setAttribute("disabled","disabled")
+			document.getElementById(all[arr]).setAttribute("hidden","hidden")
 		}
 		
 		
 		if(dep.value==dp_kp){
 			for(var arr in arr_kimpo){
 				var ar = document.getElementById(arr_kimpo[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 			
 		}else if(dep.value==dp_jj){
 			for(var arr in arr_jeju){
 				var ar = document.getElementById(arr_jeju[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 		}else if(dep.value==dp_YY){
 			for(var arr in arr_YY){
 				var ar = document.getElementById(arr_YY[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 		}else{
@@ -75,7 +75,7 @@
 					if(dep.value== dp_KK[dp]){
 						for(var arr in arr_KK){
 							var ar = document.getElementById(arr_KK[arr])
-							ar.removeAttribute("disabled")
+							ar.removeAttribute("hidden")
 						}
 					
 					}
@@ -85,7 +85,7 @@
 				for(dp in dp_CKW){
 					if(dep.value== dp_CKW[dp]){
 						var ar = document.getElementById(arr_one)
-						ar.removeAttribute("disabled")
+						ar.removeAttribute("hidden")
 						check= false
 					}	
 				}
@@ -93,7 +93,7 @@
 			if(check){
 				for(var arr in arr_else){
 					var ar = document.getElementById(arr_else[arr])
-					ar.removeAttribute("disabled")
+					ar.removeAttribute("hidden")
 				}
 				
 			}
@@ -136,9 +136,9 @@
 		<%} %>
 		</select>
 		<span>:</span>
-		<select id="arr" name = "arrAirportId">
+		<select id="arr"  required="required" name = "arrAirportId">
 		<%for(Map<String, String> map : portlist){ %>
-			<option disabled="disabled" id ="<%=map.get("airportId")+"a"%>"  <%if(map.get("airportId").equals((String)request.getAttribute("arrAirportId"))){ %>selected<%} %> value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+			<option hidden="hidden" id ="<%=map.get("airportId")+"a"%>"  <%if(map.get("airportId").equals((String)request.getAttribute("arrAirportId"))){ %>selected<%} %> value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
 		</select>
 		<span>출발일자</span>

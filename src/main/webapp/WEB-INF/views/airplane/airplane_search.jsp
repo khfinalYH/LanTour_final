@@ -37,27 +37,27 @@
 	function port(dep){
 		var check = true
 		for(arr in all){
-			document.getElementById(all[arr]).setAttribute("disabled","disabled")
+			document.getElementById(all[arr]).setAttribute("hidden","hidden")
 		}
 		
 		
 		if(dep.value==dp_kp){
 			for(var arr in arr_kimpo){
 				var ar = document.getElementById(arr_kimpo[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 			
 		}else if(dep.value==dp_jj){
 			for(var arr in arr_jeju){
 				var ar = document.getElementById(arr_jeju[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 		}else if(dep.value==dp_YY){
 			for(var arr in arr_YY){
 				var ar = document.getElementById(arr_YY[arr])
-				ar.removeAttribute("disabled")
+				ar.removeAttribute("hidden")
 				check= false
 			}
 			
@@ -67,7 +67,7 @@
 					if(dep.value== dp_KK[dp]){
 						for(var arr in arr_KK){
 							var ar = document.getElementById(arr_KK[arr])
-							ar.removeAttribute("disabled")
+							ar.removeAttribute("hidden")
 						}
 					
 					}
@@ -77,7 +77,7 @@
 				for(dp in dp_CKW){
 					if(dep.value== dp_CKW[dp]){
 						var ar = document.getElementById(arr_one)
-						ar.removeAttribute("disabled")
+						ar.removeAttribute("hidden")
 						check= false
 					}	
 				}
@@ -85,7 +85,7 @@
 			if(check){
 				for(var arr in arr_else){
 					var ar = document.getElementById(arr_else[arr])
-					ar.removeAttribute("disabled")
+					ar.removeAttribute("hidden")
 				}
 				
 			}
@@ -93,9 +93,10 @@
 	}
 	
 	window.onload = function(){
+		var d = document.getElementById("dep")
+		port(d.options[d.selectedIndex])
 		let [today] = new Date().toISOString().split("T");
 		document.getElementById("date").setAttribute("min", today);
-		port(document.getgetElementById("dep"))
 	}
 	
 
@@ -112,14 +113,16 @@
 		<sapn>출발 공항</sapn>
 		<select id="dep" onchange="port(this)" name = "depAirportId">
 		<%for(Map<String, String> map : list){ %>
-			<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+				<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
+			</optgroup>
 		</select>
 		<sapn>도착 공항</sapn>
-		<select name = "arrAirportId">
+		<select required="required" name = "arrAirportId">
 		<%for(Map<String, String> map : list){ %>
-			<option disabled="disabled" id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+			<option hidden="hidden" <%if(map.get("airportNm").equals("제주")){ %>selected<%} %> id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
 		<%} %>
+			</optgroup>
 		</select>
 		<sapn>출발일자</sapn>
 		<input id = "date"type="date" name="date" >
