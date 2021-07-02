@@ -58,8 +58,8 @@
 	
     btnRead.addEventListener("click", e => {
         speak(text.value, {
-            rate: 1.0,	//속도 설정 0.1 ~ 10
-            pitch: 0.8,	//음높이 설정 0 ~ 2
+            rate: 0.9,	//속도 설정 0.1 ~ 10
+            pitch: 1,	//음높이 설정 0 ~ 2
             volume: 1.0,	//목소리 크기 0 ~ 1
             lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
         })
