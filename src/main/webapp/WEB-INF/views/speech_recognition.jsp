@@ -50,14 +50,11 @@ response.setContentType("text/html; charset=UTF-8");
 
 	var i = 0;
 	recognition.onspeechstart = function() {
-		alert("1")
 		i = 0
 	}
 
 	recognition2.onspeechstart = function() {
-		alert("2")
-
-		i = 0
+			i = 0
 	}
 	recognition.onresult = function(event) {
 		//
@@ -142,7 +139,16 @@ response.setContentType("text/html; charset=UTF-8");
 				},
 				datatype : "json",
 				success : function(msg) {
-					$("#langtext").val($("#langtext").val()+" "+msg.lang)
+					$("#langtext").text($("#langtext").text()+" "+msg.lang)
+				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
+					speak(msg.lang, {
+			              rate: 0.9,	//속도 설정 0.1 ~ 10
+			              pitch: 1,	//음높이 설정 0 ~ 2
+			              volume: 1.0,	//목소리 크기 0 ~ 1
+			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
+			     	   })
+					
+					
 				},
 				error : function() {
 					alert("통신 실패");
@@ -150,6 +156,33 @@ response.setContentType("text/html; charset=UTF-8");
 			});
 		}
 	}
+	
+	
+	function speak(text, opt_prop) {
+        if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
+            alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+            return;
+        }
+        
+        window.speechSynthesis.cancel();// 현재 읽고있다면 초기화
+
+        const prop = opt_prop;
+
+        //speechmsg에있는 값을 저장
+        const speechMsg = new SpeechSynthesisUtterance();
+        speechMsg.rate = prop.rate;
+        speechMsg.pitch = prop.pitch;
+        speechMsg.lang = prop.lang;
+        speechMsg.text = text;
+        speechMsg.volume = prop.volume;
+        
+        // SpeechSynthesisUtterance에 저장된 내용을 바탕으로 음성합성 실행
+        window.speechSynthesis.speak(speechMsg);
+    }
+
+
+    // 이벤트 영역
+
 
 </script>
 
@@ -174,7 +207,7 @@ response.setContentType("text/html; charset=UTF-8");
 	</select>
 	<br>
 	<span>번역 언어</span>
-	<select name="target">
+	<select id = "target" name="target">
 		<option value="ko">한국어</option>
 		<option value="en">영어</option>
 		<option value="ja">일본어</option>
@@ -187,10 +220,18 @@ response.setContentType("text/html; charset=UTF-8");
 	<button onclick="reAbort()">음성인식 중지(abort)</button>
 	<button onclick="reStop()">음성인식 중지(stop)</button>
 
-	<div id="result"></div>
+	
 
 	<button type="button" id="translate" onclick="trans()">번역하기</button>
-	<textarea rows="10" cols="60" id="langtext"></textarea>
+	<textarea rows="10" cols="60" id="result"></textarea>
+
+	<div style="position: relative; height: 590; width: 1049">
+		<iframe width="1049" height="590" src="https://www.youtube.com/embed/z9o5BuWzbe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
+			<div id="langtext" style="position: absolute; bottom:10px; background-color: white;" ></div>
+	</div>
+
+
 
 
 </body>
