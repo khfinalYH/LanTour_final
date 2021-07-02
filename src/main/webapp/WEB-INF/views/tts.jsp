@@ -35,7 +35,7 @@
 
         const prop = opt_prop;
 
-        //speechmsg에있는 값을 저장
+        //btnRead에 설정된 값을 speechmsg로 저장
         const speechMsg = new SpeechSynthesisUtterance();
         speechMsg.rate = prop.rate;
         speechMsg.pitch = prop.pitch;
@@ -52,14 +52,14 @@
     const selectLang = document.getElementById("select-lang");	//어느나라말로 말할지
     const text = document.getElementById("text");				
     const btnRead = document.getElementById("btn-read");	
-	const btnPause = document.getElementById("btn-pause");
-	const btnStop = document.getElementById("btn-stop");
+	const btnPause = document.getElementById("btn-pause");	
+	const btnStop = document.getElementById("btn-stop");	
 	const btnResume = document.getElementById("btn-resume");
 	
     btnRead.addEventListener("click", e => {
         speak(text.value, {
             rate: 1.0,	//속도 설정 0.1 ~ 10
-            pitch: 0.8,	//음높이 설정 0 ~ 2
+            pitch: 1.0,	//음높이 설정 0 ~ 2
             volume: 1.0,	//목소리 크기 0 ~ 1
             lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
         })
