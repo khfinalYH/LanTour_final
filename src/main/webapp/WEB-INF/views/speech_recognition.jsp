@@ -139,15 +139,15 @@ response.setContentType("text/html; charset=UTF-8");
 				},
 				datatype : "json",
 				success : function(msg) {
-					$("#langtext").text($("#langtext").text()+" "+msg.lang)
-				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
-					speak(msg.lang, {
-			              rate: 0.9,	//속도 설정 0.1 ~ 10
-			              pitch: 1,	//음높이 설정 0 ~ 2
-			              volume: 1.0,	//목소리 크기 0 ~ 1
-			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
-			     	   })
 					
+						$("#langtext").text($("#langtext").text()+" "+msg.lang)
+				    	const selectLang = document.getElementById("target");	//어느나라말로 말할지
+						speak(msg.lang, {
+			                 rate: 0.9,	//속도 설정 0.1 ~ 10
+			              	 pitch: 1,	//음높이 설정 0 ~ 2
+			             	 volume: 1.0,	//목소리 크기 0 ~ 1
+			              	 lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
+			     	   })
 					
 				},
 				error : function() {
