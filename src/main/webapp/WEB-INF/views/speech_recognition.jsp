@@ -68,7 +68,7 @@ recognition.onresult = function(event) {
 	var lang = document.getElementById("lang")
 	recognition.lang = lang.options[lang.selectedIndex].value  
  	 var res = event.results[i][0].transcript; // 음성인식 결과값
-   	 string = string+" "+res
+   	 string = string+" / "+res
  	 console.log('Confidence: ' + event.results[i][0].confidence);
 	document.getElementById("result").innerHTML = string
 	i = i+1
@@ -133,7 +133,7 @@ function reStop(){
     	<span>인식 언어</span>
         <select id="lang">
         	<option value="ko-KR">한국어</option>      
-        	<option value="en">영어</option>
+        	<option value="en-US">영어</option>
      		 <option value="ja">일본어</option>
       		<option value="zh-CN">중국어 간체</option>
       		<option value="zh-TW">중국어 번체</option>
