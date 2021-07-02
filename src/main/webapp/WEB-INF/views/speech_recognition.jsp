@@ -140,7 +140,8 @@ response.setContentType("text/html; charset=UTF-8");
 				datatype : "json",
 				success : function(msg) {
 					$("#langtext").text($("#langtext").text()+" "+msg.lang)
-					speak(msg, {
+				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
+					speak(msg.lang, {
 			              rate: 0.9,	//속도 설정 0.1 ~ 10
 			              pitch: 1,	//음높이 설정 0 ~ 2
 			              volume: 1.0,	//목소리 크기 0 ~ 1
@@ -181,7 +182,6 @@ response.setContentType("text/html; charset=UTF-8");
 
 
     // 이벤트 영역
-    const selectLang = document.getElementById("target");	//어느나라말로 말할지
 
 
 </script>
