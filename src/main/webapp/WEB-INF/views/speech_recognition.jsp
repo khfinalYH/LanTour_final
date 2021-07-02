@@ -13,73 +13,7 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-<<<<<<< HEAD
 
-/*
- * 
- recognition.interimResults : 중간결과값 리턴 여부
- recognition.continuous : 중간중간 결과값 리턴 / 내부 필드
- recognition.start() : 음성 인식 시작
- recognition.stop() : 음성 인식 끝, continuous가 false이면 recognition.onresult 마지막에 실행 아니면 중간중간 실행
- recognition.onresult 의 내부에는 SpeechRecognitionResultList객체가 있음 [i][j]배열이며 음성이 인식 될 때마다 첫번째칸이 추가, 두번째칸은 정확도 구분
- 
- */
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-var string = "" // 음성인식 결과 뭉치
-
- 
-var recognition = new SpeechRecognition();
-var recognition2 = new SpeechRecognition();
-
-recognition.continuous = true; // 인식 중간중간 결과 값 리턴 
-recognition.interimResults = false; //중간 결과값도 리턴
-
-recognition2.continuous = true; // 인식 중간중간 결과 값 리턴 
-recognition2.interimResults = false; //중간 결과값도 리턴
-
-var diagnostic = document.querySelector('.output');
-
-function start() {
-	alert("녹음 시작")
-	var lang = document.getElementById("lang")
-	recognition.lang = lang.options[lang.selectedIndex].value
-	recognition.lang2 = lang.options[lang.selectedIndex].value
-	recognition.start()
-	console.log('Ready to receive a color command.')
-}
-
-var i = 0;
-recognition.onspeechstart = function() {
-	alert("1")
-	i = 0
-}
-
-recognition2.onspeechstart = function() {
-	alert("2")
-
-	i = 0
-}
-recognition.onresult = function(event) {
-  //
-  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-  // It has a getter so it can be accessed like an array
-  // The first [0] returns the SpeechRecognitionResult at the last position.
-  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-  // These also have getters so they can be accessed like arrays.
-  // The second [0] returns the SpeechRecognitionAlternative at position 0.
-  // We then return the transcript property of the SpeechRecognitionAlternative object
-	var lang = document.getElementById("lang")
-	recognition.lang = lang.options[lang.selectedIndex].value  
- 	 var res = event.results[i][0].transcript; // 음성인식 결과값
-   	 string = string+" / "+res
- 	 console.log('Confidence: ' + event.results[i][0].confidence);
-	document.getElementById("result").innerHTML = string
-	i = i+1
-}
-recognition2.onresult = function(event) {
-=======
 	/*
 	 * 
 	 recognition.interimResults : 중간결과값 리턴 여부
@@ -107,7 +41,6 @@ recognition2.onresult = function(event) {
 
 	function start() {
 		alert("녹음 시작")
->>>>>>> ee336d3b0d4a7ad421c21df1b845064eec79aaec
 		var lang = document.getElementById("lang")
 		recognition.lang = lang.options[lang.selectedIndex].value
 		recognition.lang2 = lang.options[lang.selectedIndex].value
@@ -142,6 +75,7 @@ recognition2.onresult = function(event) {
 		string = string + " " + res
 		console.log('Confidence: ' + event.results[i][0].confidence);
 		document.getElementById("result").innerHTML = string
+		trans(res) 
 		i = i + 1
 	}
 	recognition2.onresult = function(event) {
@@ -151,6 +85,7 @@ recognition2.onresult = function(event) {
 		console.log('Confidence: ' + event.results[i][0].confidence);
 		string = string + " " + res
 		document.getElementById("result").innerHTML = string
+		trans(res) 
 		i = i + 1
 	}
 
@@ -195,8 +130,7 @@ recognition2.onresult = function(event) {
 			$("#translate").trigger("click");
 		}, 600000)
 	});
-	function trans() {
-		var text = document.getElementById("result").innerHTML
+	function trans(text) {
 		var target = $("select[name=target]").val();
 		if (text != "") {
 			$.ajax({
@@ -208,7 +142,7 @@ recognition2.onresult = function(event) {
 				},
 				datatype : "json",
 				success : function(msg) {
-					$("#langtext").val(msg.lang)
+					$("#langtext").val($("#langtext").val()+" "+msg.lang)
 				},
 				error : function() {
 					alert("통신 실패");
