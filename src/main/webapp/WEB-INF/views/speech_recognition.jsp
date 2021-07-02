@@ -75,6 +75,7 @@ response.setContentType("text/html; charset=UTF-8");
 		trans(res) 
 		i = i + 1
 	}
+	
 	recognition2.onresult = function(event) {
 		var lang = document.getElementById("lang")
 		recognition2.lang = lang.options[lang.selectedIndex].value
@@ -142,7 +143,7 @@ response.setContentType("text/html; charset=UTF-8");
 					$("#langtext").text($("#langtext").text()+" "+msg.lang)
 				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
 					speak(msg.lang, {
-			              rate: 0.9,	//속도 설정 0.1 ~ 10
+			              rate: 0.8,	//속도 설정 0.1 ~ 10
 			              pitch: 1,	//음높이 설정 0 ~ 2
 			              volume: 1.0,	//목소리 크기 0 ~ 1
 			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
@@ -157,6 +158,12 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 	}
 	
+	var speakOn = false
+	var lasttext = null
+	var pprop = null
+	window.speechSynthesis.addEventListener("ended", e => {
+		speak(lasttext, pprop)
+    })
 	
 	function speak(text, opt_prop) {
         if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
@@ -164,7 +171,6 @@ response.setContentType("text/html; charset=UTF-8");
             return;
         }
         
-        window.speechSynthesis.cancel();// 현재 읽고있다면 초기화
 
         const prop = opt_prop;
 
@@ -177,7 +183,14 @@ response.setContentType("text/html; charset=UTF-8");
         speechMsg.volume = prop.volume;
         
         // SpeechSynthesisUtterance에 저장된 내용을 바탕으로 음성합성 실행
-        window.speechSynthesis.speak(speechMsg);
+        if(window.speechSynthesis.speeking){
+        	speakOn = true
+        	pprop = opt_prop
+        	lasttext = text
+        }else{
+            window.speechSynthesis.speak(speechMsg);        	
+        }
+        
     }
 
 
