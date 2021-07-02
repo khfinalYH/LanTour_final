@@ -22,11 +22,6 @@ public class PapagoController {
 	private String clientId = "NiPSHx6Om9O_VYFPHn9A";
 	private String clientSecret = "F85TDravFu";
 
-	@RequestMapping("/papago.do")
-	public String papago() {
-		return "test";
-	}
-
 	@ResponseBody
 	@RequestMapping("/papagolang.do")
 	public Map<String, String> papagolang(String papagolang, String target) {
