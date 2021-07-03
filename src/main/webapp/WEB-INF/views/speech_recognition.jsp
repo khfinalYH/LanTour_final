@@ -23,6 +23,7 @@ response.setContentType("text/html; charset=UTF-8");
 	 recognition.onresult 의 내부에는 SpeechRecognitionResultList객체가 있음 [i][j]배열이며 음성이 인식 될 때마다 첫번째칸이 추가, 두번째칸은 정확도 구분
 	
 	 */
+	var check = false;
 	var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 	var SpeechRecognitionEvent = SpeechRecognitionEvent
 			|| webkitSpeechRecognitionEvent
@@ -140,6 +141,7 @@ response.setContentType("text/html; charset=UTF-8");
 				datatype : "json",
 				success : function(msg) {
 					$("#langtext").text($("#langtext").text()+" "+msg.lang)
+					if(check == true){
 				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
 					speak(msg.lang, {
 			              rate: 0.8,	//속도 설정 0.1 ~ 10
@@ -147,6 +149,7 @@ response.setContentType("text/html; charset=UTF-8");
 			              volume: 1.0,	//목소리 크기 0 ~ 1
 			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
 			     	   })
+					}
 					
 				},
 				error : function() {
@@ -193,7 +196,24 @@ response.setContentType("text/html; charset=UTF-8");
 
 
     // 이벤트 영역
-
+	function translation() {
+ 		var text = $("#translate").text();
+		$("#langtext").toggle();
+		if(text == "OFF"){
+			$("#translate").html("ON");
+		} else {
+			$("#translate").html("OFF");
+		}
+	}
+    function tts_start() {
+		if(check == false){
+			$("#tts_start").html("ON");
+			check = true;
+		} else{
+			$("#tts_start").html("OFF");
+			check = false;
+		}
+	}
 
 </script>
 
@@ -201,10 +221,6 @@ response.setContentType("text/html; charset=UTF-8");
 
 <body>
 	<h1>SPEECH API 분석</h1>
-	<h1>
-		링크
-		<a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition">바로기가</a>
-	</h1>
 
 	<!-- BCP 47 언어 구분을 따른다. -->
 	<span>인식 언어</span>
@@ -219,22 +235,20 @@ response.setContentType("text/html; charset=UTF-8");
 	<br>
 	<span>번역 언어</span>
 	<select id = "target" name="target">
-		<option value="ko">한국어</option>
 		<option value="en">영어</option>
 		<option value="ja">일본어</option>
 		<option value="zh-CN">중국어 간체</option>
 		<option value="zh-TW">중국어 번체</option>
+		<option value="ko">한국어</option>
 	</select>
-	<p class="output">
-		<button onclick="start()">누르고 말해주세요</button>
-	</p>
-	<button onclick="reAbort()">음성인식 중지(abort)</button>
-	<button onclick="reStop()">음성인식 중지(stop)</button>
-
-	
-
-	<button type="button" id="translate" onclick="translate()">번역보기</button>
+	<br>
 	<textarea rows="10" cols="60" id="result"></textarea>
+	<br>
+	<span>자막</span>
+	<span>TTS</span>
+	<br>
+	<button type="button" id="translate" onclick="translation()">OFF</button>
+	<button type="button" id="tts_start" onclick="tts_start()">OFF</button>
 
 	<div style="position: relative; height: 590; width: 1049">
 		<iframe width="1049" height="590" src="https://www.youtube.com/embed/z9o5BuWzbe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
