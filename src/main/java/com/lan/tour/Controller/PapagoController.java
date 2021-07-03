@@ -26,72 +26,77 @@ public class PapagoController {
 	@RequestMapping("/papagolang.do")
 	public Map<String, String> papagolang(String papagolang, String target) {
 
-		String query;
-		try {
-			query = URLEncoder.encode(papagolang, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO: handle exception
-			throw new RuntimeException("인코딩 실패", e);
-		}
-
-		String url = "https://openapi.naver.com/v1/papago/detectLangs";
-		Map<String, String> request = new HashMap<String, String>();
-		request.put("X-Naver-Client-Id", clientId);
-		request.put("X-Naver-Client-Secret", clientSecret);
-
-		String response = "";
-		HttpURLConnection con = null;
-		try {
-			URL apiUrl = new URL(url);
-			con = (HttpURLConnection) apiUrl.openConnection();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("API URL이 잘못되었습니다. : " + url, e);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("연결이 실패했습니다. : " + url, e);
-		}
-
-		String postParams = "query = " + query;
-
-		try {
-			con.setRequestMethod("POST");
-			for (Map.Entry<String, String> header : request.entrySet()) {
-				con.setRequestProperty(header.getKey(), header.getValue());
-			}
-			con.setDoOutput(true);
-
-			try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-				wr.write(postParams.getBytes());
-				wr.flush();
+		if (!papagolang.isEmpty()) {
+			String query;
+			try {
+				query = URLEncoder.encode(papagolang, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO: handle exception
+				throw new RuntimeException("인코딩 실패", e);
 			}
 
-			int reponseCode = con.getResponseCode();
-			if (reponseCode == HttpURLConnection.HTTP_OK) {
-				InputStreamReader streamReader = new InputStreamReader(con.getInputStream());
-				try (BufferedReader lineReader = new BufferedReader(streamReader)) {
-					StringBuilder responseBody = new StringBuilder();
+			String url = "https://openapi.naver.com/v1/papago/detectLangs";
+			Map<String, String> request = new HashMap<String, String>();
+			request.put("X-Naver-Client-Id", clientId);
+			request.put("X-Naver-Client-Secret", clientSecret);
 
-					String line;
-					while ((line = lineReader.readLine()) != null) {
-						responseBody.append(line);
-					}
+			String response = "";
+			HttpURLConnection con = null;
+			try {
+				URL apiUrl = new URL(url);
+				con = (HttpURLConnection) apiUrl.openConnection();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException("API URL이 잘못되었습니다. : " + url, e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException("연결이 실패했습니다. : " + url, e);
+			}
 
-					response = responseBody.toString();
-				} catch (IOException e) {
-					throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+			String postParams = "query = " + query;
+
+			try {
+				con.setRequestMethod("POST");
+				for (Map.Entry<String, String> header : request.entrySet()) {
+					con.setRequestProperty(header.getKey(), header.getValue());
 				}
-			} else {
+				con.setDoOutput(true);
 
+				try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+					wr.write(postParams.getBytes());
+					wr.flush();
+				}
+
+				int reponseCode = con.getResponseCode();
+				if (reponseCode == HttpURLConnection.HTTP_OK) {
+					InputStreamReader streamReader = new InputStreamReader(con.getInputStream());
+					try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+						StringBuilder responseBody = new StringBuilder();
+
+						String line;
+						while ((line = lineReader.readLine()) != null) {
+							responseBody.append(line);
+						}
+
+						response = responseBody.toString();
+					} catch (IOException e) {
+						throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+					}
+				} else {
+
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
-		String source = response.substring(13, response.length() - 2);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("lang", transpapago(papagolang, source, target));
-		return map;
+			String source = response.substring(13, response.length() - 2);
+			Map<String, String> map = new HashMap<String, String>();
+			if(!source.equals(target)) {
+				map.put("lang", transpapago(papagolang, source, target));
+			}
+			return map;
+		}
+		return null;
 	}
 
 	public String transpapago(String papagolang, String source, String target) {

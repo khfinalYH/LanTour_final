@@ -124,9 +124,8 @@ response.setContentType("text/html; charset=UTF-8");
 	}
 
 	$(function() {
-		playpapago = setInterval(function() {
-			$("#translate").trigger("click");
-		}, 600000)
+		start();
+		$("#langtext").css("display","none");
 	});
 	function trans(text) {
 		var target = $("select[name=target]").val();
@@ -148,7 +147,6 @@ response.setContentType("text/html; charset=UTF-8");
 			              volume: 1.0,	//목소리 크기 0 ~ 1
 			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
 			     	   })
-					
 					
 				},
 				error : function() {
@@ -235,16 +233,16 @@ response.setContentType("text/html; charset=UTF-8");
 
 	
 
-	<button type="button" id="translate" onclick="trans()">번역하기</button>
+	<button type="button" id="translate" onclick="translate()">번역보기</button>
 	<textarea rows="10" cols="60" id="result"></textarea>
 
 	<div style="position: relative; height: 590; width: 1049">
 		<iframe width="1049" height="590" src="https://www.youtube.com/embed/z9o5BuWzbe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	
-			<div id="langtext" style="position: absolute; bottom:10px; background-color: white;" ></div>
+		<div id="langtext" style="position: absolute; bottom:10px; background-color: white;" ></div>
 	</div>
 
-
+	
 
 
 </body>
