@@ -129,6 +129,7 @@ response.setContentType("text/html; charset=UTF-8");
 		$("#langtext").css("display","none");
 	});
 	function trans(text) {
+		$("#langtext").empty();
 		var target = $("select[name=target]").val();
 		if (text != "") {
 			$.ajax({
@@ -140,7 +141,21 @@ response.setContentType("text/html; charset=UTF-8");
 				},
 				datatype : "json",
 				success : function(msg) {
-					$("#langtext").text($("#langtext").text()+" "+msg.lang)
+					var langtext = msg.lang.split(".");
+					var lang = "";
+					for(var i = 0; i < langtext.length; i++){
+						lang += langtext[i];
+						if(i % 2 == 0 && i != 0){
+							var $langtext = $("<p>"+lang+"</p>");
+							$("#langtext").append($langtext);
+							lang = "";
+						}
+						if(i + 1 == langtext.length){
+							var $langtext = $("<p>"+lang+"</p>");
+							$("#langtext").append($langtext);							
+						}
+					}
+					console.log(lang);
 					if(check == true){
 				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
 					speak(msg.lang, {
@@ -234,7 +249,7 @@ response.setContentType("text/html; charset=UTF-8");
 	</select>
 	<br>
 	<span>번역 언어</span>
-	<select id = "target" name="target">
+	<select id="target" name="target">
 		<option value="en">영어</option>
 		<option value="ja">일본어</option>
 		<option value="zh-CN">중국어 간체</option>
@@ -252,11 +267,11 @@ response.setContentType("text/html; charset=UTF-8");
 
 	<div style="position: relative; height: 590; width: 1049">
 		<iframe width="1049" height="590" src="https://www.youtube.com/embed/z9o5BuWzbe8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	
-		<div id="langtext" style="position: absolute; bottom:10px; background-color: white;" ></div>
+
+		<div id="langtext" style="position: absolute; bottom: 10px; background-color: white;"></div>
 	</div>
 
-	
+
 
 
 </body>
