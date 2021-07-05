@@ -62,7 +62,7 @@ io.on('connection', socket => {
         socket.broadcast.to(roomid).emit("VoiceRe", text)
     } )
     
-    socket.on("papago", (lang, target, roomid)=>{
+    socket.on("papago", (lang, target)=>{
         socket.emit("papago", lang,instance.papagolangSync(target,lang))
     })
 
