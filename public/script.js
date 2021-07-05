@@ -178,7 +178,7 @@ function start() {
     alert("녹음 시작")
     var lang = document.getElementById("lang")
     recognition.lang = lang.options[lang.selectedIndex].value
-    recognition.lang2 = lang.options[lang.selectedIndex].value
+    recognition2.lang = lang.options[lang.selectedIndex].value
     recognition.start()
     console.log('Ready to receive a color command.')
 }
@@ -221,10 +221,10 @@ recognition2.onresult = function(event) {
 //음성인식 종료시 반복
 recognition.onspeechend = function() {recognition2.start()}
 recognition.onnomatch = function(event) {recognition2.start()}
-recognition.onerror = function(event) {recognition2.start()}
+recognition.onerror = function(event) {}
 recognition2.onspeechend = function() {recognition.start()}
 recognition2.onnomatch = function(event) {recognition.start()}
-recognition2.onerror = function(event) {recognition.start()}
+recognition2.onerror = function(event) {}
 
 
 
@@ -236,7 +236,6 @@ function reAbort() {
 
 //음성인식종료버튼
 function reStop() {
-    i = 0
     recognition.stop()
     recognition2.stop()
 }
