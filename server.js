@@ -4,6 +4,16 @@ const app = express()
 const fs = require('fs')
 const { v4: uuidV4 } = require('uuid')
 
+const java = require("java")
+java.classpath.push('./jar/papago.jar')
+
+const papagoC = java.import('papago.PapagoController')
+const instance = new papagoC()
+
+
+
+
+
 const options = { 
     key: fs.readFileSync('./keys/cert.key'),
     cert: fs.readFileSync('./keys/cert.crt')
@@ -46,7 +56,18 @@ app.post('/',(req, res)=>{
     res.redirect(`/${uuidV4()}`)
  })
 
+
+
 io.on('connection', socket => {
+
+    socket.on("VoiceRe", (text, roomid)=>{
+        socket.broadcast.to(roomid).emit("VoiceRe", text)
+    } )
+    
+    socket.on("papago", (lang, target, roomid)=>{
+        socket.emit("papago", lang,instance.papagolangSync(target,lang))
+    })
+
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId)
         socket.broadcast.to(roomId).emit('user-connected', userId)
