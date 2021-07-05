@@ -146,6 +146,9 @@ const setMuteButton = () => {
 };
 
 
+
+
+
 /*
 * 
 recognition.interimResults : 중간결과값 리턴 여부
@@ -278,7 +281,7 @@ socket.on("papago", (lang, text)=>{
         const selectLang = document.getElementById("target");	//어느나라말로 말할지
         if(check == true){
             speak(text, {
-                  rate: 0.8,	//속도 설정 0.1 ~ 10
+                  rate: lang=="ja"?1.2:0.8,	//속도 설정 0.1 ~ 10
                   pitch: 1,	//음높이 설정 0 ~ 2
                   volume: 1.0,	//목소리 크기 0 ~ 1
                   lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력

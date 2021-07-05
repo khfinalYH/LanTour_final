@@ -12,8 +12,6 @@ const instance = new papagoC()
 
 
 
-
-
 const options = { 
     key: fs.readFileSync('./keys/cert.key'),
     cert: fs.readFileSync('./keys/cert.crt')
