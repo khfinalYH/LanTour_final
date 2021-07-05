@@ -24,8 +24,9 @@
         <div class="main__left">
             <!-- 호스트 비디오 -->
             <div class="main__videos">
-                <div id="video-grid"></div>
-                <div id="langtext" style="position: absolute; bottom: 10px; background-color: white;"></div>
+                <div id="video-grid" style="position: relative;">
+                    <div id="langtext" style="position: absolute; bottom: 10px; background-color: white;"></div>
+                </div>
             </div>
 
             <input type="hidden" id="guest-grid">
@@ -105,17 +106,10 @@
             </div>
         </div>
 
-
     </div>
 	<!-- BCP 47 언어 구분을 따른다. -->
 
-	<br>
-	
-	<br>
 	<textarea rows="10" cols="60" id="result"></textarea>
-	<br>
-	
-	<br>
 
 
 </body>
