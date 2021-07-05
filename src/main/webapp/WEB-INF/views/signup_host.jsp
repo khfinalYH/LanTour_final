@@ -48,7 +48,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 	function idCheckConfirm() {
 		var chk = document.getElementsByName("member_id")[0].title;
-		if (chk == "c") {
+		if (chk == 0) {
 			alert("아이디 중복체크 해주세요");
 			document.getElementsByName("member_id")[0].focus();
 		}
@@ -78,7 +78,7 @@ response.setContentType("text/html; charset=UTF-8");
 		<tr>
 			<th>ID</th>
 			<td>
-			<input type="text" id="idChk" name="member_id" title="c" required="required">
+			<input type="text" id="idChk" name="member_id" required="required">
 			<input type="button" value="중복확인" onclick="idCheck();">
 			</td>
 		</tr>
