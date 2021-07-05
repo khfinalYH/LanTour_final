@@ -284,6 +284,9 @@ socket.on("papago", (lang, text)=>{
                   lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
             })
         }
+        setTimeout(function () {
+            $("#langtext").empty();
+        },7000);
     }
 })
 
