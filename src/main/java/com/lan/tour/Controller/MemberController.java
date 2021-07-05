@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.dto.MemberDto;
@@ -63,7 +62,14 @@ public class MemberController {
 		// 회원 가입 페이지로 이동 (페이지 이름을 몰라서 register로 작성)
 		return "singnup_general";
 	}
-
+	
+	
+	@RequestMapping("/registerhost.do")
+	public String registerForm() {
+		return "signup_host";
+		
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
 	public Map<String, Boolean> idCheck(@RequestBody MemberDto dto) {
