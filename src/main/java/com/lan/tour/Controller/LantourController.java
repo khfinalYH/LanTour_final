@@ -59,7 +59,7 @@ public class LantourController {
 		
 	}
 
-	@RequestMapping("/lantourdetail")
+	@RequestMapping("/lantourdetail.do")
 	public String lantourdetail(Model model, int lantour_no) {
 		
 		model.addAttribute("dto", biz.selectOne(lantour_no));

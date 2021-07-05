@@ -16,7 +16,7 @@
 	
 	<insert id="lantourinsert" parameterType="lantourDto">
 		INSERT INTO LANTOUR 
-		VALUES (LANTOUR_NO_SEQ.NEXTVAL,#{member_no},#{lantour_title},#{lantour_content}, sysdate, #{lantour_addr}, #{lantour_rtc}, #{lantour_image}, #{lantour_maxcount}, #{lantour_price}, #{lantour_date})
+		VALUES (LANTOUR_NO_SEQ.NEXTVAL,#{member_no},#{lantour_title},#{lantour_content}, sysdate, #{lantour_rtc}, #{lantour_addr}, #{lantour_image}, #{lantour_maxcount}, #{lantour_price}, #{lantour_date})
 	</insert>
 	
 	<delete id="lantourdelete" parameterType="int">

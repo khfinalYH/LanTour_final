@@ -75,6 +75,17 @@ public class LantourDaoImpl implements LantourDao {
 				}
 				return res;
 	}
+	
+	@Override
+	public int rtcupdate(LantourDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "rtcupdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 }
   

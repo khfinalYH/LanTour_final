@@ -13,4 +13,5 @@ public interface LantourDao {
 	public int insert(LantourDto dto);
 	public int delete(int lantour_no);
 	public int update(LantourDto dto);
+	public int rtcupdate(LantourDto dto);
 }

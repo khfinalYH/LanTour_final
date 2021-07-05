@@ -44,5 +44,10 @@ public class LantourBizImpl implements LantourBiz {
 		// TODO Auto-generated method stub
 		return dao.update(dto);
 	}
+	
+	@Override
+	public int rtcupdate(LantourDto dto) {
+		return dao.rtcupdate(dto);
+	}
 
 }
