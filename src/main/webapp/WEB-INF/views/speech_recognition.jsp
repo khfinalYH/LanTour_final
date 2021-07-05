@@ -155,7 +155,6 @@ response.setContentType("text/html; charset=UTF-8");
 							$("#langtext").append($langtext);							
 						}
 					}
-					console.log(lang);
 					if(check == true){
 				    const selectLang = document.getElementById("target");	//어느나라말로 말할지
 					speak(msg.lang, {
@@ -165,6 +164,9 @@ response.setContentType("text/html; charset=UTF-8");
 			              lang: selectLang.options[selectLang.selectedIndex].value	//선택한 언어의 옵션값을 받아와 해당 음성 출력
 			     	   })
 					}
+					setTimeout(function () {
+						$("#langtext").empty();
+					},7000);
 					
 				},
 				error : function() {
