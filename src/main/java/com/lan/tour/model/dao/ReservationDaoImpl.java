@@ -16,11 +16,11 @@ public class ReservationDaoImpl implements ReservationDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<ReservationDto> selectList(int lantour_no) {
+	public List<ReservationDto> selectList() {
 		// TODO Auto-generated method stub
 		List<ReservationDto> list = new ArrayList<ReservationDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE+"selectlist", lantour_no);
+			list = sqlSession.selectList(NAMESPACE+"selectlist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

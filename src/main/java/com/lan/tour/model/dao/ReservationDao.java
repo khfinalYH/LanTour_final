@@ -8,6 +8,6 @@ public interface ReservationDao {
 
 	String NAMESPACE = "reservation.";
 	
-	public List<ReservationDto> selectList(int reservation_no);
+	public List<ReservationDto> selectList();
 	public ReservationDto selectOne(int reservation_no);
 }
