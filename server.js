@@ -35,12 +35,16 @@ app.get('/', (req, res) => {
     res.redirect(`/${uuidV4()}`)
 })
 
-app.get('/:room', (req, res) => {
+app.get('/:room', (req, res) => { 
+    if (req.session.member_grade != 'H') {
+        req.session.member_name = req.query.member_name
+    }
     res.render('room', {
         roomId: req.params.room,
         member_grade: req.session.member_grade,
         member_no: req.session.member_no,
-        lantour_no: req.session.lantour_no
+        lantour_no: req.session.lantour_no,
+        member_name: req.session.member_name
     })
 })
 
@@ -48,9 +52,11 @@ app.post('/',(req, res)=>{
     req.session.member_grade = req.body.member_grade
     req.session.member_no = req.body.member_no
     req.session.lantour_no = req.body.lantour_no
+    req.session.member_name = req.body.member_name
     console.log(req.session.member_grade)
     console.log(req.session.member_no)
     console.log(req.session.lantour_no)
+    console.log(req.session.member_name)
     res.redirect(`/${uuidV4()}`)
  })
 
