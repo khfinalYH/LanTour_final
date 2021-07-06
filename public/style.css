@@ -116,3 +116,9 @@ video {
 .unmute {
   color: red;
 }
+#fullChat{
+  background-color: wheat;
+  position: absolute;
+  bottom: 200px;
+  right: 100px;
+}

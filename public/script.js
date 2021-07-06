@@ -176,10 +176,10 @@ videoGrid.addEventListener(
     },
     true
 )
-
-
-
-
+//fullscreen 변화할 때 
+videoGrid.addEventListener("fullscreenchange", event=>{
+    $("#fullChat").empty();
+})
 
 /*
 * 
@@ -422,5 +422,18 @@ socket.on('update', function(data) {
     message.classList.add(className)
     message.appendChild(node)
     chat.appendChild(message)
+    if(document.fullscreenElement!=null){
+        var message2 = document.createElement('div')
+        var node2 = document.createTextNode(`${data.name}: ${data.message}`)
+        message2.classList.add("fullChatClass")
+        message2.appendChild(node2)
+        var fullChat = document.getElementById('fullChat')
+        fullChat.appendChild(message2)
+        setTimeout(function () {
+            var removeChat = document.getElementsByClassName('fullChatClass')
+            removeChat[0].remove()
+        },7000)
+    }
+
   })
   
