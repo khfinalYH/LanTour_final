@@ -33,10 +33,10 @@ function guestrtc() {
 		success: function(data) {
 			// reservation_pay가 y인 경우
 			if(data == 'Y') {
-				alert("권한 ok");
+				alert("환영합니다.");
 				location.href = lantour_rtc;
 			} else {
-				alert("권한이 없습니다.");
+				alert("예약한 사용자만 입장이 가능합니다.");
 			}
 		},
 		error: function() {
@@ -63,7 +63,7 @@ function guestrtc() {
 		</form>
 	</c:if>
 	
-	<!--  아직 수정 중 -->
+	
 	<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://localhost:3000/aaa' }">
 		<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
 		<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
