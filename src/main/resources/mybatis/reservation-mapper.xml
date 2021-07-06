@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
-	<select id="selectList" parameterType="ReservationDto"
-		resultType="ReservationDto">
+	<select id="selectList" resultType="ReservationDto">
 		SELECT
 		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
