@@ -397,7 +397,7 @@ chatInput.addEventListener("keypress", (event) => {
 
 // 접속 되었을 때 실행 
 socket.on('connect', function() {
-  const name = "추후변경"
+      const name = member_name
   // 서버에 새로운 유저가 왔다고 알림 
   socket.emit('newUser', name, ROOM_ID)
 })
