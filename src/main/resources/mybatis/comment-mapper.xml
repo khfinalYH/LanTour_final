@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="comment">
+
+	<select id="selectList" parameterType="int"
+		resultType="CommentDto">
+		SELECT
+		COMMENT_NO,MEMBER_NO,COMMUNITY_NO,COMMENT_TITLE,COMMENT_CONTENT,COMMENT_DATE,COMMENT_DELFLAG
+		FROM COMMNET_TABLE
+		WHERE COMMUNITY_NO = #{community_no}
+		ORDER BY
+		COMMENT_NO DESC
+	</select>
+	
+	<select id="selectOne" parameterType="int"
+		resultType="CommentDto">
+		SELECT
+		COMMENT_NO,MEMBER_NO,COMMUNITY_NO,COMMENT_TITLE,COMMENT_CONTENT,COMMENT_DATE,COMMENT_DELFLAG
+		FROM COMMNET_TABLE
+		WHERE COMMENT_NO = #{comment_no}
+	</select>
+	
+	<insert id="insert" parameterType="CommentDto">
+		INSERT INTO COMMENT_TABLE
+		VALUES(COMMENT_NO_SEQ.NEXTVAL,#{member_no},#{community_no},#{comment_title},#{comment_content},SYSDATE,#{comment_delflag})
+	</insert>
+	
+	<update id="update" parameterType="CommentDto">
+		UPDATE COMMENT_TABLE
+		SET  COMMENT_TITLE = #{comment_title} , comment_content = #{comment_content}
+		WHERE COMMENT_NO = #{comment_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		UPDATE COMMENT_TABLE
+		SET COMMENT_DELFLAG = 'N'
+		WHERE COMMENT_NO = #{comment_no}
+	</delete>
+</mapper>

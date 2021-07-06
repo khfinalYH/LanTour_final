@@ -32,4 +32,5 @@ community_no, member_no, ,community_title, community_content, community_regdate,
 	UPDATE COMMUNITY
 	SET COMMUNITY_TITLE = #{community_title}, COMMUNITY_CONTENT = #{community_title} 
 </update>
+
 </mapper>
