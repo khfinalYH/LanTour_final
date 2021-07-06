@@ -33,12 +33,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public ReservationDto selectOne(ReservationDto dto) {
 		
+		ReservationDto res = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectOne", dto);
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
-		return dto;
+		return res;
 	}
 }
