@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const ROOM_ID = "<%= roomId %>"
-        const member_grade = "<%= member_grade%>"
+        const member_grade = "<%= member_grade %>"
         const member_no = "<%= member_no %>"
         const lantour_no = "<%= lantour_no %>"
     </script>
@@ -20,7 +20,6 @@
 </head>
 <body>
     <div class="main">
-
         <div class="main__left">
             <!-- 호스트 비디오 -->
             <div class="main__videos">
@@ -39,7 +38,8 @@
                     <i class="fa fa-microphone"></i>
                     <span>Mute</span>
                     </div>
-                    
+                    <button onclick="toggleFullScreen()">전체화면</button>
+
                     <div class="main__controls_button" >
                         <select onchange="langChange(this)" id="lang">
                             <option value="ko">한국어</option>
@@ -97,9 +97,9 @@
             <div class="main__chat__window" id="main__chat__window">
                 <ul class="messages" id="all_messages"></ul>
             </div>
-            <div class="main__message_container">
+            <div class="main__message_container" style="overflow: auto;">
                 
-                <div id="main">
+                <div id="main" >
                     <div id="chat">
                     <!-- 채팅 메시지 영역 -->
                     </div>

@@ -168,6 +168,29 @@ const setMuteButton = () => {
     document.getElementById("muteButton").innerHTML = html;
 };
 
+//fullScreen
+    
+function toggleFullScreen() {
+    var videoElement = document.getElementsByTagName("video")[0];
+  if (!document.mozFullScreen && !document.webkitFullScreen) {
+    if (videoElement.mozRequestFullScreen) {
+      videoElement.mozRequestFullScreen();
+
+    } else {
+      videoElement.webkitRequestFullScreen();
+    }
+  } else {
+    if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+
+    } else {
+      document.webkitCancelFullScreen();
+    }
+  }
+}
+
+
+
 
 
 
