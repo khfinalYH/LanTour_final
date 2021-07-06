@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const ROOM_ID = "<%= roomId %>"
-        const member_grade = "<%= member_grade %>"
+        const member_grade = "<%= member_grade%>"
         const member_no = "<%= member_no %>"
         const lantour_no = "<%= lantour_no %>"
     </script>
@@ -98,10 +98,18 @@
                 <ul class="messages" id="all_messages"></ul>
             </div>
             <div class="main__message_container">
-            <input type="text" id="chat_message" placeholder="Type message here"/>
+                
+                <div id="main">
+                    <div id="chat">
+                    <!-- 채팅 메시지 영역 -->
+                    </div>
+                    <div>
+                    <input type="text" id="test" placeholder="메시지를 입력해주세요..">
+                    </div>
+                </div>
             </div>
-            <div class="main__controls_button">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            <div onclick="send()" class="main__controls_button">
+                <i  class="fa fa-paper-plane-o" aria-hidden="true"></i>
                 <span>Send</span>
             </div>
         </div>
