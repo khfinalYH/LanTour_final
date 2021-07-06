@@ -154,4 +154,11 @@ public class LantourController {
 		dto.setLantour_no(lantour_no);
 		biz.rtcupdate(dto);
 	}
+	
+	@ResponseBody
+	@RequestMapping("/guestCheck.do")
+	public String guestCheck() {
+
+		return "";
+	}
 }

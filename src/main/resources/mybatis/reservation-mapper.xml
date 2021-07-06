@@ -23,17 +23,17 @@
 	<insert id="insert_lantour">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
-		#{reservation_price},#{reservation_pay},SYSDATE)
+		'Y',#{reservation_pay},SYSDATE)
 	</insert>
 	<insert id="insert_room">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
-		#{reservation_price},#{reservation_pay},SYSDATE)
+		'Y',#{reservation_pay},SYSDATE)
 	</insert>
 	<insert id="insert_hotel">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,NULL,#{hotel_no},#{member_no},#{reservation_date},
-		#{reservation_price},#{reservation_pay},SYSDATE)
+		'Y',#{reservation_pay},SYSDATE)
 	</insert>
 
 
