@@ -25,7 +25,7 @@
 		VALUES
 		(REVIEW_NO_SEQ.NEXTVAL,#{room_no},NULL,#{member_no},SYSDATE,#{review_title},#{review_score})
 	</insert>
-	<insert id="insert_room" parameterType="ReviewDto">
+	<insert id="insert_lantour" parameterType="ReviewDto">
 		INSERT INTO REVIEW
 		VALUES
 		(REVIEW_NO_SEQ.NEXTVAL,NULL,#{lantour_no},#{member_no},SYSDATE,#{review_title},#{review_score})
