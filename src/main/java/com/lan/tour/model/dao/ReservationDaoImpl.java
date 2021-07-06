@@ -35,7 +35,7 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 		ReservationDto res = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectOne");
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
