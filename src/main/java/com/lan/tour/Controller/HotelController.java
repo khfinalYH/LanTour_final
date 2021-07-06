@@ -93,8 +93,12 @@ public class HotelController {
 		String name = file.getOriginalFilename();
 		String path = "";
 
-		System.out.println(name);
+		String[] new_name = name.split("\\.");
+		System.out.println(new_name[0]);
+		String na = new_name[0];
+		String renew_na = na;
 
+		String full_na = renew_na + "." + new_name[1];
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 		try {
@@ -106,9 +110,17 @@ public class HotelController {
 				hotelimg.mkdirs();
 			}
 
-			File newFile = new File(path + "/" + name);
-			if (!newFile.exists()) {
-				newFile.createNewFile();
+			File newFile = null;
+
+			for (int i = 1;; i++) {
+				newFile = new File(path + "/" + full_na);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+					break;
+				} else {
+					renew_na = na + "(" + i + ")";
+					full_na = renew_na + "." + new_name[1];
+				}
 			}
 
 			outputStream = new FileOutputStream(newFile);
@@ -130,7 +142,7 @@ public class HotelController {
 				e.printStackTrace();
 			}
 		}
-		String return_path = "resources/hotelimg/" + name;
+		String return_path = "resources/hotelimg/" + full_na;
 		System.out.println(return_path);
 
 		Map<String, String> map = new HashMap<String, String>();

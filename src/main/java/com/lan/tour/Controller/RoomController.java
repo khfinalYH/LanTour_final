@@ -49,9 +49,9 @@ public class RoomController {
 		if (biz.delete(room_no) > 0) {
 			check = true;
 		}
-		Map<String,Boolean> map = new HashMap<String, Boolean>();
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("check", check);
-		
+
 		return map;
 	}
 
@@ -60,6 +60,13 @@ public class RoomController {
 	public Map<String, String> roomupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {
 		String name = file.getOriginalFilename();
 		String path = "";
+
+		String[] new_name = name.split("\\.");
+		System.out.println(new_name[0]);
+		String na = new_name[0];
+		String renew_na = na;
+		
+		String full_na = renew_na + "." + new_name[1];
 
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -73,9 +80,17 @@ public class RoomController {
 				roomimg.mkdirs();
 			}
 
-			File newFile = new File(path + "/" + name);
-			if (!newFile.exists()) {
-				newFile.createNewFile();
+			File newFile = null;
+
+			for (int i = 1;; i++) {
+				newFile = new File(path + "/" + full_na);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+					break;
+				} else {
+					renew_na = na + "(" + i + ")";
+					full_na = renew_na + "." + new_name[1];
+				}
 			}
 
 			outputStream = new FileOutputStream(newFile);
@@ -97,7 +112,7 @@ public class RoomController {
 				e.printStackTrace();
 			}
 		}
-		String return_path = "resources/roomimg/" + name;
+		String return_path = "resources/hotelimg/" + full_na;
 		System.out.println(return_path);
 
 		Map<String, String> map = new HashMap<String, String>();
