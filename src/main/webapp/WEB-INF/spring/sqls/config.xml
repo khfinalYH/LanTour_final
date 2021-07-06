@@ -7,6 +7,7 @@
 		<typeAlias type="com.lan.tour.model.dto.HotelDto" alias = "hotelDto"/>
 		<typeAlias type="com.lan.tour.model.dto.LantourDto" alias = "lantourDto"/>
 		<typeAlias type="com.lan.tour.model.dto.RoomDto" alias="roomDto"/>
+		<typeAlias type="com.lan.tour.model.dto.ReservationDto" alias="ReservationDto"/>
 	</typeAliases>
 
 	<mappers>
@@ -14,6 +15,7 @@
 		<mapper resource = "/mybatis/hotel-mapper.xml"/>
 		<mapper resource = "/mybatis/lantour-mapper.xml"/>
 		<mapper resource = "/mybatis/room-mapper.xml"/>
+		<mapper resource = "/mybatis/reservation-mapper.xml"/>
 	</mappers>
 
 </configuration>
