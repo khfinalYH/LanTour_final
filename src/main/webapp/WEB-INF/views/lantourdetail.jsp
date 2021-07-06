@@ -20,6 +20,7 @@ function guestrtc() {
 	var member_no = $('#member_no').val();
 	var lantour_no = $('#lantour_no').val();
 	var lantour_rtc = $('#lantour_rtc').val();
+	var member_name = $('#member_name').val();
 
 	var checkGuest = {
 			"member_no" : member_no,
@@ -34,7 +35,7 @@ function guestrtc() {
 			// reservation_pay가 y인 경우
 			if(data == 'Y') {
 				alert("환영합니다.");
-				location.href = lantour_rtc;
+				location.href = lantour_rtc + "?member_name=" + member_name;
 			} else {
 				alert("예약한 사용자만 입장이 가능합니다.");
 			}
@@ -59,6 +60,7 @@ function guestrtc() {
 	  		<input type="hidden" value="${login.member_grade }" name="member_grade">
 	  		<input type="hidden" value="${login.member_no }" name="member_no">
 	  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
+	  		<input type="hidden" value="${login.member_name }" name="member_name">
 	  		<input type="submit" id= "open" value="방 생성 (호스트)">
 		</form>
 	</c:if>
@@ -68,6 +70,7 @@ function guestrtc() {
 		<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
 		<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
 		<input type="hidden" id="lantour_rtc" name="lantour_rtc" value="${lantour_rtc}" />
+		<input type="hidden" id="member_name" name="member_name" value="${login.member_name}" />
 		<input type="button" value="참여하기" onclick="guestrtc()"/>
 	</c:if>		
 
