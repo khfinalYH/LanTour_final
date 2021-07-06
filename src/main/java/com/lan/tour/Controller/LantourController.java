@@ -145,4 +145,13 @@ public class LantourController {
 
 		return map;
 	}
+	
+	@RequestMapping("/updateRtcAddr.do")
+	public void updateRtcAddr(String room_id, int lantour_no) {
+		String lantour_rtc = "https://localhost:3000/" + room_id;
+		LantourDto dto = new LantourDto(lantour_no, lantour_rtc);
+		dto.setLantour_rtc(lantour_rtc);
+		dto.setLantour_no(lantour_no);
+		biz.rtcupdate(dto);
+	}
 }
