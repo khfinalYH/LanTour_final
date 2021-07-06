@@ -168,6 +168,14 @@ const setMuteButton = () => {
     document.getElementById("muteButton").innerHTML = html;
 };
 
+videoGrid.addEventListener(
+    "click",
+    function() {
+        videoGrid.requestFullscreen();
+    },
+    true
+)
+
 
 
 
