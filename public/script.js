@@ -179,6 +179,13 @@ videoGrid.addEventListener(
 //fullscreen 변화할 때 
 videoGrid.addEventListener("fullscreenchange", event=>{
     $("#fullChat").empty();
+    if(document.fullscreenElement!=null){
+        document.getElementById("fullChatSendButton").removeAttribute("hidden")
+
+    }else{
+        document.getElementById("fullChatSendButton").setAttribute("hidden","hidden")
+
+    }
 })
 
 /*
@@ -360,7 +367,26 @@ function speak(text, opt_prop) {
 // 채팅
 
 //엔터 치면 전송
+
+const fullChatInput = document.querySelector("#fullTest");
 const chatInput = document.querySelector("#test");
+
+fullChatInput.addEventListener("keypress", (event) => {
+    if(event.keyCode === 13){
+        chatInput.value = fullChatInput.value
+        send()
+        fullChatInput.value = ""
+    }
+})
+
+function fullSend(){
+    chatInput.value = fullChatInput.value
+    send()
+    fullChatInput.value = ""
+}
+
+
+
 chatInput.addEventListener("keypress", (event) => {
     if(event.keyCode === 13){
         send()
@@ -389,7 +415,20 @@ function send() {
     var node = document.createTextNode("나 : "+message)
     msg.classList.add('me')
     msg.appendChild(node)
-    chat.appendChild(msg)
+    if(document.fullscreenElement!=null){
+        var message2 = document.createElement('div')
+        var node2 = document.createTextNode("나 : "+message)
+        message2.classList.add("fullChatClass")
+        message2.appendChild(node2)
+        var fullChat = document.getElementById('fullChat')
+        fullChat.appendChild(message2)
+        setTimeout(function () {
+            var removeChat = document.getElementsByClassName('fullChatClass')
+            removeChat[0].remove()
+        },7000)
+    }else{
+        chat.appendChild(msg)
+    }
   
     // 서버로 message 이벤트 전달 + 데이터와 함께
     socket.emit('message', {type: 'message', message: message}, ROOM_ID)

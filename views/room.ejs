@@ -25,6 +25,13 @@
             <div class="main__videos">
                 <div id="video-grid" style="position: relative;">
                     <div id="fullChat"></div>
+                    <div id="fullChatSendButton" hidden="hidden">
+                        <input type="text" id="fullTest" placeholder="메시지를 입력해주세요..">
+                        <div onclick="fullSend()"  class="main__controls_button">
+                            <i  class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                            <span>Send</span>
+                        </div>
+                   </div>
                     <div id="langtext" style="position: absolute; bottom: 10px; background-color: white;"></div>
                 </div>
             </div>
