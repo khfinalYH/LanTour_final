@@ -3,20 +3,24 @@ const videoGrid = document.getElementById('video-grid')
 const guestvideoGrid = document.getElementById('guest-grid')
 
 const myVideo = document.createElement('video')
-
+const myAudio = document.createElement('audio')
 myVideo.muted = true
+myAudio.muted = true
 
 const myPeer = new Peer()
 const peers = {}
 let myMediaStream;
 
 
+
+
 if (member_grade == 'H') {
     navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: { width: 1280, height: 720 },
         audio: true
     }).then(stream => {  
         myMediaStream = stream;
+        console.log(stream.id)
         addVideoStream(myVideo, stream)
         myPeer.on('call', call => {
             call.answer(stream)
@@ -29,7 +33,8 @@ if (member_grade == 'H') {
         
         socket.on('user-connected', userId => {
             setTimeout(() => {
-                connectToNewUser(userId, stream)
+                console.log(userId)
+                connectToAllUser(userId, stream)
             }, 1000)
         })
         
@@ -40,24 +45,35 @@ if (member_grade == 'H') {
         audio: true
     }).then(stream => {  
         myMediaStream = stream;
-        addVideoStream(myVideo, stream)
+        addAudioStream(myAudio, stream)
+
         myPeer.on('call', call => {
             call.answer(stream)
+            const audio = document.createElement('audio')
             const video = document.createElement('video')
             call.on('stream', userVideoStream => {
-                addVideoStream(video, userVideoStream)
+                console.log(userVideoStream.getVideoTracks().length)
+                if (userVideoStream.getVideoTracks().length == 1) {
+                    addVideoStream(video, userVideoStream)
+                } else {
+                    addAudioStream(audio, userVideoStream)
+                }
+                
+                
             })
         })
     
         
         socket.on('user-connected', userId => {
+            console.log(userId)
             setTimeout(() => {
-                connectToNewUser(userId, stream)
+                connectToAllUser(userId, stream)
             }, 1000)
         })
         
     })
 }
+
 
 
 socket.on('user-disconnected', userId => {
@@ -77,21 +93,28 @@ function addVideoStream(video, stream) {
     video.srcObject = stream
     video.addEventListener('loadedmetadata', () => {
         video.play()
-    })
+    })      
         videoGrid.append(video)
 }
 
+function addAudioStream(audio, stream) {
+    audio.srcObject = stream
+    audio.addEventListener('loadedmetadata', () => {
+        audio.play()
+    })
+    guestvideoGrid.append(audio)
+}
 
 
-// 새로운 게스트
-function connectToNewUser(userId, stream){
+function connectToAllUser(userId, stream){
     const call = myPeer.call(userId, stream)
-    const video = document.createElement('video')
+    const audio = document.createElement('audio')
+    console.log(stream)
     call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream)
+            addAudioStream(audio, userVideoStream)         
     })
     call.on('close', () => {
-        video.remove()
+            audio.remove()
     })
     peers[userId] = call
 }
