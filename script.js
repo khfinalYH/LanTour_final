@@ -168,15 +168,6 @@ const setMuteButton = () => {
     document.getElementById("muteButton").innerHTML = html;
 };
 
-//fullScreen
-videoGrid.addEventListener(
-    "click",
-    function() {
-        videoGrid.requestFullscreen();
-    },
-    true
-)
-
 
 
 
@@ -359,16 +350,6 @@ function speak(text, opt_prop) {
 
 // 채팅
 
-//엔터 치면 전송
-const chatInput = document.querySelector("#test");
-chatInput.addEventListener("keypress", (event) => {
-    if(event.keyCode === 13){
-        send()
-    }
-})
-
-
-
 // 접속 되었을 때 실행 
 socket.on('connect', function() {
   const name = "추후변경"
@@ -386,7 +367,7 @@ function send() {
     // 내가 전송할 메시지 클라이언트에게 표시
     var chat = document.getElementById('chat')
     var msg = document.createElement('div')
-    var node = document.createTextNode("나 : "+message)
+    var node = document.createTextNode(message)
     msg.classList.add('me')
     msg.appendChild(node)
     chat.appendChild(msg)
