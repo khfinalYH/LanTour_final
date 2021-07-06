@@ -14,6 +14,37 @@ function update_hotel() {
 		location.href="./lantourupdate.do?lantour_no=${dto.lantour_no }";
 	}
 }
+
+function guestrtc() {
+	
+	var member_no = $('#member_no').val();
+	var lantour_no = $('#lantour_no').val();
+	var lantour_rtc = $('#lantour_rtc').val();
+
+	var checkGuest = {
+			"member_no" : member_no,
+			"lantour_no" : lantour_no,
+	}
+	
+	$.ajax({
+		url: 'guestCheck.do',
+		type: 'post',
+		data: checkGuest,
+		success: function(data) {
+			// reservation_pay가 y인 경우
+			if(data == 'Y') {
+				alert("권한 ok");
+				location.href = lantour_rtc;
+			} else {
+				alert("권한이 없습니다.");
+			}
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+
+}
 </script>
 <body>
 	<h1>랜선투어 상세페이지</h1>
