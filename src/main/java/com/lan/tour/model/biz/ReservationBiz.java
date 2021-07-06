@@ -7,6 +7,6 @@ import com.lan.tour.model.dto.ReservationDto;
 public interface ReservationBiz {
 
 	public List<ReservationDto> selectList();
-	public ReservationDto selectOne(int reservation_no);
+	public ReservationDto selectOne(ReservationDto dto);
 	
 }

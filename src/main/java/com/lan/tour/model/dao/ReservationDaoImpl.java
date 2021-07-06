@@ -26,19 +26,19 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		
 		return list;
+	
+
 	}
 
 	@Override
-	public ReservationDto selectOne(int reservation_no) {
-		// TODO Auto-generated method stub
-		ReservationDto dto = null;
+	public ReservationDto selectOne(ReservationDto dto) {
+		
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectOne", reservation_no);
+			dto = sqlSession.selectOne(NAMESPACE+"selectOne", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
 		return dto;
 	}
-
 }

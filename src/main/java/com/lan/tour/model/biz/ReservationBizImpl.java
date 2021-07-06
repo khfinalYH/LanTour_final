@@ -21,9 +21,8 @@ public class ReservationBizImpl implements ReservationBiz {
 	}
 
 	@Override
-	public ReservationDto selectOne(int reservation_no) {
-		// TODO Auto-generated method stub
-		return dao.selectOne(reservation_no);
+	public ReservationDto selectOne(ReservationDto dto) {
+		return dao.selectOne(dto);
 	}
 
 }
