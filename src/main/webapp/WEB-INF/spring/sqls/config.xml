@@ -10,7 +10,7 @@
 		<typeAlias type="com.lan.tour.model.dto.ReservationDto" alias="ReservationDto"/>
 		<typeAlias type="com.lan.tour.model.dto.CommentDto" alias="CommentDto"/>
 		<typeAlias type="com.lan.tour.model.dto.CommunityDto" alias="CommunityDto"/>
-		<typeAlias type="com.lan.tour.model.dto.NoticeDto" alias="NoticeDto"/>
+		<typeAlias type="com.lan.tour.model.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.lan.tour.model.dto.ReviewDto" alias="ReviewDto"/>
 	</typeAliases>
 

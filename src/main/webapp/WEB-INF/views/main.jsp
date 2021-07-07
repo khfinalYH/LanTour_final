@@ -22,5 +22,6 @@
 	<a href="rentCarSearch.do">렌트카 검색</a>
 	<a href="festival.do">축제 검색</a>
 	<a href="community.do">정보게시판</a>
+	<a href="noticeList.do">공지사항 게시판</a>
 </body>
 </html>
