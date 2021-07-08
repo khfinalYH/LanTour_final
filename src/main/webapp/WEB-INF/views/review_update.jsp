@@ -12,10 +12,50 @@
 <meta charset="UTF-8">
 <title>랜선투어</title>
 </head>
-<body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- summernote js,css 링크 -->
+<script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
+<script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
+<script type="text/javascript">
 <%ReviewDto Rdto = (ReviewDto)request.getAttribute("Rdto"); %>
 <%MemberDto login = (MemberDto)session.getAttribute("login"); %>
-<script type="text/javascript">
+<%String type = (String)request.getAttribute("type"); %>
+	$(function() {
+		$('.summernote').summernote({
+			placeholder : 'content',
+			minHeight : 370,
+			maxHeight : null,
+			focus : true,
+			lang : 'ko-KR',
+			callbacks : {
+				onImageUpload : function(files, editor, welEditable) {
+					for (var i = files.length - 1; i >= 0; i--) {
+						fileupload(files[i], this);
+					}
+				}
+			}
+		});
+	})
+	function fileupload(file, el) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			type : "post",
+			enctype : 'multipart/form-data',
+			url : "communityupload.do",
+			processData : false,
+			contentType : false,
+			data : data,
+			dataType : "json",
+			success : function(msg) {
+				$(el).summernote('editor.insertImage', msg.path);
+			},
+			error : function() {
+				alert("통신 실패");
+			}
+		});
+	}
 	function starPick(star){
 		const star1 = document.getElementById("star1")
 	    const star2 = document.getElementById("star2")
@@ -52,13 +92,16 @@
 	}
 
 </script>
+<body>
+
 <h1>후기</h1>
 <div>
 	<div>
 		<div>리뷰 수정</div>
-		<form action="hotelReviewUpdateRes.do">
+		<form action="ReviewUpdateRes.do">
 			<input type="hidden" name="review_no" value="<%=Rdto.getReview_no() %>"/>
-			<input type="hidden" name="hotel_no" value="<%=Rdto.gethotel_no()%>">
+			<input type="hidden" name="no" value="<%=Rdto.gethotel_no()==0?Rdto.getLantour_no():Rdto.gethotel_no()%>">
+			<input type="hidden" name="type" value="<%=type %>"/>
 			<div>
 			<span>별점</span>
 			<input type="hidden" value="<%=Rdto.getReview_score()%>" name="review_score" id="starScore" >			
@@ -70,11 +113,11 @@
 			</div>
 			<div>
 				<span>리뷰 내용</span>
-				<span><textarea rows="10" cols="30" name="review_title"><%=Rdto.getReview_title() %></textarea></span>
+				<span><textarea rows="10" cols="30" name="review_title" class="summernote" ><%=Rdto.getReview_title() %></textarea></span>
 			</div>
 			<div>
 				<input type="submit" value="수정">
-				<input type="button" value="취소" onclick="location.href='hotelreviewlist.do?hotel_no=<%=Rdto.gethotel_no() %>'">
+				<input type="button" value="취소" onclick="location.href='reviewlist.do?type=<%=type %>&no=<%=Rdto.gethotel_no()==0?Rdto.getLantour_no():Rdto.gethotel_no() %>'">
 			</div>
 		</form>
 	</div>

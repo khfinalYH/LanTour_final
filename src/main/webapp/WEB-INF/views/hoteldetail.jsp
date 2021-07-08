@@ -100,7 +100,7 @@
 	<button type="button" onclick="update_hotel();">정보 수정</button>
 	<button type="button" onclick="delete_hotel();">등록된 호텔 삭제</button>
 	<br/>
-	<embed height="400px" width="680" src="http://localhost:8787/tour/hotelreviewlist.do?hotel_no=${dto.hotel_no}" ></embed>
+	<embed height="400px" width="680" src="http://localhost:8787/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}" ></embed>
 	
 </body>
 </html>
