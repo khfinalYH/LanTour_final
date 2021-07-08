@@ -13,6 +13,7 @@
 
 		<typeAlias type="com.lan.tour.model.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.lan.tour.model.dto.ReviewDto" alias="ReviewDto"/>
+		<typeAlias type="com.lan.tour.model.dto.NoticePagingDto" alias="NoticePagingDto"/>
 	</typeAliases>
 
 	<mappers>

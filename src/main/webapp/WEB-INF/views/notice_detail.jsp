@@ -27,7 +27,7 @@
 					<input type="button" value="수정" onclick="location.href='noticeUpdateForm.do?notice_no=${dto.notice_no}'" />
 					<input type="button" value="삭제" onclick="location.href='noticeDelete.do?notice_no=${dto.notice_no}'" />
 					</c:if>
-					<input type="button" value="목록" onclick="location.href='noticeList.do'" />
+					<input type="button" value="목록" onclick="location.href='noticeList.do?nowPage=1'" />
 				</td>
 			</tr>
 		</table>

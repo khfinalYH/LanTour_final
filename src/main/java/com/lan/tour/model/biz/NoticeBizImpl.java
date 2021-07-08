@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lan.tour.model.dao.NoticeDao;
 import com.lan.tour.model.dto.NoticeDto;
+import com.lan.tour.model.dto.NoticePagingDto;
 
 @Service
 public class NoticeBizImpl implements NoticeBiz {
@@ -15,9 +16,9 @@ public class NoticeBizImpl implements NoticeBiz {
 	private NoticeDao dao;
 
 	@Override
-	public List<NoticeDto> selectList() {
+	public List<NoticeDto> selectList(NoticePagingDto dto) {
 
-		return dao.selectList();
+		return dao.selectList(dto);
 	}
 
 	@Override
@@ -42,6 +43,12 @@ public class NoticeBizImpl implements NoticeBiz {
 	public int delete(int notice_no) {
 
 		return dao.delete(notice_no);
+	}
+	
+	@Override
+	public int countTotal() {
+
+		return dao.countTotal();
 	}
 	
 }
