@@ -94,6 +94,7 @@
 <h1>후기</h1>
 <div>
 	<div>
+		<%if(login!=null){ %>
 		<div>리뷰 작성</div>
 		<form action="ReviewInsert.do">
 			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
@@ -106,8 +107,8 @@
 			<span id="star3" onclick="starPick(3)">☆</span>
 			<span id="star4" onclick="starPick(4)">☆</span>
 			<span id="star5" onclick="starPick(5)">☆</span>
-			</div>
-			<div>
+		</div>
+		<div>
 				<span>리뷰 내용</span>
 				<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
 			</div>
@@ -115,6 +116,7 @@
 				<input type="submit" value="작성">
 			</div>
 		</form>
+		<%} %>	
 	</div>
 </div>
 <div>
@@ -127,7 +129,7 @@
 			<span>점수 : <%=dto.getReview_score() %>/5</span>
 			<span>내용 : <%=dto.getReview_title() %></span>
 			<span>작성일자 : <%=dto.getReview_date() %></span>
-			<%if(login.getMember_no()==dto.getMember_no()){%>
+			<%if(login!=null&&login.getMember_no()==dto.getMember_no()){%>
 				<input type="button" value="수정" onclick="location.href='ReviewUpdate.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>
 				<input type="button" value="삭제" onclick="location.href='ReviewDelete.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>
 			<%} %>
