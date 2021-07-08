@@ -8,8 +8,7 @@
 		MEMBER_NO, REVIEW_DATE, REVIEW_TITLE, REVIEW_SCORE
 		FROM REVIEW
 		WHERE
-		HOTEL_NO = #{hotel_no}
-	</select>
+		HOTEL_NO = #{hotel_no}	</select>
 
 	<select id="select_lantour" parameterType="int"
 		resultType="ReviewDto">
@@ -43,7 +42,7 @@
 		VALUES
 		(REVIEW_NO_SEQ.NEXTVAL, #{hotel_no}, NULL, #{member_no}, SYSDATE, #{review_title}, #{review_score})
 	</insert>
-	
+
 	<insert id="insert_lantour" parameterType="ReviewDto">
 		INSERT INTO REVIEW
 		VALUES
@@ -57,8 +56,5 @@
 	<delete id="delete_review" parameterType="int">
 		DELETE FROM REVIEW WHERE REVIEW_NO = #{review_no}
 	</delete>
-	
-	
-	
 	
 </mapper>
