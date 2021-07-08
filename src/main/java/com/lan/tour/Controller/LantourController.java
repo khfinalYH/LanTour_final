@@ -25,7 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.LantourBiz;
+import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.dto.LantourDto;
+import com.lan.tour.model.dto.ReservationDto;
 
 
 
@@ -34,6 +36,9 @@ public class LantourController {
 
 	@Autowired
 	private LantourBiz biz;
+	
+	@Autowired
+	private ReservationBiz Rbiz;
 	
 	@RequestMapping("/lantourlist.do")
 	public String lantourlist(Model model) {
@@ -144,5 +149,32 @@ public class LantourController {
 		map.put("path", return_path);
 
 		return map;
+	}
+	
+	@RequestMapping("/updateRtcAddr.do")
+	public void updateRtcAddr(String room_id, int lantour_no) {
+		String lantour_rtc = "https://localhost:3000/" + room_id;
+		LantourDto dto = new LantourDto(lantour_no, lantour_rtc);
+		dto.setLantour_rtc(lantour_rtc);
+		dto.setLantour_no(lantour_no);
+		biz.rtcupdate(dto);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/guestCheck.do")
+	public String guestCheck(String member_no, String lantour_no) {
+
+		int lantour_no1 = Integer.parseInt(lantour_no);
+		int member_no1 = Integer.parseInt(member_no);
+		ReservationDto dto = new ReservationDto(lantour_no1, member_no1);
+
+		ReservationDto res = Rbiz.selectOne(dto);
+		if (res == null) {
+			return "redirect:lantourlist.do";
+		}
+		String payYN = res.getReservation_pay();
+		
+
+		return payYN;
 	}
 }

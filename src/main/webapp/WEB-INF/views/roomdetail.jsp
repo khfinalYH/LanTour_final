@@ -35,5 +35,6 @@
 
 	<button type="button" onclick="delete_room()">방 삭제</button>
 	<button type="button" onclick="">예약하기</button>
+	<br/>
 </body>
 </html>

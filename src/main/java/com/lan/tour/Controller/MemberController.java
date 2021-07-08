@@ -101,6 +101,6 @@ public class MemberController {
 			return "redirect:loginform.do";
 		}
 		return "redirect:registerform.do";
-	}
+	}	
 
 }

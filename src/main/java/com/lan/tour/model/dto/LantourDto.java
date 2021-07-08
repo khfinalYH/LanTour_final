@@ -20,7 +20,10 @@ public class LantourDto {
 		
 	}
 	
-	
+	public LantourDto(int lantour_no, String lantour_rtc) {
+		this.lantour_no = lantour_no;
+		this.lantour_rtc = lantour_rtc;
+	}	
 
 	public LantourDto(int lantour_no, int member_no, String lantour_title, String lantour_content, Date lantour_regdate,
 			String lantour_rtc, String lantour_addr, String lantour_image, int lantour_maxcount, int lantour_price,

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,65 @@ function update_hotel() {
 		location.href="./lantourupdate.do?lantour_no=${dto.lantour_no }";
 	}
 }
+
+function guestrtc() {
+	
+	var member_no = $('#member_no').val();
+	var lantour_no = $('#lantour_no').val();
+	var lantour_rtc = $('#lantour_rtc').val();
+	var member_name = $('#member_name').val();
+
+	var checkGuest = {
+			"member_no" : member_no,
+			"lantour_no" : lantour_no,
+	}
+	
+	$.ajax({
+		url: 'guestCheck.do',
+		type: 'post',
+		data: checkGuest,
+		success: function(data) {
+			// reservation_pay가 y인 경우
+			if(data == 'Y') {
+				alert("환영합니다.");
+				location.href = lantour_rtc + "?member_name=" + member_name;
+			} else {
+				alert("예약한 사용자만 입장이 가능합니다.");
+			}
+		},
+		error: function() {
+			alert("통신 실패");
+		}
+	});
+
+}
 </script>
 <body>
 	<h1>랜선투어 상세페이지</h1>
+	
+	<c:set var="login_member" value="${login.member_no }" />
+	<c:set var="host_member" value="${dto.member_no }" />
+	<c:set var="lantour_rtc" value="${dto.lantour_rtc }" />
+
+
+	<c:if test="${login_member eq host_member }">
+		<form action="https://localhost:3000/" method="post">
+	  		<input type="hidden" value="${login.member_grade }" name="member_grade">
+	  		<input type="hidden" value="${login.member_no }" name="member_no">
+	  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
+	  		<input type="hidden" value="${login.member_name }" name="member_name">
+	  		<input type="submit" id= "open" value="방 생성 (호스트)">
+		</form>
+	</c:if>
+	
+	
+	<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://localhost:3000/aaa' }">
+		<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
+		<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
+		<input type="hidden" id="lantour_rtc" name="lantour_rtc" value="${lantour_rtc}" />
+		<input type="hidden" id="member_name" name="member_name" value="${login.member_name}" />
+		<input type="button" value="참여하기" onclick="guestrtc()"/>
+	</c:if>		
 
 
 	<table border="1">

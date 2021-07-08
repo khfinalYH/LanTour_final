@@ -17,6 +17,11 @@ public class ReservationDto {
 	public ReservationDto() {
 
 	}
+	
+	public ReservationDto(int lantour_no, int member_no) {
+		this.lantour_no = lantour_no;
+		this.member_no = member_no;
+	}
 
 	public ReservationDto(int reservation_no, int lantour_no, int room_no, int hotel_no, int member_no,
 			Date reservation_date, int reservation_price, String reservation_pay, Date reservation_paydate) {

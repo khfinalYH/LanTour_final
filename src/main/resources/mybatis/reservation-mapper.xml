@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reservation">
+	<select id="selectList" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		ORDER BY RESERVATION_NO
+	</select>
+	<select id="selectOne" parameterType="ReservationDto"
+		resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE LANTOUR_NO =
+		#{lantour_no}
+		AND MEMBER_NO = #{member_no}
+	</select>
+
+	<insert id="insert_lantour">
+		INSERT INTO RESERVATION
+		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
+		'Y',#{reservation_pay},SYSDATE)
+	</insert>
+	<insert id="insert_room">
+		INSERT INTO RESERVATION
+		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
+		'Y',#{reservation_pay},SYSDATE)
+	</insert>
+	<insert id="insert_hotel">
+		INSERT INTO RESERVATION
+		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,NULL,#{hotel_no},#{member_no},#{reservation_date},
+		'Y',#{reservation_pay},SYSDATE)
+	</insert>
+
+
+</mapper>

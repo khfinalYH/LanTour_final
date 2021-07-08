@@ -3,33 +3,47 @@
 <mapper namespace="community">
 
 
-<!-- 
-community_no, member_no, ,community_title, community_content, community_regdate, communtiy_readcount, community_deflag -->
-<select id = "community_selectList" resultType="community_Dto">
-	SELECT COMMUNITY_NO, MEMBER_NO, COMMUNITY_TITLE, COMMUNITY_CONTENT, COMMUNITY_REGDATE, COMMUNITY_READCOUNT, COMMUNITY_DEFLAG
-	FROM COMMUNITY
-	WHERE COMMUNITY_NO
-	ORDER BY COMMUNITY_NO DESC
-</select>
+	<!-- community_no, member_no, ,community_title, community_content, community_regdate, 
+		communtiy_readcount, community_deflag -->
+	<select id="community_selectList" resultType="CommunityDto">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE, c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT, c.COMMUNITY_DELFLAG , m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE c.MEMBER_NO = m.MEMBER_NO 
+		ORDER BY COMMUNITY_NO DESC
+	</select>
 
-<select id ="community_selectOne" parameterType="int" resultType="community_Dto">
-	SELECT COMMUNITY_NO, MEMBER_NO, COMMUNITY_TITLE, COMMUNITY_CONTENT, COMMUNITY_REGDATE, COMMUNITY_READCOUNT, COMMUNITY_DEFLAG
-	FROM COMMUNITY
-	WHERE COMMUNITY_NO = #{notice_no}
-</select>
+	<select id="community_selectOne" parameterType="int"
+		resultType="CommunityDto">
+		SELECT c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG , m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE COMMUNITY_NO = #{community_no}
+		AND c.MEMBER_NO = m.MEMBER_NO
+	</select>
 
-<insert id="community_insert" parameterType="community_Dto">
-	INSERT INTO COMMUNITY
-	VALUES(COMMUNITY_NO.NEXTVAL, #{memeber_no}, #{community_title}, #{community_content}, sysdate)
-</insert>
+	<insert id="community_insert" parameterType="CommunityDto">
+		INSERT INTO
+		COMMUNITY
+		VALUES(COMMUNITY_NO_SEQ.NEXTVAL,#{member_no},#{community_title},#{community_content},SYSDATE,0,'N')
+	</insert>
 
-<delete id="community_delete" parameterType="int">
-	DELETE FROM COMMUNITY
-	WHERE COMMUNITY_NO = #{community_no}
-</delete>
+	<delete id="community_delete" parameterType="int">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_DELFLAG = 'Y'
+		WHERE COMMUNITY_NO = #{community_no}
+	</delete>
 
-<update id="community_update" parameterType="int">
-	UPDATE COMMUNITY
-	SET COMMUNITY_TITLE = #{community_title}, COMMUNITY_CONTENT = #{community_title} 
-</update>
+	<update id="community_update" parameterType="CommunityDto">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_TITLE = #{community_title}, COMMUNITY_CONTENT =
+		#{community_content}
+		WHERE COMMUNITY_NO = #{community_no}
+	</update>
+
 </mapper>
