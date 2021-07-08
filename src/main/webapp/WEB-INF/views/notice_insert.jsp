@@ -67,7 +67,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type="button" value="글작성" onclick="insertChk(this.form)" />
-					<input type="button" value="취소" onclick="location.href='noticeList.do'" />
+					<input type="button" value="취소" onclick="location.href='noticeList.do?nowPage=1'" />
 				</td>
 			</tr>
 		</table>

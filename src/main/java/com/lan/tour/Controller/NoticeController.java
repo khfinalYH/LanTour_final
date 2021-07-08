@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lan.tour.model.biz.NoticeBiz;
 import com.lan.tour.model.dto.NoticeDto;
+import com.lan.tour.model.dto.NoticePagingDto;
 
 @Controller
 public class NoticeController {
@@ -15,9 +16,13 @@ public class NoticeController {
 	private NoticeBiz biz;
 	
 	@RequestMapping("/noticeList.do")
-	public String selectList(Model model) {
+	public String selectList(Model model, int nowPage) {
+		int count = biz.countTotal();
 		
-		model.addAttribute("list", biz.selectList());
+		NoticePagingDto dto = new NoticePagingDto(count, nowPage);
+		
+		model.addAttribute("list", biz.selectList(dto));
+		model.addAttribute("dto", dto);
 		
 		return "notice_list";
 	}
@@ -31,7 +36,7 @@ public class NoticeController {
 	public String insertRes(NoticeDto dto) {
 		
 		if (biz.insert(dto) > 0) {
-			return "redirect:noticeList.do";
+			return "redirect:noticeList.do?nowPage=" + 1;
 		}
 		
 		return "redirect:noticeInsert.do";
@@ -67,7 +72,7 @@ public class NoticeController {
 	public String delete(int notice_no) {
 		
 		if(biz.delete(notice_no) > 0) {
-			return "redirect:noticeList.do";
+			return "redirect:noticeList.do?nowPage=" + 1;
 		}
 		
 		return "redirect:noticeSelectOne.do?notice_no=" + notice_no;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.NoticeDto;
+import com.lan.tour.model.dto.NoticePagingDto;
 
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
@@ -16,11 +17,11 @@ public class NoticeDaoImpl implements NoticeDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<NoticeDto> selectList() {
+	public List<NoticeDto> selectList(NoticePagingDto dto) {
 		List<NoticeDto> list = new ArrayList<NoticeDto>();
 		
 		try {
-			list = sqlSession.selectList(NAMESPACE + "notice_selectlist");
+			list = sqlSession.selectList(NAMESPACE + "notice_selectlist", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,6 +78,19 @@ public class NoticeDaoImpl implements NoticeDao {
 			e.printStackTrace();
 		}
 
+		return res;
+	}
+	
+	@Override
+	public int countTotal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "notice_countTotal");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return res;
 	}
 	

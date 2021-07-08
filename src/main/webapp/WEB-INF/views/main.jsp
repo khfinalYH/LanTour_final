@@ -23,6 +23,6 @@
 	<a href="festival.do">축제 검색</a>
 	<a href="community.do">정보게시판</a>
 
-	<a href="noticeList.do">공지사항 게시판</a>
+	<a href="noticeList.do?nowPage=1">공지사항 게시판</a>
 </body>
 </html>
