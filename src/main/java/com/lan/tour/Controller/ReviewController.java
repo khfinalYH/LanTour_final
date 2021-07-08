@@ -56,21 +56,10 @@ public class ReviewController {
 	}
 
 	@RequestMapping("hotelReviewUpdate.do")
-	public String hotelReviewUpdate(Model model, int review_no,int hotel_no) {	
-		List<ReviewDto> list = null;
+	public String hotelReviewUpdate(Model model, int review_no) {	
 		Map<String,String> map = new HashMap<String, String>();
-		ReviewDto dto = biz.selectOne(review_no);
-		list = biz.selectList("hotel", hotel_no);
-		for(ReviewDto dto :list) {
-			int num = dto.getMember_no();
-			MemberDto Mdto = Mbiz.selectOne(num);
-			Mdto.getMember_name();
-			map.put(""+num, Mdto.getMember_name());
-		}
-		model.addAttribute("map", map);
-		model.addAttribute("list", list);
-		model.addAttribute("hotel_no", hotel_no);
-		model.addAttribute("Rdto", dto);
+		ReviewDto Rdto = biz.selectOne("hotel", review_no);
+		model.addAttribute("Rdto", Rdto);
 		return "review/review_update";
 	}
 	
@@ -84,14 +73,11 @@ public class ReviewController {
 		return "review/test";
 	}
 
-	@RequestMapping("hotelReviewdelete.do")
-	public String hotelReviewDelete(HttpSession session, int hotel_no, String review_title, int review_score) {
-		MemberDto Mdto = (MemberDto) session.getAttribute("login");
-		
-		ReviewDto dto = new ReviewDto(0, hotel_no, 0, Mdto.getMember_no(), null, review_title, review_score);
-		
-		if (biz.insert(dto)>0) {
-			return "redirect:hotelreviewlist.do?hotel_no="+hotel_no;
+	@RequestMapping("hotelReviewDelete.do")
+	public String hotelReviewDelete(int review_no) {		
+		ReviewDto dto = biz.selectOne("hotel", review_no);
+		if (biz.delete(review_no)>0) {
+			return "redirect:hotelreviewlist.do?hotel_no="+dto.gethotel_no();
 		}
 		return "review/test";
 	}

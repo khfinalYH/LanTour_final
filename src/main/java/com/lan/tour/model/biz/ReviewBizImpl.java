@@ -20,8 +20,8 @@ public class ReviewBizImpl implements ReviewBiz {
 	}
 
 	@Override
-	public ReviewDto selectOne(String type, int number) {
-		return dao.selectOne(type, number);
+	public ReviewDto selectOne(String type, int review_no) {
+		return dao.selectOne(type, review_no);
 	}
 
 	@Override

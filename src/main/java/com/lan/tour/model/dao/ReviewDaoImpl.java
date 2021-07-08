@@ -42,13 +42,12 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public ReviewDto selectOne(String type, int number) {	
+	public ReviewDto selectOne(String type, int review_no) {	
 		ReviewDto dto = null;
 		switch(type){
 			case "hotel":
 				try {
-					int hotel_no = number;
-					dto = sqlSession.selectOne(NAMESPACE+"select_one_hotel", hotel_no);
+					dto = sqlSession.selectOne(NAMESPACE+"select_one_hotel", review_no);
 
 				}catch (Exception e) {
 					e.printStackTrace();
@@ -56,8 +55,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				break;
 			case "lantour":
 				try {
-					int lantour_no = number;
-					dto = sqlSession.selectOne(NAMESPACE+"select_one_lantour", lantour_no);
+					dto = sqlSession.selectOne(NAMESPACE+"select_one_lantour", review_no);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -85,9 +83,14 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int delete(int number) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int review_no) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"delete_review", review_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return res;
 	}
 
 	@Override

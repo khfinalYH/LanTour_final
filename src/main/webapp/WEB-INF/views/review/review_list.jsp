@@ -86,8 +86,8 @@
 			<span>내용 : <%=dto.getReview_title() %></span>
 			<span>작성일자 : <%=dto.getReview_date() %></span>
 			<%if(login.getMember_no()==dto.getMember_no()){%>
-				<input type="button" value="수정" onclick="location.href=''"/>
-				<input type="button" value="삭제" onclick="location.href=''"/>
+				<input type="button" value="수정" onclick="location.href='hotelReviewUpdate.do?review_no=<%=dto.getReview_no()%>'"/>
+				<input type="button" value="삭제" onclick="location.href='hotelReviewDelete.do?review_no=<%=dto.getReview_no()%>'"/>
 			<%} %>
 		</div>	
 	<%} %>
