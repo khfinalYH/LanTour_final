@@ -2,15 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="notice">
 
-	<select id="notice_selectlist" resultType="noticeDto">
-		SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
-		FORM NOTICE
-		ORDER BY NOTICE_NO DESC
+	<select id="notice_countTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM NOTICE
+	</select>
+
+	<select id="notice_selectlist" parameterType="NoticePagingDto" resultType="noticeDto">
+		SELECT X.RNUM, X.NOTICE_NO, X.MEMBER_NO, X.NOTICE_TITLE, X.NOTICE_CONTENT, X.NOTICE_DATE
+		FROM(
+		SELECT ROWNUM AS RNUM, A.NOTICE_NO, A.MEMBER_NO, A.NOTICE_TITLE, A.NOTICE_CONTENT, A.NOTICE_DATE
+		FROM 
+		(SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
+		FROM NOTICE
+		ORDER BY NOTICE_NO DESC) A
+		WHERE ROWNUM <![CDATA[<=]]> #{pageEnd}) X
+		WHERE X.RNUM <![CDATA[>=]]> #{pageBegin}
 	</select>
 	
 	<select id="notice_selectOne" parameterType="int" resultType="noticeDto">
 		SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
-		FORM NOTICE
+		FROM NOTICE
 		WHERE NOTICE_NO = #{notice_no}
 	</select>
 	
@@ -24,9 +35,10 @@
 		WHERE NOTICE_NO = #{notice_no} 
 	</delete>
 	
-	<update id="notice_update" parameterType="int">
+	<update id="notice_update" parameterType="noticeDto">
 		UPDATE NOTICE
 		SET NOTICE_TITLE = #{notice_title} , NOTICE_CONTENT = #{notice_content}
+		WHERE NOTICE_NO = #{notice_no}
 	</update>
 	
 	

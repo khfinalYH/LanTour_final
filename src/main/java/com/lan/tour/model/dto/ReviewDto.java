@@ -5,7 +5,7 @@ import java.util.Date;
 public class ReviewDto {
 
 	private int review_no;
-	private int room_no;
+	private int hotel_no;
 	private int lantour_no;
 	private int member_no;
 	private Date review_date;
@@ -16,17 +16,18 @@ public class ReviewDto {
 
 	}
 
-	public ReviewDto(int review_no, int room_no, int lantour_no, int member_no, Date review_date, String review_title,
+	public ReviewDto(int review_no, int hotel_no, int lantour_no, int member_no, Date review_date, String review_title,
 			int review_score) {
 
 		this.review_no = review_no;
-		this.room_no = room_no;
+		this.hotel_no = hotel_no;
 		this.lantour_no = lantour_no;
 		this.member_no = member_no;
 		this.review_date = review_date;
 		this.review_title = review_title;
 		this.review_score = review_score;
 	}
+
 
 	public int getReview_no() {
 		return review_no;
@@ -36,12 +37,12 @@ public class ReviewDto {
 		this.review_no = review_no;
 	}
 
-	public int getRoom_no() {
-		return room_no;
+	public int gethotel_no() {
+		return hotel_no;
 	}
 
-	public void setRoom_no(int room_no) {
-		this.room_no = room_no;
+	public void sethotel_no(int hotel_no) {
+		this.hotel_no = hotel_no;
 	}
 
 	public int getLantour_no() {
