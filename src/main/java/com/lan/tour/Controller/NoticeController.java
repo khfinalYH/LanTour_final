@@ -68,7 +68,7 @@ public class NoticeController {
 	public String insertRes(NoticeDto dto) {
 		
 		if (biz.insert(dto) > 0) {
-			return "redirect:noticeList.do?nowPage=" + 1;
+			return "redirect:noticeList_category.do?nowPage=" + 1;
 		}
 		
 		return "redirect:noticeInsert.do";
@@ -104,7 +104,7 @@ public class NoticeController {
 	public String delete(int notice_no) {
 		
 		if(biz.delete(notice_no) > 0) {
-			return "redirect:noticeList.do?nowPage=" + 1;
+			return "redirect:noticeList_category.do?nowPage=" + 1;
 		}
 		
 		return "redirect:noticeSelectOne.do?notice_no=" + notice_no;
