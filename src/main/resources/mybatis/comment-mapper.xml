@@ -5,35 +5,29 @@
 	<select id="selectList" parameterType="int"
 		resultType="CommentDto">
 		SELECT
-		COMMENT_NO,MEMBER_NO,COMMUNITY_NO,COMMENT_TITLE,COMMENT_CONTENT,COMMENT_DATE,COMMENT_DELFLAG
-		FROM COMMNET_TABLE
+		c.COMMENT_NO,c.MEMBER_NO,c.COMMUNITY_NO,c.COMMENT_CONTENT,c.COMMENT_DATE,c.COMMENT_DELFLAG,
+		m.member_name
+		FROM COMMENT_TABLE c, MEMBER m
 		WHERE COMMUNITY_NO = #{community_no}
+		AND c.MEMBER_NO = m.MEMBER_NO
 		ORDER BY
-		COMMENT_NO DESC
+		COMMENT_NO 
 	</select>
-	
-	<select id="selectOne" parameterType="int"
-		resultType="CommentDto">
-		SELECT
-		COMMENT_NO,MEMBER_NO,COMMUNITY_NO,COMMENT_TITLE,COMMENT_CONTENT,COMMENT_DATE,COMMENT_DELFLAG
-		FROM COMMNET_TABLE
-		WHERE COMMENT_NO = #{comment_no}
-	</select>
-	
+		
 	<insert id="insert" parameterType="CommentDto">
 		INSERT INTO COMMENT_TABLE
-		VALUES(COMMENT_NO_SEQ.NEXTVAL,#{member_no},#{community_no},#{comment_title},#{comment_content},SYSDATE,#{comment_delflag})
+		VALUES(COMMENT_NO_SEQ.NEXTVAL,#{member_no},#{community_no},#{comment_content},SYSDATE,'N')
 	</insert>
 	
 	<update id="update" parameterType="CommentDto">
 		UPDATE COMMENT_TABLE
-		SET  COMMENT_TITLE = #{comment_title} , comment_content = #{comment_content}
+		SET comment_content = #{comment_content}
 		WHERE COMMENT_NO = #{comment_no}
 	</update>
 	
 	<delete id="delete" parameterType="int">
 		UPDATE COMMENT_TABLE
-		SET COMMENT_DELFLAG = 'N'
+		SET COMMENT_DELFLAG = 'Y'
 		WHERE COMMENT_NO = #{comment_no}
 	</delete>
 </mapper>
