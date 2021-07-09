@@ -6,11 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function search() {
+		var search = $("#select_option").val();
+		var community_content = $("#community_content").val();
+		var url = "";
+		if (search == "title"){
+			url = "community_titlesearch.do";
+		} else if(search == "content"){
+			url = "community_contentsearch.do";
+		} else {
+			url = "community_namesearch.do";
+		}
+		
+		location.href = "./"+url+"?community_content="+community_content;
+	}
+</script>
 </head>
 <body>
 
 	<h1>정보공유 게시판</h1>
-	<table border="1">
+	<select id="select_option">
+		<option selected="selected" value="title">제목</option>
+		<option value="content">내용</option>
+		<option value="name">작성자</option>	
+	</select>
+	<input type="text"	id="community_content"/>
+	<button type="button" onclick="search()">검색</button>
+	<table id="community_table" border="1">
 		<col width="50" />
 		<col width="100" />
 		<col width="500" />
