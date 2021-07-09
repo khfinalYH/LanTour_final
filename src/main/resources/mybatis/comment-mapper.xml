@@ -30,4 +30,9 @@
 		SET COMMENT_DELFLAG = 'Y'
 		WHERE COMMENT_NO = #{comment_no}
 	</delete>
+	
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM COMMENT_TABEL
+		WHERE COMMUNITY_NO = #{community_no};
+	</delete>
 </mapper>

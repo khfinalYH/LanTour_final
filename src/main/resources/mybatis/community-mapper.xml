@@ -8,9 +8,55 @@
 	<select id="community_selectList" resultType="CommunityDto">
 		SELECT
 		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE, c.COMMUNITY_CONTENT,
-		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT, c.COMMUNITY_DELFLAG , m.MEMBER_NAME
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT, c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
 		FROM COMMUNITY c, MEMBER m
-		WHERE c.MEMBER_NO = m.MEMBER_NO 
+		WHERE c.MEMBER_NO = m.MEMBER_NO
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+
+	<select id="community_titleSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND c.COMMUNITY_TITLE LIKE '%' || #{community_title} || '%'
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+	
+	<select id="community_contentSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND c.COMMUNITY_CONTENT LIKE '%' || #{community_content} || '%'
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+
+	<select id="community_nameSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND m.MEMBER_NAME LIKE '%' || #{member_name} || '%'
 		ORDER BY COMMUNITY_NO DESC
 	</select>
 
@@ -21,7 +67,8 @@
 		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
 		c.COMMUNITY_DELFLAG , m.MEMBER_NAME
 		FROM COMMUNITY c, MEMBER m
-		WHERE COMMUNITY_NO = #{community_no}
+		WHERE
+		COMMUNITY_NO = #{community_no}
 		AND c.MEMBER_NO = m.MEMBER_NO
 	</select>
 
