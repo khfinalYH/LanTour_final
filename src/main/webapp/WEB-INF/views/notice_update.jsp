@@ -67,7 +67,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type="button" value="수정" onclick="updateChk(this.form)" />
-					<input type="button" value="취소" onclick="location.href='noticeList.do?nowPage=1'" />
+					<input type="button" value="취소" onclick="location.href='noticeList_category.do?nowPage=1'" />
 				</td>
 			</tr>
 		</table>

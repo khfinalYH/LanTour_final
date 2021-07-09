@@ -93,5 +93,86 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		return res;
 	}
+
+	@Override
+	public List<NoticeDto> selectTitleList(NoticePagingDto dto) {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "notice_selectlist_title", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<NoticeDto> selectContentList(NoticePagingDto dto) {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "notice_selectlist_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<NoticeDto> selectTCList(NoticePagingDto dto) {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "notice_selectlist_title_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public int countT(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "notice_countT", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "notice_countC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countTC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "notice_countTC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	
+	
 	
 }

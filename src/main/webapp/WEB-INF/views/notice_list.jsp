@@ -7,11 +7,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function search() {
+		var category = $(".search_category option:selected").val();
+		var keyword = $(".search_keyword").val();
+
+		if (keyword.trim() == '') {
+			alert('검색어를 입력해주세요.');
+			return false;
+		}
+		location.href = 'noticeList_category.do?category=' + category + '&keyword=' + keyword + '&nowPage=1';
+	}
+</script>
 </head>
 <body>
 	<c:set var="member_grade" value="${login.member_grade }" />
 	
 	<h1>공지사항</h1>
+
+	<select class="search_category">
+		<option selected value="n_t">제목</option>
+		<option value="n_c">내용</option>
+		<option value="n_t_c">제목 + 내용</option>
+	</select>
+	<input type="text" class="search_keyword">
+	<button onclick="search();">검색</button>
 	
 	<table border="1">
 		<col width="50" />
@@ -48,9 +69,12 @@
 	</table>
 	
 
+
 	 <c:if test="${dto.nowBlock > 1}">
-	 	<a href="noticeList.do?nowPage=${dto.blockBegin-1}">◀</a>
+	 	<a href="noticeList.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
 	 </c:if>
+	
+
 	
 
 	 <c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index" >
@@ -59,14 +83,14 @@
 				${index}
 			</c:when>
 			<c:otherwise>
-           		<a href="noticeList.do?nowPage=${index}">${index}</a>
+           		<a href="noticeList_category.do?nowPage=${index}&category=${dto.category}&keyword=${dto.keyword}">${index}</a>
 			</c:otherwise>
 		 </c:choose>
 	  </c:forEach>
 
 
 	  <c:if test="${dto.nowBlock < dto.totalBlock}">
-		    <a href="noticeList.do?nowPage=${dto.blockEnd+1}">▶</a>
+		    <a href="noticeList.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
 	  </c:if>
 
 

@@ -1,7 +1,25 @@
 package com.lan.tour.model.dto;
 
 public class NoticePagingDto {
+	private String category;
+	private String keyword;
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	private int display_board = 10;	 // 한 페이지당 출력할 게시글의 수
 	private int display_page = 5;		 // 한 블록당 출력할 페이지 수
 	
@@ -25,6 +43,16 @@ public class NoticePagingDto {
 	}
 	
 	public NoticePagingDto(int count, int nowPage) {
+		nowBlock = 1;
+		this.nowPage = nowPage;
+		setTotalPage(count);
+		setPageRange();
+		setTotalBlock();
+		setBlockRange();
+	}
+	public NoticePagingDto(int count, int nowPage, String keyword, String category) {
+		this.keyword = keyword;
+		this.category = category;
 		nowBlock = 1;
 		this.nowPage = nowPage;
 		setTotalPage(count);

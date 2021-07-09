@@ -15,17 +15,49 @@ public class NoticeController {
 	@Autowired
 	private NoticeBiz biz;
 	
-	@RequestMapping("/noticeList.do")
-	public String selectList(Model model, int nowPage) {
-		int count = biz.countTotal();
+	@RequestMapping("/noticeList_category.do")
+	public String selectKeywordList(Model model, NoticePagingDto dto) {
+
+		int count = 0;
 		
-		NoticePagingDto dto = new NoticePagingDto(count, nowPage);
+		String category = dto.getCategory();
+		String keyword = dto.getKeyword();
+		int nowPage = dto.getNowPage();
 		
-		model.addAttribute("list", biz.selectList(dto));
-		model.addAttribute("dto", dto);
+		if (category == null || category.equals("")) {
+			count = biz.countTotal();
+			System.out.println(count);
+			NoticePagingDto dtoN = new NoticePagingDto(count, nowPage);
+			
+			model.addAttribute("list", biz.selectList(dtoN));
+			model.addAttribute("dto", dtoN);
+		} else if (category.equals("n_t")) {
+			count = biz.countT(keyword);
+			NoticePagingDto dtoN = new NoticePagingDto(count, nowPage, keyword, category);
+			
+			model.addAttribute("list", biz.selectTitleList(dtoN));
+			model.addAttribute("dto", dtoN);
+			
+		} else if (category.equals("n_c")) {
+			count = biz.countC(keyword);
+			NoticePagingDto dtoN = new NoticePagingDto(count, nowPage, keyword, category);
+			
+			model.addAttribute("list", biz.selectContentList(dtoN));
+			model.addAttribute("dto", dtoN);
+			
+		} else if (category.equals("n_t_c")) {
+			count = biz.countTC(keyword);
+			NoticePagingDto dtoN = new NoticePagingDto(count, nowPage, keyword, category);
+			
+			model.addAttribute("list", biz.selectTCList(dtoN));
+			model.addAttribute("dto", dtoN);
+			
+		}
 		
 		return "notice_list";
 	}
+	
+
 	
 	@RequestMapping("/noticeInsertForm.do")
 	public String insertForm() {
