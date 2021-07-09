@@ -31,14 +31,17 @@ public class ReviewBizImpl implements ReviewBiz {
 
 	@Override
 	public int delete(int number) {
-		// TODO Auto-generated method stub
 		return dao.delete(number);
 	}
 
 	@Override
 	public int update(ReviewDto dto) {
-		// TODO Auto-generated method stub
 		return dao.update(dto);
+	}
+
+	@Override
+	public List<ReviewDto> scoreList(String type) {
+		return dao.scoreList(type);
 	}
 	
 

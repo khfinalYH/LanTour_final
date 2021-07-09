@@ -52,9 +52,10 @@ public class ReviewController {
 		model.addAttribute("no", no);
 		return "review_list";
 	}
+		
 	
 	@RequestMapping("ReviewInsert.do")
-	public String ReviewInsert(HttpSession session, String type, int no, String review_title, int review_score) {
+	public String ReviewInsert(HttpSession session, String type, int no, String review_title, double review_score) {
 		MemberDto Mdto = (MemberDto) session.getAttribute("login");
 		ReviewDto Rdto = null;
 		switch(type) {
@@ -83,7 +84,7 @@ public class ReviewController {
 	
 
 	@RequestMapping("ReviewUpdateRes.do")
-	public String ReviewUpdateRes(String type, int review_no, int no, String review_title, int review_score) {		
+	public String ReviewUpdateRes(String type, int review_no, int no, String review_title, double review_score) {		
 		ReviewDto dto = new ReviewDto(review_no, 0, 0, 0, null, review_title, review_score);
 		if (biz.update(dto)>0) {
 			return "redirect:reviewlist.do?type="+type+"&no="+no;
@@ -95,7 +96,7 @@ public class ReviewController {
 	public String ReviewDelete(String type, int review_no) {		
 		ReviewDto dto = biz.selectOne(type, review_no);
 		if (biz.delete(review_no)>0) {
-			return "redirect:reviewlist.do?type="+type+"&no="+(dto.gethotel_no()==0?dto.getLantour_no():dto.gethotel_no());
+			return "redirect:reviewlist.do?type="+type+"&no="+(dto.getHotel_no()==0?dto.getLantour_no():dto.getHotel_no());
 		}
 		return "test";
 	}

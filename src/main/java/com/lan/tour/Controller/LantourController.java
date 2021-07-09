@@ -26,6 +26,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.ReservationBiz;
+import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.dto.LantourDto;
 import com.lan.tour.model.dto.ReservationDto;
 
@@ -39,10 +40,14 @@ public class LantourController {
 	
 	@Autowired
 	private ReservationBiz Rbiz;
+
+	@Autowired
+	private ReviewBiz Rbiz2;
 	
 	@RequestMapping("/lantourlist.do")
 	public String lantourlist(Model model) {
 		model.addAttribute("list", biz.selectList());
+		model.addAttribute("scorelist", Rbiz2.scoreList("lantour"));
 		return "lantour";
 	}
 	

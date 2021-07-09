@@ -130,7 +130,6 @@ function guestrtc() {
 			</td>
 		</tr>
 	</table>
-	<embed height="400px" width="680" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>
-	
+	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
 </body>
 </html>

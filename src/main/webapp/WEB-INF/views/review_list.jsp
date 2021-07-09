@@ -22,6 +22,7 @@
 <%MemberDto login = (MemberDto)session.getAttribute("login"); %>
 <%String type= (String)request.getAttribute("type"); %>
 	$(function() {
+		paging(0)
 		$('.summernote').summernote({
 			placeholder : '후기를 작성해주세요',
 			minHeight : 250,
@@ -88,43 +89,84 @@
 	    }
 	}
 
+	
+	function paging(i){
+		var airplane = document.getElementsByClassName("reviews")
+	
+		for(var j = 0; j<airplane.length;j++){
+			if(j>=i*10&&j<(i+1)*10){
+				document.getElementById("review"+j).style.display = "block"
+			}else{
+				document.getElementById("review"+j).style.display = "none"
+				
+				
+			}
+		}
+	}
+
+	function writeReview(){
+		var write = document.getElementById("writeReview")		
+		write.style.display = "block"
+		var write = document.getElementById("reviewList")		
+		write.style.display = "none"
+			var write = document.getElementById("writeButton")		
+			write.style.display = "none"
+	}
+
+	function backReview(){
+		var write = document.getElementById("writeReview")		
+		write.style.display = "none"
+		var write = document.getElementById("reviewList")		
+		write.style.display = "block"
+		var write = document.getElementById("writeButton")		
+		write.style.display = "block"
+	}
+
 </script>
 <body>
 
 <h1>후기</h1>
 <div>
+<span></span>
+</div>
+
+<div>
 	<div>
 		<%if(login!=null){ %>
-		<div>리뷰 작성</div>
-		<form action="ReviewInsert.do">
-			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
-			<input type="hidden" name="type" value="<%=type %>"/>			
+		<div>리뷰 작성 <button id="writeButton" onclick="writeReview()">작성</button></div>
+		<div id="writeReview" style="display: none;">
+			<form action="ReviewInsert.do">
+				<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
+				<input type="hidden" name="type" value="<%=type %>"/>			
+				<div>
+				<span>별점</span>
+				<input type="hidden" value="0" name="review_score" id="starScore">			
+				<span id="star1" onclick="starPick(1)">☆</span>
+				<span id="star2" onclick="starPick(2)">☆</span>
+				<span id="star3" onclick="starPick(3)">☆</span>
+				<span id="star4" onclick="starPick(4)">☆</span>
+				<span id="star5" onclick="starPick(5)">☆</span>
+			</div>
 			<div>
-			<span>별점</span>
-			<input type="hidden" value="0" name="review_score" id="starScore">			
-			<span id="star1" onclick="starPick(1)">☆</span>
-			<span id="star2" onclick="starPick(2)">☆</span>
-			<span id="star3" onclick="starPick(3)">☆</span>
-			<span id="star4" onclick="starPick(4)">☆</span>
-			<span id="star5" onclick="starPick(5)">☆</span>
+					<span>리뷰 내용</span>
+					<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
+				</div>
+				<div>
+					<input type="submit" value="작성">
+					<input type="button" value="취소" id="writeButton" onclick="backReview()">
+				</div>
+			</form>
 		</div>
-		<div>
-				<span>리뷰 내용</span>
-				<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
-			</div>
-			<div>
-				<input type="submit" value="작성">
-			</div>
-		</form>
 		<%} %>	
 	</div>
 </div>
-<div>
+<div id="reviewList">
 <%if(list.size()==0){ %>
 	<div>리뷰가 존재하지 않습니다</div>
-<%}else{ %>
+<%}else{ 
+	int i = 0;%>
 	<%for(ReviewDto dto : list){ %>
-		<div>
+		<div class="reviews" id="review<%=i++%>">
 			<span>작성자 : <%=map.get(""+dto.getMember_no()) %></span>
 			<span>점수 : <%=dto.getReview_score() %>/5</span>
 			<span>내용 : <%=dto.getReview_title() %></span>
@@ -135,7 +177,15 @@
 			<%} %>
 		</div>	
 	<%} %>
+	
+		<%for(int j = 0;j<=list.size()/10;j++){%>
+			<span  onclick="paging(<%=j%>)"><a href="#">[<%=j+1 %>]</a></span>
+		
+		<% }%>
+	
 <%} %>
+
+
 </div>
 </body>
 </html>

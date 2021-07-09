@@ -100,7 +100,7 @@
 		<div>리뷰 수정</div>
 		<form action="ReviewUpdateRes.do">
 			<input type="hidden" name="review_no" value="<%=Rdto.getReview_no() %>"/>
-			<input type="hidden" name="no" value="<%=Rdto.gethotel_no()==0?Rdto.getLantour_no():Rdto.gethotel_no()%>">
+			<input type="hidden" name="no" value="<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no()%>">
 			<input type="hidden" name="type" value="<%=type %>"/>
 			<div>
 			<span>별점</span>
@@ -117,7 +117,7 @@
 			</div>
 			<div>
 				<input type="submit" value="수정">
-				<input type="button" value="취소" onclick="location.href='reviewlist.do?type=<%=type %>&no=<%=Rdto.gethotel_no()==0?Rdto.getLantour_no():Rdto.gethotel_no() %>'">
+				<input type="button" value="취소" onclick="location.href='reviewlist.do?type=<%=type %>&no=<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no() %>'">
 			</div>
 		</form>
 	</div>

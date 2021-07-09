@@ -7,6 +7,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+	function StarSetting(){
+		var score = document.getElementsByClassName('score')
+		var scoreStar =document.getElementsByClassName('scoreStar')
+		for(i = 0; i < score.length;i++){
+		    var scoreint = parseInt(score[i].innerHTML) 
+		    switch(scoreint){
+		      case 1:
+		        scoreStar[i].innerHTML = '★☆☆☆☆'
+		        break;
+		      case 2:
+		        scoreStar[i].innerHTML = '★★☆☆☆'
+		        break;
+		      case 3:
+		        scoreStar[i].innerHTML = '★★★☆☆'
+		        break;
+		      case 4:
+		        scoreStar[i].innerHTML = '★★★★☆'
+		        break;
+		      case 5:
+		        scoreStar[i].innerHTML = '★★★★★'
+		    }
+		}
+
+	}
+	window.onload = function(){
+		StarSetting()
+	}
+
+</script>
 </head>
 <body>
 
@@ -15,6 +46,7 @@
 		<col width="50"/>
 		<col width="150"/>
 		<col width="500"/>
+		<col width="150"/>
 		<col width="150"/>
 		<tr>
 			<th>번호</th>
@@ -29,11 +61,22 @@
 			</tr>
 			</c:when>
 			<c:otherwise>
+				<c:set var="i" value="0"/>			
 				<c:forEach items="${list }" var="dto">
 				<tr>
 					<td>${dto.lantour_no }</td>
 					<td><a href="./lantourdetail.do?lantour_no=${dto.lantour_no }">${dto.lantour_title }</a></td>
 					<td>${dto.lantour_content }</td>
+					<c:choose>
+						<c:when test="${dto.lantour_no eq scorelist[i].lantour_no}">
+							<td><span class="scoreStar"></span><br/>
+							<span class="score">${scorelist[i].review_score }</span><span>/5(${scorelist[i].review_no })</span></td>
+							<c:set var="i" value="${i+1 }"></c:set>
+						</c:when>
+						<c:otherwise>						
+							<td>☆☆☆☆☆<br/>0/5(0)</td>
+						</c:otherwise>
+					</c:choose>
 					<td>${dto.lantour_regdate }</td>
 				</tr>
 				</c:forEach>

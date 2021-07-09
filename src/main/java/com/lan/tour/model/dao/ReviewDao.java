@@ -16,4 +16,5 @@ public interface ReviewDao {
 	public int insert(ReviewDto dto);
 	public int delete(int number);
 	public int update(ReviewDto dto);
+	public List<ReviewDto> scoreList(String type);
 }

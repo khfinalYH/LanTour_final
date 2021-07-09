@@ -10,14 +10,14 @@ public class ReviewDto {
 	private int member_no;
 	private Date review_date;
 	private String review_title;
-	private int review_score;
+	private double review_score;
 
 	public ReviewDto() {
 
 	}
 
 	public ReviewDto(int review_no, int hotel_no, int lantour_no, int member_no, Date review_date, String review_title,
-			int review_score) {
+			double review_score) {
 
 		this.review_no = review_no;
 		this.hotel_no = hotel_no;
@@ -37,11 +37,11 @@ public class ReviewDto {
 		this.review_no = review_no;
 	}
 
-	public int gethotel_no() {
+	public int getHotel_no() {
 		return hotel_no;
 	}
 
-	public void sethotel_no(int hotel_no) {
+	public void setHotel_no(int hotel_no) {
 		this.hotel_no = hotel_no;
 	}
 
@@ -77,12 +77,12 @@ public class ReviewDto {
 		this.review_title = review_title;
 	}
 
-	public int getReview_score() {
+	public double getReview_score() {
 		return review_score;
 	}
 
-	public void setReview_score(int review_score) {
-		this.review_score = review_score;
+	public void setReview_score(double review_score) {
+		this.review_score =review_score==0?0: Math.round(review_score*10)/10.0 ;
 	}
 
 }

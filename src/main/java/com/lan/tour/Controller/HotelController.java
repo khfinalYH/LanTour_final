@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.HotelBiz;
+import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.biz.RoomBiz;
 import com.lan.tour.model.dto.HotelDto;
 
@@ -29,12 +30,17 @@ public class HotelController {
 	@Autowired
 	private HotelBiz biz;
 
+	
 	@Autowired
 	private RoomBiz biz2;
+
+	@Autowired
+	private ReviewBiz Rbiz;
 
 	@RequestMapping("/hotellist.do")
 	public String hotellist(Model model) {
 		model.addAttribute("list", biz.selectList());
+		model.addAttribute("scorelist", Rbiz.scoreList("hotel"));
 		return "hotel";
 	}
 

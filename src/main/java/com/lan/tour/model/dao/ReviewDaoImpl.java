@@ -66,7 +66,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int insert(ReviewDto dto) {
 		int res = 0;
-		if(dto.gethotel_no()!=0) {
+		if(dto.getHotel_no()!=0) {
 			try {
 				res = sqlSession.insert(NAMESPACE+"insert_hotel", dto);
 			}catch (Exception e) {
@@ -103,6 +103,28 @@ public class ReviewDaoImpl implements ReviewDao {
 		}		
 		return res;
 		
+	}
+
+	@Override
+	public List<ReviewDto> scoreList(String type) {
+		List<ReviewDto> list = new ArrayList<ReviewDto>();
+		switch(type){
+			case "hotel":
+				try {
+					list = sqlSession.selectList(NAMESPACE+"select_hotel_score_avg");
+
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			case "lantour":
+				try {
+					list = sqlSession.selectList(NAMESPACE+"select_lantour_score_avg");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+		return list;
 	}
 
 	

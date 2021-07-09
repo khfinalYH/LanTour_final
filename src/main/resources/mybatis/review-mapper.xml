@@ -8,7 +8,8 @@
 		MEMBER_NO, REVIEW_DATE, REVIEW_TITLE, REVIEW_SCORE
 		FROM REVIEW
 		WHERE
-		HOTEL_NO = #{hotel_no}	</select>
+		HOTEL_NO = #{hotel_no}
+	</select>
 
 	<select id="select_lantour" parameterType="int"
 		resultType="ReviewDto">
@@ -18,7 +19,22 @@
 		WHERE
 		LANTOUR_NO = #{lantour_no}
 	</select>
+	
+	<select id="select_hotel_score_avg"	resultType="ReviewDto">
 
+		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, HOTEL_NO, COUNT(*) AS REVIEW_NO
+		FROM REVIEW GROUP BY HOTEL_NO
+		HAVING HOTEL_NO>0
+		ORDER BY HOTEL_NO
+	</select>
+
+	<select id="select_lantour_score_avg" resultType="ReviewDto">
+
+		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, LANTOUR_NO, COUNT(*) AS REVIEW_NO
+		FROM REVIEW GROUP BY LANTOUR_NO
+		HAVING LANTOUR_NO>0
+		ORDER BY LANTOUR_NO DESC
+	</select>
 
 	<select id="select_one_hotel" parameterType="int"
 		resultType="ReviewDto">
@@ -56,5 +72,7 @@
 	<delete id="delete_review" parameterType="int">
 		DELETE FROM REVIEW WHERE REVIEW_NO = #{review_no}
 	</delete>
+	
+	
 	
 </mapper>
