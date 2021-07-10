@@ -1,9 +1,23 @@
 package com.lan.tour.Controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.NoticeBiz;
 import com.lan.tour.model.dto.NoticeDto;
@@ -108,6 +122,70 @@ public class NoticeController {
 		}
 		
 		return "redirect:noticeSelectOne.do?notice_no=" + notice_no;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/noticeSumImg.do")
+	public Map<String, String> fileupload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+
+		String name = file.getOriginalFilename();
+		String path = "";
+
+		String[] new_name = name.split("\\.");
+		System.out.println(new_name[0]);
+		String na = new_name[0];
+		String renew_na = na;
+
+		String full_na = renew_na + "." + new_name[1];
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		try {
+			inputStream = file.getInputStream();
+			path = WebUtils.getRealPath(request.getSession().getServletContext(), "/resources/noticeImg");
+
+			File noticeimg = new File(path);
+			if (!noticeimg.exists()) {
+				noticeimg.mkdirs();
+			}
+
+			File newFile = null;
+
+			for (int i = 1;; i++) {
+				newFile = new File(path + "/" + full_na);
+				if (!newFile.exists()) {
+					newFile.createNewFile();
+					break;
+				} else {
+					renew_na = na + "(" + i + ")";
+					full_na = renew_na + "." + new_name[1];
+				}
+			}
+
+			outputStream = new FileOutputStream(newFile);
+			int read = 0;
+			byte[] b = new byte[(int) file.getSize()];
+
+			while ((read = inputStream.read(b)) != -1) {
+				outputStream.write(b, 0, read);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				inputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String return_path = "resources/noticeImg/" + full_na;
+		System.out.println(return_path);
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("path", return_path);
+
+		return map;
 	}
 
 }
