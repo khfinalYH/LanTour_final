@@ -71,7 +71,7 @@
 
 
 	 <c:if test="${dto.nowBlock > 1}">
-	 	<a href="noticeList.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
+	 	<a href="noticeList_category.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
 	 </c:if>
 	
 
@@ -90,7 +90,7 @@
 
 
 	  <c:if test="${dto.nowBlock < dto.totalBlock}">
-		    <a href="noticeList.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
+		    <a href="noticeList_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
 	  </c:if>
 
 
