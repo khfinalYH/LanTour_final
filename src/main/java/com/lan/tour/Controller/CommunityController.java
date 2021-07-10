@@ -32,7 +32,8 @@ public class CommunityController {
 
 	@Autowired
 	private CommentBiz biz2;
-
+	
+	
 	@RequestMapping("community.do")
 	public String community(Model model) {
 		model.addAttribute("list", biz.selectList());
