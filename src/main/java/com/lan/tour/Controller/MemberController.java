@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -103,4 +104,22 @@ public class MemberController {
 		return "redirect:registerform.do";
 	}
 
+	@RequestMapping("/memberlist.do")
+	public String memberlist(Model model) {
+		model.addAttribute("list", biz.memberList());
+		return "Member";
+		
+	}
+	@RequestMapping("/memberupdate.do")
+	public String update(int member_no, String member_grade) {
+		MemberDto dto = new MemberDto();
+		dto.setMember_no(member_no);
+		dto.setMember_grade(member_grade);
+		
+		biz.memberupdate(dto);
+		return "redirect:memberlist.do";
+		
+	}
+
+	
 }

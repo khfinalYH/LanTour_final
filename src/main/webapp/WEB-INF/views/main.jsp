@@ -14,6 +14,12 @@
 	<c:if test="${not empty login }">
 		<a href="logout.do">로그아웃</a>
 	</c:if>
+	
+	
+	<a href="memberlist.do">회원관리</a>
+
+	
+	<!-- 일반메뉴 -->
 	<a href="registerform.do">회원가입</a>
 	<a href="registerhost.do">호스트용 회원가입</a>
 	<a href="hotellist.do">숙소</a>
