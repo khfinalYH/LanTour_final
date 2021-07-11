@@ -43,6 +43,18 @@ public class MemberBizImpl implements MemberBiz {
 	public MemberDto idCheck(MemberDto dto) {
 		return dao.idCheck(dto);
 	}
+	@Override
+	public List<MemberDto> memberList() {
+		// TODO Auto-generated method stub
+		return dao.memberList();
+	}
+
+	@Override
+	public int memberupdate(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return dao.memberupdate(dto);
+	}
+
 	
 
 }

@@ -3,16 +3,20 @@
 <mapper namespace="member">
 
 	<select id="selectList" resultType="memberDto">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
-		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
+		SELECT MEMBER_NO, MEMBER_ID,
+		MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
+		MEMBER_AGE, MEMBER_GENDER,
+		MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
-		ORDER BY MEMBER_NO DESC
+		ORDER BY
+		MEMBER_NO DESC
 	</select>
 
 	<select id="selectOne" parameterType="int"
 		resultType="memberDto">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
+		MEMBER_GRADE,
 		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
@@ -21,7 +25,8 @@
 
 	<select id="idCheck" parameterType="memberDto"
 		resultType="memberDto">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
+		MEMBER_GRADE,
 		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
@@ -35,12 +40,26 @@
 
 	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER
-		SET MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{member_no}
+		SET
+		MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{member_no}
 	</update>
 
 	<update id="delete" parameterType="int">
 		UPDATE MEMBER
-		SET MEMBER_SECESSION = 'Y' WHERE MEMBER_NO = #{member_no}
+		SET
+		MEMBER_SECESSION = 'Y' WHERE MEMBER_NO = #{member_no}
+	</update>
+
+	<select id="memberList" resultType="memberDto">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_GRADE
+		FROM MEMBER
+		ORDER BY MEMBER_GRADE
+	</select>
+
+	<update id="memberupdate" parameterType="memberDto">
+		UPDATE MEMBER
+		SET MEMBER_GRADE = #{member_grade}
+		WHERE MEMBER_NO = #{member_no}
 	</update>
 
 </mapper>
