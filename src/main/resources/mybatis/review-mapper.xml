@@ -20,6 +20,55 @@
 		LANTOUR_NO = #{lantour_no}
 	</select>
 	
+	<select id="search_hotel_desc" parameterType="hashMap"
+		resultType="ReviewDto">
+		SELECT REVIEW_NO , HOTEL_NO,
+		MEMBER_NO, REVIEW_DATE, REVIEW_TITLE, REVIEW_SCORE
+		FROM REVIEW
+		WHERE
+		HOTEL_NO = #{hotel_no}
+		AND (REVIEW_SCORE = #{zero} OR REVIEW_SCORE = #{one} OR REVIEW_SCORE = #{two} OR REVIEW_SCORE = #{three} OR
+		REVIEW_SCORE = #{four} OR REVIEW_SCORE = #{five})
+		ORDER BY REVIEW_SCORE DESC
+	</select>
+	
+	<select id="search_hotel_asc" parameterType="hashMap"
+		resultType="ReviewDto">
+		SELECT REVIEW_NO , HOTEL_NO,
+		MEMBER_NO, REVIEW_DATE, REVIEW_TITLE, REVIEW_SCORE
+		FROM REVIEW
+		WHERE
+		HOTEL_NO = #{hotel_no}
+		AND (REVIEW_SCORE = #{zero} OR REVIEW_SCORE = #{one} OR REVIEW_SCORE = #{two} OR REVIEW_SCORE = #{three} OR
+		REVIEW_SCORE = #{four} OR REVIEW_SCORE = #{five})
+		ORDER BY REVIEW_SCORE ASC
+	</select>
+
+	<select id="search_lantour_asc" parameterType="hashMap"
+		resultType="ReviewDto">
+		SELECT REVIEW_NO , LANTOUR_NO,
+		MEMBER_NO,REVIEW_DATE,REVIEW_TITLE,REVIEW_SCORE
+		FROM REVIEW
+		WHERE
+		LANTOUR_NO = #{lantour_no}
+		AND (REVIEW_SCORE = #{zero} OR REVIEW_SCORE = #{one} OR REVIEW_SCORE = #{two} OR REVIEW_SCORE = #{three} OR
+		REVIEW_SCORE = #{four} OR REVIEW_SCORE = #{five})
+		ORDER BY REVIEW_SCORE ASC
+	</select>
+	
+	<select id="search_lantour_desc" parameterType="hashMap"
+		resultType="ReviewDto">
+		SELECT REVIEW_NO , LANTOUR_NO,
+		MEMBER_NO,REVIEW_DATE,REVIEW_TITLE,REVIEW_SCORE
+		FROM REVIEW
+		WHERE
+		LANTOUR_NO = #{lantour_no}
+		AND (REVIEW_SCORE = #{zero} OR REVIEW_SCORE = #{one} OR REVIEW_SCORE = #{two} OR REVIEW_SCORE = #{three} OR
+		REVIEW_SCORE = #{four} OR REVIEW_SCORE = #{five})
+		ORDER BY REVIEW_SCORE DESC
+	</select>
+	
+	
 	<select id="select_hotel_score_avg"	resultType="ReviewDto">
 
 		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, HOTEL_NO, COUNT(*) AS REVIEW_NO

@@ -37,9 +37,8 @@ public class ReviewController {
 
 	@RequestMapping("reviewlist.do")
 	public String reviewList(Model model,String type,int no) {
-		List<ReviewDto> list = null;
+		List<ReviewDto> list = biz.selectList(type, no);
 		Map<String,String> map = new HashMap<String, String>();
-		list = biz.selectList(type, no);
 		for(ReviewDto dto :list) {
 			int num = dto.getMember_no();
 			MemberDto Mdto = Mbiz.selectOne(num);
@@ -75,7 +74,6 @@ public class ReviewController {
 
 	@RequestMapping("ReviewUpdate.do")
 	public String ReviewUpdate(Model model,String type, int review_no) {	
-		Map<String,String> map = new HashMap<String, String>();
 		ReviewDto Rdto = biz.selectOne(type, review_no);
 		model.addAttribute("type", type);
 		model.addAttribute("Rdto", Rdto);
@@ -100,6 +98,86 @@ public class ReviewController {
 		}
 		return "test";
 	}
+	
+
+	@RequestMapping("reviewsearch.do")
+	public String reviewSearch(Model model, int no ,String type, int[] star, String sort ) {
+		Map<String, Integer> Smap = new HashMap<String, Integer>();
+		if(type.equals("hotel")) {
+			Smap.put("hotel_no", no);
+		}else {
+			Smap.put("lantour_no", no);
+			
+		}
+		int j = 6;
+		System.out.println(star);
+		
+		if(star !=null&&star.length!=0) {
+			for(int i : star) {
+				System.out.println(i);
+				switch (i) {
+				case 0:
+					Smap.put("zero",0);
+					j = 0;
+					break;
+				case 1:
+					Smap.put("one",1);
+					j = 1;
+					break;
+				case 2:
+					Smap.put("two",2);
+					j = 2;
+					break;
+				case 3:
+					Smap.put("three",3);
+					j = 3;
+					break;
+				case 4:
+					Smap.put("four",4);
+					j = 4;
+					break;
+
+				case 5:
+					Smap.put("five",5);
+					j = 5;
+					break;
+				}
+			}
+		}else {
+			Smap.put("zero",0);
+			Smap.put("one",1);
+			Smap.put("two",2);
+			Smap.put("three",3);
+			Smap.put("four",4);
+			Smap.put("five",5);
+		}
+		if(j!=6) {
+			if(!Smap.containsKey("zero")) {Smap.put("zero",j);}
+			if(!Smap.containsKey("one")) {Smap.put("one",j);}
+			if(!Smap.containsKey("two")) {Smap.put("two",j);}
+			if(!Smap.containsKey("three")) {Smap.put("three",j);}
+			if(!Smap.containsKey("four")) {Smap.put("four",j);}
+			if(!Smap.containsKey("five")) {Smap.put("five",j);} 			
+		}
+		
+		List<ReviewDto> list =  biz.selectList(type, Smap, sort);
+		Map<String,String> map = new HashMap<String, String>();
+		for(ReviewDto dto :list) {
+			int num = dto.getMember_no();
+			MemberDto Mdto = Mbiz.selectOne(num);
+			Mdto.getMember_name();
+			map.put(""+num, Mdto.getMember_name());
+		}
+
+		model.addAttribute("type", type);
+		model.addAttribute("map", map);
+		model.addAttribute("Smap", Smap);
+		model.addAttribute("list", list);
+		model.addAttribute("no", no);
+		model.addAttribute("sort", sort);
+		return "review_search";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("reviewupload.do")

@@ -1,7 +1,9 @@
 package com.lan.tour.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.websocket.Session;
 
@@ -40,6 +42,54 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<ReviewDto> selectList(String type, Map<String, Integer> map, String sort) {		
+		List<ReviewDto> list = new ArrayList<ReviewDto>();
+		switch(type){
+			case "hotel":
+				if(sort.equals("ASC")) {
+					try {
+						list = sqlSession.selectList(NAMESPACE+"search_hotel_asc", map);
+
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}else {
+					try {
+						list = sqlSession.selectList(NAMESPACE+"search_hotel_desc", map);
+
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+				break;
+			case "lantour":
+				if(sort.equals("ASC")) {
+					try {
+						list = sqlSession.selectList(NAMESPACE+"search_lantour_asc", map);
+
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}else {
+					try {
+						list = sqlSession.selectList(NAMESPACE+"search_lantour_desc", map);
+
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+				break;
+		}
+		return list;
+	}
+
+	
 
 	@Override
 	public ReviewDto selectOne(String type, int review_no) {	

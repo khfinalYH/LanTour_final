@@ -21,9 +21,12 @@
 <script type="text/javascript">
 <%List<ReviewDto> list = (List<ReviewDto>)request.getAttribute("list"); %>
 <%Map<String,String> map = (Map<String,String>)request.getAttribute("map"); %>
+<%Map<String,Integer> Smap = (Map<String,Integer>)request.getAttribute("Smap"); %>
 <%MemberDto login = (MemberDto)session.getAttribute("login"); %>
 <%String type= (String)request.getAttribute("type"); %>
+<%String sort= (String)request.getAttribute("sort"); %>
 <%DateFormat format = new SimpleDateFormat("yyyy/MM/dd");%>
+
 	$(function() {
 		paging(0)
 		$('.summernote').summernote({
@@ -125,26 +128,13 @@
 		write.style.display = "block"
 	}
 	
-	function ReviewSort(ele){
-		document.getElementById("defaultSearch").style.display = "none"
-		if(ele.value=="asc"){
-			
-		}
-		if(ele.value=="desc"){
-			
-		}
-
-	}
-	
 
 </script>
 <body>
 
 <h1>후기</h1>
 <div>
-<span></span>
 </div>
-
 <div>
 	<div>
 		<%if(login!=null){ %>
@@ -176,25 +166,29 @@
 	</div>
 </div>
 
+
 <div id="reviewList">
-<form action="reviewsearch.do" method="post">
-	<div>
-		별점 검색
-		<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
-		<input type="hidden" name="type" value="<%=type %>"/>		
+	<form action="reviewsearch.do" method="post">
+		<div>
+			별점 검색
+			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
+			<input type="hidden" name="type" value="<%=type %>"/>		
 		<select name="sort">
-			<option value="ASC">오름차순</option>
-			<option value="DESC">내림차순</option>
-		</select>
-		<input type="checkbox" checked="checked" name = "star" value="0">0
-		<input type="checkbox" checked="checked" name = "star" value="1">1
-		<input type="checkbox" checked="checked" name = "star" value="2">2
-		<input type="checkbox" checked="checked" name = "star" value="3">3
-		<input type="checkbox" checked="checked" name = "star" value="4">4
-		<input type="checkbox" checked="checked" name = "star" value="5">5
-		<input type="submit"/>
-	</div>
+				<option <%if(sort.equals("ASC")){ %> selected="selected" <%} %> value="ASC">오름차순</option>
+				<option <%if(sort.equals("DESC")){ %> selected="selected" <%} %> value="DESC">내림차순</option>
+			</select>
+			<input name="star" <%if(Smap.get("zero")==0){ %> checked="checked" <%} %>type="checkbox" value="0">0
+			<input name="star"  <%if(Smap.get("one")==1){ %> checked="checked" <%} %>type="checkbox" value="1">1
+			<input name="star"  <%if(Smap.get("two")==2){ %> checked="checked" <%} %>type="checkbox" value="2">2
+			<input name="star"  <%if(Smap.get("three")==3){ %> checked="checked" <%} %>type="checkbox" value="3">3
+			<input name="star"  <%if(Smap.get("four")==4){ %> checked="checked" <%} %>type="checkbox" value="4">4
+			<input name="star"  <%if(Smap.get("five")==5){ %> checked="checked" <%} %>type="checkbox" value="5">5
+			<input type="submit"/>
+			
+		</div>
 </form>
+	
+</div>
 
 <%if(list.size()==0){ %>
 	<div>리뷰가 존재하지 않습니다</div>
