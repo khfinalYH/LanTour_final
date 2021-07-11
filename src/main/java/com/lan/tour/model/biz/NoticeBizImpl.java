@@ -50,5 +50,41 @@ public class NoticeBizImpl implements NoticeBiz {
 
 		return dao.countTotal();
 	}
+
+	@Override
+	public List<NoticeDto> selectTitleList(NoticePagingDto dto) {
+
+		return dao.selectTitleList(dto);
+	}
+
+	@Override
+	public List<NoticeDto> selectContentList(NoticePagingDto dto) {
+
+		return dao.selectContentList(dto);
+	}
+
+	@Override
+	public List<NoticeDto> selectTCList(NoticePagingDto dto) {
+
+		return dao.selectTCList(dto);
+	}
+
+	@Override
+	public int countT(String category) {
+
+		return dao.countT(category);
+	}
+
+	@Override
+	public int countC(String category) {
+
+		return dao.countC(category);
+	}
+
+	@Override
+	public int countTC(String category) {
+
+		return dao.countTC(category);
+	}
 	
 }

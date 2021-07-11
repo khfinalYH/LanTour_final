@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.dto.CommunityDto;
 
@@ -28,6 +30,10 @@ public class CommunityController {
 	@Autowired
 	private CommunityBiz biz;
 
+	@Autowired
+	private CommentBiz biz2;
+	
+	
 	@RequestMapping("community.do")
 	public String community(Model model) {
 		model.addAttribute("list", biz.selectList());
@@ -59,7 +65,9 @@ public class CommunityController {
 	@RequestMapping("communitydelete.do")
 	public String communitydelete(int community_no) {
 		if (biz.delete(community_no) > 0) {
-			return "redirect:community.do";
+			if (biz2.deleteAll(community_no) > 0) {
+				return "redirect:community.do";
+			}
 		}
 
 		return "redirect:communitydetail.do?community_co=" + community_no;
@@ -145,5 +153,26 @@ public class CommunityController {
 		map.put("path", return_path);
 
 		return map;
+	}
+
+	@RequestMapping("community_titlesearch.do")
+	public String communitytitlesearch(Model model, String community_content) {
+		model.addAttribute("list", biz.selecttitlesearchList(community_content));
+
+		return "community";
+	}
+
+	@RequestMapping("community_contentsearch.do")
+	public String communitycontentsearch(Model model, String community_content) {
+		model.addAttribute("list", biz.selectcontentsearchList(community_content));
+
+		return "community";
+	}
+
+	@RequestMapping("community_namesearch.do")
+	public String communitynamesearch(Model model, String community_content) {
+		model.addAttribute("list", biz.selectnamesearchList(community_content));
+
+		return "community";
 	}
 }

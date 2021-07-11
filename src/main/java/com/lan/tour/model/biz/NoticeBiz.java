@@ -13,5 +13,11 @@ public interface NoticeBiz {
 	public int update(NoticeDto dto);
 	public int delete(int notice_no);
 	public int countTotal();
+	public List<NoticeDto> selectTitleList(NoticePagingDto dto);
+	public List<NoticeDto> selectContentList(NoticePagingDto dto);
+	public List<NoticeDto> selectTCList(NoticePagingDto dto);
+	public int countT(String category);
+	public int countC(String category);
+	public int countTC(String category);
 
 }

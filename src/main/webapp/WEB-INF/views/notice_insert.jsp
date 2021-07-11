@@ -45,9 +45,37 @@
 				  maxHeight: null,        // 최대 높이     
 				  focus: true,            // 에디터 로딩 후 포커스를 맞출지 여부      
 				  lang: "ko-KR",		  // 한글 설정					
-				  placeholder: '내용을 입력해 주세요'
+				  placeholder: '내용을 입력해 주세요',
+				  callbacks: {
+					  onImageUpload: function(files, editor, welEditable) {
+						  for (var i = files.length - 1; i >= 0; i--) {
+				              imgUpload(files[i], this);
+				            }
+					  }
+				  }
 			});
 		});
+		
+		function imgUpload(file, el) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				data: data,
+				type: "POST",
+				url: "noticeSumImg.do",
+				enctype: 'multipart/form-data',
+				contentType : false,
+				processData : false,
+				dataType : "json",
+				success: function(data) {
+					$(el).summernote('editor.insertImage', data.path);
+					
+				},
+				error : function() {
+					alert("통신 실패");
+				}
+			});
+		}
 		</script>
 <body>
 
@@ -67,7 +95,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type="button" value="글작성" onclick="insertChk(this.form)" />
-					<input type="button" value="취소" onclick="location.href='noticeList.do?nowPage=1'" />
+					<input type="button" value="취소" onclick="location.href='noticeList_category.do?nowPage=1'" />
 				</td>
 			</tr>
 		</table>

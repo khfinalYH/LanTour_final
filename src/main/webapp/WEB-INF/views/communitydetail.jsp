@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +10,31 @@
 <script type="text/javascript">
 	$(function () {
 		commentlist();
-		$(".commentupdate").click(function () {
-			alert("클릭");
+		$(document).on("click",".commentupdate",function () {
+			$(this).val("수정완료");
+			$(this).parent().prev().children().prop("readonly","");
+			$(this).parent().prev().children().focus();
+			$(this).attr("value","수정완료").click(function () {
+				var comment_content = $(this).parent().prev().children().val();
+				var comment_no = $(this).prop("name");
+				$.ajax({
+					type : "post",
+					url : "commentupdate.do",
+					data : {"comment_content" : comment_content,"comment_no":comment_no},
+					dataType : "json",
+					success : function (msg) {
+						if(msg.check == true){
+							commentlist();
+						}else {
+							alert("댓글 수정 실패");
+						}
+					},
+					error : function () {
+						alert("통신 실패");
+					}
+					
+				});
+			});
 		});
 	})
 	function commentinsert(no) {
@@ -45,7 +70,15 @@
 			success : function (msg) { 
 				var list = msg.list;
 				for(var i = 0; i < list.length; i++){
-					$("#commenttable").append("<tr><th>"+list[i].member_name+"</th><td><input type='text' name='comment_content' value="+list[i].comment_content+" readonly='readonly'/></td><td><input type='button' name="+list[i].comment_no+" value='수정' class='commentupdate'/></td></tr>");
+					var $tr = $("<tr>");
+					$tr.append($("<th>"+list[i].member_name+"</th>"));
+					if(list[i].comment_delflag == 'Y'){
+						$tr.append($("<td colspan='2'>-----------------삭제된 댓글입니다----------------<td>"))
+					}else {
+						$tr.append($("<td><input type='text' name='comment_content' value="+list[i].comment_content+" readonly='readonly'/></td>"));	
+					}	
+					$tr.append($("<td><input type='button' name="+list[i].comment_no+" value='수정' class='commentupdate'/></td>"));
+					$('#commenttable').append($tr);
 				}
 			},
 			error : function () {
@@ -76,12 +109,14 @@
 			<th>내용</th>
 			<td>${dto.community_content }</td>
 		</tr>
-		<tr>
-			<td>
-				<button type="button" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
-				<button type="button" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
-			</td>
-		</tr>
+		<c:if test="${dto.member_no eq login.member_no }">
+			<tr>
+				<td>
+					<button type="button" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
+					<button type="button" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
+				</td>
+			</tr>
+		</c:if>
 
 
 	</table>

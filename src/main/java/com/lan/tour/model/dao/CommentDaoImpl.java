@@ -67,4 +67,17 @@ public class CommentDaoImpl implements CommentDao {
 		return res;
 	}
 
+	@Override
+	public int deleteAll(int community_no) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteAll", community_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

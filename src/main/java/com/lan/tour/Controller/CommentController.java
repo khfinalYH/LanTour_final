@@ -44,4 +44,17 @@ public class CommentController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping("commentupdate.do")
+	public Map<String,Boolean> commentupdate(CommentDto dto){
+		Boolean check = false;
+		if(biz.update(dto) > 0) {
+			check = true;
+		}
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("check", check);
+		
+		return map;
+	}
+	
 }

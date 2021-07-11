@@ -44,4 +44,23 @@ public class CommunityBizImpl implements CommunityBiz {
 		return dao.delete(community_no);
 	}
 
+	@Override
+	public List<CommunityDto> selecttitlesearchList(String community_title) {
+		// TODO Auto-generated method stub
+		return dao.selecttitlesearchList(community_title);
+	}
+
+	@Override
+	public List<CommunityDto> selectcontentsearchList(String community_content) {
+		// TODO Auto-generated method stub
+		return dao.selectcontentsearchList(community_content);
+	}
+
+	@Override
+	public List<CommunityDto> selectnamesearchList(String member_name) {
+		// TODO Auto-generated method stub
+		return dao.selectnamesearchList(member_name);
+	}
+
+
 }

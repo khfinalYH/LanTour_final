@@ -15,4 +15,10 @@ public interface CommunityBiz {
 	public int update(CommunityDto dto);
 
 	public int delete(int community_no);
+	
+	public List<CommunityDto> selecttitlesearchList(String community_title);
+	
+	public List<CommunityDto> selectcontentsearchList(String community_content);
+	
+	public List<CommunityDto> selectnamesearchList(String member_name);
 }
