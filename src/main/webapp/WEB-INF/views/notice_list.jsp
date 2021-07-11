@@ -19,19 +19,30 @@
 		}
 		location.href = 'noticeList_category.do?category=' + category + '&keyword=' + keyword + '&nowPage=1';
 	}
+	
+	window.onload = function() {
+		var cate = document.getElementById("selected_cate").value;
+		if (cate == "") {
+			$('.search_category').val('n_t').prop("selected", true);
+		} else {
+			$('.search_category').val(cate).prop("selected", true);
+		}
+		
+	}
 </script>
 </head>
 <body>
 	<c:set var="member_grade" value="${login.member_grade }" />
 	
 	<h1>공지사항</h1>
-
+	
+	<input type="hidden" id="selected_cate" value="${dto.category}">
 	<select class="search_category">
-		<option selected value="n_t">제목</option>
+		<option value="n_t">제목</option>
 		<option value="n_c">내용</option>
 		<option value="n_t_c">제목 + 내용</option>
 	</select>
-	<input type="text" class="search_keyword">
+	<input type="text" class="search_keyword" value="${dto.keyword }">
 	<button onclick="search();">검색</button>
 	
 	<table border="1">
@@ -71,7 +82,7 @@
 
 
 	 <c:if test="${dto.nowBlock > 1}">
-	 	<a href="noticeList.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
+	 	<a href="noticeList_category.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
 	 </c:if>
 	
 
@@ -90,7 +101,7 @@
 
 
 	  <c:if test="${dto.nowBlock < dto.totalBlock}">
-		    <a href="noticeList.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
+		    <a href="noticeList_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
 	  </c:if>
 
 

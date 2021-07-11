@@ -1,6 +1,7 @@
 package com.lan.tour.model.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class ReviewBizImpl implements ReviewBiz {
 	@Override
 	public List<ReviewDto> selectList(String type, int no) {
 		return dao.selectList(type,no);
+	}
+
+	@Override
+	public List<ReviewDto> selectList(String type, Map<String, Integer> map, String sort) {
+		return dao.selectList(type, map, sort);
 	}
 
 	@Override
@@ -43,6 +49,7 @@ public class ReviewBizImpl implements ReviewBiz {
 	public List<ReviewDto> scoreList(String type) {
 		return dao.scoreList(type);
 	}
+
 	
 
 }
