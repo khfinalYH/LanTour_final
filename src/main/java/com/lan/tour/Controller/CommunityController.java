@@ -158,21 +158,27 @@ public class CommunityController {
 	@RequestMapping("community_titlesearch.do")
 	public String communitytitlesearch(Model model, String community_content) {
 		model.addAttribute("list", biz.selecttitlesearchList(community_content));
-
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "title");
+		
 		return "community";
 	}
 
 	@RequestMapping("community_contentsearch.do")
 	public String communitycontentsearch(Model model, String community_content) {
 		model.addAttribute("list", biz.selectcontentsearchList(community_content));
-
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "content");
+		
 		return "community";
 	}
 
 	@RequestMapping("community_namesearch.do")
 	public String communitynamesearch(Model model, String community_content) {
 		model.addAttribute("list", biz.selectnamesearchList(community_content));
-
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "name");
+		
 		return "community";
 	}
 }

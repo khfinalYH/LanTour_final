@@ -11,6 +11,7 @@
 <script type="text/javascript">
 	$(function () {
 		paging(1);
+		select_change()
 	})
 	function search() {
 		var search = $("#select_option").val();
@@ -36,17 +37,26 @@
 			}
 		}
 	}
+	function select_change() {
+		var change = $("#select_change").val();
+		if(change == ""){
+			$("#select_option").val("title").prop("selected",true);
+		} else {
+			$("#select_option").val(change).prop("selected",true);
+		}
+	}
 </script>
 </head>
 <body>
 
 	<h1>정보공유 게시판</h1>
+	<input type="hidden" id="select_change" value="${filter }"/>
 	<select id="select_option">
 		<option selected="selected" value="title">제목</option>
 		<option value="content">내용</option>
 		<option value="name">작성자</option>	
 	</select>
-	<input type="text"	id="community_content"/>
+	<input type="text"	id="community_content" value="${community_content }"/>
 	<button type="button" onclick="search()">검색</button>
 	<table id="community_table" border="1">
 		<col width="50" />
