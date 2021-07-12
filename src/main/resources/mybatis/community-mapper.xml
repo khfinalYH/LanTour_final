@@ -91,5 +91,9 @@
 		#{community_content}
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e893600460104cc255e6dd6bec85027e0d01763
 
 </mapper>

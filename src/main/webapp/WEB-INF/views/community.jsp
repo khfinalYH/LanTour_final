@@ -48,6 +48,8 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
+	
 
 	<h1>정보공유 게시판</h1>
 	<input type="hidden" id="select_change" value="${filter }"/>
@@ -110,5 +112,7 @@
 	<c:forEach var="i" begin="0" end="${fn:length(list)/10 }">
 		<span onclick="paging(${i+1});">[${i+1 }]</span>
 	</c:forEach>
+	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

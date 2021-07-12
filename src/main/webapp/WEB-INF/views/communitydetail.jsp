@@ -86,23 +86,22 @@
 			}
 		});
 	}
-
-
 </script>
 
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<table border="1">
 		<tr>
 			<th>제목</th>
 			<td>
-				<input type="text" name="community_title" value="${dto.community_title }" readonly="readonly">
+				${dto.community_title }
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" value="${dto.member_name }" readonly="readonly">
+				${dto.member_name }
 			</td>
 		</tr>
 		<tr>
@@ -129,6 +128,6 @@
 		<table id="commenttable" border="1">
 		</table>
 	</div>
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

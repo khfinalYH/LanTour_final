@@ -32,6 +32,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
 	
 	<h1>공지사항</h1>
@@ -104,6 +105,6 @@
 		    <a href="noticeList_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
 	  </c:if>
 
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

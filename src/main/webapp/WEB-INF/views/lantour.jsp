@@ -40,6 +40,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 
 	<h1>랜선투어</h1>
 	<table border="1">
@@ -90,7 +91,7 @@
 	</table>
 	
 	
-	
+	<jsp:include page="footer.jsp" />
 	
 </body>
 </html>
