@@ -94,7 +94,40 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(res);
 		return res;
 	}
+	@Override
+	public List<MemberDto> memberList() {
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE+"memberList");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 
 
+<<<<<<< HEAD
 
+
+=======
+	@Override
+	public int memberupdate(MemberDto dto) {
+		int res = 0;
+		try{
+			res = sqlSession.update(NAMESPACE+"memberupdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+
+	
+	
+	
+
+	
+>>>>>>> e857c90a92ec46e50b0379898bd407c322de1b6c
 }

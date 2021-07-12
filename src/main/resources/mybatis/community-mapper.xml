@@ -3,6 +3,7 @@
 <mapper namespace="community">
 
 
+<<<<<<< HEAD
 <!-- 
 community_no, member_no, ,community_title, community_content, community_regdate, communtiy_readcount, community_deflag -->
 <select id = "community_selectList" resultType="community_Dto">
@@ -32,5 +33,96 @@ community_no, member_no, ,community_title, community_content, community_regdate,
 	UPDATE COMMUNITY
 	SET COMMUNITY_TITLE = #{community_title}, COMMUNITY_CONTENT = #{community_title} 
 </update>
+=======
+	<!-- community_no, member_no, ,community_title, community_content, community_regdate, 
+		communtiy_readcount, community_deflag -->
+	<select id="community_selectList" resultType="CommunityDto">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE, c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT, c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE c.MEMBER_NO = m.MEMBER_NO
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+
+	<select id="community_titleSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND c.COMMUNITY_TITLE LIKE '%' || #{community_title} || '%'
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+	
+	<select id="community_contentSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND c.COMMUNITY_CONTENT LIKE '%' || #{community_content} || '%'
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+
+	<select id="community_nameSearch" resultType="CommunityDto"
+		parameterType="String">
+		SELECT
+		c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG ,
+		m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		c.MEMBER_NO = m.MEMBER_NO
+		AND m.MEMBER_NAME LIKE '%' || #{member_name} || '%'
+		ORDER BY COMMUNITY_NO DESC
+	</select>
+
+	<select id="community_selectOne" parameterType="int"
+		resultType="CommunityDto">
+		SELECT c.COMMUNITY_NO, c.MEMBER_NO, c.COMMUNITY_TITLE,
+		c.COMMUNITY_CONTENT,
+		c.COMMUNITY_REGDATE, c.COMMUNITY_READCOUNT,
+		c.COMMUNITY_DELFLAG , m.MEMBER_NAME
+		FROM COMMUNITY c, MEMBER m
+		WHERE
+		COMMUNITY_NO = #{community_no}
+		AND c.MEMBER_NO = m.MEMBER_NO
+	</select>
+
+	<insert id="community_insert" parameterType="CommunityDto">
+		INSERT INTO
+		COMMUNITY
+		VALUES(COMMUNITY_NO_SEQ.NEXTVAL,#{member_no},#{community_title},#{community_content},SYSDATE,0,'N')
+	</insert>
+
+	<delete id="community_delete" parameterType="int">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_DELFLAG = 'Y'
+		WHERE COMMUNITY_NO = #{community_no}
+	</delete>
+
+	<update id="community_update" parameterType="CommunityDto">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_TITLE = #{community_title}, COMMUNITY_CONTENT =
+		#{community_content}
+		WHERE COMMUNITY_NO = #{community_no}
+	</update>
+>>>>>>> e857c90a92ec46e50b0379898bd407c322de1b6c
 
 </mapper>
