@@ -28,6 +28,24 @@
 			}
 		})
 	}
+	function insertDate(){
+		var dateTd = document.getElementById("DateTd")
+		dateTd.innerHTML = dateTd.innerHTML+"<input class='DateContent' style='display:block;'type='date' name='lantour_date'>"
+		let [today] = new Date().toISOString().split("T");
+		var date = document.getElementsByClassName("DateContent")
+		date[date.length-1].setAttribute("min", today);
+	}
+	
+	function deleteDate(){
+		var DateContent = document.getElementsByClassName("DateContent")
+		if(DateContent.length>1){
+			DateContent[DateContent.length-1].remove()
+		}
+	}
+	window.onload = function(){
+		let [today] = new Date().toISOString().split("T");
+		document.getElementsByClassName("DateContent")[0].setAttribute("min", today);
+	}
 	
 </script>
 <body>
@@ -81,14 +99,17 @@
 			</tr>
 			<tr>
 				<th>투어 일정</th>
-				<td>
-					<input type="text" name="lantour_date">
+				<td id="DateTd">
+					<input class="DateContent" type="date" name="lantour_date">
+					<input type="button" onclick="insertDate()" value="추가">
+					<input type="button" onclick="deleteDate()" value="삭제">
+					
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="글쓰기"/>
-					<input type="button" value="취소"	 onclick="location.href='lantourlist.do';"/>
+					<input type="button" value="취소"	 onclick="location.href='lantourlist.do';">
 				</td>
 			</tr>
 		</table>

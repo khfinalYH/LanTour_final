@@ -27,6 +27,18 @@
 			}
 		})
 	}
+	function insertDate(){
+		var dateTd = document.getElementById("DateTd")
+		dateTd.innerHTML = dateTd.innerHTML+"<input class='DateContent' style='display:block;'type='date' name='lantour_date'>"
+	}
+	
+	function deleteDate(){
+		var DateContent = document.getElementsByClassName("DateContent")
+		if(DateContent.length>1){
+			DateContent[DateContent.length-1].remove()
+		}
+	}
+	
 	
 </script>
 </head>
@@ -78,8 +90,10 @@
 			</tr>
 			<tr>
 				<th>투어 일정</th>
-				<td>
-					<input type="text" name="lantour_date">
+				<td id="DateTd">
+					<input class="DateContent" type="date" name="lantour_date">
+					<input type="button" onclick="insertDate()" value="추가">
+					<input type="button" onclick="deleteDate()" value="삭제">
 				</td>
 			</tr>
 			<tr>
