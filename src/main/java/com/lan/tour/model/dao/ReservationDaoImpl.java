@@ -70,4 +70,18 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 		return list;
 	}
+
+	@Override
+	public int insert(ReservationDto dto) {
+		int res = 0;
+		if(dto.getHotel_no()==0) {
+			try {
+				res = sqlSession.insert(NAMESPACE+"insert_lantour", dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return res;
+	}
 }

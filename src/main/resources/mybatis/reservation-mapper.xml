@@ -41,13 +41,13 @@
 	<insert id="insert_lantour">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
-		'Y',#{reservation_pay},SYSDATE)
+		#{reservation_price},'N',SYSDATE)
 	</insert>
 	
 	<insert id="insert_room">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
-		'Y',#{reservation_pay},SYSDATE)
+		'N',#{reservation_pay},SYSDATE)
 	</insert>
 	
 	<select id="countDate"  parameterType="ReservationDto" resultType="ReservationDto">

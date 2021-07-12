@@ -10,4 +10,5 @@ public interface ReservationBiz {
 	public ReservationDto selectOne(ReservationDto dto);
 	public List<ReservationDto> selectList(String type, int no, int rno);
 	public List<ReservationDto> countDate(String date, int no);
+	public int insert(ReservationDto dto);
 }

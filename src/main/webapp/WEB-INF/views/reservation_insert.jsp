@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lan.tour.model.dto.ReservationDto"%>
 <%@page import="com.lan.tour.model.dto.RoomDto"%>
@@ -18,6 +19,7 @@
 <%List<ReservationDto> Resdto =  (List<ReservationDto>)request.getAttribute("ResDto");%>
 <%HotelDto Hdto =  (HotelDto)request.getAttribute("HotelDto");%>
 <%RoomDto Roodto =  (RoomDto)request.getAttribute("RoomDto");%>
+<%Map<String,Integer> map = (Map<String,Integer>)request.getAttribute("map");%>
 <!-- jQuery UI CSS파일  -->  
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
 <!-- // jQuery 기본 js파일 -->
@@ -32,6 +34,7 @@
 var enableDay = [
 		<%if(Ldto.getLantour_date().indexOf(',')>0){
 			for(int i = 0; i < Ldto.getLantour_date().split(",").length ; i++){
+				if(map.get(Ldto.getLantour_date().split(",")[i]) < Ldto.getLantour_maxcount())
 				if(i==Ldto.getLantour_date().split(",").length-1){%>
 					"<%=Ldto.getLantour_date().split(",")[i]%>"
 				<%}else{%>
@@ -39,17 +42,18 @@ var enableDay = [
 				<%}%>
 		<%	}
 		}%>
-		<%if(Resdto.size()>0){%>
-		<%if(Ldto.getLantour_date().indexOf(',')>0){%>,<%}%>
-			<%for(int i = 0; i < Resdto.size() ; i++){
-				if(i==Resdto.size()-1){%>
-					"<%=Resdto.get(i).getReservation_date()%>"
-				<%}else{%>
-					"<%=Resdto.get(i).getReservation_date()%>",
-				<%}%>
-			<%}%>
-		
+]
+var countmb = [
+	<%for(int i = 0; i < Ldto.getLantour_date().split(",").length ; i++){%>
+		<%if(i==Ldto.getLantour_date().split(",").length-1){%>
+			<%=map.get(Ldto.getLantour_date().split(",")[i])%>
+		<%}else{%>
+			<%=map.get(Ldto.getLantour_date().split(",")[i])%>,
 		<%}%>
+	<%}%>
+	
+	
+	
 ]
 
 $( function() {
@@ -80,6 +84,15 @@ $( function() {
     });
   } );
 
+function count(date){
+	if(enableDay.indexOf(date.value)>=0){
+		document.getElementById("countMember").innerText = "잔여인원 : "+countmb[enableDay.indexOf(date.value)]+"/<%=Ldto.getLantour_maxcount()%>"
+	}else{
+		
+	}
+	
+}
+
 </script>
 
 </head>
@@ -103,6 +116,13 @@ $( function() {
 	
 	<!-- if -->
 	<%if(Ldto !=null){ %>
+	
+	<form action="insertReservation.do">
+	<input type="hidden" name="no" value="<%=Ldto.getLantour_no()%>">
+	<input type="hidden" name="rno" value="0">
+	<input type="hidden" name="reservation_price" value="<%=Ldto.getLantour_price() %>">
+	<input type="hidden" name="member_no" value="<%=Mdto.getMember_no() %>">
+	
 	<div>
 	<span>랜선투어 제목: <%=Ldto.getLantour_title() %></span>
 	</div>
@@ -112,14 +132,19 @@ $( function() {
 	</div>
 	
 	<div>
-	<span>예약일자 : <input type="text" id="datepicker" readonly="readonly"></span>
+	<span>예약일자 : <input onchange="count(this)" type="text" id="datepicker" name="reservation_date" readonly="readonly"></span>
 	</div>
 	
 	<div>
-	<span>비용 : </span>
+	<span>비용 : <%=Ldto.getLantour_price() %></span>
 	</div>
+	
+	<div>
+	<span id="countMember">잔여인원을 확인하려면 날짜를 선택해주세요</span>
+	</div>
+		<input type="submit">
+		</form>
 	<%}else{ %>
-	<!-- else -->
 	
 	<div>
 	<span>호텔 이름: </span>
@@ -137,7 +162,6 @@ $( function() {
 	<span>비용 : </span>
 	</div>
 	<%} %>
-		
 </div>
 
 

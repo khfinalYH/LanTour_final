@@ -36,4 +36,9 @@ public class ReservationBizImpl implements ReservationBiz {
 		return dao.countDate(date, no);
 	}
 
+	@Override
+	public int insert(ReservationDto dto) {
+		return dao.insert(dto);
+	}
+
 }
