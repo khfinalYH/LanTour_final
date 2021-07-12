@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script type="text/javascript">
 	function delete_room() {
 		var del = confirm('방 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?');
@@ -26,9 +27,16 @@
 			});
 		}
 	}
+	function googleTranslateElementInit() {
+		new google.translate.TranslateElement({
+			pageLanguage : 'ko',
+			layout : google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false
+		}, 'google_translate_element');
+	}
 </script>
 </head>
 <body>
+	<div id="google_translate_element"></div>
 	<img src="${dto.room_image }">
 	<h3>대여 인원 : ${dto.room_maxcount }</h3>
 	<h3>방 소개 : ${dto.room_content }</h3>
@@ -36,5 +44,6 @@
 	<button type="button" onclick="delete_room()">방 삭제</button>
 	<button type="button" onclick="">예약하기</button>
 	<br/>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

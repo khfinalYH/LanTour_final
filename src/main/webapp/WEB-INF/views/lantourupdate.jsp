@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>랜선투어 글수정</h1>
 		<form action="./lantourupdateres.do" method="post" enctype ="multipart/form-data">
 		<input type ="hidden" name = "member_no" value = "${login.member_no }">
@@ -89,5 +90,6 @@
 			</tr>
 		</table>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

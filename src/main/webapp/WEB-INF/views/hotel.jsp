@@ -42,7 +42,7 @@
 </script>
 </head>
 <body>
-
+	<jsp:include page="header.jsp" />
 	<h1>숙소 list</h1>
 	<table border="1">
 		<col width="50" />
@@ -92,5 +92,6 @@
 			</td>
 		</tr>
 	</table>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

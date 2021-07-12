@@ -54,6 +54,7 @@
 
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 
 	<table style="display:inline;">
 		<tbody>
@@ -81,6 +82,7 @@
 				</tr>
 		</tbody>
 	</table>
+	<jsp:include page="footer.jsp" />
 
 </body>
 </html>

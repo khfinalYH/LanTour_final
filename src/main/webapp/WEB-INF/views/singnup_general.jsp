@@ -72,6 +72,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<form action="./registerres.do" method="post">
 		<input type="hidden" name="member_grade" value="U" />
 		<table border="1">
@@ -146,6 +147,7 @@ response.setContentType("text/html; charset=UTF-8");
 		</div>
 
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 
 </html>

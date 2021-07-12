@@ -48,7 +48,7 @@
 </script>
 </head>
 <body>
-
+	<jsp:include page="header.jsp" />
 	<form action="communityinsertres.do">
 		<input type="hidden" name="member_no" value="${login.member_no }" />
 		<table border="1">
@@ -78,6 +78,6 @@
 
 		</table>
 	</form>
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -48,6 +48,7 @@ function guestrtc() {
 }
 </script>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>랜선투어 상세페이지</h1>
 	
 	<c:set var="login_member" value="${login.member_no }" />
@@ -131,5 +132,6 @@ function guestrtc() {
 		</tr>
 	</table>
 	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

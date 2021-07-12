@@ -74,6 +74,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 
 	<h1>숙소 insert, ${login.member_id },${login.member_no }</h1>
 	<form action="./hotelinsertres.do" method="post" enctype="multipart/form-data">
@@ -129,5 +130,6 @@
 			<button type="submit">제출</button>
 		</div>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

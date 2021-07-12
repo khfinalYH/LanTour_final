@@ -55,6 +55,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>숙소 update, ${login.member_id },${login.member_no }</h1>
 	<form action="./hotelupdateres.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="hotel_no" value="${dto.hotel_no }" />
@@ -132,5 +133,6 @@
 			</tr>
 		</table>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

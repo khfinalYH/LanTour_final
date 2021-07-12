@@ -78,7 +78,7 @@
 		}
 		</script>
 <body>
-
+	<jsp:include page="header.jsp" />
 	<h1>INSERT</h1>
 
 	<form action="noticeInsertRes.do" method="post">
@@ -100,6 +100,6 @@
 			</tr>
 		</table>
 	</form>
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
