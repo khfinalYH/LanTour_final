@@ -9,5 +9,6 @@ public interface ReservationDao {
 	String NAMESPACE = "reservation.";
 	
 	public List<ReservationDto> selectList();
+	public List<ReservationDto> selectList(String type, int no);
 	public ReservationDto selectOne(ReservationDto dto);
 }

@@ -107,10 +107,6 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 
-<<<<<<< HEAD
-
-
-=======
 	@Override
 	public int memberupdate(MemberDto dto) {
 		int res = 0;
@@ -122,12 +118,4 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
-
-
-	
-	
-	
-
-	
->>>>>>> e857c90a92ec46e50b0379898bd407c322de1b6c
 }

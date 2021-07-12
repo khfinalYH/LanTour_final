@@ -42,4 +42,10 @@ public class ReservationDaoImpl implements ReservationDao {
 	
 		return res;
 	}
+
+	@Override
+	public List<ReservationDto> selectList(String type, int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

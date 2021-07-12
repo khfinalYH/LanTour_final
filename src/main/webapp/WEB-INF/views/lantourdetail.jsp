@@ -124,7 +124,7 @@ function guestrtc() {
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="예약" onclick="location.href='reservation.do? type=lantour&no=${dto.lantour_no}&rno=0'"/>			
+				<input type="button" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'"/>			
 				<input type="button" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
 				<input type="button" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
 				<input type="button" value="목록" onclick="location.href='lantourlist.do'" />

@@ -19,6 +19,24 @@
 		AND MEMBER_NO = #{member_no}
 	</select>
 
+	<select id="selectList_lantour" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE LANTOUR_NO = ${lantour_no}
+		ORDER BY RESERVATION_NO
+	</select>
+
+	<select id="selectList_room" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE LANTOUR_NO = ${lantour_no}
+		ORDER BY RESERVATION_NO
+	</select>
+	
 	<insert id="insert_lantour">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
@@ -27,11 +45,6 @@
 	<insert id="insert_room">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
-		'Y',#{reservation_pay},SYSDATE)
-	</insert>
-	<insert id="insert_hotel">
-		INSERT INTO RESERVATION
-		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,NULL,#{hotel_no},#{member_no},#{reservation_date},
 		'Y',#{reservation_pay},SYSDATE)
 	</insert>
 

@@ -25,4 +25,10 @@ public class ReservationBizImpl implements ReservationBiz {
 		return dao.selectOne(dto);
 	}
 
+	@Override
+	public List<ReservationDto> selectList(String type, int no) {
+		// TODO Auto-generated method stub
+		return dao.selectList(type, no);
+	}
+
 }

@@ -37,13 +37,12 @@ public class ReservationController {
 	public String reservation(Model model, String type, int no, int rno) {
 		if(type.equals("lantour")) {
 			model.addAttribute("lantourDto", Lbiz.selectOne(no));
-			
-			
-			
 		}else {
-			
+			model.addAttribute("HotelDto", Hbiz.selectOne(no));
+			model.addAttribute("RoomDto", Roobiz.selectOne(rno));
+
 		}
-		return "reservationform";
+		return "reservation_insert";
 	}
 	
 	
