@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>LanTour</title>
 </head>
-
+<script type="text/javascript" src="resources/js/airportWeather.js" ></script>
 <script type="text/javascript">
 
 
@@ -200,6 +200,7 @@
 		<% }%>
 	<%} %>
 </div>
-
+<h1>오늘의 날씨</h1>
+<div id="js-weather"></div>
 </body>
 </html>

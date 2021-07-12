@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/currentWeather.js" ></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -34,5 +35,7 @@
 	<a href="mypage.do">마이페이지</a>
 	
 	<a href="noticeList_category.do?nowPage=1">공지사항 게시판</a>
+	
+	<div id="js-weather"></div>
 </body>
 </html>
