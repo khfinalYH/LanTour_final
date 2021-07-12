@@ -9,6 +9,7 @@
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
 			pageLanguage : 'ko',
+			includedLanguages:'ko,en,ja,zh-CN,zh-TW',
 			layout : google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false
 		}, 'google_translate_element');
 	}

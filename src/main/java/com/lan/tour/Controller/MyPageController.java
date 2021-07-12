@@ -15,15 +15,14 @@ public class MyPageController {
 		@Autowired
 		private MemberBiz biz;
 	
-		//³»Á¤º¸ È®ÀÎ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		@RequestMapping("/mypage.do")
 		public String mypage() {
 			return "mypage";
 		}
-		//³»Á¤º¸ ¼öÁ¤
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		@RequestMapping("/mypageupdate.do")
-		public String mypageupdate(Model model, int member_no) {
-			model.addAttribute("dto", biz.selectOne(member_no));
+		public String mypageupdate(Model model) {
 			
 			return "mypageupdate";
 		}
@@ -36,26 +35,26 @@ public class MyPageController {
 
 			return "redirect:mypageupdate.do?member_no=" + dto.getMember_no();
 		}
-		//³»°Ô½Ã±Û È®ÀÎ
+		//ï¿½ï¿½ï¿½Ô½Ã±ï¿½ È®ï¿½ï¿½
 		@RequestMapping("/mypost.do")
 		public String mypost() {
 			return "mypost";
 		} 
-		//³» °áÁ¦³»¿ª È®ÀÎ
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		@RequestMapping("/mypayment.do")
 		public String mypayment() {
 			return "mypayment";
 		}
-		//³» ¿©Çà°èÈ¹ È®ÀÎ
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¹ È®ï¿½ï¿½
 		@RequestMapping("/mytrip.do")
 		public String mytrip() {
 			return "mytrip";
 		}
 		
-		/* Ç®Ä¶¸°´õ mapÇüÅÂ·Î º¯È¯ÇØÁà¾ß ajax Åë½ÅÀÌ successµÈ´Ù.
+		/* Ç®Ä¶ï¿½ï¿½ï¿½ï¿½ mapï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½ï¿½ ajax ï¿½ï¿½ï¿½ï¿½ï¿½ successï¿½È´ï¿½.
 		Map<String, FullCalendarDto> javaMap = new HashMap<String, FullCalendarDto();
-		javaMap.put("evt1", new FullCalendarDTO("dbÀÌº¥Æ®1", "2019-09-04", "2019-09-06", "false") );
-		javaMap.put("evt2", new FullCalendarDTO("dbÀÌº¥Æ®2", "2019-09-23", "2019-09-26", "false") );  
+		javaMap.put("evt1", new FullCalendarDTO("dbï¿½Ìºï¿½Æ®1", "2019-09-04", "2019-09-06", "false") );
+		javaMap.put("evt2", new FullCalendarDTO("dbï¿½Ìºï¿½Æ®2", "2019-09-23", "2019-09-26", "false") );  
 		*/
 		
 		
