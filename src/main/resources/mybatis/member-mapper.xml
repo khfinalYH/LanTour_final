@@ -13,6 +13,7 @@
 		MEMBER_NO DESC
 	</select>
 
+	
 	<select id="selectOne" parameterType="int"
 		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
@@ -40,8 +41,14 @@
 
 	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER
+<<<<<<< HEAD
+		SET MEMBER_NAME = #{member_name}, MEMBER_PASSWORD = #{member_password},
+		MEMBER_EMAIL = #{member_email}, MEMBER_PHONE = #{member_phone} 
+		WHERE MEMBER_NO = #{member_no}
+=======
 		SET
 		MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{member_no}
+>>>>>>> e857c90a92ec46e50b0379898bd407c322de1b6c
 	</update>
 
 	<update id="delete" parameterType="int">

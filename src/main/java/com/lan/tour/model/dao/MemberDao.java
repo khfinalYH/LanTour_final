@@ -9,7 +9,6 @@ public interface MemberDao {
 	String NAMESPACE = "member.";
 
 	public List<MemberDto> selectList();
-
 	public MemberDto selectOne(int member_no);
 
 	public int update(MemberDto dto);
