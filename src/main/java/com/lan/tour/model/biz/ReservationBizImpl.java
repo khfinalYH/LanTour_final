@@ -26,9 +26,14 @@ public class ReservationBizImpl implements ReservationBiz {
 	}
 
 	@Override
-	public List<ReservationDto> selectList(String type, int no) {
+	public List<ReservationDto> selectList(String type, int no, int rno) {
 		// TODO Auto-generated method stub
-		return dao.selectList(type, no);
+		return dao.selectList(type, no, rno);
+	}
+
+	@Override
+	public List<ReservationDto> countDate(String date, int no) {
+		return dao.countDate(date, no);
 	}
 
 }

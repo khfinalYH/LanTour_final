@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.lan.tour.model.dto.ReservationDto"%>
 <%@page import="com.lan.tour.model.dto.RoomDto"%>
 <%@page import="com.lan.tour.model.dto.HotelDto"%>
 <%@page import="com.lan.tour.model.dto.LantourDto"%>
@@ -13,8 +15,9 @@
 <title>Insert title here</title>
 <%MemberDto Mdto =  (MemberDto)session.getAttribute("login");%>
 <%LantourDto Ldto =  (LantourDto)request.getAttribute("lantourDto");%>
+<%List<ReservationDto> Resdto =  (List<ReservationDto>)request.getAttribute("ResDto");%>
 <%HotelDto Hdto =  (HotelDto)request.getAttribute("HotelDto");%>
-<%RoomDto Rdto =  (RoomDto)request.getAttribute("RoomDto");%>
+<%RoomDto Roodto =  (RoomDto)request.getAttribute("RoomDto");%>
 <!-- jQuery UI CSS파일  -->  
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
 <!-- // jQuery 기본 js파일 -->
@@ -36,6 +39,17 @@ var enableDay = [
 				<%}%>
 		<%	}
 		}%>
+		<%if(Resdto.size()>0){%>
+		<%if(Ldto.getLantour_date().indexOf(',')>0){%>,<%}%>
+			<%for(int i = 0; i < Resdto.size() ; i++){
+				if(i==Resdto.size()-1){%>
+					"<%=Resdto.get(i).getReservation_date()%>"
+				<%}else{%>
+					"<%=Resdto.get(i).getReservation_date()%>",
+				<%}%>
+			<%}%>
+		
+		<%}%>
 ]
 
 $( function() {

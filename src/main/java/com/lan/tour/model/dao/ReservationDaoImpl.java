@@ -17,7 +17,6 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public List<ReservationDto> selectList() {
-		// TODO Auto-generated method stub
 		List<ReservationDto> list = new ArrayList<ReservationDto>();
 		try {
 			list = sqlSession.selectList(NAMESPACE+"selectlist");
@@ -26,8 +25,6 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		
 		return list;
-	
-
 	}
 
 	@Override
@@ -44,8 +41,33 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<ReservationDto> selectList(String type, int no) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ReservationDto> selectList(String type, int no, int rno) {
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
+		if(type.equals("hotel")) {
+			
+		}else {
+			try {
+				int lantour_no = no;
+				list = sqlSession.selectList(NAMESPACE+"selectList_lantour", lantour_no);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<ReservationDto> countDate(String date, int no) {
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
+		ReservationDto dto = new ReservationDto();
+		dto.setReservation_date(date);
+		dto.setLantour_no(no);
+		try {
+			list = sqlSession.selectList(NAMESPACE+"countDate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }

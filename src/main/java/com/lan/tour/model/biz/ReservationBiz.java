@@ -8,6 +8,6 @@ public interface ReservationBiz {
 
 	public List<ReservationDto> selectList();
 	public ReservationDto selectOne(ReservationDto dto);
-	public List<ReservationDto> selectList(String type, int no);
-	
+	public List<ReservationDto> selectList(String type, int no, int rno);
+	public List<ReservationDto> countDate(String date, int no);
 }

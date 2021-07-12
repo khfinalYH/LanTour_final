@@ -1,6 +1,9 @@
 package com.lan.tour.Controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +38,17 @@ public class ReservationController {
 	
 	@RequestMapping("reservation.do")
 	public String reservation(Model model, String type, int no, int rno) {
+		
+		
 		if(type.equals("lantour")) {
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			
+			
 			model.addAttribute("lantourDto", Lbiz.selectOne(no));
+			model.addAttribute("ResDto", Resbiz.selectList(type, no, 0));
 		}else {
 			model.addAttribute("HotelDto", Hbiz.selectOne(no));
 			model.addAttribute("RoomDto", Roobiz.selectOne(rno));
-
 		}
 		return "reservation_insert";
 	}

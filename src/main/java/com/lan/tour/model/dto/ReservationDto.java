@@ -9,7 +9,7 @@ public class ReservationDto {
 	private int room_no;
 	private int hotel_no;
 	private int member_no;
-	private Date reservation_date;
+	private String reservation_date;
 	private int reservation_price;
 	private String reservation_pay;
 	private Date reservation_paydate;
@@ -24,7 +24,7 @@ public class ReservationDto {
 	}
 
 	public ReservationDto(int reservation_no, int lantour_no, int room_no, int hotel_no, int member_no,
-			Date reservation_date, int reservation_price, String reservation_pay, Date reservation_paydate) {
+			String reservation_date, int reservation_price, String reservation_pay, Date reservation_paydate) {
 		super();
 		this.reservation_no = reservation_no;
 		this.lantour_no = lantour_no;
@@ -77,11 +77,11 @@ public class ReservationDto {
 		this.member_no = member_no;
 	}
 
-	public Date getReservation_date() {
+	public String getReservation_date() {
 		return reservation_date;
 	}
 
-	public void setReservation_date(Date reservation_date) {
+	public void setReservation_date(String reservation_date) {
 		this.reservation_date = reservation_date;
 	}
 

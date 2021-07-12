@@ -8,6 +8,7 @@
 		FROM RESERVATION
 		ORDER BY RESERVATION_NO
 	</select>
+	
 	<select id="selectOne" parameterType="ReservationDto"
 		resultType="ReservationDto">
 		SELECT
@@ -42,11 +43,19 @@
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
 		'Y',#{reservation_pay},SYSDATE)
 	</insert>
+	
 	<insert id="insert_room">
 		INSERT INTO RESERVATION
 		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
 		'Y',#{reservation_pay},SYSDATE)
 	</insert>
+	
+	<select id="countDate"  parameterType="ReservationDto" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO
+		FROM RESERVATION
+		WHERE LANTOUR_NO = #{lantour_no} AND RESERVATION_DATE  = #{reservation_date}
+	</select>
 
 
 </mapper>
