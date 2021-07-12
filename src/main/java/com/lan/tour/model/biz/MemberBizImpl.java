@@ -43,6 +43,7 @@ public class MemberBizImpl implements MemberBiz {
 	public MemberDto idCheck(MemberDto dto) {
 		return dao.idCheck(dto);
 	}
+
 	
 
 }

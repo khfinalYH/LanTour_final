@@ -28,6 +28,8 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
+	
+
 
 
 	@Override
@@ -42,6 +44,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
+	
 
 	@Override
 	public int update(MemberDto dto) {
@@ -91,5 +94,7 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(res);
 		return res;
 	}
+
+
 
 }

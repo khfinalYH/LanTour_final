@@ -23,5 +23,6 @@
 	<a href="festival.do">축제 검색</a>
 	<a href="sppechR.do">음성 인식</a>
 	<a href="tts.do">TTS</a>
+	<a href="mypage.do">마이페이지</a>
 </body>
 </html>

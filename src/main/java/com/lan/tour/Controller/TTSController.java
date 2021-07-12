@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TTSController {
 
 		@RequestMapping("/tts.do")
-		public String airportSearch() {
+		public String TTS() {
 			return "tts";
 		}
 }

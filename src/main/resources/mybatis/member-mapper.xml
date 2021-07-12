@@ -10,6 +10,7 @@
 		ORDER BY MEMBER_NO DESC
 	</select>
 
+	
 	<select id="selectOne" parameterType="int"
 		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
@@ -35,7 +36,9 @@
 
 	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER
-		SET MEMBER_PASSWORD = #{member_password} WHERE MEMBER_NO = #{member_no}
+		SET MEMBER_NAME = #{member_name}, MEMBER_PASSWORD = #{member_password},
+		MEMBER_EMAIL = #{member_email}, MEMBER_PHONE = #{member_phone} 
+		WHERE MEMBER_NO = #{member_no}
 	</update>
 
 	<update id="delete" parameterType="int">
