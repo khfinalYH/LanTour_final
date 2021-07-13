@@ -7,15 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="./resources/css/board_detail.css">
 <script type="text/javascript">
 	$(function () {
 		commentlist();
 		$(document).on("click",".commentupdate",function () {
 			$(this).val("수정완료");
-			$(this).parent().prev().children().prop("readonly","");
-			$(this).parent().prev().children().focus();
+			$(this).parent().prev().children().children().prop("readonly","");
+			$(this).parent().prev().children().children().focus();
 			$(this).attr("value","수정완료").click(function () {
-				var comment_content = $(this).parent().prev().children().val();
+				var comment_content = $(this).parent().prev().children().children().val();
 				var comment_no = $(this).prop("name");
 				$.ajax({
 					type : "post",
@@ -35,6 +36,26 @@
 					
 				});
 			});
+		});
+		$(document).on("click",".commentdelete",function (){
+			var comment_no = $(this).prop("name");
+			$.ajax({
+				type : "post",
+				url : "commentdelete.do",
+				data : {"comment_no":comment_no},
+				dataType:"json",
+				success : function (msg) {
+					if(msg.check == true){
+						commentlist();
+					}else {
+						alert("댓글 삭제 실패");
+					}
+				},
+				error : function() {
+					alert("통신 실패");
+				}
+			});
+			
 		});
 	})
 	function commentinsert(no) {
@@ -60,7 +81,7 @@
 		});
 	}
 	function commentlist() {
-		$("#commenttable").empty();
+		$(".replyListParent").empty();
 		var community_no = ${dto.community_no };
 		$.ajax({
 			type:"post",
@@ -70,15 +91,23 @@
 			success : function (msg) { 
 				var list = msg.list;
 				for(var i = 0; i < list.length; i++){
-					var $tr = $("<tr>");
-					$tr.append($("<th>"+list[i].member_name+"</th>"));
-					if(list[i].comment_delflag == 'Y'){
-						$tr.append($("<td colspan='2'>-----------------삭제된 댓글입니다----------------<td>"))
-					}else {
-						$tr.append($("<td><input type='text' name='comment_content' value="+list[i].comment_content+" readonly='readonly'/></td>"));	
-					}	
-					$tr.append($("<td><input type='button' name="+list[i].comment_no+" value='수정' class='commentupdate'/></td>"));
-					$('#commenttable').append($tr);
+					var $div = $("<div>");
+					$div.append($("<div>"+list[i].member_name+"</div>"))
+					$(".replyListParent").append($div);
+					$div = $("<div>");
+					if(list[i].comment_delflag == 'N'){
+						$div.append($("<div><textarea rows='1' cols='80' disable='disable' readonly='readonly' class='reply_content'>"+list[i].comment_content+"</textarea></div>"))
+					} else {
+						$div.append($("<div>---------삭제된 댓글입니다------------</div>"));
+					}
+					$(".replyListParent").append($div);
+					if(list[i].member_name == "${login.member_name}"){
+						$div = $("<div>");
+						$div.append($("<input type='button' value='수정' name="+list[i].comment_no+" class='commentupdate'/>"))
+						$div.append($("<input type='button' value='삭제' name="+list[i].comment_no+" class='commentdelete'/>"))
+						$(".replyListParent").append($div);
+					}
+					
 				}
 			},
 			error : function () {
@@ -91,42 +120,66 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<table border="1">
-		<tr>
-			<th>제목</th>
-			<td>
-				${dto.community_title }
-			</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				${dto.member_name }
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${dto.community_content }</td>
-		</tr>
-		<c:if test="${dto.member_no eq login.member_no }">
-			<tr>
-				<td>
-					<button type="button" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
-					<button type="button" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
-				</td>
-			</tr>
-		</c:if>
+	<div class="finalproject_board">
+		<div class="board_main">
+			<div>
+				<div class="board_category">
+					<span class="board_category">
+						<span class="board_category_input"> 정보게시판 </span>
+					</span>
+				</div>
+				<div class="board_info">
+					<div>
+						<span class="board_title">
+							<span class="board_title_input"> ${dto.community_title } </span>
+						</span>
+					</div>
+					<div>
+						<span> 작&nbsp;성&nbsp;자&nbsp; : </span>
+						<span>
+							<input style="border: none" type="text" value="${dto.member_name }" readonly="readonly">
+						</span>
+					</div>
+				</div>
+				<div class="board_date">
+					<span class="board_date">
+						<span class="board_info_date">
+							<fmt:formatDate value="${dto.community_regdate }" pattern="yyyy.MM.dd hh:mm" />
+						</span>
+					</span>
+				</div>
+			</div>
+			<hr>
+			<div class="board_content">${dto.community_content }</div>
+			<c:if test="${dto.member_no eq login.member_no }">
+				<div class="board_button_div">
+					<div>
+						<button type="button" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
+						<button type="button" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
+					</div>
+				</div>
+			</c:if>
+		</div>
+		<br /> <br /> <br /> <br />
 
+		<div class="comment">
+			<c:if test="${login ne null }">
+				<div class="comment_nicname">
+					<span> ${dto.member_name } </span>
+				</div>
+				<textarea class="comment_content" rows="1" cols="80" id="comment_content"></textarea>
 
-	</table>
-
-	<div>
-		<input type="text" name="comment_content" id="comment_content">
-		<button type="button" onclick="commentinsert(${login.member_no})">댓글 등록</button>
-	</div>
-	<div>
-		<table id="commenttable" border="1">
-		</table>
+				<div class="comment_btn">
+					<span class="comment_input">
+						<button type="button" onclick="commentinsert(${login.member_no})">등록</button>
+					</span>
+				</div>
+			</c:if>
+		</div>
+		<hr>
+		<div class="comment_watch">
+			<div class="replyListParent"></div>
+		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

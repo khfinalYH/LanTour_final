@@ -21,8 +21,7 @@
 
 
 	<!-- 일반메뉴 -->
-	<a href="registerform.do">회원가입</a>
-	<a href="registerhost.do">호스트용 회원가입</a>
+	<a href="registselect.do">회원가입</a>
 	<a href="hotellist.do">숙소</a>
 	<a href="lantourlist.do">랜선투어</a>
 	<a href="airportSearch.do">항공검색</a>
