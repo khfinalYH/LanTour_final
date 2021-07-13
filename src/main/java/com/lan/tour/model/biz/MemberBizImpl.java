@@ -55,6 +55,24 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.memberupdate(dto);
 	}
 
+	@Override
+	public String findId(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return dao.findId(dto);
+	}
+
+	@Override
+	public MemberDto findpw(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return dao.findpw(dto);
+	}
+
+	@Override
+	public int updatepw(MemberDto dto) {
+		// TODO Auto-generated method stub
+		return dao.updatepw(dto);
+	}
+
 
 	
 

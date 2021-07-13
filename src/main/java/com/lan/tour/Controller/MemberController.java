@@ -58,6 +58,11 @@ public class MemberController {
 	// ---------------------------------------------
 	// 회원가입------------------------------------------
 	// singup.do -> registerform.do 로 변경(회원가입 페이지로 가는것이 없음)
+	@RequestMapping("/registselect.do")
+	public String singup() {
+		return "registselect";
+	}
+	
 	@RequestMapping("/registerform.do")
 	public String signupform() {
 		// 회원 가입 페이지로 이동 (페이지 이름을 몰라서 register로 작성)
@@ -107,7 +112,7 @@ public class MemberController {
 	@RequestMapping("/memberlist.do")
 	public String memberlist(Model model) {
 		model.addAttribute("list", biz.memberList());
-		return "Member";
+		return "member";
 		
 	}
 	@RequestMapping("/memberupdate.do")
