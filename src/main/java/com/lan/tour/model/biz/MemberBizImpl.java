@@ -55,8 +55,6 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.memberupdate(dto);
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public String findId(MemberDto dto) {
 		// TODO Auto-generated method stub
@@ -75,8 +73,6 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.updatepw(dto);
 	}
 
-
->>>>>>> dressrosa
 	
 
 }
