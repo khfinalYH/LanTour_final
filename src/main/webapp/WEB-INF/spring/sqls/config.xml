@@ -14,6 +14,7 @@
 		<typeAlias type="com.lan.tour.model.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.lan.tour.model.dto.ReviewDto" alias="ReviewDto"/>
 		<typeAlias type="com.lan.tour.model.dto.NoticePagingDto" alias="NoticePagingDto"/>
+		<typeAlias type="com.lan.tour.model.dto.CalendarDto" alias="CalendarDto"/>
 	</typeAliases>
 
 	<mappers>
@@ -26,6 +27,7 @@
 		<mapper resource = "/mybatis/community-mapper.xml"/>
 		<mapper resource = "/mybatis/notice-mapper.xml"/>
 		<mapper resource = "/mybatis/review-mapper.xml"/>
+		<mapper resource = "/mybatis/calendar-mapper.xml"/>
 	</mappers>
 
 </configuration>
