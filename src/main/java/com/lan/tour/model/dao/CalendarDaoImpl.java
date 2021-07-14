@@ -83,6 +83,18 @@ public class CalendarDaoImpl implements CalendarDao {
 		return res;
 	}
 
+	@Override
+	public int dragUpdate(CalendarDto dto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"cal_dargUpdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+	}
 
 
 }

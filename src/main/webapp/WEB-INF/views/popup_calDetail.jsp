@@ -2,6 +2,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,14 +46,26 @@
 			<tr>
 				<th>시작 날짜</th>
 				<td>
-					${dto.cal_startdate }
+					${fn:substring(startdate,0,4)}년
+					${fn:substring(startdate,5,7)}월
+					${fn:substring(startdate,8,10)}일
+					${fn:substring(startdate,11,16)}
 				</td>
 			</tr>
 			
 			<tr>
 				<th>종료 날짜</th>
 				<td>
-					${dto.cal_enddate }
+					<c:if test="${dto.cal_enddate}">
+						${fn:substring(enddate,0,4)}년
+						${fn:substring(enddate,5,7)}월
+						${fn:substring(enddate,8,10)}일
+						${fn:substring(enddate,11,16)}
+					</c:if>
+					
+					<c:if test="${empty dto.cal_enddate}">
+						종료날짜를 등록하지 않았습니다.
+					</c:if>
 				</td>
 			</tr>
 	
