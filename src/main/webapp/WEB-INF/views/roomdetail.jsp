@@ -42,7 +42,7 @@
 	<h3>방 소개 : ${dto.room_content }</h3>
 
 	<button type="button" onclick="delete_room()">방 삭제</button>
-	<button type="button" onclick="">예약하기</button>
+				<input type="button" value="예약" onclick="location.href='reservation.do?type=hotel&no=${dto.hotel_no}&rno=${dto.room_no}'"/>			
 	<br/>
 	<jsp:include page="footer.jsp" />
 </body>
