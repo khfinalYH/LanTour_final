@@ -1,5 +1,6 @@
 package com.lan.tour.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -78,6 +79,18 @@ public class CommentDaoImpl implements CommentDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public List<CommentDto> commentlist() {
+		// TODO Auto-generated method stub
+		List<CommentDto> list = new ArrayList<CommentDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"commentlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

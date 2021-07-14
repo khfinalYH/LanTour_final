@@ -118,4 +118,50 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return res;
 	}
+
+	@Override
+	public String findId(MemberDto dto) {
+		// TODO Auto-generated method stub
+		String res =  "";
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"findid", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+
+	@Override
+	public MemberDto findpw(MemberDto dto) {
+		// TODO Auto-generated method stub
+		MemberDto dto2 = null;
+		try {
+			dto2 = sqlSession.selectOne(NAMESPACE+"findpassword", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return dto2;
+	}
+
+
+
+
+	@Override
+	public int updatepw(MemberDto dto) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"updatepassword", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

@@ -43,5 +43,11 @@ public class CommentBizImpl implements CommentBiz {
 		// TODO Auto-generated method stub
 		return dao.deleteAll(community_no);
 	}
+	
+	@Override
+	public List<CommentDto> commentlist() {
+		// TODO Auto-generated method stub
+		return dao.commentlist();
+	}
 
 }

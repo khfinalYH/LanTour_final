@@ -9,6 +9,7 @@ public interface MemberDao {
 	String NAMESPACE = "member.";
 
 	public List<MemberDto> selectList();
+	
 	public MemberDto selectOne(int member_no);
 
 	public int update(MemberDto dto);
@@ -22,5 +23,10 @@ public interface MemberDao {
 	public List<MemberDto> memberList();
 
 	public int memberupdate(MemberDto dto);
-
+	
+	public String findId(MemberDto dto);
+	
+	public MemberDto findpw(MemberDto dto);
+	
+	public int updatepw(MemberDto dto);
 }

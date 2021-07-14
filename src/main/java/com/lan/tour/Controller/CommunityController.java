@@ -57,6 +57,8 @@ public class CommunityController {
 
 	@RequestMapping("communitydetail.do")
 	public String communitydetail(Model model, int community_no) {
+		biz.readcount(community_no);
+		
 		model.addAttribute("dto", biz.selectOne(community_no));
 
 		return "communitydetail";
@@ -181,4 +183,38 @@ public class CommunityController {
 		
 		return "community";
 	}
+	
+
+	@RequestMapping("boardlist.do")
+	public String boardlist(Model model) {
+		model.addAttribute("list", biz.boardlist());
+
+		return "boardlist";
+	}
+	
+	@RequestMapping("boardupdate.do")
+	public String boardupdate(Model model) {
+		return "communityupdate";
+		
+
+	}
+	@RequestMapping("communityAlldelete.do")
+	public String communityAlldelete(int community_no) {
+		if(biz.communityAlldelete(community_no) > 0) {
+			if(biz2.deleteAll(community_no) > 0) {
+				return "redirect:boardlist.do";
+			}
+		}
+		return "redirect:main.do";
+	}
+	@RequestMapping("deletelist.do")
+	public String deletelist(Model model) {
+		
+		model.addAttribute("list", biz.deletelist());
+		return "deletelist";
+		
+	}
+	
+	
+	
 }

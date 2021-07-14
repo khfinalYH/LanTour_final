@@ -21,4 +21,15 @@ public interface CommunityBiz {
 	public List<CommunityDto> selectcontentsearchList(String community_content);
 	
 	public List<CommunityDto> selectnamesearchList(String member_name);
+
+	public int readcount(int community_no);
+
+	public List<CommunityDto> boardlist();
+	
+	public int boardupdate(CommunityDto dto);
+	
+	public int communityAlldelete(int community_no);
+	
+	public List<CommunityDto> deletelist();
+
 }
