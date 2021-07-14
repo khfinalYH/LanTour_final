@@ -172,7 +172,28 @@ public class NoticeDaoImpl implements NoticeDao {
 		return res;
 	}
 
-	
+	@Override
+	public List<NoticeDto> noticelist() {
+		// TODO Auto-generated method stub
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"noticelist");
+		} catch (Exception e) {
+			
+		}
+		return list;
+	}
+
+	@Override
+	public int noticeupdate(NoticeDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"noticeupdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 	
 }

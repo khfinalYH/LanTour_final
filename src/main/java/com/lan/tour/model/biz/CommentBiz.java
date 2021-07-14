@@ -15,4 +15,6 @@ public interface CommentBiz {
 	public int delete(int comment_no);
 
 	public int deleteAll(int community_no);
+	
+	public List<CommentDto> commentlist();
 }

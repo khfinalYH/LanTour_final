@@ -45,11 +45,7 @@ public class MyPageController {
 		public String mypayment() {
 			return "mypayment";
 		}
-		//�� �����ȹ Ȯ��
-		@RequestMapping("/mytrip.do")
-		public String mytrip() {
-			return "mytrip";
-		}
+
 		
 		/* ǮĶ���� map���·� ��ȯ����� ajax ����� success�ȴ�.
 		Map<String, FullCalendarDto> javaMap = new HashMap<String, FullCalendarDto();

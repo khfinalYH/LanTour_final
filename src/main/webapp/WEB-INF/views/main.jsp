@@ -17,8 +17,15 @@
 	</c:if>
 
 
-	<a href="memberlist.do">회원관리</a>
-
+	
+	 	<div>
+	 	<ul>
+		 	<li><a href="memberlist.do">회원관리</a></li>
+			<li><a href="boardlist.do">관리자 - 커뮤니티 게시판 글 목록</a></li>
+			<li><a href="noticelist.do">관리자 - 공지사항 게시판 글 목록</a></li>
+			<li><a href="comment_list.do">관리자 - 정보공유 게시판 글 목록</a></li>
+		</ul>
+		</div>
 
 	<!-- 일반메뉴 -->
 	<a href="registselect.do">회원가입</a>
