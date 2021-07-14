@@ -30,7 +30,7 @@
 			var start_dt = start_date + start_time
 			var end_dt = end_date + end_time
 			
-			alert(start_dt)
+			
 			var startArray = start_date.split('-');
 			var endArray = end_date.split('-');   
 			var start_date = new Date(startArray[0], startArray[1], startArray[2]);

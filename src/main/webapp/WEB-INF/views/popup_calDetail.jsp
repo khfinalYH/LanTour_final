@@ -34,6 +34,8 @@
 <body>
 
 	<h1>일정 디테일</h1>
+	<c:set var="startdate" value="${dto.cal_startdate }" />
+	<c:set var="enddate" value="${dto.cal_enddate }" />
 	
 	<form action="popupUpdate.do" method="post">
 		<input type ="hidden" class="cal_no" name="cal_no" value="${dto.cal_no }">
@@ -56,7 +58,7 @@
 			<tr>
 				<th>종료 날짜</th>
 				<td>
-					<c:if test="${dto.cal_enddate}">
+					<c:if test="${not empty dto.cal_enddate}">
 						${fn:substring(enddate,0,4)}년
 						${fn:substring(enddate,5,7)}월
 						${fn:substring(enddate,8,10)}일
