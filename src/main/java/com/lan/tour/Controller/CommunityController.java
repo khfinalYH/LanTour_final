@@ -67,9 +67,7 @@ public class CommunityController {
 	@RequestMapping("communitydelete.do")
 	public String communitydelete(int community_no) {
 		if (biz.delete(community_no) > 0) {
-			if (biz2.deleteAll(community_no) > 0) {
-				return "redirect:community.do";
-			}
+			return "redirect:community.do";
 		}
 
 		return "redirect:communitydetail.do?community_co=" + community_no;
@@ -184,13 +182,6 @@ public class CommunityController {
 		return "community";
 	}
 	
-
-	@RequestMapping("boardlist.do")
-	public String boardlist(Model model) {
-		model.addAttribute("list", biz.boardlist());
-
-		return "boardlist";
-	}
 	
 	@RequestMapping("boardupdate.do")
 	public String boardupdate(Model model) {

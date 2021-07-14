@@ -188,11 +188,5 @@ public class NoticeController {
 		return map;
 	}
 
-	@RequestMapping("noticelist.do")
-	public String noticelist(Model model) {
-		model.addAttribute("list", biz.noticelist());
-
-		return "notice_list";
-	}
 	
 }
