@@ -139,6 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
     		  info.revert();
     	  }
       },
+      eventResize : function(info) {
+    	  if(confirm("일정을 변경하시겠습니까?")) {
+    		  var msg = dragUpdate(info);
+    		  alert(msg);
+    	  } else {
+    		  info.revert();
+    	  }
+      },
       eventSources : [
     	  {	  // 랜선투어
     		  events : [
