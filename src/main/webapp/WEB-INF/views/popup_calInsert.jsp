@@ -21,10 +21,10 @@ $(document).ready(function(){
 
 		
 		if(start_time != '') {
-			start_time = 'T' + start_time + ':00';
+			start_time = 'T' + start_time;
 		}		
 		if(end_time != '') {
-			end_time = 'T' + end_time + ':00';
+			end_time = 'T' + end_time;
 		}
 		
 		var start_dt = start_date + start_time

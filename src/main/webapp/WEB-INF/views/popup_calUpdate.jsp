@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +21,16 @@
 			var cal_content = $(".cal_content").val();
 			
 			if(start_time != '') {
-				start_time = 'T' + start_time + ':00';
+				start_time = 'T' + start_time;
 			}		
 			if(end_time != '') {
-				end_time = 'T' + end_time + ':00';
+				end_time = 'T' + end_time;
 			}
 			
 			var start_dt = start_date + start_time
 			var end_dt = end_date + end_time
 			
-			
+			alert(start_dt)
 			var startArray = start_date.split('-');
 			var endArray = end_date.split('-');   
 			var start_date = new Date(startArray[0], startArray[1], startArray[2]);
@@ -73,7 +75,8 @@
 <body>
 
 	<h1>일정 수정</h1>
-	
+	<c:set var="startdate" value="${dto.cal_startdate }" />
+	<c:set var="enddate" value="${dto.cal_enddate }" />
 
 <input type ="hidden" class="cal_no" name="cal_no" value="${dto.cal_no }">
 	<table>
@@ -85,14 +88,14 @@
 		<tr>
 			<th>시작 날짜</th>
 			<td>
-				<input type="date" class="start_date">&nbsp;&nbsp;<input type="time" class="start_time">
+				<input type="date" class="start_date" value="${fn:substring(startdate,0,10) }">&nbsp;&nbsp;<input type="time" class="start_time" value="${fn:substring(startdate,11,19) }">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>종료 날짜</th>
 			<td>
-				<input type="date" class="end_date">&nbsp;&nbsp;<input type="time" class="end_time">
+				<input type="date" class="end_date" value="${fn:substring(enddate,0,10) }">&nbsp;&nbsp;<input type="time" class="end_time" value="${fn:substring(enddate,11,19) }">
 			</td>
 		</tr>
 
