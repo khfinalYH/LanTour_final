@@ -141,6 +141,18 @@ public class CommunityDaoImpl implements CommunityDao {
 		return res;
 	}
 
+	@Override
+	public int communityAlldelete(int community_no) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"communityAlldelete", community_no);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 
 
 	

@@ -196,7 +196,14 @@ public class CommunityController {
 		
 
 	}
-
-	
+	@RequestMapping("communityAlldelete.do")
+	public String communityAlldelete(int community_no) {
+		if(biz.communityAlldelete(community_no) > 0) {
+			if(biz2.deleteAll(community_no) > 0) {
+				return "redirect:boardlist.do";
+			}
+		}
+		return "redirect:main.do";
+	}
 	
 }

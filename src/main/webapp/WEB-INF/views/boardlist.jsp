@@ -17,7 +17,7 @@
 	<table border="1">
 		<col width="50"/>
 		<col width="500"/>
-		<col width="100"/>
+		<col width="200"/>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -32,13 +32,13 @@
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
 				
-					<input type="hidden" name="community_no" value="${dto.community_no }">
 					<tr>
 						<td>${dto.community_no }</td>
 						<td>${dto.community_title }</td>
 						<td>${dto.community_regdate }</td>
 						<td>
 						<input type="submit" value="수정" />
+						<input type="button" value="삭제" onclick="location.href='communityAlldelete.do?community_no=${dto.community_no }'"/>
 						</td>
 					</tr>
 			</c:forEach>

@@ -39,6 +39,7 @@
 							<td>${dto.comment_date }</td>
 							<td>
 								<input type="submit" value="수정"/>
+								<input type="button" value="삭제" onclick="location.href='communityAlldelete.do'"/>
 							</td>
 						</tr>
 					</form>

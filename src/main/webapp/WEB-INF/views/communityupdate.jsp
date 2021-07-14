@@ -73,6 +73,7 @@
 			<tr>
 				<td>
 					<button type="submit">게시글 수정</button>
+					<input type="button" value="삭제" onclick="location.href='community.do'"/>
 				</td>
 			</tr>
 
