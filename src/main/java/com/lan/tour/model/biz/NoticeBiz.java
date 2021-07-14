@@ -19,5 +19,9 @@ public interface NoticeBiz {
 	public int countT(String category);
 	public int countC(String category);
 	public int countTC(String category);
+	
+	public List<NoticeDto> noticelist();
+	
+	public int noticeupdate(NoticeDto dto);
 
 }

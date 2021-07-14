@@ -59,9 +59,14 @@ public class LantourController {
 	
 	
 	@RequestMapping("/lantourinsertres.do")
-	public String lantourinsertres(LantourDto dto) {
-		System.out.println(dto);
-		
+	public String lantourinsertres(LantourDto dto, String[] lantour_date) {
+		StringBuilder sb = new StringBuilder();
+		for(String date : lantour_date) {
+			sb.append(date+",");
+		}
+		System.out.println(sb.toString());
+		dto.setLantour_date(sb.toString());
+		System.out.println(dto);		
 		if (biz.insert(dto) > 0) {
 			return "redirect:lantourlist.do";
 		}

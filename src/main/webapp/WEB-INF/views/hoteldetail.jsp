@@ -23,6 +23,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 
 	<img src="${dto.hotel_image }">
 	<div>
@@ -101,6 +102,6 @@
 	<button type="button" onclick="delete_hotel();">등록된 호텔 삭제</button>
 	<br/>
 	<embed height="600px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}" ></embed>
-	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

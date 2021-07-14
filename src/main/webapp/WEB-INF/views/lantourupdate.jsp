@@ -27,10 +27,23 @@
 			}
 		})
 	}
+	function insertDate(){
+		var dateTd = document.getElementById("DateTd")
+		dateTd.innerHTML = dateTd.innerHTML+"<input class='DateContent' style='display:block;'type='date' name='lantour_date'>"
+	}
+	
+	function deleteDate(){
+		var DateContent = document.getElementsByClassName("DateContent")
+		if(DateContent.length>1){
+			DateContent[DateContent.length-1].remove()
+		}
+	}
+	
 	
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>랜선투어 글수정</h1>
 		<form action="./lantourupdateres.do" method="post" enctype ="multipart/form-data">
 		<input type ="hidden" name = "member_no" value = "${login.member_no }">
@@ -78,8 +91,10 @@
 			</tr>
 			<tr>
 				<th>투어 일정</th>
-				<td>
-					<input type="text" name="lantour_date">
+				<td id="DateTd">
+					<input class="DateContent" type="date" name="lantour_date">
+					<input type="button" onclick="insertDate()" value="추가">
+					<input type="button" onclick="deleteDate()" value="삭제">
 				</td>
 			</tr>
 			<tr>
@@ -89,5 +104,6 @@
 			</tr>
 		</table>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

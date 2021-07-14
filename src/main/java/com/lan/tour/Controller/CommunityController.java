@@ -57,6 +57,8 @@ public class CommunityController {
 
 	@RequestMapping("communitydetail.do")
 	public String communitydetail(Model model, int community_no) {
+		biz.readcount(community_no);
+		
 		model.addAttribute("dto", biz.selectOne(community_no));
 
 		return "communitydetail";
@@ -65,9 +67,7 @@ public class CommunityController {
 	@RequestMapping("communitydelete.do")
 	public String communitydelete(int community_no) {
 		if (biz.delete(community_no) > 0) {
-			if (biz2.deleteAll(community_no) > 0) {
-				return "redirect:community.do";
-			}
+			return "redirect:community.do";
 		}
 
 		return "redirect:communitydetail.do?community_co=" + community_no;
@@ -181,4 +181,15 @@ public class CommunityController {
 		
 		return "community";
 	}
+	
+	
+	@RequestMapping("boardupdate.do")
+	public String boardupdate(Model model) {
+		return "communityupdate";
+		
+
+	}
+
+	
+	
 }

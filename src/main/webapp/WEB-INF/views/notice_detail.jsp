@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
 
 	<h1>DETAIL</h1>
@@ -31,6 +32,6 @@
 				</td>
 			</tr>
 		</table>
-
-</body>
+	<jsp:include page="footer.jsp" />
+</body>	
 </html>

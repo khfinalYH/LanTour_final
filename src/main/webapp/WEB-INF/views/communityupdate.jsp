@@ -48,6 +48,7 @@
 </script>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<form action="communityupdateres.do" method="post">
 		<input type="hidden" name="community_no" value="${dto.community_no }"/>
 		<table border="1">
@@ -78,5 +79,6 @@
 
 		</table>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

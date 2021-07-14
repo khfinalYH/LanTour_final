@@ -54,6 +54,7 @@
 
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 
 	<table style="display:inline;">
 		<tbody>
@@ -74,13 +75,14 @@
 				</tr>
 				<tr>
 					<td colspan = "2">
-						<a href="">아이디 찾기</a>&nbsp;&nbsp;&nbsp;
-						<a href="">비밀번호 찾기</a>&nbsp;&nbsp;&nbsp;
-						<a href="">회원가입</a>
+						<a href="findid.do">아이디 찾기</a>&nbsp;&nbsp;&nbsp;
+						<a href="findpassword.do">비밀번호 찾기</a>&nbsp;&nbsp;&nbsp;
+						<a href="registselect.do">회원가입</a>
 					</td>
 				</tr>
 		</tbody>
 	</table>
+	<jsp:include page="footer.jsp" />
 
 </body>
 </html>

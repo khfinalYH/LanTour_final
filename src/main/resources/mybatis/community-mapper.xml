@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="community">
 
-
 	<!-- community_no, member_no, ,community_title, community_content, community_regdate, 
 		communtiy_readcount, community_deflag -->
 	<select id="community_selectList" resultType="CommunityDto">
@@ -92,5 +91,24 @@
 		#{community_content}
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
+	
+	<update id="readcount_update" parameterType="int">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_READCOUNT = COMMUNITY_READCOUNT + 1
+		WHERE 
+		COMMUNITY_NO = #{community_no}
+	</update>
 
+	<select id="boardlist" resultType="communityDto">
+		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
+		FROM COMMUNITY
+		ORDER BY COMMUNITY_NO
+	</select>
+	
+	<update id="boardupdate" parameterType="communityDto">
+		UPDATE COMMUNITY
+		SET COMMUNITY_CONTENT = #{community_content}
+		WHERE COMMUNITY_NO = #{community_no}
+	</update>
 </mapper>

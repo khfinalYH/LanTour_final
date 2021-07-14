@@ -87,4 +87,16 @@ public class NoticeBizImpl implements NoticeBiz {
 		return dao.countTC(category);
 	}
 	
+	@Override
+	public List<NoticeDto> noticelist() {
+		// TODO Auto-generated method stub
+		return dao.noticelist();
+	}
+
+	@Override
+	public int noticeupdate(NoticeDto dto) {
+		// TODO Auto-generated method stub
+		return dao.noticeupdate(dto);
+	}
+	
 }

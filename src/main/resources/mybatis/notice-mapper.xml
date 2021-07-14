@@ -104,6 +104,12 @@
 		)
 	</select>
 	
+	<select id="noticelist" resultType="noticeDto">
+		SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
+		FROM NOTICE
+		ORDER BY NOTICE_NO DESC
+	</select>
+	
 	
 
 </mapper>

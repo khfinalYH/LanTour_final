@@ -48,6 +48,7 @@ function guestrtc() {
 }
 </script>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>랜선투어 상세페이지</h1>
 	
 	<c:set var="login_member" value="${login.member_no }" />
@@ -124,6 +125,7 @@ function guestrtc() {
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
+				<input type="button" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'"/>			
 				<input type="button" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
 				<input type="button" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
 				<input type="button" value="목록" onclick="location.href='lantourlist.do'" />
@@ -131,5 +133,6 @@ function guestrtc() {
 		</tr>
 	</table>
 	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

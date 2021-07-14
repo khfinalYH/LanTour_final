@@ -50,7 +50,7 @@
 </head>
 
 <body>
-
+	<jsp:include page="header.jsp" />
 	<h1>회원조회</h1>
 
 	<table border="1">
@@ -113,6 +113,6 @@
 		</c:choose>
 		
 	</table>
-
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
