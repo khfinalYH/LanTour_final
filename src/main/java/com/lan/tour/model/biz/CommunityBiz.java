@@ -21,4 +21,8 @@ public interface CommunityBiz {
 	public List<CommunityDto> selectcontentsearchList(String community_content);
 	
 	public List<CommunityDto> selectnamesearchList(String member_name);
+	
+	public List<CommunityDto> boardlist();
+	
+	public int boardupdate(CommunityDto dto);
 }

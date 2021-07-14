@@ -91,4 +91,17 @@
 		#{community_content}
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
+	
+	
+	<select id="boardlist" resultType="communityDto">
+		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
+		FROM COMMUNITY
+		ORDER BY COMMUNITY_NO
+	</select>
+	
+	<update id="boardupdate" parameterType="communityDto">
+		UPDATE COMMUNITY
+		SET COMMUNITY_CONTENT = #{community_content}
+		WHERE COMMUNITY_NO = #{community_no}
+	</update>
 </mapper>

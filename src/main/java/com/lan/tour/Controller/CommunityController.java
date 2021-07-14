@@ -181,4 +181,22 @@ public class CommunityController {
 		
 		return "community";
 	}
+	
+
+	@RequestMapping("boardlist.do")
+	public String boardlist(Model model) {
+		model.addAttribute("list", biz.boardlist());
+
+		return "boardlist";
+	}
+	
+	@RequestMapping("boardupdate.do")
+	public String boardupdate(Model model) {
+		return "communityupdate";
+		
+
+	}
+
+	
+	
 }

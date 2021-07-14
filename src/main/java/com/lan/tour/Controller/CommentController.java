@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -56,5 +57,15 @@ public class CommentController {
 		
 		return map;
 	}
-	
+
+	@RequestMapping("comment_list.do")
+	public String commentlist(Model model) {
+		List<CommentDto> list = new ArrayList<CommentDto>();
+		list = biz.commentlist();
+		
+		
+
+		return "comment_list";
+	}
+
 }
