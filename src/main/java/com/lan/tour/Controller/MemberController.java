@@ -107,7 +107,7 @@ public class MemberController {
 	@RequestMapping("/memberlist.do")
 	public String memberlist(Model model) {
 		model.addAttribute("list", biz.memberList());
-		return "Member";
+		return "member";
 		
 	}
 	@RequestMapping("/memberupdate.do")
