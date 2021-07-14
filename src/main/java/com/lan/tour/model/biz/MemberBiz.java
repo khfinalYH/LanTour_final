@@ -21,4 +21,11 @@ public interface MemberBiz {
 	public List<MemberDto> memberList();
 
 	public int memberupdate(MemberDto dto);
+	
+	public String findId(MemberDto dto);
+	
+	public MemberDto findpw(MemberDto dto);
+	
+	public int updatepw(MemberDto dto);
+
 }
