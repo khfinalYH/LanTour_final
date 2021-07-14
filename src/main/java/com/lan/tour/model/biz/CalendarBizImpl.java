@@ -44,6 +44,10 @@ public class CalendarBizImpl implements CalendarBiz {
 		return dao.delete(cal_no);
 	}
 
-
+	@Override
+	public int dragUpdate(CalendarDto dto) {
+		
+		return dao.dragUpdate(dto);
+	}
 
 }

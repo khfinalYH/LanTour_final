@@ -85,5 +85,16 @@ public class CalendarController {
 		
 		return "redirect:popupDetail.do";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/dragUpdate.do")
+	public String dragUpdate(CalendarDto dto) {
+		
+		if (CBiz.dragUpdate(dto) > 0) {
+			return "y";
+		}
+		
+		return "n";
+	}
 
 }
