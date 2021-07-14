@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,15 @@
 	<c:if test="${not empty login }">
 		<a href="logout.do">로그아웃</a>
 	</c:if>
+
+
+	<div>
+		<ul>
+			<li><a href="memberlist.do">회원관리</a></li>
+			<li><a href="boardlist.do">관리자 - 커뮤니티 게시판 글 목록</a></li>
+			<li><a href="noticelist.do">관리자 - 공지사항 게시판 글 목록</a></li>
+		</ul>
+	</div>
 
 	<!-- 일반메뉴 -->
 	<a href="registselect.do">회원가입</a>

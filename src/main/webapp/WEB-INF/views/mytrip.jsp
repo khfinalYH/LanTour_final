@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='resources/fullcalendar/main.css' rel='stylesheet' />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/main.js" ></script>
 <script type="text/javascript" src="resources/fullcalendar/locale.js" ></script>
 
@@ -43,6 +44,67 @@
 <% List<ReservationDto> listRoom = (List<ReservationDto>)request.getAttribute("listRoom"); %>
 <% List<CalendarDto> listCal = (List<CalendarDto>)request.getAttribute("listCal"); %>
 
+function dateFormat(date) {
+
+	var yyyy = date.getFullYear()
+	var mon = date.getMonth() + 1;
+	mon = mon >= 10? mon : '0' + mon
+	var dd = date.getDate();
+	dd = dd >= 10? dd : '0' + dd
+	var hh = date.getHours();
+	var mm = date.getMinutes();
+	hh = hh >= 10? hh : '0' + hh;
+	mm = mm >= 10? mm : '0' + mm;
+	var todate;
+	
+	if (hh == 0 && mm == 0) {
+		todate = yyyy + "-" + mon + "-" + dd
+	} else {		
+		todate = yyyy + "-" + mon + "-" + dd + "T" + hh + ":" + mm
+	}
+	
+	return todate;
+}
+
+function dragUpdate(info) {
+	
+	var cal_no = info.event.url.split('=')[1];
+	var start = info.event.start;
+	start = dateFormat(start);
+
+	var end = info.event.end;
+	if (end != null) {
+		end = dateFormat(end);
+	} else {
+		end = '';
+	}
+	
+	
+	var msg;
+	
+	$.ajax({
+		type:"post",
+		url: "dragUpdate.do",
+		async: false,
+		data: {
+			"cal_no" : cal_no,
+			"cal_startdate" : start,
+			"cal_enddate" : end
+		},
+		success: function(res){
+			if(res == "y") {
+				msg = "수정되었습니다.";
+			} else {
+				msg = "수정에 실패하였습니다.";
+			}
+		},
+		error: function() {
+			alert("통신오류")
+		}
+	});
+	return msg;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	var initialLocaleCode = 'ko';
 	var localeSelectorEl = document.getElementById('locale-selector');
@@ -61,12 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       dayMaxEvents: true,
       eventClick: function(arg) {
+    	  arg.jsEvent.preventDefault();
     	  if (arg.event.url) {
     		  var url = arg.event.url;
-    		  var name = 'popup';
     		  var option = 'width= 600, height=600, left=500, top=100';
-    		  var pop = window.open(url, name, option);
+    		  var pop = window.open(url, "_blank", option);
     		  return false;
+    	  }
+      },
+      eventDrop : function(info) {
+    	  if(confirm("일정을 변경하시겠습니까?")) {
+    		  var msg = dragUpdate(info);
+    		  alert(msg);
+    	  } else {
+    		  info.revert();
     	  }
       },
       eventSources : [

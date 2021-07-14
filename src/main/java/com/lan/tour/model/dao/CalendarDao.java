@@ -13,5 +13,6 @@ public interface CalendarDao {
 	public int insert(CalendarDto dto);
 	public int update(CalendarDto dto);
 	public int delete(int cal_no);
+	public int dragUpdate(CalendarDto dto);
 
 }

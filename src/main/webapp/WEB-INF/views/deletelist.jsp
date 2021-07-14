@@ -10,45 +10,42 @@
 </head>
 <body>
 
-
-	<h1>관리자 - 정보공유게시판 출력</h1>
-		<input type="hidden"  value="${comment_title }">
+		<h1>관리자 - 삭제된 글 되돌리기</h1>
+		<form action="deletelist.do" method="post">
+		<input type="hidden" id="community_boardlist" value="${community_title }">
+		
 		<table border="1">
 			<col width="50"/>
 			<col width="500"/>
-			<col width="100"/>
+			<col width="200"/>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성일</th>
 			</tr>
+			
 			<c:choose>
 				<c:when test="${empty list }">
 				<tr>	
-					<th colspan="3">----작성된 게시글 없음------</th>
+					<th colspan="3">----삭제된 게시글 없음------</th>
 				</tr>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
 					
-					<form action="commentlist.do" method="post">
-						<input type="hidden" name="comment_no" value="${dto.comment_no }">
 						<tr>
-							<td>${dto.comment_no }</td>
-							<td>${dto.comment_contnet }</td>
-							<td>${dto.comment_date }</td>
+							<td>${dto.community_no }</td>
+							<td>${dto.community_title }</td>
+							<td>${dto.community_regdate }</td>
 							<td>
-								<input type="submit" value="수정"/>
-								<input type="button" value="삭제" onclick="location.href='communityAlldelete.do'"/>
+							<input type="button" value="글 복구" onclick="location.href='boardlist.do?community_no=${dto.community_no }'"/>
 							</td>
 						</tr>
-					</form>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 				
 		</table>
-
-
+	</form>
 </body>
 </html>

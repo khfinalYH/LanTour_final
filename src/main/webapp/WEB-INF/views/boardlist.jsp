@@ -14,15 +14,21 @@
 	<h1>관리자 - 커뮤니티게시판 출력</h1>
 	<form action="communityupdate.do" method="post">
 	<input type="hidden" id="community_boardlist" value="${community_title }">
+	<tr>
+			<td>
+			<input type="button" value="글 복구" onclick="location.href='deletelist.do?community_no=${dto.community_no }'"/>
+			</td>
+	</tr>
 	<table border="1">
 		<col width="50"/>
 		<col width="500"/>
-		<col width="100"/>
+		<col width="200"/>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성일</th>
 		</tr>
+		
 		<c:choose>
 			<c:when test="${empty list }">
 			<tr>	
@@ -32,13 +38,12 @@
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
 				
-					<input type="hidden" name="community_no" value="${dto.community_no }">
 					<tr>
 						<td>${dto.community_no }</td>
 						<td>${dto.community_title }</td>
 						<td>${dto.community_regdate }</td>
 						<td>
-						<input type="submit" value="수정" />
+						<input type="button" value="삭제" onclick="location.href='communityAlldelete.do?community_no=${dto.community_no }'"/>
 						</td>
 					</tr>
 			</c:forEach>

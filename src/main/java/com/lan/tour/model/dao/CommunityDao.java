@@ -30,4 +30,9 @@ public interface CommunityDao {
 	
 	public int boardupdate(CommunityDto dto);
 	
+	public int communityAlldelete(int community_no);
+	
+	public List<CommunityDto> deletelist();
+	
+	
 }

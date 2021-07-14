@@ -25,6 +25,12 @@
 		WHERE CAL_NO = #{cal_no}
 	</update>
 	
+	<update id="cal_dargUpdate" parameterType="CalendarDto">
+		UPDATE CALENDAR
+		SET CAL_STARTDATE = #{cal_startdate}, CAL_ENDDATE = #{cal_enddate}
+		WHERE CAL_NO = #{cal_no}
+	</update>
+	
 	<delete id="cal_delete" parameterType="int">
 		DELETE FROM CALENDAR
 		WHERE CAL_NO = #{cal_no}

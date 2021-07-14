@@ -142,6 +142,18 @@ public class CommunityDaoImpl implements CommunityDao {
 		return res;
 	}
 
+	@Override
+	public int communityAlldelete(int community_no) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"communityAlldelete", community_no);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 
 	@Override
 	public int readcount(int community_no) {
@@ -154,6 +166,19 @@ public class CommunityDaoImpl implements CommunityDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+
+	@Override
+	public List<CommunityDto> deletelist() {
+		// TODO Auto-generated method stub
+		List<CommunityDto> list = new ArrayList<CommunityDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"deleltelist");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
