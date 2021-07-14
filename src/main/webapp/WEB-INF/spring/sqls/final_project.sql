@@ -167,4 +167,4 @@ CREATE TABLE ROOM(
 );
 
 
-select * from review;
+select * from community;

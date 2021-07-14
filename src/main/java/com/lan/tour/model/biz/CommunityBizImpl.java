@@ -62,5 +62,11 @@ public class CommunityBizImpl implements CommunityBiz {
 		return dao.selectnamesearchList(member_name);
 	}
 
+	@Override
+	public int readcount(int community_no) {
+		// TODO Auto-generated method stub
+		return dao.readcount(community_no);
+	}
+
 
 }

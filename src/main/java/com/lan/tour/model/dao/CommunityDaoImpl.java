@@ -116,4 +116,17 @@ public class CommunityDaoImpl implements CommunityDao {
 		return list;
 	}
 
+	@Override
+	public int readcount(int community_no) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"readcount_update", community_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }
