@@ -57,6 +57,8 @@ public class CommunityController {
 
 	@RequestMapping("communitydetail.do")
 	public String communitydetail(Model model, int community_no) {
+		biz.readcount(community_no);
+		
 		model.addAttribute("dto", biz.selectOne(community_no));
 
 		return "communitydetail";

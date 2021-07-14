@@ -92,7 +92,14 @@
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
 	
-	
+	<update id="readcount_update" parameterType="int">
+		UPDATE COMMUNITY
+		SET
+		COMMUNITY_READCOUNT = COMMUNITY_READCOUNT + 1
+		WHERE 
+		COMMUNITY_NO = #{community_no}
+	</update>
+
 	<select id="boardlist" resultType="communityDto">
 		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
 		FROM COMMUNITY

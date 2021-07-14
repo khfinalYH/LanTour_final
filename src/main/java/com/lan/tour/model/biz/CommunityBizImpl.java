@@ -61,10 +61,17 @@ public class CommunityBizImpl implements CommunityBiz {
 		// TODO Auto-generated method stub
 		return dao.selectnamesearchList(member_name);
 	}
+	
 	@Override
 	public List<CommunityDto> boardlist() {
 		// TODO Auto-generated method stub
 		return dao.boardlist();
+	}
+
+	@Override
+	public int readcount(int community_no) {
+		// TODO Auto-generated method stub
+		return dao.readcount(community_no);
 	}
 
 	@Override

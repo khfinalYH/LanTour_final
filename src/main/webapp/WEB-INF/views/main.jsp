@@ -33,9 +33,6 @@
 	<a href="airportSearch.do">항공검색</a>
 	<a href="rentCarSearch.do">렌트카 검색</a>
 	<a href="festival.do">축제 검색</a>
-	<a href="sppechR.do">음성 인식</a>
-	<a href="tts.do">TTS</a>
-	<a href="mypage.do">마이페이지</a>
 	<a href="community.do">정보게시판</a>
 	<a href="mypage.do">마이페이지</a>
 	

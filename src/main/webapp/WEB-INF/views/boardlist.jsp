@@ -37,7 +37,6 @@
 						<td>${dto.community_title }</td>
 						<td>${dto.community_regdate }</td>
 						<td>
-						<input type="submit" value="수정" />
 						<input type="button" value="삭제" onclick="location.href='communityAlldelete.do?community_no=${dto.community_no }'"/>
 						</td>
 					</tr>
