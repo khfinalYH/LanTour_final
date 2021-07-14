@@ -118,6 +118,11 @@
 		WHERE COMMUNITY_NO = #{community_no}
 	</delete>
 	
+	<select id="deletelist" resultType="communityDto">
+		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
+		FROM COMMUNITY
+		ORDER BY COMMUNITY_NO
+	</select>
 	
 	
 </mapper>

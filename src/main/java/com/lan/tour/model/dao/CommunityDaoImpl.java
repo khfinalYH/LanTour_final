@@ -168,4 +168,17 @@ public class CommunityDaoImpl implements CommunityDao {
 		return res;
 	}
 
+
+	@Override
+	public List<CommunityDto> deletelist() {
+		// TODO Auto-generated method stub
+		List<CommunityDto> list = new ArrayList<CommunityDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"deleltelist");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

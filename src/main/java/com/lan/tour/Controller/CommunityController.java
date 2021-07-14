@@ -207,5 +207,14 @@ public class CommunityController {
 		}
 		return "redirect:main.do";
 	}
+	@RequestMapping("deletelist.do")
+	public String deletelist(Model model) {
+		
+		model.addAttribute("list", biz.deletelist());
+		return "deletelist";
+		
+	}
+	
+	
 	
 }

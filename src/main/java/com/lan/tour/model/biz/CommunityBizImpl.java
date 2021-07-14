@@ -86,4 +86,10 @@ public class CommunityBizImpl implements CommunityBiz {
 		return dao.communityAlldelete(community_no);
 	}
 
+	@Override
+	public List<CommunityDto> deletelist() {
+		// TODO Auto-generated method stub
+		return dao.deletelist();
+	}
+
 }
