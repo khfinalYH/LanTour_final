@@ -77,5 +77,21 @@
 	<update id="update_pay" parameterType="ReservationDto">
 		UPDATE RESERVATION  SET RESERVATION_PAY=#{reservation_pay}, RESERVATION_PAYDATE = SYSDATE WHERE RESERVATION_NO = #{reservation_no}
 	</update>
+	
+	<select id="selectList_M_lan" resultType="ReservationDto" parameterType="int">
+		SELECT
+		RESERVATION_NO, LANTOUR_NO, ROOM_NO, HOTEL_NO, MEMBER_NO, RESERVATION_DATE, RESERVATION_CHECKOUT_DATE, RESERVATION_PRICE,
+		RESERVATION_PAY, RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE MEMBER_NO = #{member_no} AND LANTOUR_NO IS NOT NULL AND RESERVATION_PAY != 'cancelled'
+	</select>
+	
+	<select id="selectList_M_room" resultType="ReservationDto" parameterType="int">
+		SELECT
+		RESERVATION_NO, LANTOUR_NO, ROOM_NO, HOTEL_NO, MEMBER_NO, RESERVATION_DATE, RESERVATION_CHECKOUT_DATE, RESERVATION_PRICE,
+		RESERVATION_PAY, RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE MEMBER_NO = #{member_no} AND HOTEL_NO IS NOT NULL AND RESERVATION_PAY != 'cancelled'
+	</select>
 
 </mapper>

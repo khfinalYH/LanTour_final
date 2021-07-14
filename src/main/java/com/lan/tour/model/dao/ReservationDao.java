@@ -16,4 +16,6 @@ public interface ReservationDao {
 	public int insert(ReservationDto dto);
 	public List<ReservationDto> selectList(int m_no);
 	public int updatepay(ReservationDto dto);
+	public List<ReservationDto> selectListLanM(int member_no);
+	public List<ReservationDto> selectListRoomM(int member_no);
 }

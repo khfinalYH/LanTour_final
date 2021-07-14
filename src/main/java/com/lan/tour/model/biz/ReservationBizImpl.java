@@ -53,5 +53,17 @@ public class ReservationBizImpl implements ReservationBiz {
 	public ReservationDto selectOne(int Reservation_no) {
 		return dao.selectOne(Reservation_no);
 	}
+	
+	@Override
+	public List<ReservationDto> selectListLanM(int member_no) {
+
+		return dao.selectListLanM(member_no);
+	}
+
+	@Override
+	public List<ReservationDto> selectListRoomM(int member_no) {
+
+		return dao.selectListRoomM(member_no);
+	}
 
 }
