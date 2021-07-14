@@ -37,7 +37,7 @@
 	<c:if test="${not empty login }">
 		<c:choose>
 			<c:when test="${login.member_grade == 'A' }">
-				<a href="adminpage.do">관리자 페이지</a>
+				<a href="adminmember.do">관리자 페이지</a>
 			</c:when>
 			<c:otherwise>
 				<a href="mypage.do">마이페이지</a>
