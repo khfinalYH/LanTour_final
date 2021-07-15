@@ -22,7 +22,6 @@
 		<ul>
 			<li><a href="memberlist.do">회원관리</a></li>
 			<li><a href="boardlist.do">관리자 - 커뮤니티 게시판 글 목록</a></li>
-			<li><a href="noticelist.do">관리자 - 공지사항 게시판 글 목록</a></li>
 		</ul>
 	</div>
 

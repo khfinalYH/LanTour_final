@@ -139,18 +139,29 @@ document.addEventListener('DOMContentLoaded', function() {
     		  info.revert();
     	  }
       },
+      eventResize : function(info) {
+    	  if(confirm("일정을 변경하시겠습니까?")) {
+    		  var msg = dragUpdate(info);
+    		  alert(msg);
+    	  } else {
+    		  info.revert();
+    	  }
+      },
       eventSources : [
     	  {	  // 랜선투어
     		  events : [
 
-<% for (int i = 0; i < listLan.size(); i++) {%>	
+<% 
+	for (int i = 0; i < listLan.size(); i++) {
+	ReservationDto dto = listLan.get(i);
+%>	
 
     			  {
     				  
     			  title: "랜선투어",
-    			  start: "2021-07-20",
+    			  start: "<%= dto.getReservation_date()  %>",
     			  constraint: 'lantour',
-    			  url: "lantourdetail.do?lantour_no=2"
+    			  url: "lantourdetail.do?lantour_no=" + "<%= dto.getLantour_no()  %>"
     			  },
 <%} %>						
     			  {
@@ -164,14 +175,17 @@ document.addEventListener('DOMContentLoaded', function() {
 		  {	  // 숙소예약
     		  events : [
 
-<% for (int i = 0; i < listLan.size(); i++) {%>	
+<% 
+	for (int i = 0; i < listRoom.size(); i++) {
+	ReservationDto dto = listRoom.get(i);
+%>	
 
     			  {
     			  title: "숙소예약",
-    			  start: "2021-07-07",
-    			  end: "2021-07-09",
+    			  start: "<%= dto.getReservation_date()  %>",
+    			  end: "<%= dto.getReservation_checkout_date()  %>" + "T23:59",
     			  constraint: 'roomReservation',
-    			  url: "hoteldetail.do?hotel_no=3"
+    			  url: "hoteldetail.do?hotel_no=" + "<%= dto.getHotel_no()  %>"
     			  },
 
 <%} %>	
@@ -201,7 +215,7 @@ CalendarDto dto = listCal.get(i);
 <%} %>	
 
         	  ],
-	  	      color: "#DB473E",
+	  	      color: "#ffb463",
 	  	      textColor: "#FFFFFF"
 		  }
       ]

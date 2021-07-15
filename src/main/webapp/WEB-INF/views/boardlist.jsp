@@ -14,11 +14,6 @@
 	<h1>관리자 - 커뮤니티게시판 출력</h1>
 	<form action="communityupdate.do" method="post">
 	<input type="hidden" id="community_boardlist" value="${community_title }">
-	<tr>
-			<td>
-			<input type="button" value="글 복구" onclick="location.href='deletelist.do?community_no=${dto.community_no }'"/>
-			</td>
-	</tr>
 	<table border="1">
 		<col width="50"/>
 		<col width="500"/>
@@ -43,6 +38,9 @@
 						<td>${dto.community_title }</td>
 						<td>${dto.community_regdate }</td>
 						<td>
+						<c:if test="${dto.community_delflag eq 'Y' }">
+						<input type="button" value="복구" onclick="location.href='community_refaire.do?community_no=${dto.community_no}'"/>
+						</c:if>
 						<input type="button" value="삭제" onclick="location.href='communityAlldelete.do?community_no=${dto.community_no }'"/>
 						</td>
 					</tr>
