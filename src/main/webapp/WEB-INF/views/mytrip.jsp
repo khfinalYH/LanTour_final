@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     			  {
     			  title: "숙소예약",
     			  start: "<%= dto.getReservation_date()  %>",
-    			  end: "<%= dto.getReservation_checkout_date()  %>",
+    			  end: "<%= dto.getReservation_checkout_date()  %>" + "T23:59",
     			  constraint: 'roomReservation',
     			  url: "hoteldetail.do?hotel_no=" + "<%= dto.getHotel_no()  %>"
     			  },
