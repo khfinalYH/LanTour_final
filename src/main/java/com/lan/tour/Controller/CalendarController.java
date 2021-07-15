@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lan.tour.model.biz.CalendarBiz;
 import com.lan.tour.model.biz.MemberBiz;
+import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.dto.CalendarDto;
 
 @Controller
@@ -19,14 +20,17 @@ public class CalendarController {
 	@Autowired
 	private CalendarBiz CBiz;
 	
+	@Autowired
+	private ReservationBiz RBiz;
+	
 	@RequestMapping("/mytrip.do")
 	public String mytrip(Model model, String member_no) {
 		
 		int member_no1 = Integer.parseInt(member_no);
 		System.out.println(member_no1);
 		
-		model.addAttribute("listLan", biz.selectList());
-		model.addAttribute("listRoom", biz.selectList());
+		model.addAttribute("listLan", RBiz.selectListLanM(member_no1));
+		model.addAttribute("listRoom", RBiz.selectListRoomM(member_no1));
 		model.addAttribute("listCal", CBiz.selectList(member_no1));
 		
 		return "mytrip";

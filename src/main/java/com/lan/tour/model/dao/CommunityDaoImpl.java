@@ -126,6 +126,7 @@ public class CommunityDaoImpl implements CommunityDao {
 			e.printStackTrace();
 		}
 		
+		System.out.println(list);
 		return list;
 	}
 
@@ -168,17 +169,17 @@ public class CommunityDaoImpl implements CommunityDao {
 		return res;
 	}
 
-
 	@Override
-	public List<CommunityDto> deletelist() {
+	public int community_refaire(int community_no) {
 		// TODO Auto-generated method stub
-		List<CommunityDto> list = new ArrayList<CommunityDto>();
+		int res = 0;
 		try {
-			list = sqlSession.selectList(NAMESPACE+"deleltelist");
+			res = sqlSession.update(NAMESPACE+"community_refaired",community_no );
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return list;
+		return res;
 	}
+
 
 }

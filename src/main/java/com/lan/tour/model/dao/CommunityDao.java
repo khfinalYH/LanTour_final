@@ -32,7 +32,6 @@ public interface CommunityDao {
 	
 	public int communityAlldelete(int community_no);
 	
-	public List<CommunityDto> deletelist();
-	
+	public int community_refaire(int community_no);
 	
 }

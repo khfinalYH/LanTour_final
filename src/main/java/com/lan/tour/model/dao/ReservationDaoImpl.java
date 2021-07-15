@@ -141,4 +141,30 @@ public class ReservationDaoImpl implements ReservationDao {
 	
 		return res;
 	}
+	
+	@Override
+	public List<ReservationDto> selectListLanM(int member_no) {
+		List<ReservationDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectList_M_lan", member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<ReservationDto> selectListRoomM(int member_no) {
+		List<ReservationDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectList_M_room", member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 }

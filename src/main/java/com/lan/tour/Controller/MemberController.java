@@ -152,7 +152,7 @@ public class MemberController {
 		}
 		return "invaild login";
 	}
-
+	
 	@RequestMapping("/googlesignup.do")
 	public String googlesignup(Model model,String idtoken) {
 		model.addAttribute("idtoken", idtoken);
