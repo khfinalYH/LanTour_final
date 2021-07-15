@@ -9,6 +9,7 @@
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
 		$('.summernote').summernote({
@@ -46,38 +47,40 @@
 		});
 	}
 </script>
+<style type="text/css">
+.community-insert {
+	width: 1000px;
+	margin: auto;
+}
+
+.btn-which {
+	float: right;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<form action="communityinsertres.do">
-		<input type="hidden" name="member_no" value="${login.member_no }" />
-		<table border="1">
-			<tr>
-				<th>제목</th>
-				<td>
-					<input type="text" name="community_title">
-				</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>
-					<input type="text" value="${login.member_name }" readonly="readonly">
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea class="summernote" rows="10" cols="60" name="community_content"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button type="submit">게시글 작성</button>
-				</td>
-			</tr>
-
-		</table>
-	</form>
+	<h1>insert</h1>
+	<div class="community-insert">
+		<form action="communityinsertres.do">
+			<input type="hidden" name="member_no" value="${login.member_no }" />
+			<div class="form-group row">
+				<input type="text" class="form-control" id="community_title" placeholder="제목을 입력하세요">
+			</div>
+			<br>
+			<div class="form-group row">
+				<input type="text" class="form-control" name="community_title" value="${login.member_name }">
+			</div>
+			<br>
+			<div class="form-group row">
+				<textarea class="summernote" rows="10" cols="60" name="community_content"></textarea>
+			</div>
+			<br>
+			<div class="btn-which">
+				<button class="btn btn-primary" type="submit">게시글 작성</button>
+			</div>
+		</form>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

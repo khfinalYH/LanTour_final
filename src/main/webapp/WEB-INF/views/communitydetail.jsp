@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function () {
 		commentlist();
@@ -154,8 +155,8 @@
 			<c:if test="${dto.member_no eq login.member_no }">
 				<div class="board_button_div">
 					<div>
-						<button type="button" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
-						<button type="button" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='communityupdate.do?community_no=${dto.community_no}'">게시글 수정</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='communitydelete.do?community_no=${dto.community_no}'">게시글 삭제</button>
 					</div>
 				</div>
 			</c:if>
@@ -167,11 +168,11 @@
 				<div class="comment_nicname">
 					<span> ${dto.member_name } </span>
 				</div>
-				<textarea class="comment_content" rows="1" cols="80" id="comment_content"></textarea>
+				<input type="text" class="comment_content"  id="comment_content">
 
 				<div class="comment_btn">
 					<span class="comment_input">
-						<button type="button" onclick="commentinsert(${login.member_no})">등록</button>
+						<button type="button" class="btn btn-primary" onclick="commentinsert(${login.member_no})">등록</button>
 					</span>
 				</div>
 			</c:if>
