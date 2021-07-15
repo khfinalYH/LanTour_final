@@ -12,6 +12,16 @@
 		ORDER BY
 		MEMBER_NO DESC
 	</select>
+	
+	<select id="emailcheck" parameterType="String"
+		resultType="memberDto">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
+		MEMBER_GRADE,
+		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
+		MEMBER_SECESSION
+		FROM MEMBER
+		WHERE MEMBER_EMAIL = #{member_email}
+	</select>
 
 
 	<select id="selectOne" parameterType="int"
