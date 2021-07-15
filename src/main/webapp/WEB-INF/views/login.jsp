@@ -6,10 +6,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 <title>Insert title here</title>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
+
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	  var id_token = googleUser.getAuthResponse().id_token;
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('POST', 'googleTokensignin.do');
+	  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	  
+	  xhr.onload = function() {
+  		  console.log('Signed in as: ' + xhr.responseText);
+  		  switch(xhr.responseText){
+	  		  case "InvalidEmain":
+	  			  alert("구글 이메일 인증이 되어있지 않습니다.")
+	  			  break;
+	  		  case "signup":
+	  			  document.getElementById("id_token").value=id_token
+	  			  alert("회원가입 페이지로 넘어갑니다")
+  			      var f=document.google
+			      f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
+			      f.action="googlesignup.do";//이동할 페이지
+			      f.method="post";//POST방식
+			      f.submit();
+	  			  break;
+	  		  case "login":
+	  			  alert("로그인되었습니다.")
+	  			  location.href="main.do"
+	  			  break;
+	  		  case "부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)":
+	  			  break;
+  		  }
+	  };
+	  xhr.send('idtoken=' + id_token);
+	}
 
 	$(function(){
 	    $("#loginChk").hide();
@@ -54,6 +93,10 @@
 
 </head>
 <body>
+<form name="google">
+	<input type="hidden" name="idtoken" id="id_token" value="">
+</form>
+
 	<jsp:include page="header.jsp" />
 
 	<table style="display:inline;">
@@ -75,6 +118,7 @@
 				</tr>
 				<tr>
 					<td colspan = "2">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
 						<a href="findid.do">아이디 찾기</a>&nbsp;&nbsp;&nbsp;
 						<a href="findpassword.do">비밀번호 찾기</a>&nbsp;&nbsp;&nbsp;
 						<a href="registselect.do">회원가입</a>
