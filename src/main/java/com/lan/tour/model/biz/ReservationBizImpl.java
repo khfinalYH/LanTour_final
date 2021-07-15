@@ -16,7 +16,6 @@ public class ReservationBizImpl implements ReservationBiz {
 
 	@Override
 	public List<ReservationDto> selectList() {
-		// TODO Auto-generated method stub
 		return dao.selectList();
 	}
 
@@ -27,7 +26,6 @@ public class ReservationBizImpl implements ReservationBiz {
 
 	@Override
 	public List<ReservationDto> selectList(String type, int no, int rno) {
-		// TODO Auto-generated method stub
 		return dao.selectList(type, no, rno);
 	}
 
@@ -39,6 +37,33 @@ public class ReservationBizImpl implements ReservationBiz {
 	@Override
 	public int insert(ReservationDto dto) {
 		return dao.insert(dto);
+	}
+
+	@Override
+	public List<ReservationDto> selectList(int m_no) {
+		return dao.selectList(m_no);
+	}
+
+	@Override
+	public int updatepay(ReservationDto dto) {
+		return dao.updatepay(dto);
+	}
+
+	@Override
+	public ReservationDto selectOne(int Reservation_no) {
+		return dao.selectOne(Reservation_no);
+	}
+	
+	@Override
+	public List<ReservationDto> selectListLanM(int member_no) {
+
+		return dao.selectListLanM(member_no);
+	}
+
+	@Override
+	public List<ReservationDto> selectListRoomM(int member_no) {
+
+		return dao.selectListRoomM(member_no);
 	}
 
 }

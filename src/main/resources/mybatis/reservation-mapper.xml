@@ -3,7 +3,7 @@
 <mapper namespace="reservation">
 	<select id="selectList" resultType="ReservationDto">
 		SELECT
-		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE , RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
 		ORDER BY RESERVATION_NO
@@ -12,7 +12,7 @@
 	<select id="selectOne" parameterType="ReservationDto"
 		resultType="ReservationDto">
 		SELECT
-		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE,RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
 		WHERE LANTOUR_NO =
@@ -20,42 +20,78 @@
 		AND MEMBER_NO = #{member_no}
 	</select>
 
-	<select id="selectList_lantour" resultType="ReservationDto">
+	<select id="selectOne_Res" parameterType="int"
+		resultType="ReservationDto">
 		SELECT
-		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE,RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
-		WHERE LANTOUR_NO = ${lantour_no}
+		WHERE RESERVATION_NO =#{reservation_no}
+	</select>
+	
+	<select id="selectList_lantour" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE LANTOUR_NO = ${lantour_no} AND RESERVATION_PAY != 'cancelled'
 		ORDER BY RESERVATION_NO
 	</select>
 
-	<select id="selectList_room" resultType="ReservationDto">
+	<select id="selectList_room" parameterType="hashMap" resultType="ReservationDto">
 		SELECT
-		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE,RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
-		WHERE LANTOUR_NO = ${lantour_no}
+		WHERE ROOM_NO = ${room_no} AND HOTEL_NO = ${hotel_no} AND RESERVATION_PAY != 'cancelled'
 		ORDER BY RESERVATION_NO
 	</select>
 	
 	<insert id="insert_lantour">
 		INSERT INTO RESERVATION
-		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date},
+		VALUES(RESERVATION_NO_SEQ.NEXTVAL,#{lantour_no},NULL,NULL,#{member_no},#{reservation_date}, NULL,
 		#{reservation_price},'N',SYSDATE)
 	</insert>
 	
 	<insert id="insert_room">
 		INSERT INTO RESERVATION
-		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},NULL,#{member_no},#{reservation_date},
-		'N',#{reservation_pay},SYSDATE)
+		VALUES(RESERVATION_NO_SEQ.NEXTVAL,NULL,#{room_no},#{hotel_no},#{member_no},#{reservation_date}, #{reservation_checkout_date},
+		#{reservation_price},'N',SYSDATE)
 	</insert>
 	
 	<select id="countDate"  parameterType="ReservationDto" resultType="ReservationDto">
 		SELECT
 		RESERVATION_NO
 		FROM RESERVATION
-		WHERE LANTOUR_NO = #{lantour_no} AND RESERVATION_DATE  = #{reservation_date}
+		WHERE LANTOUR_NO = #{lantour_no} AND RESERVATION_DATE  = #{reservation_date} AND RESERVATION_PAY != 'cancelled'
 	</select>
-
+	
+	<select id="selectlist_MemberNo"  parameterType="int" resultType="ReservationDto">
+		SELECT
+		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_PRICE,
+		RESERVATION_PAY,RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE MEMBER_NO = #{member_no}
+		ORDER BY RESERVATION_NO DESC
+	</select>
+	<update id="update_pay" parameterType="ReservationDto">
+		UPDATE RESERVATION  SET RESERVATION_PAY=#{reservation_pay}, RESERVATION_PAYDATE = SYSDATE WHERE RESERVATION_NO = #{reservation_no}
+	</update>
+	
+	<select id="selectList_M_lan" resultType="ReservationDto" parameterType="int">
+		SELECT
+		RESERVATION_NO, LANTOUR_NO, ROOM_NO, HOTEL_NO, MEMBER_NO, RESERVATION_DATE, RESERVATION_CHECKOUT_DATE, RESERVATION_PRICE,
+		RESERVATION_PAY, RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE MEMBER_NO = #{member_no} AND LANTOUR_NO IS NOT NULL AND RESERVATION_PAY != 'cancelled'
+	</select>
+	
+	<select id="selectList_M_room" resultType="ReservationDto" parameterType="int">
+		SELECT
+		RESERVATION_NO, LANTOUR_NO, ROOM_NO, HOTEL_NO, MEMBER_NO, RESERVATION_DATE, RESERVATION_CHECKOUT_DATE, RESERVATION_PRICE,
+		RESERVATION_PAY, RESERVATION_PAYDATE
+		FROM RESERVATION
+		WHERE MEMBER_NO = #{member_no} AND HOTEL_NO IS NOT NULL AND RESERVATION_PAY != 'cancelled'
+	</select>
 
 </mapper>
