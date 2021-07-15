@@ -16,6 +16,18 @@
 			autoDisplay : false
 		}, 'google_translate_element');
 	}
+	function signOut() {
+		  var auth2 = gapi.auth2.getAuthInstance();
+		  auth2.signOut().then(function () {
+		    console.log('User signed out.');
+		  });
+	    	location.href="logout.do"
+		}
+	window.onload = function() {
+	      gapi.load('auth2', function() {
+	        gapi.auth2.init();
+     });
+		    }
 </script>
 <style type="text/css">
 .header {
@@ -64,7 +76,7 @@
 							<button class="btn btn-lg btn-outline-primary order-0" type="button" onclick="location.href='loginform.do'">로그인</button>
 						</c:if>
 						<c:if test="${not empty login }">
-							<button class="btn btn-lg btn-outline-primary order-0" type="button" onclick="location.href='logout.do'">로그인</button>
+							<button class="btn btn-lg btn-outline-primary order-0" type="button" onclick="signOut()">로그아웃</button>
 						</c:if>
 
 					</form>
