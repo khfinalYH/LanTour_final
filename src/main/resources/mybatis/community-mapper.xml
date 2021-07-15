@@ -77,12 +77,12 @@
 		VALUES(COMMUNITY_NO_SEQ.NEXTVAL,#{member_no},#{community_title},#{community_content},SYSDATE,0,'N')
 	</insert>
 
-	<delete id="community_delete" parameterType="int">
+	<update id="community_delete" parameterType="int">
 		UPDATE COMMUNITY
 		SET
 		COMMUNITY_DELFLAG = 'Y'
 		WHERE COMMUNITY_NO = #{community_no}
-	</delete>
+	</update>
 
 	<update id="community_update" parameterType="CommunityDto">
 		UPDATE COMMUNITY
@@ -101,7 +101,7 @@
 	</update>
 
 	<select id="boardlist" resultType="communityDto">
-		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
+		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE, COMMUNITY_DELFLAG
 		FROM COMMUNITY
 		ORDER BY COMMUNITY_NO
 	</select>
@@ -118,11 +118,10 @@
 		WHERE COMMUNITY_NO = #{community_no}
 	</delete>
 	
-	<select id="deletelist" resultType="communityDto">
-		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE
-		FROM COMMUNITY
-		ORDER BY COMMUNITY_NO
-	</select>
-	
+	<update id="community_refaired" parameterType="int">
+		UPDATE COMMUNITY
+		SET COMMUNITY_DELFLAG = 'N'
+		WHERE COMMUNITY_NO = #{community_no}
+	</update>
 	
 </mapper>

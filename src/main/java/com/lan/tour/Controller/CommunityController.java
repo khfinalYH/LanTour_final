@@ -72,7 +72,7 @@ public class CommunityController {
 			}
 		}
 
-		return "redirect:communitydetail.do?community_co=" + community_no;
+		return "redirect:communitydetail.do?community_no=" + community_no;
 	}
 
 	@RequestMapping("communityupdate.do")
@@ -207,14 +207,15 @@ public class CommunityController {
 		}
 		return "redirect:main.do";
 	}
-	@RequestMapping("deletelist.do")
-	public String deletelist(Model model) {
-		
-		model.addAttribute("list", biz.deletelist());
-		return "deletelist";
-		
+	@RequestMapping("community_refaire.do")
+	public String community_refaire(int community_no) {
+		if(biz.community_refaire(community_no) > 0) {
+			return "redirect:boardlist.do";
+		}
+		return "redirect:main.do";
 	}
+
 	
 	
-	
-}
+	}
+

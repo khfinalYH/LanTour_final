@@ -33,7 +33,7 @@
 	
 	<delete id="deleteAll" parameterType="int">
 		DELETE FROM COMMENT_TABEL
-		WHERE COMMUNITY_NO = #{community_no};
+		WHERE COMMUNITY_NO = #{community_no}
 	</delete>
 	
 	<select id="commentlist" resultType="commentDto">
