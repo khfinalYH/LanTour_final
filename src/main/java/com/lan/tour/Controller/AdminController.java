@@ -22,7 +22,7 @@ public class AdminController {
 
 	@Autowired
 	private NoticeBiz not_biz;
-	
+
 	@Autowired
 	private CommentBiz comment_biz;
 
@@ -65,5 +65,13 @@ public class AdminController {
 		model.addAttribute("n_list", not_biz.noticelist());
 
 		return "adminnotice";
+	}
+
+	@RequestMapping("/admincommunity_refaire.do")
+	public String admincommunity_refaire(int community_no) {
+		if (com_biz.community_refaire(community_no) > 0) {
+			return "redirect:admincommunity.do";
+		}
+		return "redirect:main.do";
 	}
 }

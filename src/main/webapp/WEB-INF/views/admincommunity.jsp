@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -44,7 +43,10 @@
 							<td>${dto.community_title }</td>
 							<td>${dto.community_regdate }</td>
 							<td>
-								<input type="button" value="삭제"onclick="location.href='admincommunityAlldelete.do?community_no=${dto.community_no }'" />
+								<c:if test="${dto.community_delflag eq 'Y' }">
+									<input type="button" value="복구" onclick="location.href='admincommunity_refaire.do?community_no=${dto.community_no}'" />
+								</c:if>
+								<input type="button" value="삭제" onclick="location.href='admincommunityAlldelete.do?community_no=${dto.community_no }'" />
 							</td>
 						</tr>
 					</c:forEach>

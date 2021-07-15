@@ -32,8 +32,7 @@ public class CommunityController {
 
 	@Autowired
 	private CommentBiz biz2;
-	
-	
+
 	@RequestMapping("community.do")
 	public String community(Model model) {
 		model.addAttribute("list", biz.selectList());
@@ -58,7 +57,7 @@ public class CommunityController {
 	@RequestMapping("communitydetail.do")
 	public String communitydetail(Model model, int community_no) {
 		biz.readcount(community_no);
-		
+
 		model.addAttribute("dto", biz.selectOne(community_no));
 
 		return "communitydetail";
@@ -160,7 +159,7 @@ public class CommunityController {
 		model.addAttribute("list", biz.selecttitlesearchList(community_content));
 		model.addAttribute("community_content", community_content);
 		model.addAttribute("filter", "title");
-		
+
 		return "community";
 	}
 
@@ -169,7 +168,7 @@ public class CommunityController {
 		model.addAttribute("list", biz.selectcontentsearchList(community_content));
 		model.addAttribute("community_content", community_content);
 		model.addAttribute("filter", "content");
-		
+
 		return "community";
 	}
 
@@ -178,35 +177,8 @@ public class CommunityController {
 		model.addAttribute("list", biz.selectnamesearchList(community_content));
 		model.addAttribute("community_content", community_content);
 		model.addAttribute("filter", "name");
-		
+
 		return "community";
 	}
-	
-	
-	@RequestMapping("boardupdate.do")
-	public String boardupdate(Model model) {
-		return "communityupdate";
-		
 
-	}
-	@RequestMapping("communityAlldelete.do")
-	public String communityAlldelete(int community_no) {
-		if(biz.communityAlldelete(community_no) > 0) {
-			if(biz2.deleteAll(community_no) > 0) {
-				return "redirect:boardlist.do";
-			}
-		}
-		return "redirect:main.do";
-	}
-	@RequestMapping("community_refaire.do")
-	public String community_refaire(int community_no) {
-		if(biz.community_refaire(community_no) > 0) {
-			return "redirect:boardlist.do";
-		}
-		return "redirect:main.do";
-	}
-
-	
-	
-	}
-
+}

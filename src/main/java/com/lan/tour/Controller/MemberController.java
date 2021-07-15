@@ -109,22 +109,6 @@ public class MemberController {
 		return "redirect:registerform.do";
 	}	
 
-	@RequestMapping("/memberlist.do")
-	public String memberlist(Model model) {
-		model.addAttribute("list", biz.memberList());
-		return "member";
-		
-	}
-	@RequestMapping("/memberupdate.do")
-	public String update(int member_no, String member_grade) {
-		MemberDto dto = new MemberDto();
-		dto.setMember_no(member_no);
-		dto.setMember_grade(member_grade);
-		
-		biz.memberupdate(dto);
-		return "redirect:memberlist.do";
-		
-	}
 
 	
 }
