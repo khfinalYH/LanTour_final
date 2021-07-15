@@ -196,16 +196,17 @@ public class MemberController {
 		if(dto==null) {
 			return "InvalidEmain";
 		}else if(biz.idCheck(dto)==null) {
-			return "signup";
-		}else {
 			if(biz.checkEmail(dto.getMember_email())!=null) {
 				return "hasemail";
 			}else {
-				MemberDto res = biz.idCheck(dto);
-				if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
-					session.setAttribute("login", res);
-					return "login";
-				}
+				return "signup";
+				
+			}
+		}else {
+			MemberDto res = biz.idCheck(dto);
+			if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
+				session.setAttribute("login", res);
+				return "login";
 			}
 		}
 		return "invaild login";
