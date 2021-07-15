@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.MemberBiz;
-import com.lan.tour.model.biz.NoticeBiz;
 import com.lan.tour.model.dto.MemberDto;
 
 @Controller
@@ -19,9 +18,6 @@ public class AdminController {
 
 	@Autowired
 	private CommunityBiz com_biz;
-
-	@Autowired
-	private NoticeBiz not_biz;
 
 	@Autowired
 	private CommentBiz comment_biz;
@@ -58,13 +54,6 @@ public class AdminController {
 			}
 		}
 		return "redirect:main.do";
-	}
-
-	@RequestMapping("/adminnotice.do")
-	public String adminnotice(Model model) {
-		model.addAttribute("n_list", not_biz.noticelist());
-
-		return "adminnotice";
 	}
 
 	@RequestMapping("/admincommunity_refaire.do")
