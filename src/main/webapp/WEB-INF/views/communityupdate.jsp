@@ -8,6 +8,7 @@
 <!-- summernote js,css 링크 -->
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
 <script type="text/javascript">
 	$(function() {
@@ -46,40 +47,40 @@
 		});
 	}
 </script>
+<style type="text/css">
+.community-update {
+	width: 1000px;
+	margin: auto;
+}
+
+.btn-which {
+	float: right;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<form action="communityupdateres.do" method="post">
-		<input type="hidden" name="community_no" value="${dto.community_no }"/>
-		<table border="1">
-			<tr>
-				<th>제목</th>
-				<td>
-					<input type="text" name="community_title" value="${dto.community_title }">
-				</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>
-					<input type="text" value="${dto.member_name }" readonly="readonly">
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea class="summernote" rows="10" cols="60" name="community_content">${dto.community_content }</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button type="submit">게시글 수정</button>
-					<input type="button" value="삭제" onclick="location.href='community.do'"/>
-				</td>
-			</tr>
-
-
-		</table>
-	</form>
+	<h1>update</h1>
+	<div class="community-update">
+		<form action="communityupdateres.do" method="post">
+			<input type="hidden" name="community_no" value="${dto.community_no }" />
+			<div class="form-group row">
+				<input type="text" class="form-control" id="community_title" value="${dto.community_title }" placeholder="제목을 입력하세요">
+			</div>
+			<br>
+			<div class="form-group row">
+				<input type="text" class="form-control" name="community_title" value="${login.member_name }" readonly="readonly">
+			</div>
+			<br>
+			<div class="form-group row">
+				<textarea class="summernote" rows="10" cols="60" name="community_content">${dto.community_content }</textarea>
+			</div>
+			<br>
+			<div class="btn-which">
+				<button class="btn btn-primary" type="submit">게시글 수정</button>
+			</div>
+		</form>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
