@@ -78,7 +78,6 @@
 						<c:if test="${not empty login }">
 							<button class="btn btn-lg btn-outline-primary order-0" type="button" onclick="signOut()">로그아웃</button>
 						</c:if>
-
 					</form>
 				</div>
 			</div>
