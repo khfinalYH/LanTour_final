@@ -65,11 +65,11 @@
 		<form action="communityinsertres.do">
 			<input type="hidden" name="member_no" value="${login.member_no }" />
 			<div class="form-group row">
-				<input type="text" class="form-control" id="community_title" placeholder="제목을 입력하세요">
+				<input type="text" class="form-control" style="color: black;" id="community_title" placeholder="제목을 입력하세요">
 			</div>
 			<br>
 			<div class="form-group row">
-				<input type="text" class="form-control" name="community_title" value="${login.member_name }">
+				<input type="text" class="form-control" style="color: black;" name="community_title" value="${login.member_name }" readonly="readonly">
 			</div>
 			<br>
 			<div class="form-group row">

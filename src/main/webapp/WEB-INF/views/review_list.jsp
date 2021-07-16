@@ -132,22 +132,27 @@
 	function writeReview(){
 		var write = document.getElementById("writeReview")		
 		write.style.display = "block"
-		var write = document.getElementById("reviewList")		
+		var list = document.getElementById("reviewList")		
+		list.style.display = "none"
 		var Search = document.getElementById("reviewSearch")
 		Search.style.display = "none"
-		var write = document.getElementById("writeButton")		
-		write.style.display = "none"
+		var writeButton = document.getElementById("writeButton")		
+		writeButton.style.display = "none"
+		var writebox= document.getElementById("writebox")		
+		writebox.style.width = "100%"
 	}
 
 	function backReview(){
 		var write = document.getElementById("writeReview")		
 		write.style.display = "none"
-		var write = document.getElementById("reviewList")		
-		write.style.display = "block"
-		var write = document.getElementById("writeButton")		
-		write.style.display = "block"
+		var list = document.getElementById("reviewList")		
+		list.style.display = "block"
+		var writeButton = document.getElementById("writeButton")		
+		writeButton.style.display = "block"
 		var Search = document.getElementById("reviewSearch")
 		Search.style.display = "block"
+		var writebox= document.getElementById("writebox")		
+		writebox.style.width = "30%"
 	}
 	
 	function ReviewSort(ele){
@@ -168,13 +173,13 @@
 <span></span>
 </div>
 
-<div class="bs-docs-section">
-	<div class="bs-component card border-secondary mb-3">
-		<%if(login!=null){ %>		
+<div class="bs-docs-section" style="display: flex;">
+		<%if(login!=null){ %>	
+	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 30%; margin-right: 2.5%">
 		<form action="ReviewInsert.do" method="post">
 			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
 			<input type="hidden" name="type" value="<%=type %>"/>			
-			<div class="card-header">
+			<div class="card-header" style="background-color: #ecf3fd;">
 				<h3>평가하기</h3>
 			</div>
 			<div class="card-body">
@@ -187,46 +192,47 @@
 					<span id="star4" onclick="starPick(4)"> ☆ </span>
 					<span id="star5" onclick="starPick(5)"> ☆ </span>
 				</h3>
-				<input type="button" class="btn btn-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
+				<input type="button" class="btn btn-outline-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
 				<div id="writeReview" style="display: none;">
 					<div>
 						<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
 					</div>
 					<div>
-						<input type="submit" class="btn btn-primary" value="작성">
-						<input type="button" class="btn btn-primary" value="취소" id="writeButton" onclick="backReview()">
+						<input type="submit" class="btn btn-outline-primary" value="작성">
+						<input type="button" class="btn btn-outline-primary" value="취소" id="writeButton" onclick="backReview()">
 					</div>
 				</div>
 			</div>
 		</form>
-		
-		<%} %>	
 	</div>
-	<div style="width: 50%; display: inline;" id="reviewSearch">
+			<%} %>	
+	
+	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 30%; margin-top: 0;">	
+		<div class="card-header" style="background-color: #ecf3fd;">
+			<h3>리뷰 검색</h3>
+		</div>
 		<form action="reviewsearch.do" method="post">
-			<div>
+			<div class="card-body">
 				<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
 				<input type="hidden" name="type" value="<%=type %>"/>		
 				<div class="bs-component mb-5">
 					<div>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="0"><label class="form-check-label"  > 0</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="1"><label class="form-check-label"  > 1</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="2"><label class="form-check-label"  > 2</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="3"><label class="form-check-label"  > 3</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="4"><label class="form-check-label"  > 4</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="5"><label class="form-check-label"  > 5</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="0"><label class="form-check-label"  >★0</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="1"><label class="form-check-label"  >★1</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="2"><label class="form-check-label"  >★2</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="3"><label class="form-check-label"  >★3</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="4"><label class="form-check-label"  >★4</label>
+						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="5"><label class="form-check-label"  >★5</label>
 					</div >
 					<select class="form-select" name="sort" style="width: 30%; display: inline;">
 						<option value="ASC">오름차순</option>
 						<option value="DESC">내림차순</option>
 					</select>
-					<input type="submit" class="btn btn-primary" value="검색"/>
+					<input type="submit" class="btn btn-outline-primary" value="검색"/>
 				</div>
 			</div>
 		</form>
 	</div>
-	
-	
 </div>
 
 <div id="reviewList">
@@ -239,11 +245,11 @@
 	<%for(ReviewDto dto : list){ %>
 		<div class="reviews" id="review<%=i++%>">
 			<div class="bs-component card border-secondary mb-3">
-				<div class="card-header">
+				<div class="card-header" style="background-color: #ecf3fd">
 					<span><b><%=map.get(""+dto.getMember_no()) %></b></span>
 					<span style="position: absolute; right: 0; margin-right: 20px">
-					<input type="button" class="btn btn-primary" value="수정" onclick="location.href='ReviewUpdate.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>
-					<input type="button" class="btn btn-primary" value="삭제" onclick="location.href='ReviewDelete.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>	
+					<input type="button" class="btn btn-outline-primary" value="수정" onclick="location.href='ReviewUpdate.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>
+					<input type="button" class="btn btn-outline-primary" value="삭제" onclick="location.href='ReviewDelete.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>	
 					</span>
 					<br/>
 					<span><%for(int k=0; k < dto.getReview_score();k++){%>★<%} %><%for(double k= (5-dto.getReview_score()) ; k > 0;k--){%>☆<%} %></span>
@@ -266,7 +272,6 @@
 		</div>
 <%} %>
 </div>
-
 </div>
 </body>
 </html>
