@@ -27,5 +27,7 @@ public interface MemberBiz {
 	public MemberDto findpw(MemberDto dto);
 	
 	public int updatepw(MemberDto dto);
+	
+	public MemberDto checkEmail(String member_email);
 
 }

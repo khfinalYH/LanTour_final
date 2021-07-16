@@ -7,9 +7,14 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.dto.MemberDto;
@@ -35,6 +40,9 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	@Autowired
+	private JavaMailSender  mailSender;
 
 	// ---------------------------------------------
 	// 로그인------------------------------------------
@@ -78,6 +86,47 @@ public class MemberController {
 		// 회원 가입 페이지로 이동 (페이지 이름을 몰라서 register로 작성)
 		return "singnup_general";
 	}
+
+	//이메일 인증
+	@ResponseBody
+	@RequestMapping("/emailcheck.do")
+	public Map<String, String> emailcheck(@RequestBody String email, HttpSession session) {
+		email = email.split("\":\"")[1].split("\"")[0];
+        Map <String,String> map = new HashMap<String, String>();
+        if(biz.checkEmail(email)==null) {
+    		try {
+                MimeMessage msg = mailSender.createMimeMessage();
+                MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+                int random = (int)(Math.random()*10000);
+                messageHelper.setSubject("[Lantour] 랜투어 회원가입 이메일 인증 메일입니다.");
+                messageHelper.setText("인증번호는 "+random+" 입니다.");
+                messageHelper.setTo(email);
+                msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
+                mailSender.send(msg);
+                map.put("success", "true");
+                session.setMaxInactiveInterval(180);
+                session.setAttribute("random", random);
+            }catch(MessagingException e) {
+                System.out.println("MessagingException");
+                e.printStackTrace();
+                map.put("error", "메일 발송에 실패했습니다.");
+            }	
+        }else {
+            map.put("error", "이미 가입되어있는 메일입니다.");
+        }
+		return map;
+	}
+	@ResponseBody
+	@RequestMapping("/emailrandomcheck.do")
+	public Map<String, Boolean> emailrandomcheck(@RequestBody String random, HttpSession session) {
+		random = random.split("\":\"")[1].split("\"")[0];
+        Map <String, Boolean> map = new HashMap<String, Boolean>();
+        if(Integer.parseInt(random) == (int)session.getAttribute("random")) {
+        	map.put("result", true);
+        }
+		return map;
+	}
+	
 	
 	
 	@RequestMapping("/registerhost.do")
@@ -85,6 +134,8 @@ public class MemberController {
 		return "signup_host";
 		
 	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
@@ -135,6 +186,9 @@ public class MemberController {
 		return "redirect:memberlist.do";
 	}
 	
+	
+	
+	//구글 로그인
 	@ResponseBody
 	@RequestMapping("/googleTokensignin.do")
 	public String googleTokensign(String idtoken, HttpSession session) {
@@ -142,7 +196,12 @@ public class MemberController {
 		if(dto==null) {
 			return "InvalidEmain";
 		}else if(biz.idCheck(dto)==null) {
-			return "signup";
+			if(biz.checkEmail(dto.getMember_email())!=null) {
+				return "hasemail";
+			}else {
+				return "signup";
+				
+			}
 		}else {
 			MemberDto res = biz.idCheck(dto);
 			if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
@@ -203,10 +262,6 @@ public class MemberController {
 			  String email = payload.getEmail();
 			  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
 			  String name = (String) payload.get("name");
-			  String pictureUrl = (String) payload.get("picture");
-			  String locale = (String) payload.get("locale");
-			  String familyName = (String) payload.get("family_name");
-			  String givenName = (String) payload.get("given_name");
 			  // Use or store profile information
 			  // ...
 			  if(emailVerified) {

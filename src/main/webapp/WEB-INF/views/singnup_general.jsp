@@ -14,6 +14,7 @@ response.setContentType("text/html; charset=UTF-8");
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
+var MailRandNum = "";
 	// 아이디 중복 확인
 	function idCheck() {
 		var member_id = document.getElementsByName("member_id")[0].value;
@@ -35,6 +36,7 @@ response.setContentType("text/html; charset=UTF-8");
 					if (data.check == false) {
 						$("#idChk").attr("title", "y");
 						alert("사용가능한 아이디입니다.");
+						document.getElementById("idChk").setAttribute("disabled","disabled")
 					} else {
 						alert("이미 존재하는 아이디입니다.");
 					}
@@ -45,7 +47,7 @@ response.setContentType("text/html; charset=UTF-8");
 			})
 		}
 	}
-
+	
 	function idCheckConfirm() {
 		var chk = document.getElementsByName("member_id")[0].title;
 		if (chk == "n") {
@@ -68,6 +70,67 @@ response.setContentType("text/html; charset=UTF-8");
 			}
 		}
 	}
+	
+	function Emailceck(){
+		var email = document.getElementById("email")
+		var emailVal = {"email" : email.value}
+		if (email.value.trim() == "" || email.value == null) {
+			alert("이메일을 입력해 주세요");
+		} else {
+			$.ajax({
+				type : 'POST',
+				url : 'emailcheck.do',
+				data : JSON.stringify(emailVal),
+				contentType : "application/json",
+				dataType : "json",
+				success : function(data) {
+					if (data.success != null) {
+						alert("메일이 발송되었습니다.");
+						document.getElementById("EmailRandom").removeAttribute("disabled")
+						document.getElementById("mailRandceck").removeAttribute("disabled")
+						MailRandNum = data.success
+					} else {
+						alert(data.error);
+					}
+				},
+				error : function() {
+					alert("통신 실패");
+				}
+			})
+		}
+	}
+	
+	function EmailRandceck(){
+		var rand = document.getElementById("EmailRandom").value
+		var random = {"random":rand}
+		if (rand.trim() == "" || rand == null) {
+			alert("인증번호를 입력해 주세요");
+		} else {
+			$.ajax({
+				type : 'POST',
+				url : 'emailrandomcheck.do',
+				data : JSON.stringify(random),
+				contentType : "application/json",
+				dataType : "json",
+				success : function(data) {
+					if (data.result) {
+						alert("인증되었습니다.")
+						document.getElementById("mailceck").setAttribute("disabled","disabled")
+						document.getElementById("email").setAttribute("disabled","disabled")
+						document.getElementById("EmailRandom").setAttribute("disabled","disabled")
+						document.getElementById("mailRandceck").setAttribute("disabled","disabled")
+						document.getElementById("submit").removeAttribute("disabled")
+					}else{
+						alert("부정확한 값입니다.")
+					}
+				},
+				error : function() {
+					alert("통신 실패");
+				}
+			})
+		}
+	}
+	
 </script>
 
 </head>
@@ -127,8 +190,11 @@ response.setContentType("text/html; charset=UTF-8");
 			<tr>
 				<th>이메일</th>
 				<td>
-					<input type="email" name="member_email" required />
-					<input type="button" name="" value="인증" onclick="">
+					<input type="email" id="email" name="member_email" required />
+					<input type="button" id="mailceck" value="인증메일 발송" onclick="Emailceck()"><br/>
+					<input type="text" id="EmailRandom" disabled>
+					<input type="button" name="" value="확인"  id="mailRandceck" onclick="EmailRandceck()" disabled>
+					
 				</td>
 			</tr>
 
@@ -142,7 +208,7 @@ response.setContentType("text/html; charset=UTF-8");
 		</table>
 
 		<div>
-			<input type="submit" value="회원가입" />
+			<input id="submit" type="submit" value="회원가입" disabled/>
 			<input type="button" value="취소" onclick="location.href=''" />
 		</div>
 

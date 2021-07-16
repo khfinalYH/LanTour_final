@@ -43,7 +43,11 @@
 	  			  alert("로그인되었습니다.")
 	  			  location.href="main.do"
 	  			  break;
-	  		  case "부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)":
+	  		  case "hasemail":
+	  			  alert("이미 가입되어있는 이메일입니다")
+	  			  break;
+	  		  default : 
+	  			  alert("부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)")
 	  			  break;
   		  }
 	  };

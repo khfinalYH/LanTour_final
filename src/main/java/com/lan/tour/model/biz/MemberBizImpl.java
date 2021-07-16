@@ -73,6 +73,11 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.updatepw(dto);
 	}
 
+	@Override
+	public MemberDto checkEmail(String member_email) {
+		return dao.checkEmail(member_email);
+	}
+
 	
 
 }
