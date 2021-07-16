@@ -28,6 +28,26 @@
 			gapi.auth2.init();
 		});
 	}
+	
+	//로그아웃
+	if (!Kakao.Auth.getAccessToken()) {
+		  console.log('Not logged in.');
+		  return;
+		}
+		Kakao.Auth.logout(function() {
+		  console.log(Kakao.Auth.getAccessToken());
+		});
+	
+	//연결 끊기
+	Kakao.API.request({
+	  url: '/v1/user/unlink',
+	  success: function(response) {
+	    console.log(response);
+	  },
+	  fail: function(error) {
+	    console.log(error);
+	  },
+	});
 </script>
 <style type="text/css">
 .header {
