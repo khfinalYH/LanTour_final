@@ -9,11 +9,25 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="resources/js/currentWeather.js" charset='utf-8'></script>
 <script type="text/javascript">
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+		location.href = "logout.do"
+	}
+	window.onload = function() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+		});
+	}
 </script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
 	<div id="js-weather"></div>
+
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

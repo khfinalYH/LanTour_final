@@ -17,21 +17,21 @@
 		}, 'google_translate_element');
 	}
 	function signOut() {
-		  var auth2 = gapi.auth2.getAuthInstance();
-		  auth2.signOut().then(function () {
-		    console.log('User signed out.');
-		  });
-	    	location.href="logout.do"
-		}
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+		location.href = "logout.do"
+	}
 	window.onload = function() {
-	      gapi.load('auth2', function() {
-	        gapi.auth2.init();
-     });
-		    }
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+		});
+	}
 </script>
 <style type="text/css">
 .header {
-	height: 60px;
+	height: 80px;
 }
 </style>
 <title>Insert title here</title>
@@ -41,9 +41,9 @@
 	<div class="header">
 		<nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
 			<div class="container">
-				<a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="#">
-					<img class="d-inline-block align-top img-fluid" src="assets/img/gallery/logo-icon.png" alt="" width="50" />
-					<span class="text-primary fs-4 ps-2">Rhea</span>
+				<a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="main.do">
+					<img class="d-inline-block align-top img-fluid" src="./resources/assets/img/gallery/logo-icon.png" alt="" width="50" />
+					<span class="text-primary fs-4 ps-2">LanTour</span>
 				</a>
 				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>

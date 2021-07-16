@@ -68,7 +68,7 @@
 	<div class="community-div">
 		<input type="hidden" id="select_change" value="${filter }" />
 		<div class="form-group">
-			<select id="select_option" class="form-select" style="display: inline;width: 15%;">
+			<select id="select_option" class="form-select" style="display: inline; width: 15%;">
 				<option selected="selected" value="title">제목</option>
 				<option value="content">내용</option>
 				<option value="name">작성자</option>
@@ -120,11 +120,13 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>
-				<td colspan="5" align="right">
-					<input type="button" class="btn btn-primary" value="게시글 등록" onclick="location.href='communityinsert.do'" />
-				</td>
-			</tr>
+			<c:if test="${not empty login }">
+				<tr>
+					<td colspan="5" align="right">
+						<input type="button" class="btn btn-primary" value="게시글 등록" onclick="location.href='communityinsert.do'" />
+					</td>
+				</tr>
+			</c:if>
 		</table>
 		<div class="paging-div">
 			<ul class="pagination">
