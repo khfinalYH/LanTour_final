@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -17,37 +18,39 @@
 		}, 'google_translate_element');
 	}
 	function signOut() {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function() {
-			console.log('User signed out.');
-		});
-		location.href = "logout.do"
-	}
-	window.onload = function() {
-		gapi.load('auth2', function() {
-			gapi.auth2.init();
-		});
-	}
-	
-	//로그아웃
-	if (!Kakao.Auth.getAccessToken()) {
-		  console.log('Not logged in.');
-		  return;
+		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+
+	      gapi.load('auth2', function() {
+		        gapi.auth2.init();
+	     });
+		  var auth2 = gapi.auth2.getAuthInstance();
+		  auth2.signOut().then(function () {
+		    console.log('User signed out.');
+		  });
+			//카카오 로그아웃
+			if (!Kakao.Auth.getAccessToken()) {
+			  console.log('Not logged in.');
+			  return;
+			}
+			Kakao.Auth.logout(function() {
+			  console.log(Kakao.Auth.getAccessToken());
+			});	
+		  
+			//카카오 연결끊기	
+			Kakao.API.request({
+				  url: '/v1/user/unlink',
+				  success: function(response) {
+				    console.log(response);
+				  },
+				  fail: function(error) {
+				    console.log(error);
+				  },
+				});
+	    	location.href="logout.do"
 		}
-		Kakao.Auth.logout(function() {
-		  console.log(Kakao.Auth.getAccessToken());
-		});
 	
-	//연결 끊기
-	Kakao.API.request({
-	  url: '/v1/user/unlink',
-	  success: function(response) {
-	    console.log(response);
-	  },
-	  fail: function(error) {
-	    console.log(error);
-	  },
-	});
+	
+	
 </script>
 <style type="text/css">
 .header {
