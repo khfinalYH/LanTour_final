@@ -69,7 +69,7 @@ public class ReviewController {
 		if (biz.insert(Rdto)>0) {
 			return "redirect:reviewlist.do?type="+type+"&no="+no;
 		}
-		return "test";
+		return "redirect:reviewlist.do?type="+type+"&no="+no+"&error=fail";
 	}
 
 	@RequestMapping("ReviewUpdate.do")
