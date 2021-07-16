@@ -37,8 +37,7 @@
 		#{hotel_title},HOTEL_CONTENT = #{hotel_content},
 		HOTEL_PRICE = #{hotel_price},
 		HOTEL_ADDR = #{hotel_addr},HOTEL_IMAGE = #{hotel_image},
-		HOTEL_CONVINENCE = #{hotel_convinence},HOTEL_MAXCOUNT = #{hotel_maxcount},
-		HOTEL_DATE = #{hotel_date}
+		HOTEL_CONVINENCE = #{hotel_convinence},HOTEL_MAXCOUNT = #{hotel_maxcount}
 		WHERE HOTEL_NO = #{hotel_no}
 	</update>
 </mapper>

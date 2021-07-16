@@ -20,6 +20,14 @@
 			location.href = "./hotelupdate.do?hotel_no=${dto.hotel_no }";
 		}
 	}
+	function before_first() {
+		$("#first").css("display", "");
+		$("#second").css("display", "none");
+	}
+	function next_second() {
+		$("#first").css("display", "none");
+		$("#second").css("display", "");
+	}
 </script>
 <style type="text/css">
 #hotel-detail {
@@ -82,24 +90,24 @@
 			<label class="visually-hidden" for="date">Date</label>
 			<div class="input-group">
 				<h3>체크인</h3>
-				<input class="form-control" name="check_in" id="date" type="date" />
+				<input class="form-control" style="color:black;" name="check_in" id="date" type="date" />
 				<h3>체크 아웃</h3>
-				<input class="form-control" name="check_out" id="date" type="date" />
+				<input class="form-control" style="color:black;" name="check_out" id="date" type="date" />
 			</div>
 		</div>
-		<div></div>
-		<h3>이름 : ${dto.hotel_title }</h3>
-		<h3>호텔 소개 : ${dto.hotel_content }</h3>
-		<h3>편의 시설 : ${dto.hotel_addr }</h3>
-		<h3>전체 대여 : ${dto.hotel_price }원</h3>
-		<h3>대여 인원 : ${dto.hotel_maxcount }</h3>
+		<div>
+		<p>이름 : ${dto.hotel_title } / 주소 : ${dto.hotel_addr }</p>
+		<p>호텔 소개 : ${dto.hotel_content }</p>
+		<p>편의 시설 : ${dto.hotel_convinence }</p>
+		</div>
+		<div style="display: inline-block;">
 		<c:choose>
 			<c:when test="${empty roomlist }">
 				<h4>등록된 방이 없습니다</h4>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${roomlist }" var="dto">
-					<div class="col-md-4 mb-3 mb-md-0" style="float: left;"onclick="location.href='./roomdetail.do?room_no=${dto.room_no }'">
+					<div class="col-md-4 mb-3 mb-md-0" style="float: left; padding-bottom: 10px;"onclick="location.href='./roomdetail.do?room_no=${dto.room_no }'">
 						<div class="card h-100 text-white hover-top">
 							<img class="img-fluid" style="height: 200px;" src="${dto.room_image }" alt="" />
 							<div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
@@ -107,7 +115,7 @@
 									<span class="badge bg-primary">${dto.room_price }원</span>
 								</div>
 								<div class="ps-3 d-flex justify-content-between align-items-center">
-									<h5 class="text-white">third-room</h5>
+									<h5 class="text-white">${dto.room_name }</h5>
 									<h6 class="text-600">${dto.room_maxcount }인실</h6>
 								</div>
 							</div>
@@ -116,10 +124,13 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		</div>
 		<c:if test="${dto.member_no eq login.member_no }">
-			<button type="button" class="btn btn-primary" onclick="location.href='./roominsert.do?hotel_no=${dto.hotel_no}'">방등록</button>
-			<button type="button" class="btn btn-primary" onclick="update_hotel();">정보 수정</button>
-			<button type="button" class="btn btn-primary" onclick="delete_hotel();">등록된 호텔 삭제</button>
+			<div>
+				<button type="button" class="btn btn-primary" onclick="location.href='./roominsert.do?hotel_no=${dto.hotel_no}'">방등록</button>
+				<button type="button" class="btn btn-primary" onclick="update_hotel();">정보 수정</button>
+				<button type="button" class="btn btn-primary" onclick="delete_hotel();">등록된 호텔 삭제</button>
+			</div>
 		</c:if>
 	</div>
 	<br />
