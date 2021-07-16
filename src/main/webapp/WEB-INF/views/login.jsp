@@ -9,6 +9,7 @@
 <meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 <title>Insert title here</title>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
@@ -53,6 +54,7 @@
 	  };
 	  xhr.send('idtoken=' + id_token);
 	}
+	
 
 	$(function(){
 	    $("#loginChk").hide();
