@@ -10,7 +10,6 @@
 <script type="text/javascript">
 	$(function() {
 		$("#second").css("display", "none");
-		$("#third").css("display", "none");
 	});
 	function upload() {
 		var form = new FormData();
@@ -63,14 +62,6 @@
 	function next_second() {
 		$("#first").css("display", "none");
 		$("#second").css("display", "");
-	}
-	function before_second() {
-		$("#third").css("display", "none");
-		$("#second").css("display", "");
-	}
-	function next_third() {
-		$("#third").css("display", "");
-		$("#second").css("display", "none");
 	}
 </script>
 <style type="text/css">
@@ -154,6 +145,12 @@
 			</div>
 			<div>
 				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">편의 시설</label>
+					<input type="text" name="hotel_convinence" style="width: 50%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
 					<label for="exampleInputEmail1" class="form-label mt-4">사진 등록</label>
 					<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1">
 					<br>
@@ -164,23 +161,9 @@
 			<div>
 				<div class="form-group">
 					<button type="button" class="btn btn-primary" onclick="before_first()">이전</button>
-					<button type="button" class="btn btn-primary" onclick="next_third()">계속</button>
+					<button type="submit" class="btn btn-primary" >등록하기</button>
 				</div>
 			</div>
-		</div>
-		<div id="third">
-			<span>사용 가능 일정</span>
-			<span>
-				<input type="text" name="hotel_date">
-			</span>
-			<br>
-			<span>편의 시설</span>
-			<span>
-				<input type="text" name="hotel_convinence">
-			</span>
-			<br>
-			<button type="button" onclick="before_second()">이전</button>
-			<button type="submit">제출</button>
 		</div>
 	</form>
 	<jsp:include page="footer.jsp" />

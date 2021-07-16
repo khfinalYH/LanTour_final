@@ -14,8 +14,7 @@ public class HotelDto {
 	private String hotel_addr;
 	private String hotel_image;
 	private String hotel_convinence;
-	private int hotel_maxcount;
-	private String hotel_date;
+	private int hotel_maxcount;;
 
 	public HotelDto() {
 
@@ -23,8 +22,7 @@ public class HotelDto {
 
 	public HotelDto(int hotel_no, int member_no, String hotel_type, String hotel_title, String hotel_content,
 			Date hotel_regdate, int hotel_price, String hotel_addr, String hotel_image, String hotel_convinence,
-			int hotel_maxcount, String hotel_date) {
-
+			int hotel_maxcount) {
 		this.hotel_no = hotel_no;
 		this.member_no = member_no;
 		this.hotel_type = hotel_type;
@@ -36,15 +34,6 @@ public class HotelDto {
 		this.hotel_image = hotel_image;
 		this.hotel_convinence = hotel_convinence;
 		this.hotel_maxcount = hotel_maxcount;
-		this.hotel_date = hotel_date;
-	}
-
-	public String getHotel_title() {
-		return hotel_title;
-	}
-
-	public void setHotel_title(String hotel_title) {
-		this.hotel_title = hotel_title;
 	}
 
 	public int getHotel_no() {
@@ -69,6 +58,14 @@ public class HotelDto {
 
 	public void setHotel_type(String hotel_type) {
 		this.hotel_type = hotel_type;
+	}
+
+	public String getHotel_title() {
+		return hotel_title;
+	}
+
+	public void setHotel_title(String hotel_title) {
+		this.hotel_title = hotel_title;
 	}
 
 	public String getHotel_content() {
@@ -127,21 +124,19 @@ public class HotelDto {
 		this.hotel_maxcount = hotel_maxcount;
 	}
 
-	public String getHotel_date() {
-		return hotel_date;
-	}
-
-	public void setHotel_date(String hotel_date) {
-		this.hotel_date = hotel_date;
-	}
-
 	@Override
 	public String toString() {
 		return "HotelDto [hotel_no=" + hotel_no + ", member_no=" + member_no + ", hotel_type=" + hotel_type
 				+ ", hotel_title=" + hotel_title + ", hotel_content=" + hotel_content + ", hotel_regdate="
 				+ hotel_regdate + ", hotel_price=" + hotel_price + ", hotel_addr=" + hotel_addr + ", hotel_image="
 				+ hotel_image + ", hotel_convinence=" + hotel_convinence + ", hotel_maxcount=" + hotel_maxcount
-				+ ", hotel_date=" + hotel_date + "]";
+				+ ", getHotel_no()=" + getHotel_no() + ", getMember_no()=" + getMember_no() + ", getHotel_type()="
+				+ getHotel_type() + ", getHotel_title()=" + getHotel_title() + ", getHotel_content()="
+				+ getHotel_content() + ", getHotel_regdate()=" + getHotel_regdate() + ", getHotel_price()="
+				+ getHotel_price() + ", getHotel_addr()=" + getHotel_addr() + ", getHotel_image()=" + getHotel_image()
+				+ ", getHotel_convinence()=" + getHotel_convinence() + ", getHotel_maxcount()=" + getHotel_maxcount()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }

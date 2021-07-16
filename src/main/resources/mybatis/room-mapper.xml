@@ -30,5 +30,11 @@
 		WHERE
 		ROOM_NO = #{room_no}
 	</delete>
+	
+	<delete id="roomdeleteAll" parameterType="int">
+		DELETE FROM ROOM
+		WHERE
+		HOTEL_NO = #{hotel_no}
+	</delete>
 
 </mapper>

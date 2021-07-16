@@ -5,7 +5,7 @@
 	<select id="hotellist" resultType="hotelDto">
 		SELECT HOTEL_NO,
 		MEMBER_NO,HOTEL_TYPE,HOTEL_TITLE,HOTEL_CONTENT,HOTEL_REGDATE,
-		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT,HOTEL_DATE
+		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT
 		FROM HOTEL
 		ORDER BY HOTEL_NO
 	</select>
@@ -14,7 +14,7 @@
 		SELECT
 		HOTEL_NO,
 		MEMBER_NO,HOTEL_TYPE,HOTEL_TITLE,HOTEL_CONTENT,HOTEL_REGDATE,
-		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT,HOTEL_DATE
+		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT
 		FROM HOTEL
 		WHERE HOTEL_NO = #{hotel_no}
 	</select>
@@ -22,7 +22,7 @@
 	<insert id="hotelinsert" parameterType="hotelDto">
 		INSERT INTO HOTEL
 		VALUES(HOTEL_NO_SEQ.NEXTVAL,#{member_no},#{hotel_type},#{hotel_title},#{hotel_content},SYSDATE,
-		#{hotel_price},#{hotel_addr},#{hotel_image},#{hotel_convinence},#{hotel_maxcount},#{hotel_date})
+		#{hotel_price},#{hotel_addr},#{hotel_image},#{hotel_convinence},#{hotel_maxcount})
 	</insert>
 
 	<delete id="hoteldelete" parameterType="int">

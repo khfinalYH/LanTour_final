@@ -30,7 +30,6 @@ public class HotelController {
 	@Autowired
 	private HotelBiz biz;
 
-	
 	@Autowired
 	private RoomBiz biz2;
 
@@ -69,8 +68,10 @@ public class HotelController {
 
 	@RequestMapping("/hoteldelete.do")
 	public String hoteldelete(int hotel_no) {
-		if (biz.delete(hotel_no) > 0) {
-			return "redirect:hotellist.do";
+		if (biz2.deleteAll(hotel_no) > 0) {
+			if (biz.delete(hotel_no) > 0) {
+				return "redirect:hotellist.do";
+			}
 		}
 
 		return "redirect:hoteldetail.do?hotel_no=" + hotel_no;

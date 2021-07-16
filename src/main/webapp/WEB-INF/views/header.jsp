@@ -21,6 +21,7 @@
 		auth2.signOut().then(function() {
 			console.log('User signed out.');
 		});
+		auth2.disconnect();
 		location.href = "logout.do"
 	}
 	window.onload = function() {
@@ -31,7 +32,7 @@
 </script>
 <style type="text/css">
 .header {
-	height: 80px;
+	height: 100px;
 }
 </style>
 <title>Insert title here</title>
@@ -39,7 +40,7 @@
 <body>
 
 	<div class="header">
-		<nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+		<div class="navbar navbar-expand-lg py-3">
 			<div class="container">
 				<a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="main.do">
 					<img class="d-inline-block align-top img-fluid" src="./resources/assets/img/gallery/logo-icon.png" alt="" width="50" />
@@ -81,7 +82,7 @@
 					</form>
 				</div>
 			</div>
-		</nav>
+		</div>
 	</div>
 </body>
 </html>
