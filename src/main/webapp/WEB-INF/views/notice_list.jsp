@@ -54,9 +54,11 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
-<div class="notice_frame">
+
 		<h2>공지사항</h2>
 		<br>
+	<div class="container">
+	<div class="row flex-center mb-5">
 		<input type="hidden" id="selected_cate" value="${dto.category}">
 		<div class="searchFrame">
 			<select class="search_category">
@@ -67,7 +69,7 @@
 			<input type="text" class="search_keyword" value="${dto.keyword }">
 			<button onclick="search();" class="btn btn-outline-primary">검색</button>
 		</div>
-		<br>
+		<br><br><br>
 		<table class="table table-hover">
 			<thead>
 				<tr style="background-color:#4582ec; color:#ffffff; ">
@@ -142,6 +144,8 @@
 		</ul>
 	</div>
 </div>
+</div>
+	<jsp:include page="footer.jsp" />
 	
 </body>
 </html>
