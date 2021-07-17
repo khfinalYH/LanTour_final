@@ -62,10 +62,10 @@
 						<c:if test="${not empty login }">
 							<c:choose>
 								<c:when test="${login.member_grade == 'A' }">
-									<li class="nav-item"><a class="nav-link text-600" href="adminmember.do">공지사항 </a></li>
+									<li class="nav-item"><a class="nav-link text-600" href="adminmember.do">관리자 페이지 </a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="nav-item"><a class="nav-link text-600" href="mypage.do">공지사항 </a></li>
+									<li class="nav-item"><a class="nav-link text-600" href="mypage.do">마이 페이지 </a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:if>

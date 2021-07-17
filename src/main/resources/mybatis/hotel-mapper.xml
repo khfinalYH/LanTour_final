@@ -40,4 +40,14 @@
 		HOTEL_CONVINENCE = #{hotel_convinence},HOTEL_MAXCOUNT = #{hotel_maxcount}
 		WHERE HOTEL_NO = #{hotel_no}
 	</update>
+	
+	<select id="hotelsearchlist" parameterType="hotelDto" resultType="hotelDto">
+		SELECT HOTEL_NO,
+		MEMBER_NO,HOTEL_TYPE,HOTEL_TITLE,HOTEL_CONTENT,HOTEL_REGDATE,
+		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT
+		FROM HOTEL
+		WHERE HOTEL_TYPE = #{hotel_type}
+		AND HOTEL_PRICE <![CDATA[<=]]> #{hotel_maxprice}
+		AND HOTEL_PRICE <![CDATA[>=]]> #{hotel_minprice}
+	</select>
 </mapper>

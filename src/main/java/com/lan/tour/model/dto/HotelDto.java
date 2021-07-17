@@ -15,6 +15,8 @@ public class HotelDto {
 	private String hotel_image;
 	private String hotel_convinence;
 	private int hotel_maxcount;;
+	private int hotel_minprice;
+	private int hotel_maxprice;
 
 	public HotelDto() {
 
@@ -22,7 +24,7 @@ public class HotelDto {
 
 	public HotelDto(int hotel_no, int member_no, String hotel_type, String hotel_title, String hotel_content,
 			Date hotel_regdate, int hotel_price, String hotel_addr, String hotel_image, String hotel_convinence,
-			int hotel_maxcount) {
+			int hotel_maxcount, int hotel_minprice, int hotel_maxprice) {
 		this.hotel_no = hotel_no;
 		this.member_no = member_no;
 		this.hotel_type = hotel_type;
@@ -34,6 +36,8 @@ public class HotelDto {
 		this.hotel_image = hotel_image;
 		this.hotel_convinence = hotel_convinence;
 		this.hotel_maxcount = hotel_maxcount;
+		this.hotel_minprice = hotel_minprice;
+		this.hotel_maxprice = hotel_maxprice;
 	}
 
 	public int getHotel_no() {
@@ -122,6 +126,22 @@ public class HotelDto {
 
 	public void setHotel_maxcount(int hotel_maxcount) {
 		this.hotel_maxcount = hotel_maxcount;
+	}
+
+	public int getHotel_minprice() {
+		return hotel_minprice;
+	}
+
+	public void setHotel_minprice(int hotel_minprice) {
+		this.hotel_minprice = hotel_minprice;
+	}
+
+	public int getHotel_maxprice() {
+		return hotel_maxprice;
+	}
+
+	public void setHotel_maxprice(int hotel_maxprice) {
+		this.hotel_maxprice = hotel_maxprice;
 	}
 
 	@Override

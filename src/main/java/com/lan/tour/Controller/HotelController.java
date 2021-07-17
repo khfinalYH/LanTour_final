@@ -92,7 +92,14 @@ public class HotelController {
 
 		return "redirect:hotelupdate.do?hotel_no=" + dto.getHotel_no();
 	}
-
+	
+	@RequestMapping("/hotelsearch.do")
+	public String hotelsearch(HotelDto dto,Model model) {
+		model.addAttribute("list", biz.searchList(dto));
+		
+		return "hotel";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/hotelupload.do")
 	public Map<String, String> hotelupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {

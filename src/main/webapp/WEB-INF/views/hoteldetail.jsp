@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function delete_hotel() {
@@ -96,9 +97,9 @@
 			</div>
 		</div>
 		<div>
-		<p>이름 : ${dto.hotel_title } / 주소 : ${dto.hotel_addr }</p>
-		<p>호텔 소개 : ${dto.hotel_content }</p>
-		<p>편의 시설 : ${dto.hotel_convinence }</p>
+			<p>이름 : ${dto.hotel_title } / 주소 : ${dto.hotel_addr }</p>
+			<p>호텔 소개 : ${dto.hotel_content }</p>
+			<p>편의 시설 : ${dto.hotel_convinence }</p>
 		</div>
 		<div style="display: inline-block;">
 		<c:choose>

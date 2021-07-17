@@ -44,6 +44,12 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<h1>숙소 list</h1>
+	<form action="./hotelsearch.do" method="post">
+		<input type="text" name="hotel_type">
+		<input type="text" name="hotel_minprice">
+		<input type="text" name="hotel_maxprice">
+		<button type="submit">검색</button>
+	</form>
 	<table border="1">
 		<col width="50" />
 		<col width="100" />
