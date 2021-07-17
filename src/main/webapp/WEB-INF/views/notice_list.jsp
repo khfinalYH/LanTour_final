@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function search() {
@@ -30,87 +31,117 @@
 
 	}
 </script>
+<style type="text/css">
+.notice_frame {
+	position: absolute;
+	left: 10%;
+	right: 10%;
+}
+
+.pagination {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#writeBtn {
+	position: absolute;
+	right: 5%;
+}
+
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
-
-	<h1>공지사항</h1>
-
-	<input type="hidden" id="selected_cate" value="${dto.category}">
-	<select class="search_category">
-		<option value="n_t">제목</option>
-		<option value="n_c">내용</option>
-		<option value="n_t_c">제목 + 내용</option>
-	</select>
-	<input type="text" class="search_keyword" value="${dto.keyword }">
-	<button onclick="search();">검색</button>
-
-	<table border="1">
-		<col width="50" />
-		<col width="500" />
-		<col width="100" />
-
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
-
-		<c:choose>
-			<c:when test="${empty list }">
-				<tr>
-					<th colspan="3">----작성된 글이 없습니다---</th>
+<div class="notice_frame">
+		<h2>공지사항</h2>
+		<br>
+		<input type="hidden" id="selected_cate" value="${dto.category}">
+		<div class="searchFrame">
+			<select class="search_category">
+				<option value="n_t">제목</option>
+				<option value="n_c">내용</option>
+				<option value="n_t_c">제목 + 내용</option>
+			</select>
+			<input type="text" class="search_keyword" value="${dto.keyword }">
+			<button onclick="search();" class="btn btn-outline-primary">검색</button>
+		</div>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr style="background-color:#4582ec; color:#ffffff; ">
+					<th scope="col" width="50" style="text-align: center;">NO</th>
+					<th scope="col" width="500" style="text-align: center;">TITLE</th>
+					<th scope="col" width="100" style="text-align: center;">DATE</th>
 				</tr>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${list }" var="dto">
+			</thead>
+			<c:choose>
+				<c:when test="${empty list }">
 					<tr>
-						<td>${dto.notice_no }</td>
-						<td>
-							<a href="noticeSelectOne.do?notice_no=${dto.notice_no }">${dto.notice_title }</a>
-						</td>
-						<td>
-							<fmt:formatDate value="${dto.notice_date }" pattern="yyyy-MM-dd" />
-						</td>
+						<th colspan="3">----작성된 글이 없습니다---</th>
 					</tr>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		<tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td style="text-align: center;">${dto.notice_no }</td>
+							<td>
+								<a href="noticeSelectOne.do?notice_no=${dto.notice_no }">${dto.notice_title }</a>
+							</td>
+							<td style="text-align: center;">
+								<fmt:formatDate value="${dto.notice_date }" pattern="yyyy-MM-dd" />
+							</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+
+		</table>
+		
+		<div>
 			<c:if test="${login.member_grade == 'A' }">
-				<td colspan="4" align="right">
-					<input type="button" value="글작성" onclick="location.href='noticeInsertForm.do'" />
-				</td>
+				<button type="button" id="writeBtn" class="btn btn-primary btn-sm" onclick="location.href='noticeInsertForm.do'">글작성</button>
+				
 			</c:if>
-		</tr>
-	</table>
-
-
-
-	<c:if test="${dto.nowBlock > 1}">
-		<a href="noticeList_category.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">◀</a>
-	</c:if>
-
-
-
-
-	<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index">
-		<c:choose>
-			<c:when test="${dto.nowPage eq index}">
-				${index}
-			</c:when>
-			<c:otherwise>
-				<a href="noticeList_category.do?nowPage=${index}&category=${dto.category}&keyword=${dto.keyword}">${index}</a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-
-
-	<c:if test="${dto.nowBlock < dto.totalBlock}">
-		<a href="noticeList_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">▶</a>
-	</c:if>
-
-	<jsp:include page="footer.jsp" />
+		</div>
+	
+	<br><br>
+	<div>
+		<ul class="pagination">
+			<li class="page-item">
+				<c:if test="${dto.nowBlock > 1}">
+					<a class="page-link" href="noticeList_category.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">&laquo;</a>
+				</c:if>
+			</li>
+		
+		
+		
+		
+			<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index">
+				<c:choose>
+					<c:when test="${dto.nowPage eq index}">
+						<li class="page-item active">
+							<a class="page-link" href="#">${index}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link" href="noticeList_category.do?nowPage=${index}&category=${dto.category}&keyword=${dto.keyword}">${index}</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		
+		
+			<c:if test="${dto.nowBlock < dto.totalBlock}">
+				<li class="page-item">
+					<a class="page-link" href="noticeList_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">&raquo;</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+</div>
+	
 </body>
 </html>
