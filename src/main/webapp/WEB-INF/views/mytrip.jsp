@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  arg.jsEvent.preventDefault();
     	  if (arg.event.url) {
     		  var url = arg.event.url;
-    		  var option = 'width= 600, height=600, left=500, top=100';
+    		  var option = 'width= 800, height=600, left=500, top=100';
     		  var pop = window.open(url, "_blank", option);
     		  return false;
     	  }
@@ -244,7 +244,7 @@ CalendarDto dto = listCal.get(i);
   function calInsert() {
 	  var url = 'popupInsert.do';
 	  var name = 'popup';
-	  var option = 'width= 600, height=600, left=500, top=100';
+	  var option = 'width= 800, height=600, left=500, top=100';
 	  var pop = window.open(url, name, option);
   }
 </script>
