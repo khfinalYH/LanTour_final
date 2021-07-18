@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <body>
 <jsp:include page="header.jsp" />
 <div class="container">
