@@ -22,6 +22,41 @@
 	margin: 0.8%;
 }
 
+select option {
+	background-color: gray;
+}
+
+#festivalSearchList{
+	display: flex;
+ 	flex-wrap: wrap;
+}
+
+.fes {
+	height: auto;
+	text-align: center;
+	width: 50%;
+	padding-right: 20px;
+}
+
+.fes img {
+	width: 90%;
+    height: 55%;
+}
+
+#paging {
+	text-align: center;
+}
+
+#paging button {
+	background-color: #3984F3;
+	border: 0;
+	outline: 0;
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+	color: white;
+}
+
 </style>
 </head>
 <body>
@@ -103,17 +138,17 @@
         </div>
       </section>
 
-	
-
-    
 
 	
-	
-	<br><br><br><br><br><br><br><br>
-	
-	<div id="festivalSearchList"></div>
-
+	<br><br><br><br><br>
+	<div class="container">
+		<div id="festivalSearchList"></div>
+	</div>
+	<br><br>
 	<div id="paging"></div>
+
+
+
 
 	<jsp:include page="footer.jsp" />
 </body>

@@ -55,14 +55,20 @@
 						
 						contentid = myData[i].contentid;
 						contenttypeid = myData[i].contenttypeid;
+	
+						stSdate = String(eventstartdate);
+						stEdate = String(eventenddate);
 						
 						
 						
-						output += "<div onclick=\"location.href='festivaldetail.do?contentid=" + contentid +"&eventstartdate="+eventstartdate+"&eventenddate="+eventenddate+"'\"><img src=\""+firstimage+"\" alt='image'>";
-						output += "<h5>"+title+"</h5></div>";
-						output += "<p>시작일 : " + eventstartdate + "</p>"; 
-						output += "<p>종료일 : " + eventenddate + "</p>"; 
-						output += "<p>" + addr1 + "</p><br><br><br>"
+						startStr = stSdate.substr(0,4) + "-" + stSdate.substr(4,2) + "-" + stSdate.substr(6,2)
+						endStr = stEdate.substr(0,4) + "-" + stEdate.substr(4,2) + "-" + stEdate.substr(6,2)
+						
+						output += "<div class=\"fes\" onclick=\"location.href='festivaldetail.do?contentid=" + contentid +"&eventstartdate="+eventstartdate+"&eventenddate="+eventenddate+"'\"><img src=\""+firstimage+"\" alt='image'><br>";
+						output += "<br><h4 style=\"color: #3984F3;\">"+title+"</h4>";
+						output += "<p>" + startStr + "&nbsp;&nbsp;~&nbsp;&nbsp;"+endStr+"</p>"; 
+
+						output += "<p>" + addr1 + "</p></div>"
 						
 
 						document.getElementById("festivalSearchList").innerHTML += output;
@@ -97,15 +103,15 @@
 					var page = "";
 					
 					if(prev > 0) {
-						page += "<input type=\"button\" name=\""+prev+"\" value=\"이전\" onclick=\"festivalSearch(this.name);\">"
+						page += "<button  name=\""+prev+"\" onclick=\"festivalSearch(this.name);\">&laquo;</button>&nbsp;"
 					}
 
 					for(var i=first; i <= last; i++){
-						page += "<input type=\"button\" value=\""+i+"\" onclick=\"festivalSearch(this.value);\">"
+						page += "<button  value=\""+i+"\" onclick=\"festivalSearch(this.value);\">"+i+"</button>&nbsp;"
 					}
 
 					if(last < totalPage) {
-						page += "<input type=\"button\" name=\""+next+"\" value=\"다음\" onclick=\"festivalSearch(this.name);\"></input>"
+						page += "<button  name=\""+next+"\" onclick=\"festivalSearch(this.name);\">&raquo;</button>"
 					}
 					document.getElementById("paging").innerHTML += page;
 
