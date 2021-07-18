@@ -49,6 +49,7 @@
 </script>
 <style type="text/css">
 .community-insert {
+	min-height: 800px;
 	width: 1000px;
 	margin: auto;
 }

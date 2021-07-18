@@ -55,6 +55,7 @@
 }
 
 .community-div {
+	min-height: 800px;
 	margin: auto;
 	width: 1000px;
 }
@@ -132,7 +133,7 @@
 			<ul class="pagination">
 				<li class="page-item disabled"><span class="page-link">&laquo;</span></li>
 				<c:forEach var="i" begin="0" end="${fn:length(list)/10 }">
-					<span onclick="paging(${i+1});" class="page-link">${i+1 }</span>
+					<li class="page-item" onclick="paging(${i+1});"><a class="page-link" href="#">${i+1 }</a></li>
 				</c:forEach>
 				<li class="page-item disabled"><span class="page-link">&raquo;</span></li>
 			</ul>
