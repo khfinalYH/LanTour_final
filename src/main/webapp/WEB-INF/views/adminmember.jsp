@@ -20,36 +20,39 @@
 				});
 			})
 </script>
+<style type="text/css">
+.admin{
+	margin: 100px;
+	width: 1000px;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
-	<div>
-		<ul id="menu">
-			<li><a href="adminmember.do">회원관리</a></li>
-			<li><a href="admincommunity.do">관리자 - 커뮤니티 게시판 글 목록</a></li>
-			<li><a href="adminnotice.do">관리자 - 공지사항 게시판 글 목록</a></li>
-		</ul>
-	</div>
+		
+		
+		<div class="admin" role="group">
+			<a href="adminmember.do" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">회원관리</a>
+			<a href="admincommunity.do" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">커뮤니티 게시판 글 목록</a>
+		</div>
 
-	<div id="member">
+		
+
+	<div  class="admin">
 		<h1>회원 관리</h1>
-		<table border="1">
-			<col width="100" />
-			<col width="100" />
-			<col width="300" />
-			<col width="300" />
-			<col width="50" />
-			<col width="50" />
+		<table border="1" class="table table-hover" >
+			<thead>
 			<tr>
-				<th>번호</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>전화번호</th>
-				<th>이메일</th>
-				<th>성별</th>
-				<th>등급</th>
-			</tr>
+			<th scope="col">번호</th>
+			<th scope="col">아이디</th>
+			<th scope="col">이름</th>
+			<th scope="col">전화번호</th>
+			<th scope="col">이메일</th>
+			<th scope="col">성별</th>
+			<th scope="col">등급</th>
+
 			<c:choose>
 				<c:when test="${empty m_list }">
 					<tr>
@@ -80,7 +83,7 @@
 									</c:choose>
 							</select></td>
 							<td>
-								<button type="button" class="update_btn">수정</button>
+								<button type="button" class="btn btn-primary btn-sm">수정</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -91,5 +94,7 @@
 	
 
 	<jsp:include page="footer.jsp" />
+	<br/>
+	<br/>
 </body>
 </html>
