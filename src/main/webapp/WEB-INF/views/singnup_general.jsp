@@ -36,7 +36,7 @@ var MailRandNum = "";
 					if (data.check == false) {
 						$("#idChk").attr("title", "y");
 						alert("사용가능한 아이디입니다.");
-						document.getElementById("idChk").setAttribute("disabled","disabled")
+						document.getElementById("idChk").setAttribute("readonly","readonly")
 					} else {
 						alert("이미 존재하는 아이디입니다.");
 					}
@@ -115,10 +115,10 @@ var MailRandNum = "";
 				success : function(data) {
 					if (data.result) {
 						alert("인증되었습니다.")
-						document.getElementById("mailceck").setAttribute("disabled","disabled")
-						document.getElementById("email").setAttribute("disabled","disabled")
-						document.getElementById("EmailRandom").setAttribute("disabled","disabled")
-						document.getElementById("mailRandceck").setAttribute("disabled","disabled")
+						document.getElementById("mailceck").setAttribute("readonly","readonly")
+						document.getElementById("email").setAttribute("readonly","readonly")
+						document.getElementById("EmailRandom").setAttribute("readonly","readonly")
+						document.getElementById("mailRandceck").setAttribute("readonly","readonly")
 						document.getElementById("submit").removeAttribute("disabled")
 					}else{
 						alert("부정확한 값입니다.")
@@ -190,7 +190,7 @@ var MailRandNum = "";
 			<tr>
 				<th>이메일</th>
 				<td>
-					<input type="email" id="email" name="member_email" required />
+					<input type="text" id="email" name="member_email" required />
 					<input type="button" id="mailceck" value="인증메일 발송" onclick="Emailceck()"><br/>
 					<input type="text" id="EmailRandom" disabled>
 					<input type="button" name="" value="확인"  id="mailRandceck" onclick="EmailRandceck()" disabled>
