@@ -13,6 +13,7 @@
 	<br><br>
 	<div class="container">
 	<form action="./findupdatepwres.do">
+	<fieldset>
 		<input type="hidden" name="member_id" value="${dto.member_id }"/>
 		<br>
 		<div class="form-group" style="margin:0 auto; width: 50%;">
@@ -21,7 +22,7 @@
 	      <br><br>
 	      <button type="submit" class="btn btn-primary" style="float: right;">비밀번호 변경</button>
 	    </div>
-
+	</fieldset>
 		
 	</form>
 	</div>
