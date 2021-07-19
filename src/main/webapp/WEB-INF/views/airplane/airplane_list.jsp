@@ -240,6 +240,7 @@
 				int j = 0;%>
 				
 	<div style="width: 70%;float:left; margin-bottom: 10%">
+		<div style="display: flow-root;">
 				<%for(Map<String, String> map : planelist){ %>
 		<div id = "ticket<%=j%>"class="airplanedetail" <%if(j>=10){ %>style="display: none;"<%} %>>
 			<div  style="margin: 4%; margin-bottom: 0; width: 45%; margin-right: 0;  display: flex; float: left;">	
@@ -275,6 +276,7 @@
 			</div>
 		</div>
 			<%} %>
+		</div >
 			<div id="defaultSearch" style="display: inline-block; margin-left: 35%;margin-top: 5%;">
 			<ul class="pagination">
 				<li onclick="pagingBefore()"> <a class="page-link" ><<</a>  </li>
