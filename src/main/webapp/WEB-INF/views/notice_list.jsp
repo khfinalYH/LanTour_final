@@ -67,9 +67,9 @@
 		<table class="table table-hover">
 			<thead>
 				<tr style="background-color:#4582ec; color:#ffffff; ">
-					<th scope="col" width="50" style="text-align: center;">NO</th>
-					<th scope="col" width="500" style="text-align: center;">TITLE</th>
-					<th scope="col" width="100" style="text-align: center;">DATE</th>
+					<th scope="col" width="50" style="text-align: center;">번호</th>
+					<th scope="col" width="500" style="text-align: center;">제목</th>
+					<th scope="col" width="100" style="text-align: center;">날짜</th>
 				</tr>
 			</thead>
 			<c:choose>
