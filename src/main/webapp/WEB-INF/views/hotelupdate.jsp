@@ -63,26 +63,34 @@
 	function before_first() {
 		$("#first").css("display", "");
 		$("#second").css("display", "none");
-		$(".nav-p:eq(0)").css("background-color", "#3984F3");
-		$(".nav-p:eq(1)").css("background-color", "white");
+		$(".list-group-item").eq(0).attr("class",
+				"list-group-item list-group-item-action active");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action");
 	}
 	function next_second() {
 		$("#first").css("display", "none");
 		$("#second").css("display", "");
-		$(".nav-p:eq(0)").css("background-color", "white");
-		$(".nav-p:eq(1)").css("background-color", "#3984F3");
+		$(".list-group-item").eq(0).attr("class",
+				"list-group-item list-group-item-action");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action active");
 	}
 	function before_second() {
 		$("#third").css("display", "none");
 		$("#second").css("display", "");
-		$(".nav-p:eq(1)").css("background-color", "#3984F3");
-		$(".nav-p:eq(2)").css("background-color", "white");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action active");
+		$(".list-group-item").eq(2).attr("class",
+				"list-group-item list-group-item-action");
 	}
 	function next_third() {
 		$("#third").css("display", "");
 		$("#second").css("display", "none");
-		$(".nav-p:eq(1)").css("background-color", "white");
-		$(".nav-p:eq(2)").css("background-color", "#3984F3");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action");
+		$(".list-group-item").eq(2).attr("class",
+				"list-group-item list-group-item-action active");
 	}
 </script>
 <style type="text/css">
@@ -101,67 +109,40 @@
 	margin: auto;
 }
 
-.nav-update {
-	width: 30%;
-	height: 550px;
-	float: left;
-	border: 2px solid #3984F3;
-	margin-right: 30px;
-	font-weight: bold;
-	font-size: 20px;
-	color: black;
-}
-
 .div-update {
 	width: 65%;
 	float: left;
-}
-
-.nav-p {
-	border-bottom: 2px solid #3984F3;
-	border-top: 2px solid #3984F3;
-	margin-bottom: 15%;
-	border-radius: 20px;
-	text-align: center;
-}
-
-.nav-p:first-child {
-	margin-top: 55%;
 }
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 	<h1>숙소 update, ${login.member_id },${login.member_no }</h1>
-	<div class="hotel-update">
-		<div class="nav-update">
-			<p class="nav-p">숙소</p>
-			<p class="nav-p">편의</p>
-			<p class="nav-p">시설</p>
+	<div class="container" style="display: flex; min-height: 550px;">
+		<div class="list-group" style="width: 20%; float: left; margin-right: 10%; margin-top: 20px;">
+			<span class="list-group-item list-group-item-action active">타입,이름,인원,위치</span>
+			<span class="list-group-item list-group-item-action">설명, 가격</span>
+			<span class="list-group-item list-group-item-action">시설, 사진 등록</span>
 		</div>
 		<div class="div-update">
 			<form action="./hotelupdateres.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="hotel_no" value="${dto.hotel_no }" />
 				<input type="hidden" id="hotel_image" name="hotel_image" value="${dto.hotel_image }" />
 				<div id="first">
-					<div style="height: 102px;">
-						<div class="hotel-type hotel-type-span">
-							<span>숙소 종류</span>
-						</div>
-						<div class="hotel-type">
-							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="호텔"> 호텔
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="모텔">모텔
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">게스트 하우스
-								</label>
-							</div>
-						</div>
+					<div>
+						<label class="col-sm-2 col-form-label">숙소 타입</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="호텔" checked="checked">
+							호텔
+						</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="모텔">
+							모텔
+						</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">
+							게스트 하우스
+						</label>
 					</div>
 					<div>
 						<div class="form-group">
