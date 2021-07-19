@@ -29,6 +29,7 @@
 <%MemberDto login = (MemberDto)session.getAttribute("login"); %>
 <%String type= (String)request.getAttribute("type"); %>
 <%String sort= (String)request.getAttribute("sort"); %>
+<%String filter= (String)request.getAttribute("filter"); %>
 <%DateFormat format = new SimpleDateFormat("yyyy/MM/dd");%>
 
 	$(function() {
@@ -101,16 +102,18 @@
 
 	}
 
-
 	function paging(i){
+		$('html').scrollTop(0);
 		var reviews = document.getElementsByClassName("reviews")
 		var page_item = document.querySelectorAll(".page-item")
 		for(var j = 0; j<page_item.length;j++){
 			if(j==i){
 				page_item[j].setAttribute("class", "page-item active" )
-
+				page_item[j].removeAttribute("onclick")
 			}else{
 				page_item[j].setAttribute("class", "page-item" )
+				page_item[j].setAttribute("onclick", "paging("+j+")" )
+
 				
 			}
 		}
@@ -119,6 +122,7 @@
 				document.getElementById("review"+j).style.display = "block"
 			}else{
 				document.getElementById("review"+j).style.display = "none"
+				
 				
 			}
 		}
@@ -153,11 +157,6 @@
 
 </script>
 <body>
-
-<div>
-<span></span>
-</div>
-
 <div class="bs-docs-section" style="display: flex;">
 		<%if(login!=null){ %>	
 	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 30%; margin-right: 2.5%">
@@ -168,16 +167,22 @@
 				<h3>평가하기</h3>
 			</div>
 			<div class="card-body">
-				<h6>다른 사용자에게 의견을 들려주세요</h6>
-				<h3>
-					<input type="hidden" value="0" name="review_score" id="starScore">			
-					<span id="star1" onclick="starPick(1)"> ☆ </span>
-					<span id="star2" onclick="starPick(2)"> ☆ </span>
-					<span id="star3" onclick="starPick(3)"> ☆ </span>
-					<span id="star4" onclick="starPick(4)"> ☆ </span>
-					<span id="star5" onclick="starPick(5)"> ☆ </span>
-				</h3>
-				<input type="button" class="btn btn-outline-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
+				<div style="margin-bottom:20px ">
+					<h6>다른 사용자에게 의견을 들려주세요</h6>
+				</div>
+				<div style="margin-bottom:20px ">
+					<h3>
+						<input type="hidden" value="0" name="review_score" id="starScore">			
+						<span id="star1" onclick="starPick(1)"> ☆ </span>
+						<span id="star2" onclick="starPick(2)"> ☆ </span>
+						<span id="star3" onclick="starPick(3)"> ☆ </span>
+						<span id="star4" onclick="starPick(4)"> ☆ </span>
+						<span id="star5" onclick="starPick(5)"> ☆ </span>
+					</h3>
+				</div>
+				<div style="margin-bottom:20px ">
+					<input type="button" class="btn btn-outline-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
+				</div>
 				<div id="writeReview" style="display: none;">
 					<div>
 						<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
@@ -196,23 +201,36 @@
 		<div class="card-header" style="background-color: #ecf3fd;">
 			<h3>리뷰 검색</h3>
 		</div>
+
 		<form action="reviewsearch.do" method="post">
 			<div class="card-body">
-				<input type="hidden" name="no"  value="<%=(int)request.getAttribute("no")%>">
+				<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
 				<input type="hidden" name="type" value="<%=type %>"/>		
-				<div class="bs-component mb-5">
-					<div>
-						<input type="checkbox" <%if(Smap.get("zero")==0){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="0"><label class="form-check-label"  >★0</label>
-						<input type="checkbox" <%if(Smap.get("one")==1){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="1"><label class="form-check-label"  >★1</label>
-						<input type="checkbox" <%if(Smap.get("two")==2){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="2"><label class="form-check-label"  >★2</label>
-						<input type="checkbox" <%if(Smap.get("three")==3){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="3"><label class="form-check-label"  >★3</label>
-						<input type="checkbox" <%if(Smap.get("four")==4){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="4"><label class="form-check-label"  >★4</label>
-						<input type="checkbox" <%if(Smap.get("five")==5){ %> checked="checked" <%} %> class="form-check-input" checked="checked" name = "star" value="5"><label class="form-check-label"  >★5</label>
-					</div >
-					<select class="form-select" name="sort" style="width: 30%; display: inline;">
-						<option <%if(sort.equals("ASC")){ %> selected="selected" <%} %> value="ASC">오름차순</option>
-						<option <%if(sort.equals("DESC")){ %> selected="selected" <%} %> value="DESC">내림차순</option>
-					</select>
+				<div >
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">별점 </h6>
+						<span>
+							<input type="checkbox" <%if(Smap.get("zero")==0){ %> checked="checked" <%} %> class="form-check-input"  name = "star" value="0"><label class="form-check-label"  >★0</label>
+							<input type="checkbox" <%if(Smap.get("one")==1){ %> checked="checked" <%} %> class="form-check-input" name = "star" value="1"><label class="form-check-label"  >★1</label>
+							<input type="checkbox" <%if(Smap.get("two")==2){ %> checked="checked" <%} %> class="form-check-input" name = "star" value="2"><label class="form-check-label"  >★2</label>
+							<input type="checkbox" <%if(Smap.get("three")==3){ %> checked="checked" <%} %> class="form-check-input" name = "star" value="3"><label class="form-check-label"  >★3</label>
+							<input type="checkbox" <%if(Smap.get("four")==4){ %> checked="checked" <%} %> class="form-check-input" name = "star" value="4"><label class="form-check-label"  >★4</label>
+							<input type="checkbox" <%if(Smap.get("five")==5){ %> checked="checked" <%} %> class="form-check-input" name = "star" value="5"><label class="form-check-label"  >★5</label>
+						</span></div >
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">정렬 기준</h6>
+						<select  class="form-select" name="filter" style="width: 30%; display: inline;">
+							<option <%if(filter.equals("date")){ %> selected="selected" <%} %>  value="date">날짜</option>
+							<option <%if(filter.equals("star")){ %> selected="selected" <%} %>  value="star">별점</option>
+						</select>
+					</div>
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">정렬 방법</h6>
+						<select class="form-select" name="sort" style="width: 30%; display: inline;">
+							<option <%if(sort.equals("ASC")){ %> selected="selected" <%} %>  value="ASC">오름차순</option>
+							<option <%if(sort.equals("DESC")){ %> selected="selected" <%} %>  value="DESC">내림차순</option>
+						</select>
+					</div>
 					<input type="submit" class="btn btn-outline-primary" value="검색"/>
 				</div>
 			</div>

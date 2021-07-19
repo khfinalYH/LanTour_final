@@ -12,6 +12,11 @@
 <meta charset="UTF-8">
 <title>랜선투어</title>
 </head>
+<link rel="stylesheet" href="./resources/5/litera/bootstrap.css">
+<link rel="stylesheet" href="./resources/_vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="./resources/_vendor/prismjs/themes/prism-okaidia.css">
+<link rel="stylesheet" href="./resources/_assets/css/custom.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- summernote js,css 링크 -->
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
@@ -93,34 +98,35 @@
 
 </script>
 <body>
-
-<h1>후기</h1>
-<div>
-	<div>
-		<div>리뷰 수정</div>
-		<form action="ReviewUpdateRes.do">
+	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 90%; margin-right: 2.5%">
+		<form action="ReviewUpdateRes.do" method="post">
 			<input type="hidden" name="review_no" value="<%=Rdto.getReview_no() %>"/>
 			<input type="hidden" name="no" value="<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no()%>">
-			<input type="hidden" name="type" value="<%=type %>"/>
-			<div>
-			<span>별점</span>
-			<input type="hidden" value="<%=Rdto.getReview_score()%>" name="review_score" id="starScore" >			
-			<span id="star1" onclick="starPick(1)">☆</span>
-			<span id="star2" onclick="starPick(2)">☆</span>
-			<span id="star3" onclick="starPick(3)">☆</span>
-			<span id="star4" onclick="starPick(4)">☆</span>
-			<span id="star5" onclick="starPick(5)">☆</span>
+			<input type="hidden" name="type" value="<%=type %>"/>			
+			<div class="card-header" style="background-color: #ecf3fd;">
+				<h3>평가하기</h3>
 			</div>
-			<div>
-				<span>리뷰 내용</span>
-				<span><textarea rows="10" cols="30" name="review_title" class="summernote" ><%=Rdto.getReview_title() %></textarea></span>
-			</div>
-			<div>
-				<input type="submit" value="수정">
-				<input type="button" value="취소" onclick="location.href='reviewlist.do?type=<%=type %>&no=<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no() %>'">
+			<div class="card-body">
+				<h6>다른 사용자에게 의견을 들려주세요</h6>
+				<h3>
+			<input type="hidden" value="<%=Rdto.getReview_score()%>" name="review_score" id="starScore" >	
+					<span id="star1" onclick="starPick(1)"> ☆ </span>
+					<span id="star2" onclick="starPick(2)"> ☆ </span>
+					<span id="star3" onclick="starPick(3)"> ☆ </span>
+					<span id="star4" onclick="starPick(4)"> ☆ </span>
+					<span id="star5" onclick="starPick(5)"> ☆ </span>
+				</h3>
+				<div id="writeReview"">
+					<div>
+						<span><textarea rows="10" cols="30" name="review_title" class="summernote"><%=Rdto.getReview_title() %></textarea> </span>
+					</div>
+					<div>
+						<input type="submit" class="btn btn-outline-primary" value="작성">
+						<input type="button" class="btn btn-outline-primary" value="취소" id="writeButton" onclick="location.href='reviewlist.do?type=<%=type %>&no=<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no() %>'">
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
-</div>
 </body>
 </html>

@@ -104,20 +104,18 @@
 
 	
 	function paging(i){
+		$('html').scrollTop(0);
 		var reviews = document.getElementsByClassName("reviews")
 		var page_item = document.querySelectorAll(".page-item")
 		for(var j = 0; j<page_item.length;j++){
 			if(j==i){
 				page_item[j].setAttribute("class", "page-item active" )
-
+				page_item[j].removeAttribute("onclick")
 			}else{
 				page_item[j].setAttribute("class", "page-item" )
-				
+				page_item[j].setAttribute("onclick", "paging("+j+")" )
 			}
 		}
-			
-			
-			
 		for(var j = 0; j<reviews.length;j++){
 			if(j>=i*10&&j<(i+1)*10){
 				document.getElementById("review"+j).style.display = "block"
@@ -169,11 +167,7 @@
 
 </script>
 <body>
-<div>
-<span></span>
-</div>
-
-<div class="bs-docs-section" style="display: flex;">
+<div style="display: flex;">
 		<%if(login!=null){ %>	
 	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 30%; margin-right: 2.5%">
 		<form action="ReviewInsert.do" method="post">
@@ -183,16 +177,22 @@
 				<h3>평가하기</h3>
 			</div>
 			<div class="card-body">
-				<h6>다른 사용자에게 의견을 들려주세요</h6>
-				<h3>
-					<input type="hidden" value="0" name="review_score" id="starScore">			
-					<span id="star1" onclick="starPick(1)"> ☆ </span>
-					<span id="star2" onclick="starPick(2)"> ☆ </span>
-					<span id="star3" onclick="starPick(3)"> ☆ </span>
-					<span id="star4" onclick="starPick(4)"> ☆ </span>
-					<span id="star5" onclick="starPick(5)"> ☆ </span>
-				</h3>
-				<input type="button" class="btn btn-outline-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
+				<div style="margin-bottom:20px ">
+					<h6>다른 사용자에게 의견을 들려주세요</h6>
+				</div>
+				<div style="margin-bottom:20px ">
+					<h3>
+						<input type="hidden" value="0" name="review_score" id="starScore">			
+						<span id="star1" onclick="starPick(1)"> ☆ </span>
+						<span id="star2" onclick="starPick(2)"> ☆ </span>
+						<span id="star3" onclick="starPick(3)"> ☆ </span>
+						<span id="star4" onclick="starPick(4)"> ☆ </span>
+						<span id="star5" onclick="starPick(5)"> ☆ </span>
+					</h3>
+				</div>
+				<div style="margin-bottom:20px ">
+					<input type="button" class="btn btn-outline-primary" id="writeButton" value="리뷰 작성하기" onclick="writeReview()">
+				</div>
 				<div id="writeReview" style="display: none;">
 					<div>
 						<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
@@ -215,19 +215,31 @@
 			<div class="card-body">
 				<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
 				<input type="hidden" name="type" value="<%=type %>"/>		
-				<div class="bs-component mb-5">
-					<div>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="0"><label class="form-check-label"  >★0</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="1"><label class="form-check-label"  >★1</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="2"><label class="form-check-label"  >★2</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="3"><label class="form-check-label"  >★3</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="4"><label class="form-check-label"  >★4</label>
-						<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="5"><label class="form-check-label"  >★5</label>
-					</div >
-					<select class="form-select" name="sort" style="width: 30%; display: inline;">
-						<option value="ASC">오름차순</option>
-						<option value="DESC">내림차순</option>
-					</select>
+				<div >
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">별점 </h6>
+						<span>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="0"><label class="form-check-label"  >★0</label>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="1"><label class="form-check-label"  >★1</label>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="2"><label class="form-check-label"  >★2</label>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="3"><label class="form-check-label"  >★3</label>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="4"><label class="form-check-label"  >★4</label>
+							<input type="checkbox" class="form-check-input" checked="checked" name = "star" value="5"><label class="form-check-label"  >★5</label>
+						</span></div >
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">정렬 기준</h6>
+						<select class="form-select" name="filter" style="width: 30%; display: inline;">
+							<option value="date">날짜</option>
+							<option value="star">별점</option>
+						</select>
+					</div>
+					<div style="margin-bottom:20px ">
+						<h6 style="display: inline">정렬 방법</h6>
+						<select class="form-select" name="sort" style="width: 30%; display: inline;">
+							<option value="ASC">오름차순</option>
+							<option value="DESC">내림차순</option>
+						</select>
+					</div>
 					<input type="submit" class="btn btn-outline-primary" value="검색"/>
 				</div>
 			</div>
@@ -266,7 +278,7 @@
 		<div id="defaultSearch" style="margin-left:50% ">
 			<ul class="pagination pagination-sm">
 			<%for(int j = 0;j<=list.size()/10;j++){%>
-				<li class="page-item" onclick="paging(<%=j%>)"><a class="page-link" href="#"><%=j+1 %></a></li>						
+				<li class="page-item" onclick="paging(<%=j%>)"><a class="page-link" ><%=j+1 %></a></li>						
 			<% }%>
 			</ul>
 		</div>

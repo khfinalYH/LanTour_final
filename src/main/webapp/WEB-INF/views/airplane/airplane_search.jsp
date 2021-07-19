@@ -1,5 +1,6 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -10,6 +11,8 @@
 <meta charset="UTF-8">
 <title>LanTour</title>
 </head>
+<link rel="stylesheet" href="./resources/assets/css/theme.min.css">
+<link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script type="text/javascript" src="resources/js/airportWeather.js" ></script>
 <script type="text/javascript">
 	
@@ -94,8 +97,6 @@
 	}
 	
 	window.onload = function(){
-		var d = document.getElementById("dep")
-		port(d.options[d.selectedIndex])
 		let [today] = new Date().toISOString().split("T");
 		document.getElementById("date").setAttribute("min", today);
 	}
@@ -104,48 +105,63 @@
 
 </script>
 <body>
+	<jsp:include page="../header.jsp" />
 <% List<Map<String, String>> list = (List<Map<String, String>>)request.getAttribute("list");  %>
 
 
-<h1>항공 검색</h1>
-
-<form action="airplaneList.do">
-	<div>
-		<sapn>출발 공항</sapn>
-		<select id="dep" onchange="port(this)" name = "depAirportId">
-		<%for(Map<String, String> map : list){ %>
-				<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
-		<%} %>
-			</optgroup>
-		</select>
-		<sapn>도착 공항</sapn>
-		<select required="required" name = "arrAirportId">
-		<%for(Map<String, String> map : list){ %>
-			<option hidden="hidden" <%if(map.get("airportNm").equals("제주")){ %>selected<%} %> id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
-		<%} %>
-			</optgroup>
-		</select>
-		<sapn>출발일자</sapn>
-		<input id = "date"type="date" name="date" >
-		<span>출발 시간</span>
-		<select name="time">
-			<option value="">전체조회</option>
-			<option value="00000600">00:00 ~ 06:00</option>
-			<option value="06000900">06:00 ~ 09:00</option>
-			<option value="09001200">09:00 ~ 12:00</option>
-			<option value="12001500">12:00 ~ 15:00</option>
-			<option value="15001800">15:00 ~ 18:00</option>
-			<option value="18002100">18:00 ~ 21:00</option>
-			<option value="21002400">21:00 ~ 24:00</option>			
-		</select>		
-		
-		<input type="submit" value="검색">
-		
-		
-		
+<section id ="booking">
+<div class="bg-holder" style="background-image:url(resources/assets/img/gallery/iairport.png);background-position:center;background-size:cover;"></div>
+<div class="container"> 
+	<div class="row">
+		<div class="d-flex flex-column flex-center">
+			<h1 class="text-white fs-2 fs-md-3">Search Airport For Trevel</h1>
+			<h2 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">HERE IS ALL OF PLAN</h2>
+			<h2 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">BOOK RIGHT NOW!</h2>		
+		</div>
+		<div class="col-12 py-8 text-white">
+			<form action="airplaneList.do" class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
+					<div class="col-6 col-md-3">
+						<select class="form-select" id="dep" onchange="port(this)" name = "depAirportId">
+							<option>출발공항</option>
+						<%for(Map<String, String> map : list){ %>
+							<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+						<%} %>
+						</select>
+					</div>
+					<div class="col-6 col-md-3">
+						<select class="form-select" required="required" name = "arrAirportId">
+							<option>도착공항</option>
+						<%for(Map<String, String> map : list){ %>
+							<option hidden="hidden" id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
+						<%} %>
+						</select>
+					</div>
+					<div class="col-6 col-md-3">
+						<input class="form-control" id = "date"type="date" name="date" >
+					</div>
+					<div class="col-6 col-md-3">				
+						<select class="form-select"  name="time">
+							<option value="">출발시간 조회</option>
+							<option value="00000600">00:00 ~ 06:00</option>
+							<option value="06000900">06:00 ~ 09:00</option>
+							<option value="09001200">09:00 ~ 12:00</option>
+							<option value="12001500">12:00 ~ 15:00</option>
+							<option value="15001800">15:00 ~ 18:00</option>
+							<option value="18002100">18:00 ~ 21:00</option>
+							<option value="21002400">21:00 ~ 24:00</option>			
+						</select>		
+					</div>
+					<div class="col-6 col-md-auto">
+						<input class="btn btn-lg btn-primary"  type="submit" value="검색">
+					</div>
+			</form>
+		</div>
 	</div>
+	
+</div>
+</section>
+	<jsp:include page="../footer.jsp" />
 
-</form>
 <h1>오늘의 날씨</h1>
 <div id="js-weather"></div>
 
