@@ -31,7 +31,7 @@
 </script>
 <style type="text/css">
 .header {
-	height: 60px;
+	height: 100px;
 }
 </style>
 <title>Insert title here</title>
