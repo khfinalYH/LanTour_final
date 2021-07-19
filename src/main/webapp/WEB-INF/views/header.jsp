@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 <script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -16,10 +18,13 @@
 			autoDisplay : false
 		}, 'google_translate_element');
 	}
+	function onLoad() {
+	      gapi.load('auth2', function() {
+	        gapi.auth2.init();
+	      });
+	    }
+	
 	function signOut() {
-		gapi.load('auth2', function() {
-			gapi.auth2.init();
-		});
 		var auth2 = gapi.auth2.getAuthInstance();
 		auth2.signOut().then(function() {
 			console.log('User signed out.');
