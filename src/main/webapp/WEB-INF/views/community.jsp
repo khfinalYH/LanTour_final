@@ -29,7 +29,15 @@
 		location.href = "./"+url+"?community_content="+community_content;
 	}
 	function paging(j) {
-		var count = ${fn:length(list)} - ((j-1) * 10)
+		var count = ${fn:length(list)} - ((j-1) * 10);
+		var leng = document.querySelectorAll(".page-item")
+		for (var i = 1; i < leng.length - 1; i++){
+			if(i == j){
+				leng[i].setAttribute("class","page-item active");
+			} else{
+				leng[i].setAttribute("class","page-item");
+			}
+		}
 		for(var i = 0; i <= ${fn:length(list)}; i++){
 			if(i>count-10&&i<=count){
 				$("#"+i).css("display","");
@@ -66,7 +74,7 @@
 
 
 	<h1>정보공유 게시판</h1>
-	<div class="community-div">
+	<div class="container">
 		<input type="hidden" id="select_change" value="${filter }" />
 		<div class="form-group">
 			<select id="select_option" class="form-select" style="display: inline; width: 15%;">
@@ -78,14 +86,14 @@
 			<button type="button" class="btn btn-primary" onclick="search()">검색</button>
 		</div>
 		<br>
-		<table id="community_table" class="table table-hover" border="1">
+		<table id="community_table" class="table table-hover">
 			<thead>
-				<tr class="table-primary">
-					<th scope="col">번호</th>
-					<th scope="col">작성자</th>
-					<th scope="col">제목</th>
-					<th scope="col">날짜</th>
-					<th scope="col">조회수</th>
+				<tr  style="background-color:#4582ec; color:#ffffff;">
+					<th scope="col" width="100">번호</th>
+					<th scope="col" width="100">작성자</th>
+					<th scope="col" width="500" style="text-align: center;">제목</th>
+					<th scope="col" width="100">날짜</th>
+					<th scope="col" width="100">조회수</th>
 				</tr>
 			</thead>
 			<c:set var="i" value="${fn:length(list) }" />

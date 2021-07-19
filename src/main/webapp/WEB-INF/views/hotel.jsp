@@ -61,6 +61,7 @@
 	font-weight: bold;
 	font-size: 20px;
 	color: black;
+	border-radius: 15px;
 }
 
 .hotel-list {
