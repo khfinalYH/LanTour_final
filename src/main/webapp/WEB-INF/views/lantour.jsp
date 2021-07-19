@@ -39,9 +39,9 @@
 
 </script>
 <style type="text/css">
-.table{
-	margin:100px;
-	width: 500px;
+.tour{
+	margin:auto;
+	width: 1000px;
 }
 </style>
 
@@ -49,6 +49,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 
+	<div class="tour">
 	<h1>랜선투어</h1>
 		<table class="table table-hover">
 		<thead>
@@ -56,6 +57,7 @@
 	      <th scope="col">번호</th>
 	      <th scope="col">제목</th>
 	      <th scope="col">내용</th>
+	      <th scope="col">평점</th>
 	      <th scope="col">작성일</th>
 	    </tr>
 	  </thead>
@@ -63,7 +65,7 @@
 		<c:choose>
 			<c:when test="${empty list }">
 			<tr>
-				<th colspan="4">------------작성된 글이 없습니다------------</th>
+				<th colspan="5">------------작성된 글이 없습니다------------</th>
 			</tr>
 			</c:when>
 			<c:otherwise>
@@ -83,18 +85,18 @@
 							<td>☆☆☆☆☆<br/>0/5(0)</td>
 						</c:otherwise>
 					</c:choose>
-					<td>${dto.lantour_regdate }</td>
+					<td><small class="text-muted">${dto.lantour_regdate }</small></td>
 				</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 		<tr>
-			<td colspan="4" align="right">
+			<td colspan="5" align="right" class="table table-hover">
 				<input type="button" value="투어 등록" onclick="location.href='./lantourinsert.do'"/>
 			</td>
 		</tr>	
 	</table>
-	
+	</div>
 	
 	<jsp:include page="footer.jsp" />
 	

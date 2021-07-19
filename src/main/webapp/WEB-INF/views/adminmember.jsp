@@ -22,7 +22,7 @@
 </script>
 <style type="text/css">
 .admin{
-	margin: 100px;
+	margin: auto;
 	width: 1000px;
 }
 </style>

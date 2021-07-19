@@ -47,6 +47,14 @@ function guestrtc() {
 
 }
 </script>
+<style type="text/css">
+.tour{
+	margin: auto;
+	width: 1000px;
+	text: center;
+}
+
+</style>
 <body>
 	<jsp:include page="header.jsp" />
 	<h1>랜선투어 상세페이지</h1>
@@ -75,8 +83,8 @@ function guestrtc() {
 		<input type="button" value="참여하기" onclick="guestrtc()"/>
 	</c:if>		
 
-
-	<table border="1">
+	<div class="tour">
+	<table class="table table-hover" border="1">
 		<col width ="100">
 		<col width ="100">
 		<col width ="100">
@@ -132,6 +140,7 @@ function guestrtc() {
 			</td>
 		</tr>
 	</table>
+	</div>
 	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
 	<jsp:include page="footer.jsp" />
 </body>
