@@ -70,7 +70,8 @@
 	width: 65%;
 	float: left;
 }
-.card:hover{
+
+.card:hover {
 	background: #3984F3;
 }
 </style>
@@ -86,15 +87,21 @@
 						<legend class="mt-4">숙소 타입</legend>
 						<div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="호텔" checked="checked"> 호텔
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="hotel_type" value="호텔" checked="checked">
+									호텔
 								</label>
 							</div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="모텔">모텔
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="hotel_type" value="모텔">
+									모텔
 								</label>
 							</div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">게스트 하우스
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">
+									게스트 하우스
 								</label>
 							</div>
 						</div>
@@ -139,20 +146,20 @@
 										</c:otherwise>
 									</c:choose>
 								</ul>
-								<div class="card-footer text-muted">
-									${dto.hotel_price }원
-								</div>
+								<div class="card-footer text-muted">${dto.hotel_price }원</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
-		<div>
-			<div class="form-group">
-				<input type="button" class="btn btn-primary" value="숙소 등록" onclick="location.href='./hotelinsert.do'" />
+		<c:if test="${login.member_grade eq 'H' }">
+			<div>
+				<div class="form-group">
+					<input type="button" class="btn btn-primary" value="숙소 등록" onclick="location.href='./hotelinsert.do'" />
+				</div>
 			</div>
-		</div>
+		</c:if>
 
 
 
