@@ -67,7 +67,7 @@
 				<option value="n_t_c">제목 + 내용</option>
 			</select>
 			<input type="text" class="search_keyword" value="${dto.keyword }">
-			<button onclick="search();" class="btn btn-outline-primary">검색</button>
+			<button onclick="search();" class="btn btn-primary">검색</button>
 		</div>
 		<br><br><br>
 		<table class="table table-hover">
@@ -103,7 +103,7 @@
 		
 		<div>
 			<c:if test="${login.member_grade == 'A' }">
-				<button type="button" id="writeBtn" class="btn btn-primary btn-sm" onclick="location.href='noticeInsertForm.do'">글작성</button>
+				<button type="button" id="writeBtn" class="btn btn-primary" onclick="location.href='noticeInsertForm.do'">글작성</button>
 				
 			</c:if>
 		</div>
