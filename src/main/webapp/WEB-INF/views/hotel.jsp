@@ -62,11 +62,16 @@
 	font-size: 20px;
 	color: black;
 	border-radius: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .hotel-list {
 	width: 65%;
 	float: left;
+}
+.card:hover{
+	background: #3984F3;
 }
 </style>
 </head>
@@ -114,16 +119,16 @@
 					<c:otherwise>
 						<c:set var="i" value="0" />
 						<c:forEach items="${list }" var="dto">
-							<div class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984F3;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
+							<div class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
+								<img src="${dto.hotel_image }">
 								<div class="card-body">
 									<h5 class="card-title">${dto.hotel_title }</h5>
 									<h6 class="card-subtitle text-muted">${dto.hotel_addr }</h6>
 								</div>
-								<img src="${dto.hotel_image }">
 								<div class="card-body">
 									<p class="card-text">${dto.hotel_content }</p>
 								</div>
-								<ul class="list-group list-group-flush">
+								<ul class="list-group list-group-flush" style="border-bottom: 1px solid #adadad; border-top: 1px solid #adadad;">
 									<c:choose>
 										<c:when test="${dto.hotel_no eq scorelist[i].hotel_no}">
 											<li class="list-group-item"><span class="scoreStar"></span> <span class="score">${scorelist[i].review_score }</span> <span>/5(${scorelist[i].review_no })</span></li>
@@ -135,7 +140,7 @@
 									</c:choose>
 								</ul>
 								<div class="card-footer text-muted">
-									<fmt:formatDate value="${dto.hotel_regdate }" pattern="yyyy-MM-dd" />
+									${dto.hotel_price }원
 								</div>
 							</div>
 						</c:forEach>

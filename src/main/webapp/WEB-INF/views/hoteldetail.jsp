@@ -87,12 +87,12 @@
 								}
 							});
 		</script>
-		<div style="width: 100%; margin-top: 5px; margin-bottom: 5px" class="col-6">
+		<div style="width: 80%; margin-top: 20px; margin-bottom: 20px" class="col-6">
 			<label class="visually-hidden" for="date">Date</label>
 			<div class="input-group">
-				<h3>체크인</h3>
-				<input class="form-control" style="color:black;" name="check_in" id="date" type="date" />
-				<h3>체크 아웃</h3>
+				<h5 style="padding-top: 2%; margin-right: 15px;">체크인</h5>
+				<input class="form-control" style="color:black; margin-right: 30px;" name="check_in" id="date" type="date" />
+				<h5 style="padding-top: 2%; margin-right: 15px;">체크 아웃</h5>
 				<input class="form-control" style="color:black;" name="check_out" id="date" type="date" />
 			</div>
 		</div>
