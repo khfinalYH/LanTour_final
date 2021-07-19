@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -10,7 +11,7 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
@@ -18,11 +19,9 @@ var MailRandNum = "";
 	// 아이디 중복 확인
 	function idCheck() {
 		var member_id = document.getElementsByName("member_id")[0].value;
-
 		var idVal = {
 			"member_id" : member_id
 		}
-
 		if (member_id.trim() == "" || member_id == null) {
 			alert("아이디를 입력해 주세요");
 		} else {
@@ -55,7 +54,6 @@ var MailRandNum = "";
 			document.getElementsByName("member_id")[0].focus();
 		}
 	};
-
 	// 비밀번호 일치 확인
 	function pwCheck() {
 		if (document.getElementById('pw').value != ''
@@ -136,83 +134,91 @@ var MailRandNum = "";
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<form action="./registerres.do" method="post">
-		<input type="hidden" name="member_grade" value="U" />
-		<table border="1">
+	<br><br><br><br>
+	<div class="container">
+		<h4>일반 회원가입</h4>
+		<br><br>
+		<form action="./registerres.do" method="post">
+			<input type="hidden" name="member_grade" value="U" />
+			<fieldset>
+			<div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">아이디</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" id="idChk" name="member_id" title="n" style="color: black;" required>
+		        <button type="button" class="btn btn-primary btn-sm" onclick="idCheck();" style="float: right;">중복체크</button>
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">비밀번호</label>
+		      <div class="col-sm-10">
+		        <input type="password" class="form-control" id="pw" name="member_password" onclick="idCheckConfirm();" onchange="pwCheck()" style="color: black;" required>
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">비밀번호 확인</label>
+		      <div class="col-sm-10">
+		        <input type="password" class="form-control" id="pw2" onclick="idCheckConfirm();" onchange="pwCheck()" style="color: black;" required>&nbsp;<span id="check"></span>
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">이름</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" name="member_name" style="color: black;" required>
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">나이</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" name="member_age" style="color: black;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
+		      </div>
+		    </div>
+		  	<br>
+		  	
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">성별</label>
+		      <div class="col-sm-10">
+		        <input type="radio" name="member_gender" value="M" checked>남
+				<input type="radio" name="member_gender" value="F">여
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">이메일</label>
+		      <div class="col-sm-10">
+		        <input type="text" id="email" name="member_email" style="color: black;" required />
+		        <button type="button" class="btn btn-primary btn-sm" id="mailceck" onclick="Emailceck();">인증메일 발송</button>
+		        <br>
+				<input type="text" id="EmailRandom" disabled>
+				<button type="button" name="" class="btn btn-primary btn-sm" id="mailRandceck" style="color: black;" onclick="EmailRandceck();" disabled>확인</button>
+		      </div>
+		    </div>
+		  	<br>
 
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input type="text" id="idChk" name="member_id" title="n" required>
-					<input type="button" value="중복체크" onclick="idCheck();">
-				</td>
-			</tr>
+			<div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">전화번호</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" name="member_phone" placeholder="-없이 입력하세요" style="color: black;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"  required />
+		      </div>
+		    </div>
+		  	<br><br>
 
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input type="password" id="pw" name="member_password" onclick="idCheckConfirm();" onchange="pwCheck()" required>
-				</td>
-			</tr>
+			<div style="float: right;">
+				<input id="submit" class="btn btn-outline-primary" type="submit" value="회원가입" disabled/>
+				<input type="button" class="btn btn-outline-primary" value="취소" onclick="location.href='main.do'" />
+			</div>
+			</fieldset>
+		</form>
 
-			<tr>
-				<th>비밀번호 확인</th>
-				<td>
-					<input type="password" id="pw2" onclick="idCheckConfirm();" onchange="pwCheck()" required>
-					&nbsp;<span id="check"></span>
-				</td>
-			</tr>
-
-			<tr>
-				<th>이름</th>
-				<td>
-					<input type="text" name="member_name" required>
-				</td>
-			</tr>
-
-			<tr>
-				<th>나이</th>
-				<td>
-					<input type="text" name="member_age" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
-				</td>
-			</tr>
-
-			<tr>
-				<th>성별</th>
-				<td>
-					<input type="radio" name="member_gender" value="M" checked>
-					남
-					<input type="radio" name="member_gender" value="F">
-					여
-				</td>
-			</tr>
-
-			<tr>
-				<th>이메일</th>
-				<td>
-					<input type="text" id="email" name="member_email" required />
-					<input type="button" id="mailceck" value="인증메일 발송" onclick="Emailceck()"><br/>
-					<input type="text" id="EmailRandom" disabled>
-					<input type="button" name="" value="확인"  id="mailRandceck" onclick="EmailRandceck()" disabled>
-					
-				</td>
-			</tr>
-
-			<tr>
-				<th>전화번호</th>
-				<td>
-					<input type="text" name="member_phone" placeholder="-없이 입력하세요" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required />
-				</td>
-			</tr>
-
-		</table>
-
-		<div>
-			<input id="submit" type="submit" value="회원가입" disabled/>
-			<input type="button" value="취소" onclick="location.href=''" />
-		</div>
-
-	</form>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 
