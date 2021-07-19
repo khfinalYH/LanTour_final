@@ -166,7 +166,7 @@
 		<div class="comment">
 			<c:if test="${login ne null }">
 				<div class="comment_nicname">
-					<span> ${dto.member_name } </span>
+					<span> ${login.member_name } </span>
 				</div>
 				<input type="text" class="comment_content"  id="comment_content">
 

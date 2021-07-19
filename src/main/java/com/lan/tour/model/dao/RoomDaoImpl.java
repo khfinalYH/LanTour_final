@@ -68,4 +68,17 @@ public class RoomDaoImpl implements RoomDao {
 		return res;
 	}
 
+	@Override
+	public int deleteAll(int hotel_no) {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"roomdeleteAll", hotel_no);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

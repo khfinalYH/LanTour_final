@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function session(){
@@ -14,20 +15,34 @@
 	}
 </script>
 <body>
+<jsp:include page="header.jsp" />
+<div class="container">
 
-	<h1>마이 페이지 정보확인</h1>
+	<br><br>
+	<ul class="nav nav-pills" >
+		  <li class="nav-item">
+		    <a class="nav-link active" href="mypage.do">정보 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypageupdate.do">정보 수정</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypost.do">게시글 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypayment.do">결제내역 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mytrip.do?member_no=${login.member_no }">여행일정 확인</a>
+		  </li>
+	</ul>
+	<br><br>
 	
 	<form action="./mypage.do" method="post" >
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
-	<ul>
-		<li ><a href= mypage.do>내정보 확인</a></li>
-		<li ><a href= mypageupdate.do>내정보 수정</a></li>
-		<li ><a href= mypost.do>내게시글 확인</a></li>
-		<li ><a href= mypayment.do>내결제내역 확인</a></li>
-		<li ><a href= mytrip.do?member_no=${login.member_no }>내 여행계획 확인</a></li>
-	</ul>
+
 	
 
 	<table border="1">
@@ -75,5 +90,7 @@
       </table>
       </div>
       </form>
+</div>
+<jsp:include page="footer.jsp" />
 </body>
 </html>

@@ -8,17 +8,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
+<link rel="stylesheet" href="./resources/assets/css/theme.min.css">
+<link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".cal_update").click(function(){
+		$("#cal_update").click(function(){
 			var cal_no = $(".cal_no").val();
-			var cal_title = $(".cal_title").val();
-			var start_date = $(".start_date").val();
-			var start_time = $(".start_time").val();
-			var end_date = $(".end_date").val();
-			var end_time = $(".end_time").val();
-			var cal_content = $(".cal_content").val();
+			var cal_title = $("#cal_title").val();
+			var start_date = $("#start_date").val();
+			var start_time = $("#start_time").val();
+			var end_date = $("#end_date").val();
+			var end_time = $("#end_time").val();
+			var cal_content = $("#cal_content").val();
 			
 			if(start_time != '') {
 				start_time = 'T' + start_time;
@@ -74,40 +77,61 @@
 
 <body>
 
-	<h1>일정 수정</h1>
 	<c:set var="startdate" value="${dto.cal_startdate }" />
 	<c:set var="enddate" value="${dto.cal_enddate }" />
-
-<input type ="hidden" class="cal_no" name="cal_no" value="${dto.cal_no }">
-	<table>
-		<tr>
-			<th>제목</th>
-			<td><input type="text" class="cal_title" name="title" value="${dto.cal_title }"></td>
-		</tr>
-
-		<tr>
-			<th>시작 날짜</th>
-			<td>
-				<input type="date" class="start_date" value="${fn:substring(startdate,0,10) }">&nbsp;&nbsp;<input type="time" class="start_time" value="${fn:substring(startdate,11,19) }">
-			</td>
-		</tr>
-		
-		<tr>
-			<th>종료 날짜</th>
-			<td>
-				<input type="date" class="end_date" value="${fn:substring(enddate,0,10) }">&nbsp;&nbsp;<input type="time" class="end_time" value="${fn:substring(enddate,11,19) }">
-			</td>
-		</tr>
-
-		<tr>
-			<th>내용</th>
-			<td><textarea rows="10" cols="60" class="cal_content" name="content">${dto.cal_content }</textarea></td>
-		</tr>
-		
-	</table>
+	<input type ="hidden" class="cal_no" name="cal_no" value="${dto.cal_no }">
+	<br><br>
+	<div class="container">
+	<div class="row flex-center mb-5">
+	<div class="col-lg-8 text-center">
+	<h2 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">일정 수정</h2>
+	<hr class="mx-auto text-primary my-4" style="height:2px; width:170px;" />
 	<br>
-	<input type="button" class="cal_update" value="일정 수정">
-	<input type="button" value="취소" onClick="window.close()">
+			<div class="form-group row">
+			<label for="staticEmail" class="col-sm-2 col-form-label">제목</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control-plaintext" id="cal_title" style="border:1px solid black;" name="title" value="${dto.cal_title }">
+		    </div>
+			</div>
+			
+			<br><br>
+			<div class="form-group row">
+			<label for="staticEmail" class="col-sm-2 col-form-label">시작 날짜</label>
+			<div class="col-sm-10">
+				<input type="date" id="start_date" class="form-control-plaintext" style="border:1px solid black; float: left; width: 48%;" value="${fn:substring(startdate,0,10)}">
+		    	<input type="time" id="start_time" class="form-control-plaintext" style="border:1px solid black; float: right; width: 48%;" value="${fn:substring(startdate,11,19) }">
+		    </div>
+			</div>
+			
+			<br><br>
+			<div class="form-group row">
+			<label for="staticEmail" class="col-sm-2 col-form-label">종료 날짜</label>
+			<div class="col-sm-10">
+				<input type="date" id="end_date" class="form-control-plaintext" style="border:1px solid black; float: left; width: 48%;" value="${fn:substring(enddate,0,10) }">
+				<input type="time" id="end_time" class="form-control-plaintext" style="border:1px solid black; float: right; width: 48%;" value="${fn:substring(enddate,11,19) }">
+		    </div>
+			</div>
+			
+			
+			<br><br>
+			<div class="form-group row">
+			<label for="staticEmail" class="col-sm-2 col-form-label">내용</label>
+			<div class="col-sm-10">
+				<textarea rows="5"  class="form-control-plaintext" id="cal_content" cols="60" style="border:1px solid black;"  name="content">${dto.cal_content }</textarea>
+				
+		    </div>
+			</div>
+			
+			
+	<br><br>
+
+	<button type="button" class="btn btn-primary btn-sm" id="cal_update">일정 수정</button>
+	<button type="button" class="btn btn-primary btn-sm" onClick="window.close()">취소</button>
+	</div>
+	</div>
+	</div>
+
+
 
 </body>
 </html>

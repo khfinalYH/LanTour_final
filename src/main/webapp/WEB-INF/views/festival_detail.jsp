@@ -5,12 +5,12 @@ request.setCharacterEncoding("UTF-8");
 <%
 response.setContentType("text/html; charset=UTF-8");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -21,62 +21,79 @@ response.setContentType("text/html; charset=UTF-8");
 	<input type="hidden" id="contentid" value="<%=contentid%>">
 	<%
 	String eventstartdate = (String) request.getAttribute("eventstartdate");
+	eventstartdate = eventstartdate.substring(0, 4) + "-" + eventstartdate.substring(4, 6) + "-" + eventstartdate.substring(6, 8);
 	%>
 	<%
 	String eventenddate = (String) request.getAttribute("eventenddate");
+	eventenddate = eventenddate.substring(0, 4) + "-" + eventenddate.substring(4, 6) + "-" + eventenddate.substring(6, 8);
 	%>
 
+	
+	<jsp:include page="header.jsp" />
+	<div class="container">
+	<br><br><br>
+	
+		<div class="row flex-center mb-5">
+            <div class="col-lg-8 text-center">
+              <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5" id="festivaltitle"></h1>
+              <hr class="mx-auto text-primary my-4" style="height:3px; width:370px;" />
+              <img id="festivalimg" alt="img" src="">
+              <br><br>
+              <p class="mx-auto" id="festivalsummary"></p>
+            </div>
+          </div>
 
 
-	<section>
-		<div>
-			<h2 id="festivaltitle"></h2>
-			<img id="festivalimg" alt="img" src="">
-			<p id="festivalsummary">개요</p>
-		</div>
-
-		<table class="table">
-			<thead>
+	<br><br><br>
+	<table class="table table-hover">
+		<thead>
+			<tr style="background-color:#4582ec; color:#ffffff; ">
+				<th colspan="2" scope="col" class="text-center" style="text-align: center;">상세정보</th>
+			</tr>
+		</thead>
+		<tbody>
 				<tr>
-					<th class="text-center" colspan="2" scope="col"><p>상세정보</p></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row"><p>시작일</p></th>
+					<th scope="row" style="text-align: center;"><p>시작일</p></th>
 					<td>
 						<p><%=eventstartdate%></p>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><p>종료일</p></th>
+					<th scope="row" style="text-align: center;"><p>종료일</p></th>
 					<td>
 						<p><%=eventenddate%></p>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><p>전화번호</p></th>
+					<th scope="row" style="text-align: center;"><p>전화번호</p></th>
 					<td>
 						<p id="festivaltel"></p>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><p>홈페이지</p></th>
+					<th scope="row" style="text-align: center;"><p>홈페이지</p></th>
 					<td>
 						<p id="festivallink"></p>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><p>주소</p></th>
+					<th scope="row" style="text-align: center;"><p>주소</p></th>
 					<td>
 						<p id="festivaladdr"></p>
 					</td>
 				</tr>
 			</tbody>
-		</table>
-		<div id="map" style="width: 50%; height: 350px;"></div>
+	</table>
+	<br><br><br>
+	<div id="map" style="width: 100%; height: 350px; align-content: center;"></div>
+</div>
 
-	</section>
+
+
+		
+		
+
+
 
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e46f4369a17cbff96a1aa064dd171ad2"></script>

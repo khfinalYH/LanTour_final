@@ -13,4 +13,6 @@ public interface RoomBiz {
 	public int insert(RoomDto dto);
 
 	public int delete(int room_no);
+	
+	public int deleteAll(int hotel_no);
 }

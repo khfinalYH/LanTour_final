@@ -5,7 +5,7 @@
 		resultType="roomDto">
 		SELECT
 		ROOM_NO,HOTEL_NO,ROOM_CONTENT,ROOM_PRICE,ROOM_CONVINENCE,ROOM_MAXCOUNT,
-		ROOM_IMAGE
+		ROOM_IMAGE,ROOM_NAME
 		FROM ROOM
 		WHERE HOTEL_NO = #{hotel_no}
 	</select>
@@ -14,7 +14,7 @@
 		resultType="roomDto">
 		SELECT
 		ROOM_NO,HOTEL_NO,ROOM_CONTENT,ROOM_PRICE,ROOM_CONVINENCE,ROOM_MAXCOUNT,
-		ROOM_IMAGE
+		ROOM_IMAGE,ROOM_NAME
 		FROM ROOM
 		WHERE ROOM_NO = #{room_no}
 	</select>
@@ -22,13 +22,19 @@
 	<insert id="roominsert" parameterType="roomDto">
 		INSERT INTO ROOM
 		VALUES(ROOM_NO_SEQ.NEXTVAL,#{hotel_no},#{room_content},#{room_price},#{room_convinence}
-		,#{room_maxcount},#{room_image})
+		,#{room_maxcount},#{room_image},#{room_name})
 	</insert>
 
 	<delete id="roomdelete" parameterType="int">
 		DELETE FROM ROOM
 		WHERE
 		ROOM_NO = #{room_no}
+	</delete>
+	
+	<delete id="roomdeleteAll" parameterType="int">
+		DELETE FROM ROOM
+		WHERE
+		HOTEL_NO = #{hotel_no}
 	</delete>
 
 </mapper>

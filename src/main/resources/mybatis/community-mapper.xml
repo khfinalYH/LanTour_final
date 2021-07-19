@@ -25,10 +25,11 @@
 		FROM COMMUNITY c, MEMBER m
 		WHERE
 		c.MEMBER_NO = m.MEMBER_NO
-		AND c.COMMUNITY_TITLE LIKE '%' || #{community_title} || '%'
+		AND c.COMMUNITY_TITLE LIKE '%' ||
+		#{community_title} || '%'
 		ORDER BY COMMUNITY_NO DESC
 	</select>
-	
+
 	<select id="community_contentSearch" resultType="CommunityDto"
 		parameterType="String">
 		SELECT
@@ -40,7 +41,8 @@
 		FROM COMMUNITY c, MEMBER m
 		WHERE
 		c.MEMBER_NO = m.MEMBER_NO
-		AND c.COMMUNITY_CONTENT LIKE '%' || #{community_content} || '%'
+		AND c.COMMUNITY_CONTENT LIKE '%' ||
+		#{community_content} || '%'
 		ORDER BY COMMUNITY_NO DESC
 	</select>
 
@@ -55,7 +57,8 @@
 		FROM COMMUNITY c, MEMBER m
 		WHERE
 		c.MEMBER_NO = m.MEMBER_NO
-		AND m.MEMBER_NAME LIKE '%' || #{member_name} || '%'
+		AND m.MEMBER_NAME LIKE '%' || #{member_name}
+		|| '%'
 		ORDER BY COMMUNITY_NO DESC
 	</select>
 
@@ -91,37 +94,40 @@
 		#{community_content}
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
-	
+
 	<update id="readcount_update" parameterType="int">
 		UPDATE COMMUNITY
 		SET
 		COMMUNITY_READCOUNT = COMMUNITY_READCOUNT + 1
-		WHERE 
+		WHERE
 		COMMUNITY_NO = #{community_no}
 	</update>
 
 	<select id="boardlist" resultType="communityDto">
-		SELECT COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_REGDATE, COMMUNITY_DELFLAG
+		SELECT COMMUNITY_NO,
+		COMMUNITY_TITLE, COMMUNITY_REGDATE, COMMUNITY_DELFLAG
 		FROM COMMUNITY
 		ORDER BY COMMUNITY_NO
 	</select>
-	
+
 	<update id="boardupdate" parameterType="communityDto">
 		UPDATE COMMUNITY
-		SET COMMUNITY_CONTENT = #{community_content}
-		WHERE COMMUNITY_NO = #{community_no}
+		SET
+		COMMUNITY_CONTENT = #{community_content}
+		WHERE COMMUNITY_NO =
+		#{community_no}
 	</update>
-	
+
 	<delete id="communityAlldelete" parameterType="int">
-		DELETE 
+		DELETE
 		FROM COMMUNITY
 		WHERE COMMUNITY_NO = #{community_no}
 	</delete>
-	
+
 	<update id="community_refaired" parameterType="int">
 		UPDATE COMMUNITY
 		SET COMMUNITY_DELFLAG = 'N'
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
-	
+
 </mapper>

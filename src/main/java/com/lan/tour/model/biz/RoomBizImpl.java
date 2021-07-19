@@ -38,5 +38,11 @@ public class RoomBizImpl implements RoomBiz {
 		return dao.delete(room_no);
 	}
 
+	@Override
+	public int deleteAll(int hotel_no) {
+		// TODO Auto-generated method stub
+		return dao.deleteAll(hotel_no);
+	}
+
 
 }
