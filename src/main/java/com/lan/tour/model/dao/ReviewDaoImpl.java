@@ -43,47 +43,52 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewDto> selectList(String type, Map<String, Integer> map, String sort) {		
+	public List<ReviewDto> selectList(String type, Map<String, Integer> map, String sort, String filter) {		
 		List<ReviewDto> list = new ArrayList<ReviewDto>();
-		switch(type){
-			case "hotel":
-				if(sort.equals("ASC")) {
-					try {
-						list = sqlSession.selectList(NAMESPACE+"search_hotel_asc", map);
+		try {
+			if(!filter.equals("date")) {
+				switch(type){
+					case "hotel":
+						if(sort.equals("ASC")) {
+								list = sqlSession.selectList(NAMESPACE+"search_hotel_asc", map);
+							
+						}else {
+								list = sqlSession.selectList(NAMESPACE+"search_hotel_desc", map);
+						}
+						break;
+					case "lantour":
+						if(sort.equals("ASC")) {
+								list = sqlSession.selectList(NAMESPACE+"search_lantour_asc", map);
 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}else {
-					try {
-						list = sqlSession.selectList(NAMESPACE+"search_hotel_desc", map);
 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}
-				break;
-			case "lantour":
-				if(sort.equals("ASC")) {
-					try {
-						list = sqlSession.selectList(NAMESPACE+"search_lantour_asc", map);
+						}else {
+								list = sqlSession.selectList(NAMESPACE+"search_lantour_desc", map);
+						}
+						break;
+				}		
+			}else {
+				switch(type){
+					case "hotel":
+						if(sort.equals("ASC")) {
+								list = sqlSession.selectList(NAMESPACE+"search_hotel_date_asc", map);
+							
+						}else {
+								list = sqlSession.selectList(NAMESPACE+"search_hotel_date_desc", map);
+						}
+						break;
+					case "lantour":
+						if(sort.equals("ASC")) {
+								list = sqlSession.selectList(NAMESPACE+"search_lantour_date_asc", map);
 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}else {
-					try {
-						list = sqlSession.selectList(NAMESPACE+"search_lantour_desc", map);
 
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}
-				break;
+						}else {
+								list = sqlSession.selectList(NAMESPACE+"search_lantour_date_desc", map);
+						}
+						break;
+				}		
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -175,6 +180,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return list;
 	}
+
 
 	
 
