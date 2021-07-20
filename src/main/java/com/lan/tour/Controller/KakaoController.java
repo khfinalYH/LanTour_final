@@ -39,6 +39,9 @@ public class KakaoController {
 	        
 	        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
 	        
+	        session.setAttribute("token", access_Token.toString());
+	        
+	        
 	        System.out.println("###id#### : " + userInfo.get("id"));
 	        System.out.println("###nickname#### : " + userInfo.get("nickname"));
 	        System.out.println("###email#### : " + userInfo.get("email"));
@@ -65,10 +68,6 @@ public class KakaoController {
 	        return "redirect:main.do";
 	    }
 		
-		@RequestMapping("/kakaologinlink.do")
-		public String kakaologinlink() {
-			return "kakaologin";
-		}
 		
 		@RequestMapping("/signup_kakaores.do")
 		public String signup_kakaores(HttpSession session, MemberDto dto) {	

@@ -1,6 +1,9 @@
 package com.lan.tour.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +17,16 @@ public class MyPageController {
 	
 		@Autowired
 		private MemberBiz biz;
+		
+		@Autowired
+		private BCryptPasswordEncoder pwEncoder;
 	
 		//������ Ȯ��
 		@RequestMapping("/mypage.do")
 		public String mypage() {
 			return "mypage";
 		}
-		//������ ����
+		
 		@RequestMapping("/mypageupdate.do")
 		public String mypageupdate(Model model) {
 			
@@ -28,30 +34,31 @@ public class MyPageController {
 		}
 		
 		@RequestMapping("/mypageupdateres.do")
-		public String updateres(MemberDto dto) {
+		public String updateres(MemberDto dto, HttpSession session ) {
+			
 			if (biz.update(dto) > 0) {
+				MemberDto memberdto = (MemberDto)session.getAttribute("login");
+				memberdto.setMember_name(dto.getMember_name());
+				memberdto.setMember_password(pwEncoder.encode(dto.getMember_password()));
+				
+				memberdto.setMember_phone(dto.getMember_phone());
+				memberdto.setMember_email(dto.getMember_email());
+				
+				
 				return "redirect:mypage.do?member_no=" + dto.getMember_no();
 			}
-
 			return "redirect:mypageupdate.do?member_no=" + dto.getMember_no();
 		}
-		//���Խñ� Ȯ��
+		
 		@RequestMapping("/mypost.do")
 		public String mypost() {
 			return "mypost";
-		} 
-		//�� �������� Ȯ��
+		}
+		
 		@RequestMapping("/mypayment.do")
 		public String mypayment() {
 			return "mypayment";
 		}
 
-		
-		/* ǮĶ���� map���·� ��ȯ����� ajax ����� success�ȴ�.
-		Map<String, FullCalendarDto> javaMap = new HashMap<String, FullCalendarDto();
-		javaMap.put("evt1", new FullCalendarDTO("db�̺�Ʈ1", "2019-09-04", "2019-09-06", "false") );
-		javaMap.put("evt2", new FullCalendarDTO("db�̺�Ʈ2", "2019-09-23", "2019-09-26", "false") );  
-		*/
-		
 		
 }

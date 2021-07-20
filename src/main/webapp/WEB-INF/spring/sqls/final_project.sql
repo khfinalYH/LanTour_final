@@ -35,7 +35,7 @@ CREATE SEQUENCE REVIEW_NO_SEQ;
 CREATE SEQUENCE ROOM_NO_SEQ;
 CREATE SEQUENCE CAL_NO_SEQ;
 
-delete from member where member_no = 8; 
+
 select * from member;
 
 CREATE TABLE MEMBER(

@@ -17,9 +17,11 @@
 			autoDisplay : false
 		}, 'google_translate_element');
 	}
+	//https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do
 	function signOut() {
+		
 		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-
+		Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
 	      gapi.load('auth2', function() {
 		        gapi.auth2.init();
 	     });
@@ -30,23 +32,16 @@
 			//카카오 로그아웃
 			if (!Kakao.Auth.getAccessToken()) {
 			  console.log('Not logged in.');
-			  return;
+			  
 			}
-			Kakao.Auth.logout(function() {
-			  console.log(Kakao.Auth.getAccessToken());
-			});	
-		  
-			//카카오 연결끊기	
-			Kakao.API.request({
-				  url: '/v1/user/unlink',
-				  success: function(response) {
-				    console.log(response);
-				  },
-				  fail: function(error) {
-				    console.log(error);
-				  },
-				});
-	    	location.href="logout.do"
+			if("<%=(String)session.getAttribute("token") %>" != ""){
+				Kakao.Auth.logout(function() {
+					  console.log(Kakao.Auth.getAccessToken());
+					  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do";
+					});
+			} else{
+				location.href="logout.do"
+			}
 		}
 	
 	
@@ -81,7 +76,8 @@
 						<li class="nav-item"><a class="nav-link text-600" href="festival.do">축제 검색 </a></li>
 						<li class="nav-item"><a class="nav-link text-600" href="community.do">정보게시판 </a></li>
 						<li class="nav-item"><a class="nav-link text-600" href="noticeList_category.do?nowPage=1">공지사항 </a></li>
-						<li class="nav-item"><a class="nav-link text-600" href="kakaologinlink.do">카카오로그인 </a></li>
+						<li class="nav-item"><a class="nav-link text-600" href="mypage.do">마이페이지 </a></li>
+						
 						<c:if test="${not empty login }">
 							<c:choose>
 								<c:when test="${login.member_grade == 'A' }">

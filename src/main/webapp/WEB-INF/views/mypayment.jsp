@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<jsp:include page="header.jsp" />
 	<h1>마이 페이지 결제내역</h1>
 	
 	<form action="./mypayment.do" method="post" >
@@ -23,7 +25,7 @@
 	<table border =1>	
 	  	<col width="150" />
 		<col width="150" />
-		<tr>
+		<tr bordercolor="1">
 			<th>예약 이름</th>
 			<th>결제내역</th>
 		</tr>
@@ -35,10 +37,8 @@
 	  		
 		
 	</table>
-	
-	
-	
 	</div>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

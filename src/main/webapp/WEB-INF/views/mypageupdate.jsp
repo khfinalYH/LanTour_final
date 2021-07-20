@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="header.jsp" />
 	<h1>마이 페이지 수정</h1>
 
 	<form action="./mypageupdateres.do" method="post">
@@ -24,7 +25,7 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="member_name" readonly="readonly" value="${login.member_name }">
+						<input type="text" name="member_id" readonly="readonly" value="${login.member_id }">
 					</td>
 				</tr>
 				<tr>
@@ -61,5 +62,6 @@
 
 		</div>
 	</form>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>
