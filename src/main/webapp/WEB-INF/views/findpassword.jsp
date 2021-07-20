@@ -11,22 +11,22 @@
 
 	<br><br>
 	<div class="container">
-	<h1>비밀번호 찾기</h1>
+	<h3 style="text-align: center; ">비밀번호 찾기</h3>
 	
 	
 	<form action="./findpasswordres.do" method="post">
 		<fieldset>
 			<div class="form-group" style="margin:0 auto; width: 50%;">
 		      <label class="form-label mt-4">아이디</label>
-		      <input type="text" class="form-control" name="member_id" placeholder="회원가입 시 등록한 아이디를 입력해주세요." style="color: black;">
+		      <input type="text" class="form-control" name="member_id" placeholder="회원가입 시 등록한 아이디를 입력해주세요." style="color: black;" required>
 		    </div>
 		    <div class="form-group" style="margin:0 auto; width: 50%;">
 		      <label class="form-label mt-4">이름</label>
-		      <input type="text" class="form-control" name="member_name" placeholder="회원가입 시 등록한 이름을 입력해주세요." style="color: black;">
+		      <input type="text" class="form-control" name="member_name" placeholder="회원가입 시 등록한 이름을 입력해주세요." style="color: black;" required>
 		    </div>
 			<div class="form-group" style="margin:0 auto; width: 50%;">
 		      <label class="form-label mt-4">이메일</label>
-		      <input type="email" class="form-control" name="member_email" placeholder="회원가입 시 등록한 이메일을 입력해주세요." style="color: black;">
+		      <input type="email" class="form-control" name="member_email" placeholder="회원가입 시 등록한 이메일을 입력해주세요." style="color: black;" required>
 		      <br><br>
 		      <button type="submit" class="btn btn-primary" style="float: right;">비밀번호 찾기</button>
 		    </div>
