@@ -11,6 +11,7 @@
 	$(function() {
 		$("#second").css("display", "none");
 		$("#third").css("display", "none");
+		$(".nav-p:eq(0)").css("background-color", "#3984F3");
 	});
 	function upload() {
 		var form = new FormData();
@@ -59,18 +60,34 @@
 	function before_first() {
 		$("#first").css("display", "");
 		$("#second").css("display", "none");
+		$(".list-group-item").eq(0).attr("class",
+				"list-group-item list-group-item-action active");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action");
 	}
 	function next_second() {
 		$("#first").css("display", "none");
 		$("#second").css("display", "");
+		$(".list-group-item").eq(0).attr("class",
+				"list-group-item list-group-item-action");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action active");
 	}
 	function before_second() {
 		$("#third").css("display", "none");
 		$("#second").css("display", "");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action active");
+		$(".list-group-item").eq(2).attr("class",
+				"list-group-item list-group-item-action");
 	}
 	function next_third() {
 		$("#third").css("display", "");
 		$("#second").css("display", "none");
+		$(".list-group-item").eq(1).attr("class",
+				"list-group-item list-group-item-action");
+		$(".list-group-item").eq(2).attr("class",
+				"list-group-item list-group-item-action active");
 	}
 </script>
 <style type="text/css">
@@ -82,107 +99,124 @@
 	text-align: center;
 	margin-top: 30px;
 }
+
+.hotel-insert {
+	display: flex;
+	width: 1000px;
+	margin: auto;
+}
+
+.div-insert {
+	width: 65%;
+	float: left;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
 	<h1>숙소 insert, ${login.member_id },${login.member_no }</h1>
-	<form action="./hotelinsertres.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="member_no" value="${login.member_no}" />
-		<input type="hidden" id="hotel_image" name="hotel_image" value="" />
-		<div id="first">
-			<div style="height: 102px;">
-				<div class="hotel-type hotel-type-span">
-					<span>숙소 종류</span>
-				</div>
-				<div class="hotel-type">
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="호텔" checked="checked"> 호텔
+	<div class="container" style="display: flex; min-height: 550px;">
+		<div class="list-group" style="width: 20%; float: left; margin-right: 10%; margin-top: 20px;">
+			<span class="list-group-item list-group-item-action active">타입,이름,인원,위치</span>
+			<span class="list-group-item list-group-item-action">설명, 가격</span>
+			<span class="list-group-item list-group-item-action">시설, 사진 등록</span>
+		</div>
+		<div class="div-insert">
+			<form action="./hotelinsertres.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="member_no" value="${login.member_no}" />
+				<input type="hidden" id="hotel_image" name="hotel_image" value="" />
+				<div id="first">
+					<div>
+						<label class="col-sm-2 col-form-label">숙소 타입</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="호텔" checked="checked">
+							호텔
+						</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="모텔">
+							모텔
+						</label>
+						<label class="form-check-label" style="margin-right: 10px;">
+							<input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">
+							게스트 하우스
 						</label>
 					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="모텔">모텔
-						</label>
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="form-label mt-4">숙소 이름</label>
+							<input type="text" name="hotel_title" style="width: 70%; color: black;" class="form-control" placeholder="숙소 이름을 입력하세요">
+						</div>
 					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio" class="form-check-input" name="hotel_type" value="게스트 하우스">게스트 하우스
-						</label>
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="form-label mt-4">숙소 인원</label>
+							<input type="text" name="hotel_maxcount" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" style="display: block;" class="form-label mt-4">숙소 위치</label>
+							<input type="text" id="sample6_postcode" style="width: 50%; display: inline; color: black;" class="form-control" placeholder="우편번호">
+							<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							<br>
+							<input type="text" id="sample6_address" style="width: 70%; color: black;" class="form-control" name="hotel_addr" placeholder="주소">
+							<br>
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<button type="button" class="btn btn-primary" onclick="next_second()">계속</button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<label for="exampleInputEmail1" class="form-label mt-4">숙소 이름</label>
-					<input type="text" name="hotel_title" style="width: 50%; color: black;" class="form-control" placeholder="숙소 이름을 입력하세요">
+				<div id="second">
+					<div>
+						<div class="form-group">
+							<label for="exampleTextarea" class="form-label mt-4">숙소 설명</label>
+							<textarea class="form-control" style="color: black; width: 70%;" name="hotel_content" rows="10"></textarea>
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="form-label mt-4">대여 가격</label>
+							<input type="text" name="hotel_price" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+							<br>
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<button type="button" class="btn btn-primary" onclick="before_first()">이전</button>
+							<button type="button" class="btn btn-primary" onclick="next_third()">계속</button>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<label for="exampleInputEmail1" class="form-label mt-4">숙소 인원</label>
-					<input type="text" name="hotel_maxcount" style="width: 50%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				<div id="third">
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="form-label mt-4">편의 시설</label>
+							<input type="text" name="hotel_convinence" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<label for="exampleInputEmail1" class="form-label mt-4">사진 등록</label>
+							<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1">
+							<br>
+							<button type="button" style="display: block;" class="btn btn-primary" id="img_button" onclick="upload()">사진 업로드</button>
+							<img id="hotel_img" src="" /> <br>
+						</div>
+					</div>
+					<div>
+						<div class="form-group">
+							<button type="button" class="btn btn-primary" onclick="before_second()">이전</button>
+							<button type="submit" class="btn btn-primary">등록하기</button>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<label for="exampleInputEmail1" style="display: block;" class="form-label mt-4">숙소 위치</label>
-					<input type="text" id="sample6_postcode" style="width: 30%; display: inline; color: black;" class="form-control" placeholder="우편번호">
-					<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-					<br>
-					<input type="text" id="sample6_address" style="width: 50%; color: black;" class="form-control" name="hotel_addr" placeholder="주소">
-					<br>
-				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<button type="button" class="btn btn-primary" onclick="next_second()">계속</button>
-				</div>
-			</div>
+			</form>
 		</div>
-		<div id="second">
-			<div>
-				<div class="form-group">
-					<label for="exampleTextarea" class="form-label mt-4">숙소 설명</label>
-					<textarea class="form-control" style="color: black; width: 50%;" name="hotel_content" rows="10"></textarea>
-				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<label for="exampleInputEmail1" class="form-label mt-4">대여 가격</label>
-					<input type="text" name="hotel_price" style="width: 50%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
-				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<label for="exampleInputEmail1" class="form-label mt-4">사진 등록</label>
-					<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1">
-					<br>
-					<button type="button" style="display: block;" class="btn btn-primary" id="img_button" onclick="upload()">사진 업로드</button>
-					<img id="hotel_img" src="" />
-				</div>
-			</div>
-			<div>
-				<div class="form-group">
-					<button type="button" class="btn btn-primary" onclick="before_first()">이전</button>
-					<button type="button" class="btn btn-primary" onclick="next_third()">계속</button>
-				</div>
-			</div>
-		</div>
-		<div id="third">
-			<span>사용 가능 일정</span>
-			<span>
-				<input type="text" name="hotel_date">
-			</span>
-			<br>
-			<span>편의 시설</span>
-			<span>
-				<input type="text" name="hotel_convinence">
-			</span>
-			<br>
-			<button type="button" onclick="before_second()">이전</button>
-			<button type="submit">제출</button>
-		</div>
-	</form>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

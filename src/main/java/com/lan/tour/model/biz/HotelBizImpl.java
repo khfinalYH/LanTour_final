@@ -44,4 +44,10 @@ public class HotelBizImpl implements HotelBiz {
 		return dao.update(dto);
 	}
 
+	@Override
+	public List<HotelDto> searchList(HotelDto dto) {
+		// TODO Auto-generated method stub
+		return dao.searchList(dto);
+	}
+
 }

@@ -9,14 +9,14 @@ public class RoomDto {
 	private String room_convinence;
 	private int room_maxcount;
 	private String room_image;
+	private String room_name;
 
 	public RoomDto() {
 
 	}
 
 	public RoomDto(int room_no, int hotel_no, String room_content, int room_price, String room_convinence,
-			int room_maxcount, String room_image) {
-
+			int room_maxcount, String room_image, String room_name) {
 		this.room_no = room_no;
 		this.hotel_no = hotel_no;
 		this.room_content = room_content;
@@ -24,6 +24,7 @@ public class RoomDto {
 		this.room_convinence = room_convinence;
 		this.room_maxcount = room_maxcount;
 		this.room_image = room_image;
+		this.room_name = room_name;
 	}
 
 	public int getRoom_no() {
@@ -80,6 +81,14 @@ public class RoomDto {
 
 	public void setRoom_image(String room_image) {
 		this.room_image = room_image;
+	}
+
+	public String getRoom_name() {
+		return room_name;
+	}
+
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
 	}
 
 }

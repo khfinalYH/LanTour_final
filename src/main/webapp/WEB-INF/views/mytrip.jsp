@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <link href='resources/fullcalendar/main.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/main.js" ></script>
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  arg.jsEvent.preventDefault();
     	  if (arg.event.url) {
     		  var url = arg.event.url;
-    		  var option = 'width= 600, height=600, left=500, top=100';
+    		  var option = 'width= 800, height=600, left=500, top=100';
     		  var pop = window.open(url, "_blank", option);
     		  return false;
     	  }
@@ -244,21 +245,44 @@ CalendarDto dto = listCal.get(i);
   function calInsert() {
 	  var url = 'popupInsert.do';
 	  var name = 'popup';
-	  var option = 'width= 600, height=600, left=500, top=100';
+	  var option = 'width= 800, height=600, left=500, top=100';
 	  var pop = window.open(url, name, option);
   }
 </script>
 </head>
 <body>
+<jsp:include page="header.jsp" />
 
-  <div id='top'>
+<div class="container">
+
+<br><br>
+<ul class="nav nav-pills" >
+  <li class="nav-item">
+    <a class="nav-link" href="mypage.do">정보 확인</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="mypageupdate.do">정보 수정</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="mypost.do">게시글 확인</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="mypayment.do">결제내역 확인</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="mytrip.do?member_no=${login.member_no }">여행일정 확인</a>
+  </li>
+</ul>
+<br><br>
+  <div id='top' style="background-color: white;">
 
     언어 :
     <select id='locale-selector'></select>
-	<button type = "button" onclick="calInsert();">일정 등록</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type = "button" class="btn btn-primary btn-sm" onclick="calInsert();">일정 등록</button>
   </div>
 
   <div id='calendar'></div>
-	
+</div>
+<jsp:include page="footer.jsp" />
 </body>
 </html>

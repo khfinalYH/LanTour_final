@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,12 @@
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<<<<<<< HEAD
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+=======
+<meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+>>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 <script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -17,6 +24,7 @@
 			autoDisplay : false
 		}, 'google_translate_element');
 	}
+<<<<<<< HEAD
 	//https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do
 	function signOut() {
 		
@@ -46,10 +54,26 @@
 	
 	
 	
+=======
+	function onLoad() {
+	      gapi.load('auth2', function() {
+	        gapi.auth2.init();
+	      });
+	    }
+	
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function() {
+			console.log('User signed out.');
+		});
+		auth2.disconnect();
+		location.href = "logout.do"
+	}
+>>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 </script>
 <style type="text/css">
 .header {
-	height: 80px;
+	height: 100px;
 }
 </style>
 <title>Insert title here</title>
@@ -57,7 +81,7 @@
 <body>
 
 	<div class="header">
-		<nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+		<div class="navbar navbar-expand-lg py-3">
 			<div class="container">
 				<a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="main.do">
 					<img class="d-inline-block align-top img-fluid" src="./resources/assets/img/gallery/logo-icon.png" alt="" width="50" />
@@ -81,10 +105,10 @@
 						<c:if test="${not empty login }">
 							<c:choose>
 								<c:when test="${login.member_grade == 'A' }">
-									<li class="nav-item"><a class="nav-link text-600" href="adminmember.do">공지사항 </a></li>
+									<li class="nav-item"><a class="nav-link text-600" href="adminmember.do">관리자 페이지 </a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="nav-item"><a class="nav-link text-600" href="mypage.do">공지사항 </a></li>
+									<li class="nav-item"><a class="nav-link text-600" href="mypage.do">마이 페이지 </a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
@@ -101,7 +125,7 @@
 					</form>
 				</div>
 			</div>
-		</nav>
+		</div>
 	</div>
 </body>
 </html>

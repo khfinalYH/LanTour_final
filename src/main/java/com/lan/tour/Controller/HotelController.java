@@ -30,7 +30,6 @@ public class HotelController {
 	@Autowired
 	private HotelBiz biz;
 
-	
 	@Autowired
 	private RoomBiz biz2;
 
@@ -69,8 +68,10 @@ public class HotelController {
 
 	@RequestMapping("/hoteldelete.do")
 	public String hoteldelete(int hotel_no) {
-		if (biz.delete(hotel_no) > 0) {
-			return "redirect:hotellist.do";
+		if (biz2.deleteAll(hotel_no) > 0) {
+			if (biz.delete(hotel_no) > 0) {
+				return "redirect:hotellist.do";
+			}
 		}
 
 		return "redirect:hoteldetail.do?hotel_no=" + hotel_no;
@@ -91,7 +92,14 @@ public class HotelController {
 
 		return "redirect:hotelupdate.do?hotel_no=" + dto.getHotel_no();
 	}
-
+	
+	@RequestMapping("/hotelsearch.do")
+	public String hotelsearch(HotelDto dto,Model model) {
+		model.addAttribute("list", biz.searchList(dto));
+		
+		return "hotel";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/hotelupload.do")
 	public Map<String, String> hotelupload(@RequestParam("mpfile") MultipartFile file, HttpServletRequest request) {

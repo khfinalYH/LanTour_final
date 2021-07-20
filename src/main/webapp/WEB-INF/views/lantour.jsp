@@ -38,23 +38,28 @@
 	}
 
 </script>
+<style type="text/css">
+.table{
+	margin:100px;
+	width: 500px;
+}
+</style>
+
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
 	<h1>랜선투어</h1>
-	<table border="1">
-		<col width="50"/>
-		<col width="150"/>
-		<col width="500"/>
-		<col width="150"/>
-		<col width="150"/>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>작성일</th>
-		</tr>
+		<table class="table table-hover">
+		<thead>
+	    <tr>
+	      <th scope="col">번호</th>
+	      <th scope="col">제목</th>
+	      <th scope="col">내용</th>
+	      <th scope="col">작성일</th>
+	    </tr>
+	  </thead>
+	
 		<c:choose>
 			<c:when test="${empty list }">
 			<tr>

@@ -112,7 +112,7 @@ public class RoomController {
 				e.printStackTrace();
 			}
 		}
-		String return_path = "resources/hotelimg/" + full_na;
+		String return_path = "resources/roomimg/" + full_na;
 		System.out.println(return_path);
 
 		Map<String, String> map = new HashMap<String, String>();

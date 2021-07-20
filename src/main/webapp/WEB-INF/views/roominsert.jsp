@@ -27,59 +27,67 @@
 		});
 	}
 </script>
+<style type="text/css">
+#room-insert {
+	width: 1000px;
+	margin: auto;
+}
+</style>
 </head>
 <body>
-
-	<form action="./roominsertres.do" method="post">
-		<input type="hidden" name="hotel_no" value=${hotel_no }>
-		<input type="hidden" id="room_image" name="room_image" value="" />
-		<table border="1">
-			<tr>
-				<th>방 내용</th>
-				<td>
-					<input type="text" name="room_content" />
-				</td>
-			</tr>
-			<tr>
-				<th>방 가격</th>
-				<td>
-					<input type="text" name="room_price" />
-				</td>
-			</tr>
-			<tr>
-				<th>방 편의시설</th>
-				<td>
-					<input type="text" name="room_convinence" />
-				</td>
-			</tr>
-			<tr>
-				<th>방 최대인원</th>
-				<td>
-					<input type="text" name="room_maxcount" />
-				</td>
-			</tr>
-			<tr>
-				<th>방 사진</th>
-				<td>
-					<input type="file" id="file1" />
-					<button type="button" onclick="upload()">사진 업로드</button>
-				</td>
-			</tr>
-			<tr>
-				<th>사진 미리보기</th>
-				<td>
-					<img id="room_img" src="" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<button type="submit">등록</button>
-				</td>
-			</tr>
-
-
-		</table>
-	</form>
+	<jsp:include page="header.jsp" />
+	<div id="room-insert">
+		<form action="./roominsertres.do" method="post">
+			<input type="hidden" name="hotel_no" value=${hotel_no }>
+			<input type="hidden" id="room_image" name="room_image" value="" />
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">방 이름</label>
+					<input type="text" name="room_name" style="width: 70%; color: black;" class="form-control" placeholder="방 이름을 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">방 인원</label>
+					<input type="text" name="room_maxcount" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">방 소개</label>
+					<input type="text" name="room_content" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">방 가격</label>
+					<input type="text" name="room_price" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">방 편의시설</label>
+					<input type="text" name="room_convinence" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+				</div>
+			</div>
+			<div>
+				<div class="form-group">
+					<label for="exampleInputEmail1" class="form-label mt-4">사진 등록</label>
+					<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1">
+					<br>
+					<button type="button" style="display: block;" class="btn btn-primary" id="img_button" onclick="upload()">사진 업로드</button>
+					<img id="room_img" src="" /> <br>
+				</div>
+			</div>
+			<div>
+				<div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">등록하기</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

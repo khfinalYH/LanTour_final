@@ -15,4 +15,6 @@ public interface RoomDao {
 	public int insert(RoomDto dto);
 
 	public int delete(int room_no);
+	
+	public int deleteAll(int hotel_no);
 }
