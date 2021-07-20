@@ -35,7 +35,7 @@ public class AdminController {
 		System.out.println(dto.getMember_grade());
 
 		mem_biz.memberupdate(dto);
-		return "redirect:adminpage.do";
+		return "redirect:adminmember.do";
 
 	}
 
