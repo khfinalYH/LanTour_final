@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,10 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	$(function () {
+		StarSetting();
+		paging(1);
+	})
 	function StarSetting() {
 		var score = document.getElementsByClassName('score')
 		var scoreStar = document.getElementsByClassName('scoreStar')
@@ -36,11 +41,26 @@
 		}
 
 	}
-	window.onload = function() {
-		StarSetting()
-	}
 	function SetValue(this) {
 		$("#hotel_maxprice").val(this.val());
+	}
+	function paging(i) {
+		var count = ${fn:length(list)} - ((i-1) * 9);
+		var leng = document.querySelectorAll(".page-item")
+		for (var j = 1; j < leng.length - 1; j++){
+			if(i == j){
+				leng[j].setAttribute("class","page-item active");
+			} else{
+				leng[j].setAttribute("class","page-item");
+			}
+		}
+		for(var i = 0; i <= ${fn:length(list)}; i++){
+			if(i > count-9 && i <= count){
+				$("#"+i).css("display","");
+			} else{
+				$("#"+i).css("display","none");
+			}
+		}
 	}
 </script>
 <style type="text/css">
@@ -73,6 +93,10 @@
 
 .card:hover {
 	background: #3984F3;
+}
+
+.paging-div {
+	margin-left: 60%;
 }
 </style>
 </head>
@@ -125,8 +149,9 @@
 					</c:when>
 					<c:otherwise>
 						<c:set var="i" value="0" />
+						<c:set var="j" value="0" />
 						<c:forEach items="${list }" var="dto">
-							<div class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
+							<div id="${j }" class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
 								<img src="${dto.hotel_image }">
 								<div class="card-body">
 									<h5 class="card-title">${dto.hotel_title }</h5>
@@ -160,6 +185,15 @@
 				</div>
 			</div>
 		</c:if>
+		<div class="paging-div">
+			<ul class="pagination">
+				<li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+				<c:forEach var="i" begin="0" end="${fn:length(list)/9 }">
+					<li class="page-item" onclick="paging(${i+1});"><a class="page-link" href="#">${i+1 }</a></li>
+				</c:forEach>
+				<li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+			</ul>
+		</div>
 
 
 
