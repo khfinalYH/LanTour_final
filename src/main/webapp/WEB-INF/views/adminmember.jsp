@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".update_btn").click(
+		$(".btn").click(
 				function() {
 					var tr = $(this).parent().parent();
 					var td = tr.children();

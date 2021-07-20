@@ -49,9 +49,11 @@
 	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
 
-		<h2>공지사항</h2>
-		<br>
+	
 	<div class="container">
+	<br>
+	<h3>공지사항</h3><hr>
+	<br>
 	<div class="row flex-center mb-5">
 		<input type="hidden" id="selected_cate" value="${dto.category}">
 		<div class="searchFrame">
@@ -67,9 +69,9 @@
 		<table class="table table-hover">
 			<thead>
 				<tr style="background-color:#4582ec; color:#ffffff; ">
-					<th scope="col" width="50" style="text-align: center;">NO</th>
-					<th scope="col" width="500" style="text-align: center;">TITLE</th>
-					<th scope="col" width="100" style="text-align: center;">DATE</th>
+					<th scope="col" width="50" style="text-align: center;">번호</th>
+					<th scope="col" width="500" style="text-align: center;">제목</th>
+					<th scope="col" width="100" style="text-align: center;">날짜</th>
 				</tr>
 			</thead>
 			<c:choose>

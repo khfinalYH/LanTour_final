@@ -14,6 +14,11 @@
 		
 	}
 </script>
+<<<<<<< HEAD
+<body>`
+	<jsp:include page="header.jsp" />
+	<h1>마이 페이지 정보확인</h1>
+=======
 <body>
 <jsp:include page="header.jsp" />
 <div class="container">
@@ -37,13 +42,26 @@
 		  </li>
 	</ul>
 	<br><br>
+>>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 	
 	<form action="./mypage.do" method="post" >
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
+<<<<<<< HEAD
+	<div id ="mypagelist">
+	<ul>
+		<li ><a href= mypage.do>내정보 확인</a></li>
+		<li ><a href= mypageupdate.do>내정보 수정</a></li>
+		<li ><a href= mypost.do>내게시글 확인</a></li>
+		<li ><a href= mypayment.do>내결제내역 확인</a></li>
+		<li ><a href= mytrip.do?member_no=${login.member_no }>내 여행계획 확인</a></li>
+	</ul>
+	</div>
+=======
 
 	
+>>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 
 	<table border="1">
 	 	 <tr>
@@ -90,7 +108,11 @@
       </table>
       </div>
       </form>
+<<<<<<< HEAD
+      <jsp:include page="footer.jsp" />
+=======
 </div>
 <jsp:include page="footer.jsp" />
+>>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 </body>
 </html>
