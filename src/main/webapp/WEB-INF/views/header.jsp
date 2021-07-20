@@ -9,12 +9,9 @@
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<<<<<<< HEAD
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-=======
 <meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 <script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -24,52 +21,33 @@
 			autoDisplay : false
 		}, 'google_translate_element');
 	}
-<<<<<<< HEAD
-	//https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do
 	function signOut() {
 		
 		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
 		Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
-	      gapi.load('auth2', function() {
-		        gapi.auth2.init();
-	     });
-		  var auth2 = gapi.auth2.getAuthInstance();
-		  auth2.signOut().then(function () {
-		    console.log('User signed out.');
-		  });
-			//카카오 로그아웃
-			if (!Kakao.Auth.getAccessToken()) {
-			  console.log('Not logged in.');
-			  
-			}
-			if("<%=(String)session.getAttribute("token") %>" != ""){
-				Kakao.Auth.logout(function() {
-					  console.log(Kakao.Auth.getAccessToken());
-					  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do";
-					});
-			} else{
-				location.href="logout.do"
-			}
-		}
-	
-	
-	
-=======
-	function onLoad() {
-	      gapi.load('auth2', function() {
-	        gapi.auth2.init();
-	      });
-	    }
-	
-	function signOut() {
 		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function() {
-			console.log('User signed out.');
+		auth2.signOut().then(function () {
+		  console.log('User signed out.');
 		});
 		auth2.disconnect();
-		location.href = "logout.do"
+		//카카오 로그아웃
+		if (!Kakao.Auth.getAccessToken()) {
+		  console.log('Not logged in.');
+		  
+		}
+		if("<%=(String)session.getAttribute("token") %>" != ""){
+			Kakao.Auth.logout(function() {
+				  console.log(Kakao.Auth.getAccessToken());
+				  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=http://localhost:8787/tour/logout.do";
+				});
+		} 
+		location.href="logout.do"
 	}
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
+	function onLoad() {
+	      gapi.load('auth2', function() {
+	      gapi.auth2.init();
+      });
+    }
 </script>
 <style type="text/css">
 .header {
