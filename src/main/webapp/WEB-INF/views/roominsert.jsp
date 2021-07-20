@@ -55,7 +55,7 @@
 			<div>
 				<div class="form-group">
 					<label for="exampleInputEmail1" class="form-label mt-4">방 소개</label>
-					<input type="text" name="room_content" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+					<input type="text" name="room_content" style="width: 70%; color: black;" class="form-control" placeholder="내용을 입력하세요">
 				</div>
 			</div>
 			<div>
@@ -67,7 +67,7 @@
 			<div>
 				<div class="form-group">
 					<label for="exampleInputEmail1" class="form-label mt-4">방 편의시설</label>
-					<input type="text" name="room_convinence" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+					<input type="text" name="room_convinence" style="width: 70%; color: black;" class="form-control" placeholder="내용을 입력하세요">
 				</div>
 			</div>
 			<div>
