@@ -49,9 +49,11 @@
 	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
 
-		<h2>공지사항</h2>
-		<br>
+	
 	<div class="container">
+	<br>
+	<h3>공지사항</h3><hr>
+	<br>
 	<div class="row flex-center mb-5">
 		<input type="hidden" id="selected_cate" value="${dto.category}">
 		<div class="searchFrame">

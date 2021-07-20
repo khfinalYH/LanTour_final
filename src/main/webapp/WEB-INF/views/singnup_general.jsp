@@ -136,7 +136,7 @@ var MailRandNum = "";
 	<jsp:include page="header.jsp" />
 	<br><br><br><br>
 	<div class="container">
-		<h4>일반 회원가입</h4>
+		<h3 style="text-align: center; ">일반 회원가입</h3>
 		<br><br>
 		<form action="./registerres.do" method="post">
 			<input type="hidden" name="member_grade" value="U" />
