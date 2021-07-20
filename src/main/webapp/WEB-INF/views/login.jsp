@@ -17,14 +17,11 @@ response.setContentType("text/html; charset=UTF-8");
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
-<<<<<<< HEAD
 //sdk를 초기화, 사용할 앱의 javascript키
 Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
 //sdk 초기화 여부를 판단
 Kakao.isInitialized();
 
-=======
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -106,14 +103,11 @@ Kakao.isInitialized();
 			});
 		}
 	}
-<<<<<<< HEAD
 
 	function kakologinpage(){
 		
 		location.href="https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
 	}
-=======
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 </script>
 
 </head>
@@ -124,7 +118,6 @@ Kakao.isInitialized();
 
 	<jsp:include page="header.jsp" />
 
-<<<<<<< HEAD
 	<table style="display:inline;">
 		<tbody>
 			<tr>
@@ -154,7 +147,6 @@ Kakao.isInitialized();
 				</tr>
 		</tbody>
 	</table>
-=======
 	<section class="py-0">
 		<div class="bg-holder d-none d-md-block" style="background-image: url(./resources/assets/img/illustrations/hero.png); background-position: right bottom; background-size: contain;"></div>
 		<!--/.bg-holder-->
@@ -190,7 +182,6 @@ Kakao.isInitialized();
 			</div>
 		</div>
 	</section>
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 	<jsp:include page="footer.jsp" />
 
 </body>

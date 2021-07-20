@@ -58,7 +58,6 @@ function guestrtc() {
 <body>
 	<jsp:include page="header.jsp" />
 	
-	<h1>랜선투어 상세페이지</h1>
 	
 	<c:set var="login_member" value="${login.member_no }" />
 	<c:set var="host_member" value="${dto.member_no }" />
@@ -89,7 +88,7 @@ function guestrtc() {
 	
 		
 		
-	<table class="table table-hover" border="1">
+	<table class="table table-hover" >
 		<thead>
 			<tr style="backgound-color:#adadad; color:#ffffff;">
 				<th colspan="2" scope="col" class="text-center" style="text-align: center;">투어정보</th>
@@ -125,8 +124,10 @@ function guestrtc() {
 			<td>${dto.lantour_price }</td>
 		</tr>
 		<tr>
-			<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
-			<td>${dto.lantour_date }</td>
+			<th>투어 일정</th>
+			<td id="DateTd">
+				<input class="DateContent" type="date" name="lantour_date">
+			</td>
 		</tr>
 	</tbody>
 		<tr>
