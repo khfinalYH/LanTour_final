@@ -21,11 +21,6 @@ public class ReviewBizImpl implements ReviewBiz {
 	}
 
 	@Override
-	public List<ReviewDto> selectList(String type, Map<String, Integer> map, String sort) {
-		return dao.selectList(type, map, sort);
-	}
-
-	@Override
 	public ReviewDto selectOne(String type, int review_no) {
 		return dao.selectOne(type, review_no);
 	}
@@ -48,6 +43,11 @@ public class ReviewBizImpl implements ReviewBiz {
 	@Override
 	public List<ReviewDto> scoreList(String type) {
 		return dao.scoreList(type);
+	}
+
+	@Override
+	public List<ReviewDto> selectList(String type, Map<String, Integer> smap, String sort, String filter) {
+		return dao.selectList(type, smap, sort, filter);
 	}
 
 	

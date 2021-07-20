@@ -57,6 +57,7 @@ function guestrtc() {
 </style>
 <body>
 	<jsp:include page="header.jsp" />
+	
 	<h1>랜선투어 상세페이지</h1>
 	
 	<c:set var="login_member" value="${login.member_no }" />
@@ -70,7 +71,7 @@ function guestrtc() {
 	  		<input type="hidden" value="${login.member_no }" name="member_no">
 	  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
 	  		<input type="hidden" value="${login.member_name }" name="member_name">
-	  		<input type="submit" id= "open" value="방 생성 (호스트)">
+	  		<input type="submit" class="btn btn-primary" id= "open" value="방 생성 (호스트)">
 		</form>
 	</c:if>
 	
@@ -82,61 +83,58 @@ function guestrtc() {
 		<input type="hidden" id="member_name" name="member_name" value="${login.member_name}" />
 		<input type="button" value="참여하기" onclick="guestrtc()"/>
 	</c:if>		
-
-	<div class="tour">
+	
+	
+	<div class="container">
+	
+		
+		
 	<table class="table table-hover" border="1">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
-		<col width ="100">
+		<thead>
+			<tr style="backgound-color:#adadad; color:#ffffff;">
+				<th colspan="2" scope="col" class="text-center" style="text-align: center;">투어정보</th>
+			</tr>
+		</thead>
+		<tbody>
 		<tr>
-			<th>제목</th>
+			<th scope="row" style="text-align: center;"><p>투어명</p></th>
 			<td>${dto.lantour_title }</td>
 		</tr>
 		<tr>
-			<th>내용</th>
+			<th scope="row" style="text-align: center;"><p>투어소개</p></th>
 			<td><textarea rows="10" cols="60" readonly="readonly">${dto.lantour_content }</textarea></td>
 		</tr>
 		<tr>
-			<th>작성일</th>
-			<td>${dto.lantour_regdate }</td>
-		</tr>
-		<tr>
-			<th>RTC</th>
+			<th scope="row" style="text-align: center;"><p>RTC</p></th>
 			<td>${dto.lantour_rtc }</td>
 		</tr>
 		<tr>
-			<th>주소</th>
+			<th scope="row" style="text-align: center;"><p>투어장소</p></th>
 			<td>${dto.lantour_addr }</td>
 		</tr>
 		<tr>
-			<th>사진</th>
+			<th scope="row" style="text-align: center;"><p>미리보기</p></th>
 			<td><img src = "${dto.lantour_image }"></td>
 		</tr>
 		<tr>
-			<th>최대인원</th>
+			<th scope="row" style="text-align: center;"><p>최대인원</p></th>
 			<td>${dto.lantour_maxcount }</td>
 		</tr>
 		<tr>
-			<th>가격</th>
+			<th scope="row" style="text-align: center;"><p>가격</p></th>
 			<td>${dto.lantour_price }</td>
 		</tr>
 		<tr>
-			<th>투어 일정</th>
+			<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
 			<td>${dto.lantour_date }</td>
 		</tr>
+	</tbody>
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'"/>			
-				<input type="button" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
-				<input type="button" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
-				<input type="button" value="목록" onclick="location.href='lantourlist.do'" />
+				<input type="button" class="btn btn-primary" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'"/>			
+				<input type="button" class="btn btn-primary" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
+				<input type="button" class="btn btn-primary" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
+				<input type="button" class="btn btn-primary" value="목록" onclick="location.href='lantourlist.do'" />
 			</td>
 		</tr>
 	</table>

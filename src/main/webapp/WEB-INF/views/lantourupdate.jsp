@@ -52,25 +52,25 @@
 		
 		<table border="1">
 			<tr>
-				<th>투어 제목</th>
+				<th>투어명</th>
 				<td>
 					<input type="text" name="lantour_title" value="${dto.lantour_title}"/>
 				</td>
 			</tr>
 			<tr>
-				<th>투어 내용</th>
+				<th>투어소개</th>
 				<td>
 					<input type="text" name="lantour_content" value="${dto.lantour_content}"/>
 				</td>
 			</tr>
 			<tr>
-				<th>투어 주소</th>
+				<th>투어장소</th>
 				<td>
 					<input type="text" name="lantour_addr" value="${dto.lantour_addr}"/>
 				</td>
 			</tr>
 			<tr>
-				<th>투어 이미지</th>
+				<th>투어 미리보기</th>
 				
 				<td>
 					<input type="file" id="file1" name="file1">

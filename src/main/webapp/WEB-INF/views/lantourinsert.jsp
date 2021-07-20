@@ -8,7 +8,6 @@
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function upload() {
 		var form = new FormData();
 		form.append("mpfile", $("#file1")[0].files[0])
@@ -51,7 +50,6 @@
 <body>
 	<jsp:include page="header.jsp" />
 	
-<!-- view -> controller전달(res.do) ->모델 통해 db에 저장. 다오에서 (마이바티스: 쿼리문 만들기) 디비. lantour_no_seq(seq:1씩 증가)   -->
 	<h1>랜선투어 글쓰기</h1>
 	<form action="./lantourinsertres.do" method="post" enctype ="multipart/form-data">
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">

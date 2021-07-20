@@ -101,7 +101,7 @@ public class ReviewController {
 	
 
 	@RequestMapping("reviewsearch.do")
-	public String reviewSearch(Model model, int no ,String type, int[] star, String sort ) {
+	public String reviewSearch(Model model, int no ,String type, int[] star, String sort, String filter ) {
 		Map<String, Integer> Smap = new HashMap<String, Integer>();
 		if(type.equals("hotel")) {
 			Smap.put("hotel_no", no);
@@ -159,10 +159,9 @@ public class ReviewController {
 			if(!Smap.containsKey("four")) {Smap.put("four",j);}
 			if(!Smap.containsKey("five")) {Smap.put("five",j);} 			
 		}
-		
-		List<ReviewDto> list =  biz.selectList(type, Smap, sort);
+		List<ReviewDto> list =  biz.selectList(type, Smap, sort, filter);
 		Map<String,String> map = new HashMap<String, String>();
-		for(ReviewDto dto :list) {
+		for(ReviewDto dto : list) {
 			int num = dto.getMember_no();
 			MemberDto Mdto = Mbiz.selectOne(num);
 			Mdto.getMember_name();
@@ -175,6 +174,7 @@ public class ReviewController {
 		model.addAttribute("list", list);
 		model.addAttribute("no", no);
 		model.addAttribute("sort", sort);
+		model.addAttribute("filter", filter);
 		return "review_search";
 	}
 	
