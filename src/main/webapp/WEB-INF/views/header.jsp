@@ -78,7 +78,6 @@
 						<li class="nav-item"><a class="nav-link text-600" href="festival.do">축제 검색 </a></li>
 						<li class="nav-item"><a class="nav-link text-600" href="community.do">정보게시판 </a></li>
 						<li class="nav-item"><a class="nav-link text-600" href="noticeList_category.do?nowPage=1">공지사항 </a></li>
-						<li class="nav-item"><a class="nav-link text-600" href="mypage.do">마이페이지 </a></li>
 						
 						<c:if test="${not empty login }">
 							<c:choose>

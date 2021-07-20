@@ -41,9 +41,6 @@
 		}
 
 	}
-	function SetValue(this) {
-		$("#hotel_maxprice").val(this.val());
-	}
 	function paging(i) {
 		var count = ${fn:length(list)} - ((i-1) * 9);
 		var leng = document.querySelectorAll(".page-item")
