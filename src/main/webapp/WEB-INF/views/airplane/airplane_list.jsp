@@ -133,7 +133,7 @@
 		var count = document.querySelectorAll(".page-item").length
 		if(parseInt(active.innerText)>10){
 			for(var i = 0; i <=parseInt(count/10);i++){
-				if(parseInt((active.innerText-1)/10)<=i & parseInt((active.innerText-1)/10)<i+1){
+				if(parseInt((active.innerText-1)/10)>=i & parseInt((active.innerText-1)/10)<i+1){
 					for(var j = 0; j <count;j++){
 						if(parseInt(j/10)==i-1){
 							document.getElementById("pageList"+j).style.display = "block"
@@ -277,7 +277,7 @@
 		</div>
 			<%} %>
 		</div >
-			<div id="defaultSearch" style="display: inline-block; margin-left: 35%;margin-top: 5%;">
+		<div id="defaultSearch" style="display: inline-block; margin-left: 35%;margin-top: 5%;">
 			<ul class="pagination">
 				<li onclick="pagingBefore()"> <a class="page-link" ><<</a>  </li>
 		<%for(int i = 0;i<=planelist.size()/10;i++){%>
