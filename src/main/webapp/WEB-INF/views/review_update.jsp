@@ -98,7 +98,7 @@
 
 </script>
 <body>
-	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 90%; margin-right: 2.5%">
+	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 100%">
 		<form action="ReviewUpdateRes.do" method="post">
 			<input type="hidden" name="review_no" value="<%=Rdto.getReview_no() %>"/>
 			<input type="hidden" name="no" value="<%=Rdto.getHotel_no()==0?Rdto.getLantour_no():Rdto.getHotel_no()%>">

@@ -166,10 +166,10 @@
 	
 
 </script>
-<body>
+<body style="padding: 0;">
 <div style="display: flex;">
 		<%if(login!=null){ %>	
-	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 30%; margin-right: 2.5%">
+	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 475px;">
 		<form action="ReviewInsert.do" method="post">
 			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">
 			<input type="hidden" name="type" value="<%=type %>"/>			
@@ -207,7 +207,7 @@
 	</div>
 			<%} %>	
 	
-	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 30%; margin-top: 0;">	
+	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 475px; margin-top: 0; margin-left: 50px">	
 		<div class="card-header" style="background-color: #ecf3fd;">
 			<h3>리뷰 검색</h3>
 		</div>
@@ -228,14 +228,14 @@
 						</span></div >
 					<div style="margin-bottom:20px ">
 						<h6 style="display: inline">정렬 기준</h6>
-						<select class="form-select" name="filter" style="width: 30%; display: inline;">
+						<select class="form-select" name="filter" style="width: 60%; display: inline;">
 							<option value="date">날짜</option>
 							<option value="star">별점</option>
 						</select>
 					</div>
 					<div style="margin-bottom:20px ">
 						<h6 style="display: inline">정렬 방법</h6>
-						<select class="form-select" name="sort" style="width: 30%; display: inline;">
+						<select class="form-select" name="sort" style="width: 60%; display: inline;">
 							<option value="ASC">오름차순</option>
 							<option value="DESC">내림차순</option>
 						</select>

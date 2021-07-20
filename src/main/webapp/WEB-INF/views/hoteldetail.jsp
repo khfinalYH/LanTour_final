@@ -135,7 +135,7 @@
 		</c:if>
 	</div>
 	<br />
-	<embed height="600px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
+	<embed width="1000px" style="display: block ;margin: 0 auto;height: 100vh" src="http://localhost:8787/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
