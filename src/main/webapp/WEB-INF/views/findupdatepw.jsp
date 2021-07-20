@@ -18,7 +18,7 @@
 		<br>
 		<div class="form-group" style="margin:0 auto; width: 50%;">
 	      <label class="form-label mt-4">새로운 비밀번호</label>
-	      <input type="password" class="form-control" name="member_password" placeholder="새로운 비밀번호를 입력해주세요." style="color: black;">
+	      <input type="password" class="form-control" name="member_password" placeholder="새로운 비밀번호를 입력해주세요." style="color: black;" required>
 	      <br><br>
 	      <button type="submit" class="btn btn-primary" style="float: right;">비밀번호 변경</button>
 	    </div>
