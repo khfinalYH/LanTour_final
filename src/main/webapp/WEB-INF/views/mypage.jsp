@@ -14,9 +14,7 @@
 		
 	}
 </script>
-<body>`
-	<jsp:include page="header.jsp" />
-	<h1>마이 페이지 정보확인</h1>
+
 <body>
 <jsp:include page="header.jsp" />
 <div class="container">
@@ -45,15 +43,7 @@
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
-	<div id ="mypagelist">
-	<ul>
-		<li ><a href= mypage.do>내정보 확인</a></li>
-		<li ><a href= mypageupdate.do>내정보 수정</a></li>
-		<li ><a href= mypost.do>내게시글 확인</a></li>
-		<li ><a href= mypayment.do>내결제내역 확인</a></li>
-		<li ><a href= mytrip.do?member_no=${login.member_no }>내 여행계획 확인</a></li>
-	</ul>
-	</div>
+
 
 	
 
@@ -102,7 +92,7 @@
       </table>
       </div>
       </form>
-      <jsp:include page="footer.jsp" />
+
 </div>
 <jsp:include page="footer.jsp" />
 </body>
