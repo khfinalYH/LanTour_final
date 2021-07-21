@@ -41,6 +41,12 @@
 	
 	
 </script>
+<style type="text/css">
+.tour{
+	text: center;
+}
+
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -49,6 +55,7 @@
 		<input type ="hidden" name = "lantour_rtc" value = "aaa">
 		<input type="hidden" id="lantour_image" name="lantour_image" />
 		
+	<div class="container">
 		<table class="table table-hover" >
 		<thead>
 			<tr style="backgound-color:#adadad; color:#ffffff;">
@@ -64,10 +71,7 @@
 			<th scope="row" style="text-align: center;"><p>투어소개</p></th>
 			<td><textarea rows="10" cols="60">${dto.lantour_content }</textarea></td>
 		</tr>
-		<tr>
-			<th scope="row" style="text-align: center;"><p>RTC</p></th>
-			<td>${dto.lantour_rtc }</td>
-		</tr>
+		
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어장소</p></th>
 			<td><textarea rows="2" cols="60">${dto.lantour_addr }</textarea></td>
@@ -109,7 +113,7 @@
 		
 	</tbody>
 			<tr>
-				<th>투어 일정</th>
+				<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
 				<td id="DateTd">
 					<input class="DateContent" type="date" name="lantour_date">
 					<input type="button" onclick="insertDate()" value="추가">
@@ -122,6 +126,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
 	<jsp:include page="footer.jsp" />
 </body>

@@ -38,10 +38,10 @@
 			<li class="nav-item"><a class="nav-link active" href="adminmember.do">회원관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="admincommunity.do">커뮤니티 게시판 글 목록</a></li>
 		</ul>
-		<h1>회원 관리</h1>
-		<table border="1" class="table table-hover">
+		<br>
+		<table border="1" class="table table-hover text-center" >
 			<thead>
-				<tr>
+				<tr style="background-color: #4582ec; color: #ffffff;">
 					<th scope="col">번호</th>
 					<th scope="col">아이디</th>
 					<th scope="col">이름</th>
@@ -49,7 +49,7 @@
 					<th scope="col">이메일</th>
 					<th scope="col">성별</th>
 					<th scope="col">등급</th>
-
+					<th scope="col">관리</th>
 					<c:choose>
 						<c:when test="${empty m_list }">
 							<tr>
@@ -80,7 +80,7 @@
 											</c:choose>
 										</select>
 									</td>
-									<td>
+									<td >
 										<button type="button" class="btn btn-primary btn-sm">수정</button>
 									</td>
 								</tr>

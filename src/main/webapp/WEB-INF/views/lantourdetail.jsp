@@ -47,14 +47,8 @@ function guestrtc() {
 
 }
 </script>
-<style type="text/css">
-.tour{
-	margin: auto;
-	width: 1000px;
-	text: center;
-}
 
-</style>
+
 <body>
 	<jsp:include page="header.jsp" />
 	
@@ -70,7 +64,6 @@ function guestrtc() {
 	  		<input type="hidden" value="${login.member_no }" name="member_no">
 	  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
 	  		<input type="hidden" value="${login.member_name }" name="member_name">
-	  		<input type="submit" class="btn btn-primary" id= "open" value="방 생성 (호스트)">
 		</form>
 	</c:if>
 	
@@ -101,12 +94,18 @@ function guestrtc() {
 		</tr>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어소개</p></th>
-			<td><textarea rows="10" cols="60" readonly="readonly">${dto.lantour_content }</textarea></td>
+			<td>${dto.lantour_content }
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			</td>
 		</tr>
-		<tr>
-			<th scope="row" style="text-align: center;"><p>RTC</p></th>
-			<td>${dto.lantour_rtc }</td>
-		</tr>
+		
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어장소</p></th>
 			<td>${dto.lantour_addr }</td>
@@ -124,20 +123,25 @@ function guestrtc() {
 			<td>${dto.lantour_price }</td>
 		</tr>
 		<tr>
-			<th>투어 일정</th>
+			<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
 			<td id="DateTd">
 				<input class="DateContent" type="date" name="lantour_date">
 			</td>
 		</tr>
 	</tbody>
 		<tr>
-			<td colspan="2" align="right">
+			<td colspan="2" align="center">
 				<input type="button" class="btn btn-primary" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'"/>			
 				<input type="button" class="btn btn-primary" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'"/>
 				<input type="button" class="btn btn-primary" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
 				<input type="button" class="btn btn-primary" value="목록" onclick="location.href='lantourlist.do'" />
+				
+				<input type="submit" class="btn btn-success" id= "open" value="방 생성 (호스트)">
+				<input type="button" class="btn btn-success" value="참여하기" onclick="guestrtc()"/>
 			</td>
 		</tr>
+		
+		
 	</table>
 	</div>
 	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	

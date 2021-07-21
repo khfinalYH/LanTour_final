@@ -27,12 +27,13 @@
 			<li class="nav-item"><a class="nav-link" href="adminmember.do">회원관리</a></li>
 			<li class="nav-item"><a class="nav-link active" href="admincommunity.do">커뮤니티 게시판 글 목록</a></li>
 		</ul>
-		<h1>정보공유 게시판</h1>
-		<table border="1" class="table table-hover" id="admin_table">
-			<tr class="table-primaty">
+		<br>
+		<table border="1" class="table table-hover text-center" >
+			<tr style="background-color: #4582ec; color: #ffffff;">
 				<th scope="col">번호</th>
 				<th scope="col">제목</th>
 				<th scope="col">작성일</th>
+				<th scope="col">관리</th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty c_list }">
@@ -51,7 +52,7 @@
 								<c:if test="${dto.community_delflag eq 'Y' }">
 									<input type="button" value="복구" class="btn btn-primary btn-sm" onclick="location.href='admincommunity_refaire.do?community_no=${dto.community_no}'" />
 								</c:if>
-								<input type="button" value="삭제" class="btn btn-primary btn-sm" onclick="location.href='admincommunityAlldelete.do?community_no=${dto.community_no }'" />
+									<input type="button" value="삭제" class="btn btn-primary btn-sm" onclick="location.href='admincommunityAlldelete.do?community_no=${dto.community_no }'" />
 							</td>
 						</tr>
 					</c:forEach>
