@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lan.tour.model.dto.ReservationDto"%>
@@ -19,6 +21,9 @@
 <%HotelDto Hdto =  (HotelDto)request.getAttribute("Hdto");%>
 <%RoomDto Roodto =  (RoomDto)request.getAttribute("Roodto");%>
 <%ReservationDto Resdto = (ReservationDto)request.getAttribute("Resdto"); %>
+<%Date time = new Date(); %>
+<%SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd"); %>
+<%Date time2 = SDF.parse(Resdto.getReservation_date()); %>
 <!-- // jQuery 기본 js파일 -->
 <script  src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>
 <script
@@ -94,6 +99,7 @@ function payment(){
 			</div>
 			<div class="card-text">전화번호와 이메일을 확인해 주세요. 호스트로부터 전화와 이메일이 갑니다.</div>
 		</div>
+		<%if(Ldto ==null){ %>
 		<div class="card-header" style="padding-bottom: 30px">
 			<div class="card-title"><h4>여행 정보</h4></div>
 			<div class="lead">소개 : <%=Roodto.getRoom_content() %></div>
@@ -113,39 +119,80 @@ function payment(){
 				</ul>
 			</div>
 		</div>
+		<%}else{ %>
+		<div class="card-header" style="padding-bottom: 30px">
+			<div class="card-title"><h4>여행 정보</h4></div>
+			<div class="lead">소개 : <%= Ldto.getLantour_content()%></div>
+			<div class="lead">최대 인원수 : <%=Ldto.getLantour_maxcount() %></div>
+			<div class="lead">Lantour 정보를 한번 더 확인해 주세요</div>
+		</div>
+		<div class="card-header" style="padding-bottom: 10%;">
+			<div class="card-title"><h4>Lantour 이용 규칙</h4></div>
+			<div class="lead">
+				<ul>
+					<li>반응 잘해주기</li>
+					<li>궁금한거 질문하기</li>
+					<li>녹화 금지</li>
+					<li>리액션을 바라면 계좌이체</li>
+					<li>출발 시간은 15:00입니다.</li>
+				</ul>
+			</div>
+		</div>
+		
+		<%} %>
 	</div>
 	
 	<div class="accordion-body" style="width: 30%; border: 1px solid rgba(0, 0, 0, 0.125);margin: 15px">
 		
 		<!-- if -->
-		<%if(Ldto !=null){ %>
+	<%if(Ldto !=null){ %>
 		
 	<form action="insertReservation.do" method="post">
 		<input type="hidden" name="no" value="<%=Ldto.getLantour_no()%>">
 		<input type="hidden" name="rno" value="0">
 		<input type="hidden" name="reservation_price" value="<%=Ldto.getLantour_price() %>">
 		<input type="hidden" name="member_no" value="<%=Mdto.getMember_no() %>">
-		
-		<div>
-		<span>랜선투어 제목: <%=Ldto.getLantour_title() %></span>
-		</div>
-		
-		<div>
-		<span>투어일자 : <%=Ldto.getLantour_date() %> </span>
-		</div>
-		
-		<div>
-		<span>예약일자 : <input onchange="count(this)" type="text" id="datepicker" name="reservation_date" readonly="readonly"></span>
-		</div>
-		
-		<div>
-		<span>비용 : <%=Ldto.getLantour_price() %></span>
-		</div>
-		
-		<div>
-		<span id="countMember">잔여인원을 확인하려면 날짜를 선택해주세요</span>
-		</div>
-		<input type="submit">
+			<div class="form-group">
+				<div style="width: 100%; margin-bottom: 20px;"><img style="width: 100%; height: 20%" alt="" src="<%=Ldto.getLantour_image()%>"></div>
+				<div><h3><%=Ldto.getLantour_title() %> </h3></div>
+			</div>
+			<div class="form-group">
+				<div>
+					<div class="form-label mt-4">투어일자</div>
+					<div><input class="form-control" style="color:black;" type="text" id="datepicker" name="reservation_date" value="<%=Resdto.getReservation_date() %>" readonly="readonly"></div>
+				</div> 
+			</div>
+			<div class="form-group">
+				<div class="form-label mt-4">총합계<input class="form-control" style="color:black;" type="text" name="reservation_price" value="<%=Ldto.getLantour_price() %>" id="reservation_price"readonly></div>
+			</div>
+			<div class="form-group">
+				<%if(Resdto.getReservation_pay().equals("N")){ %>
+				<div class="form-label mt-4">
+					결제방식
+				</div>
+				<div id="pay">					
+					<select class="form-select"  style="color: black;" id="paymethod">
+						<option value="kakaopay" style="color: black;">카카오 페이</option>
+						<option value="html5_inicis" style="color: black;">일반 웹결제</option>
+					</select>
+					<input type='button' class="btn btn-outline-primary"  value='결제' onclick='payment()'>
+					<%}else if(!Resdto.getReservation_pay().equals("cancelled")){ %>
+						<%if((time2.getTime()-time.getTime())/(24*60*60*1000)<=7){ %>
+							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+						<%}else{ %>
+							<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
+							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+						<%} %>
+					<%}else{ %>
+					<div>결제 취소된 예약입니다.</div>
+					
+					<%} %>
+				</div>
+			</div>
+			<div>
+				Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+				언제나 금융 사기에 조심하세요
+			</div>
 	</form>
 		<%}else{ %>
 		<input type="hidden" name="no" value="<%=Hdto.getHotel_no()%>">
@@ -168,7 +215,7 @@ function payment(){
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="form-label mt-4">₩<%=Roodto.getRoom_price() %> x <span id="bak"></span>박</div>
+				<div class="form-label mt-4">₩<%=Roodto.getRoom_price() %> x <span id="bak"><%=Resdto.getReservation_price()/Roodto.getRoom_price() %></span>박</div>
 				<div class="form-label mt-4">총합계<input class="form-control" style="color:black;" type="text" name="reservation_price" value="<%=Resdto.getReservation_price() %>" id="reservation_price"readonly></div>
 			</div>
 			<div class="form-group">
@@ -184,7 +231,12 @@ function payment(){
 					</select>
 					<input type='button' class="btn btn-outline-primary"  value='결제' onclick='payment()'>
 					<%}else if(!Resdto.getReservation_pay().equals("cancelled")){ %>
-					<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
+						<%if((time2.getTime()-time.getTime())/(24*60*60*1000)<=7){ %>
+							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+						<%}else{ %>
+							<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
+							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+						<%} %>
 					<%}else{ %>
 					<div>결제 취소된 예약입니다.</div>
 					

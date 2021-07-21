@@ -207,7 +207,7 @@
 	</div>
 			<%} %>	
 	
-	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 475px; margin-top: 0; margin-left: 50px">	
+	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 475px; margin-top: 0; <%if(login!=null){%>margin-left: 50px<%} %>">	
 		<div class="card-header" style="background-color: #ecf3fd;">
 			<h3>리뷰 검색</h3>
 		</div>

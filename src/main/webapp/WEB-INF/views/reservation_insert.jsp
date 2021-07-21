@@ -153,7 +153,7 @@ $(function() {
 function count(date){
 	<%if(Ldto!=null){%>
 	if(enableDay.indexOf(date.value)>=0){
-		document.getElementById("countMember").innerText = "잔여인원 : "+countmb[enableDay.indexOf(date.value)]+"/<%=Ldto.getLantour_maxcount()%>"
+		document.getElementById("countMember").innerText = countmb[enableDay.indexOf(date.value)]+"/<%=Ldto.getLantour_maxcount()%>"
 	}else{
 		
 	}
@@ -196,6 +196,8 @@ function count(date){
 			</div>
 			<div class="card-text">전화번호와 이메일을 확인해 주세요. 호스트로부터 전화와 이메일이 갑니다.</div>
 		</div>
+		
+		<%if(Ldto ==null){ %>
 		<div class="card-header" style="padding-bottom: 30px">
 			<div class="card-title"><h4>여행 정보</h4></div>
 			<div class="lead">소개 : <%=Roodto.getRoom_content() %></div>
@@ -215,6 +217,27 @@ function count(date){
 				</ul>
 			</div>
 		</div>
+		<%}else{ %>
+		<div class="card-header" style="padding-bottom: 30px">
+			<div class="card-title"><h4>여행 정보</h4></div>
+			<div class="lead">소개 : <%= Ldto.getLantour_content()%></div>
+			<div class="lead">최대 인원수 : <%=Ldto.getLantour_maxcount() %></div>
+			<div class="lead">Lantour 정보를 한번 더 확인해 주세요</div>
+		</div>
+		<div class="card-header" style="padding-bottom: 10%;">
+			<div class="card-title"><h4>Lantour 이용 규칙</h4></div>
+			<div class="lead">
+				<ul>
+					<li>반응 잘해주기</li>
+					<li>궁금한거 질문하기</li>
+					<li>녹화 금지</li>
+					<li>리액션을 바라면 계좌이체</li>
+					<li>출발 시간은 15:00입니다.</li>
+				</ul>
+			</div>
+		</div>
+		
+		<%} %>
 	</div>
 	
 	<div class="accordion-body" style="width: 30%; border: 1px solid rgba(0, 0, 0, 0.125);margin: 15px">
@@ -227,28 +250,30 @@ function count(date){
 		<input type="hidden" name="rno" value="0">
 		<input type="hidden" name="reservation_price" value="<%=Ldto.getLantour_price() %>">
 		<input type="hidden" name="member_no" value="<%=Mdto.getMember_no() %>">
-		
-		<div>
-		<span>랜선투어 제목: <%=Ldto.getLantour_title() %></span>
-		</div>
-		
-		<div>
-		<span>투어일자 : <%=Ldto.getLantour_date() %> </span>
-		</div>
-		
-		<div>
-		<span>예약일자 : <input onchange="count(this)" type="text" id="datepicker" name="reservation_date" readonly="readonly"></span>
-		</div>
-		
-		<div>
-		<span>비용 : <%=Ldto.getLantour_price() %></span>
-		</div>
-		
-		<div>
-		<span id="countMember">잔여인원을 확인하려면 날짜를 선택해주세요</span>
-		</div>
-		<input type="submit">
+			<div class="form-group">
+				<div style="width: 100%; margin-bottom: 20px;"><img style="width: 100%; height: 20%" alt="" src="<%=Ldto.getLantour_image()%>"></div>
+				<div><h3><%=Ldto.getLantour_title() %> </h3></div>
+			</div>
+			<div class="form-group">
+				<div>
+					<div class="form-label mt-4">투어일자</div>
+					<div><input onchange="count(this)" class="form-control" style="color:black;" type="text" id="datepicker" name="reservation_date"  readonly="readonly"></div>
+					<div>잔여인원 : </div>	
+					<div id="countMember">일자를 선택해 주세요</div>
+				</div> 
+			</div>
+			<div class="form-group">
+				<div class="form-label mt-4">총합계<input class="form-control" style="color:black;" type="text" name="reservation_price" value="<%=Ldto.getLantour_price() %>" id="reservation_price"readonly></div>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-outline-primary" value="다음">
+			</div>
+			<div>
+				Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+				언제나 금융 사기에 조심하세요
+			</div>
 	</form>
+		
 		<%}else{ %>
 	<form action="insertReservation.do" method="post">
 		<input type="hidden" name="no" value="<%=Hdto.getHotel_no()%>">
@@ -282,9 +307,9 @@ function count(date){
 				<input type="submit" class="btn btn-outline-primary" value="다음">
 			</div>
 			</form>
-		</div>
 		
 		<%} %>
+	</div>
 </div>
 
 <jsp:include page="./footer.jsp" />
