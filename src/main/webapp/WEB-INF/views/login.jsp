@@ -61,7 +61,7 @@ response.setContentType("text/html; charset=UTF-8");
 		};
 		xhr.send('idtoken=' + id_token);
 	}
-	
+
 	$(function() {
 		$("#loginChk").hide();
 	});
@@ -97,9 +97,8 @@ response.setContentType("text/html; charset=UTF-8");
 			});
 		}
 	}
-	function kakologinpage(){
-		
-		location.href="https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
+	function kakologinpage() {
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
@@ -133,10 +132,11 @@ response.setContentType("text/html; charset=UTF-8");
 					</div>
 					<div style="padding-bottom: 50px;">
 						<div class="g-signin2" style="float: right;" data-onsuccess="onSignIn"></div>
-						<div class ="kakaologin"><img width="120" height ="36"  src="resources/kakaologin/kakao_login_small.png"  onclick="kakologinpage()" ></div>					
+						<div class="kakaologin" style="float: right; margin-right: 10px;">
+							<img src="resources/kakaologin/kakao_login_medium.png" onclick="kakologinpage()">
+						</div>
 					</div>
-					<div style="padding-bottom: 50px;">
-					</div>
+					<div style="padding-bottom: 50px;"></div>
 					<div>
 						<a href="findid.do">아이디 찾기</a>
 						&nbsp;&nbsp;&nbsp;
