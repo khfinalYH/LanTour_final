@@ -7,8 +7,6 @@
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <body>
-	<jsp:include page="header.jsp" />
-	<h1>마이 페이지 수정</h1>
 
 <jsp:include page="header.jsp" />
 <div class="container">

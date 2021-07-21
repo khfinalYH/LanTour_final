@@ -8,8 +8,7 @@
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <body>
-	<jsp:include page="header.jsp" />
-	<h1>내 게시글 확인</h1>
+	
 <jsp:include page="header.jsp" />
 <div class="container">
 
