@@ -8,7 +8,6 @@
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
 	function upload() {
 		var form = new FormData();
 		form.append("mpfile", $("#file1")[0].files[0])
@@ -51,14 +50,13 @@
 <body>
 	<jsp:include page="header.jsp" />
 	
-<!-- view -> controller전달(res.do) ->모델 통해 db에 저장. 다오에서 (마이바티스: 쿼리문 만들기) 디비. lantour_no_seq(seq:1씩 증가)   -->
-	<h1>랜선투어 글쓰기</h1>
 	<form action="./lantourinsertres.do" method="post" enctype ="multipart/form-data">
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<input type ="hidden" name = "lantour_rtc" value = "aaa">
 	<input type="hidden" id="lantour_image" name="lantour_image" value="aaaaaa" />
 	
-		<table border="1">
+		<table style="margin-left: auto; margin-right: auto;" class="md-8" border="1">
+			
 			<tr>
 				<th>투어 제목</th>
 				<td>
@@ -74,7 +72,7 @@
 			<tr>
 				<th>투어 주소</th>
 				<td>
-					<input type="text" name="lantour_addr">
+					<textarea rows="2" cols="60" name="lantour_addr"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -88,7 +86,28 @@
 			<tr>
 				<th>최대 인원</th>
 				<td>
-					<input type="text" name="lantour_maxcount">
+					<select id="count" name="count">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -108,8 +127,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="글쓰기"/>
-					<input type="button" value="취소"	 onclick="location.href='lantourlist.do';">
+					<input type="submit" class="btn btn-primary" value="등록하기"/>
+					<input type="button" class="btn btn-primary" value="취소"	 onclick="location.href='lantourlist.do';">
 				</td>
 			</tr>
 		</table>

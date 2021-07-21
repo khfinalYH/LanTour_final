@@ -7,11 +7,7 @@
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <body>
-<<<<<<< HEAD
-	<jsp:include page="header.jsp" />
-	<h1>마이 페이지 수정</h1>
 
-=======
 <jsp:include page="header.jsp" />
 <div class="container">
 	<br><br>
@@ -35,7 +31,6 @@
 	</ul>
 	<br><br>
 	
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 	<form action="./mypageupdateres.do" method="post">
 		<input type="hidden" name="member_no" value="${login.member_no }">
 		<!--  목록 -->
@@ -82,11 +77,8 @@
 
 		</div>
 	</form>
-<<<<<<< HEAD
 	<jsp:include page="footer.jsp" />
-=======
 </div>
 <jsp:include page="footer.jsp" />
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 </body>
 </html>

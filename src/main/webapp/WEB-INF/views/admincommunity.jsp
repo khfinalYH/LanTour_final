@@ -11,8 +11,8 @@
 
 
 <style type="text/css">
-.admin {
-	margin: 100px;
+.admin{
+	margin: auto;
 	width: 1000px;
 }
 </style>

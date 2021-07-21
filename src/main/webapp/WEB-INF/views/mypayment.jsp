@@ -8,11 +8,8 @@
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <body>
-<<<<<<< HEAD
 
-	<jsp:include page="header.jsp" />
-	<h1>마이 페이지 결제내역</h1>
-=======
+
 <jsp:include page="header.jsp" />
 <div class="container">
 
@@ -35,7 +32,6 @@
 	  </li>
 	</ul>
 	<br><br>
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 	
 	<form action="./mypayment.do" method="post" >
 	<!--  목록 -->
@@ -59,11 +55,8 @@
 	</table>
 	</div>
 	</form>
-<<<<<<< HEAD
 	<jsp:include page="footer.jsp" />
-=======
 </div>
 <jsp:include page="footer.jsp" />
->>>>>>> 916538a82aeddeca840884d1ae0ef6c232916df4
 </body>
 </html>
