@@ -70,10 +70,12 @@
 <body>
 	<jsp:include page="header.jsp" />
 
-
-	<h1>정보공유 게시판</h1>
 	<div class="community-div">
 		<div class="container">
+			<br>
+			<h3>정보게시판</h3>
+			<hr>
+			<br>
 			<input type="hidden" id="select_change" value="${filter }" />
 			<div class="form-group">
 				<select id="select_option" class="form-select" style="display: inline; width: 15%;">
