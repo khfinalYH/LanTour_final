@@ -96,10 +96,14 @@
 					
 			</div>
 		</div>
-		<div class="form-group" align="center">
-						<input type="button" class="btn btn-primary" value="투어 등록"
-							onclick="location.href='./lantourinsert.do'" />
-					</div>
+		<c:if test="${login.member_grade eq 'H' }">
+			<div>
+				<div class="form-group" align="center">
+					<input type="button" class="btn btn-primary" value="투어 등록"
+						onclick="location.href='./lantourinsert.do'" />
+				</div>
+			</div>
+		</c:if>
 	</div>
 	<jsp:include page="footer.jsp" />
 
