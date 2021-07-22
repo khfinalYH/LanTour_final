@@ -12,20 +12,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if(request.getRequestURI().contains("/loginform.do")||
-		   request.getRequestURI().contains("/register.do")||
-		   request.getRequestURI().contains("/idcheck.do")||
-		   request.getRequestURI().contains("/login.do")||
-		   request.getRequestURI().contains("/loginres.do")) {
-			return true;
+		if(request.getRequestURI().contains("reservation")||
+			request.getRequestURI().contains("insert")||			
+			request.getRequestURI().contains("delete")||
+			request.getRequestURI().contains("update")||
+			request.getRequestURI().contains("Insert")||			
+			request.getRequestURI().contains("Delete")||
+			request.getRequestURI().contains("Update")||
+			request.getRequestURI().contains("payment")||
+			request.getRequestURI().contains("admin")) {
+			if(request.getSession().getAttribute("login")==null) {
+				response.sendRedirect("loginRedirect.do");
+				return false;
+			}
 		}
-
-		if(request.getSession().getAttribute("login")==null) {
-			response.sendRedirect("loginform.do");
-		}
-			
-		
-		return false;
+		return true;
 	}
 
 	@Override
