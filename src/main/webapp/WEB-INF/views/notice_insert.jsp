@@ -98,17 +98,20 @@
 		
 		<div class="form-group row">
 			<div class="col-sm-10">
-		    	<input type="text" placeholder="제목을 입력해 주세요." class="form-control-plaintext" id="staticEmail" name="notice_title" style="border:1px solid blue;" />
+		    	<input type="text" placeholder="제목을 입력해 주세요." class="form-control" style="color: black;" name="notice_title" />
 		    </div>
-			<br><br><br>
+		</div>
+		<br><br>
+		<div class="form-group row">
+			
 		    <textarea id="summernote" rows="10" cols="60" name="notice_content" ></textarea>
 		</div>
 		
 		
 	<br><br>
 	<div id="writeBtn">
-		<button type="button" class="btn btn-primary btn-sm" onclick="insertChk(this.form)">글작성</button>
-		<button type="button" class="btn btn-primary btn-sm" onclick="location.href='noticeList_category.do?nowPage=1'">취소</button>
+		<button type="button" class="btn btn-primary" onclick="insertChk(this.form)">글작성</button>
+		<button type="button" class="btn btn-primary" onclick="location.href='noticeList_category.do?nowPage=1'">취소</button>
 	</div>
 	</form>
 	</div>
