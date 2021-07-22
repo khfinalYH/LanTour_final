@@ -105,7 +105,7 @@
 
 </script>
 <body>
-	<jsp:include page="../header.jsp" />
+	<jsp:include page="./header.jsp" />
 <% List<Map<String, String>> list = (List<Map<String, String>>)request.getAttribute("list");  %>
 
 
@@ -160,7 +160,7 @@
 	
 </div>
 </section>
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="./footer.jsp" />
 
 <h1>오늘의 날씨</h1>
 <div id="js-weather"></div>

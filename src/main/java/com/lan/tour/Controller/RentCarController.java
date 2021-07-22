@@ -33,7 +33,7 @@ public class RentCarController {
 	private String[] content;
 	private String cartype;
 	private String searchtype;
-	private String rentcar = "rentcar/rentcar_";
+	private String rentcar = "rentcar_";
 	
 
 	@RequestMapping("/rentCarSearch.do")

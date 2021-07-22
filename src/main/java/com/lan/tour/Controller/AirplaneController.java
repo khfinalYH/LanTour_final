@@ -41,7 +41,7 @@ public class AirplaneController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "airplane/airplane_search";
+		return "airplane_search";
 	}
 	
 
@@ -66,7 +66,7 @@ public class AirplaneController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "airplane/airplane_list";
+		return "airplane_list";
 	}
 	
 	//공항 조회 메소드

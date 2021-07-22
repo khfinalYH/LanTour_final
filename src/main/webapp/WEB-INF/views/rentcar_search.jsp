@@ -12,7 +12,7 @@
 <script type="text/javascript" src="resources/js/airportWeather.js" ></script>
 </head>
 <body>
-<jsp:include page="../header.jsp" />
+<jsp:include page="./header.jsp" />
 
 <section id ="booking">
 <div class="bg-holder" style="background-image:url(resources/assets/img/gallery/rentcar.png);background-position:center;background-size:cover;"></div>
@@ -54,7 +54,7 @@
 	
 </div>
 </section>
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="./footer.jsp" />
 
 </body>
 </html>

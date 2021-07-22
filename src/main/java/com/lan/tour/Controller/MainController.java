@@ -1,5 +1,7 @@
 package com.lan.tour.Controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class MainController {
 
 	@RequestMapping("/main.do")
 	public String main(Model model) {
+		
+		
 		model.addAttribute("h_list", h_biz.selectList());
 		model.addAttribute("c_list", c_biz.selectList());
 		model.addAttribute("n_list", n_biz.noticelist());

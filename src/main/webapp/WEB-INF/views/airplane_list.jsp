@@ -180,7 +180,7 @@
 </style>
 
 
-<jsp:include page="../header.jsp" />
+<jsp:include page="./header.jsp" />
 <body>
 <% List<Map<String, String>> portlist = (List<Map<String, String>>)request.getAttribute("portlist");  %>
 <% List<Map<String, String>> planelist = (List<Map<String, String>>)request.getAttribute("planelist");  %>
@@ -291,6 +291,6 @@
 	
 	<%} %>
 </div>
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="./footer.jsp" />
 </body>
 </html>
