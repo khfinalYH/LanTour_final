@@ -19,7 +19,7 @@
 		var community_content = $("#community_content").val();
 		var url = "";
 		if (search == "title"){
-			url = "community_titlesearch.do";
+			url = "community_titlesearch.do";h
 		} else if(search == "content"){
 			url = "community_contentsearch.do";
 		} else {
