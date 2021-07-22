@@ -56,25 +56,9 @@ function guestrtc() {
 	<c:set var="login_member" value="${login.member_no }" />
 	<c:set var="host_member" value="${dto.member_no }" />
 	<c:set var="lantour_rtc" value="${dto.lantour_rtc }" />
-
-
-	<c:if test="${login_member eq host_member }">
-		<form action="https://localhost:3000/" method="post">
-	  		<input type="hidden" value="${login.member_grade }" name="member_grade">
-	  		<input type="hidden" value="${login.member_no }" name="member_no">
-	  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
-	  		<input type="hidden" value="${login.member_name }" name="member_name">
-		</form>
-	</c:if>
 	
 	
-	<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://localhost:3000/aaa' }">
-		<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
-		<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
-		<input type="hidden" id="lantour_rtc" name="lantour_rtc" value="${lantour_rtc}" />
-		<input type="hidden" id="member_name" name="member_name" value="${login.member_name}" />
-		<input type="button" value="참여하기" onclick="guestrtc()"/>
-	</c:if>		
+	
 	
 	
 	<div class="container">
@@ -126,18 +110,30 @@ function guestrtc() {
 				<td colspan="2" align="center">
 					<input type="button" class="btn btn-primary" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'" />
 					<input type="button" class="btn btn-primary" value="목록" onclick="location.href='lantourlist.do'" /> 
-					<input type="button" class="btn btn-success" value="참여하기" onclick="guestrtc()" />
+						<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://localhost:3000/aaa' }">
+							<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
+							<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
+							<input type="hidden" id="lantour_rtc" name="lantour_rtc" value="${lantour_rtc}" />
+							<input type="hidden" id="member_name" name="member_name" value="${login.member_name}" />
+							<input type="button" class="btn btn-success" value="참여하기" onclick="guestrtc()"/>
+						</c:if>	
 				</td>
 			</tr>
 
 
 		</table>
-		<c:if test="${login.member_grade eq 'H' }">
+		<c:if test="${login_member eq host_member }">
 			<div>
 				<div class="form-group" align="center">
 					<input type="button" class="btn btn-primary" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'" />
 					<input type="button" class="btn btn-primary" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
-					<input type="submit" class="btn btn-success" id="open" value="방 생성 (호스트)">
+					<form action="https://localhost:3000/" method="post">
+				  		<input type="hidden" value="${login.member_grade }" name="member_grade">
+				  		<input type="hidden" value="${login.member_no }" name="member_no">
+				  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
+				  		<input type="hidden" value="${login.member_name }" name="member_name">
+				  		<input type="submit" class="btn btn-success" id="open" value="방 생성 (호스트)">
+					</form>		
 				</div>
 			</div>
 		</c:if>
