@@ -61,7 +61,6 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>insert</h1>
 	<div class="community-insert">
 		<form action="communityinsertres.do">
 			<input type="hidden" name="member_no" value="${login.member_no }" />
