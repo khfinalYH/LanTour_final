@@ -60,16 +60,15 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>update</h1>
 	<div class="community-update">
 		<form action="communityupdateres.do" method="post">
 			<input type="hidden" name="community_no" value="${dto.community_no }" />
 			<div class="form-group row">
-				<input type="text" class="form-control" id="community_title" value="${dto.community_title }" placeholder="제목을 입력하세요">
+				<input type="text" style="color:black;" class="form-control" id="community_title" value="${dto.community_title }" placeholder="제목을 입력하세요">
 			</div>
 			<br>
 			<div class="form-group row">
-				<input type="text" class="form-control" name="community_title" value="${login.member_name }" readonly="readonly">
+				<input type="text" style="color:black;" class="form-control" name="community_title" value="${login.member_name }" readonly="readonly">
 			</div>
 			<br>
 			<div class="form-group row">

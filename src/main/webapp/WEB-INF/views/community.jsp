@@ -101,7 +101,7 @@
 				<c:choose>
 					<c:when test="${empty list}">
 						<tr>
-							<th colspan="4">------------등록된 게시글이 없습니다-----------</th>
+							<th colspan="5">------------등록된 게시글이 없습니다-----------</th>
 						</tr>
 					</c:when>
 					<c:otherwise>
