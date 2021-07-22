@@ -87,8 +87,10 @@
 								}
 							});
 		</script>
+<!--	
 		<div style="width: 80%; margin-top: 20px; margin-bottom: 20px" class="col-6">
-			<label class="visually-hidden" for="date">Date</label>
+		
+			<label class="visually-hidden" for="date">Date</label>	
 			<div class="input-group">
 				<h5 style="padding-top: 2%; margin-right: 15px;">체크인</h5>
 				<input class="form-control" style="color:black; margin-right: 30px;" name="check_in" id="date" type="date" />
@@ -96,6 +98,8 @@
 				<input class="form-control" style="color:black;" name="check_out" id="date" type="date" />
 			</div>
 		</div>
+ -->		
+		
 		<div>
 			<p>이름 : ${dto.hotel_title } / 주소 : ${dto.hotel_addr }</p>
 			<p>호텔 소개 : ${dto.hotel_content }</p>
