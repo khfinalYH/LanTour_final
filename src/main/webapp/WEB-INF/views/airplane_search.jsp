@@ -10,6 +10,16 @@
 <head>
 <meta charset="UTF-8">
 <title>LanTour</title>
+<style type="text/css">
+.wea{
+	background-color: gray;
+	opacity: 0.7;
+	float: left; 
+	text-align: center;
+	color: white;
+	margin: 0.8%;
+}
+</style>
 </head>
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
@@ -114,7 +124,7 @@
 <div class="container"> 
 	<div class="row">
 		<div class="d-flex flex-column flex-center">
-			<h1 class="text-white fs-2 fs-md-3">Search Airport For Trevel</h1>
+			<h1 class="text-white fs-2 fs-md-3">Search Airport For Travel</h1>
 			<h2 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">HERE IS ALL OF PLAN</h2>
 			<h2 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">BOOK RIGHT NOW!</h2>		
 		</div>
@@ -156,14 +166,14 @@
 					</div>
 			</form>
 		</div>
+		<div id="js-weather"></div>
 	</div>
 	
 </div>
 </section>
 	<jsp:include page="./footer.jsp" />
 
-<h1>오늘의 날씨</h1>
-<div id="js-weather"></div>
+
 
 
 

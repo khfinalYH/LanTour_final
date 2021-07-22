@@ -33,7 +33,7 @@ for (key in latlon) {
 		const icon = 'https://openweathermap.org/img/wn/' + weathers.icon + '@2x.png';
 			
 		var current_weather = "";
-		current_weather += "<div>위치: "+ region + "<br>기온: " + temperature + "<br><img src=\'"+icon+"\''/>" +"</div><hr>"
+		current_weather += "<div class=\"wea\">"+ region + "<br><img src=\'"+icon+"\''/><br>" + temperature  +"</div>"
 		document.getElementById("js-weather").innerHTML += current_weather;
 	});
 }
