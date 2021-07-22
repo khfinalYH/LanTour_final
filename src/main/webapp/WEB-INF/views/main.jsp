@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/currentWeather.js" charset='utf-8'></script>
+<style type="text/css">
+.table-class {
+	float: left;
+	width: 45%;
+	margin-right: 30px;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -85,6 +92,49 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
+	<section class="pt-5">
+		<div class="container" style="display: flex;">
+			<div class="table-class">
+				<h4 style="padding-bottom: 15px; border-bottom: 1px solid #adadad">정보게시판</h4>
+				<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
+					<h5>${c_list.get(0).community_title }</h5>
+					<p style="font-size: 10px;">${c_list.get(0).member_name }</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
+					<h5>${c_list.get(1).community_title }</h5>
+					<p style="font-size: 10px;">${c_list.get(1).member_name }</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
+					<h5>${c_list.get(2).community_title }</h5>
+					<p style="font-size: 10px;">${c_list.get(2).member_name }</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
+					<h5>${c_list.get(3).community_title }</h5>
+					<p style="font-size: 10px;">${c_list.get(3).member_name }</p>
+				</div>
+			</div>
+			<div class="table-class">
+				<h4 style="padding-bottom: 15px; border-bottom: 1px solid #adadad">공지사항</h4>
+				<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(0).notice_no }'">
+					<h5>[공지]${n_list.get(0).notice_title }</h5>
+					<p style="font-size: 10px;">관리자</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(0).notice_no }'">
+					<h5>[공지]${n_list.get(1).notice_title }</h5>
+					<p style="font-size: 10px;">관리자</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(0).notice_no }'">
+					<h5>[공지]${n_list.get(2).notice_title }</h5>
+					<p style="font-size: 10px;">관리자</p>
+				</div>
+				<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(0).notice_no }'">
+					<h5>[공지]${n_list.get(3).notice_title }</h5>
+					<p style="font-size: 10px;">관리자</p>
+				</div>
+			</div>
+
 		</div>
 	</section>
 	<jsp:include page="footer.jsp" />
