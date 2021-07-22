@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./resources/materialize/materialize.css">
 <script type="text/javascript" src="resources/js/currentWeather.js" charset='utf-8'></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./resources/js/materialize.min.js"></script>
+<link rel="stylesheet" href="./resources/assets/css/theme.min.css">
+<link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <style type="text/css">
 .table-class {
 	float: left;
