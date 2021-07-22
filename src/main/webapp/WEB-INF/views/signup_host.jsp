@@ -238,7 +238,7 @@ response.setContentType("text/html; charset=UTF-8");
 		        </label>
 		        <input type="checkbox" required>
 		        <br>
-		        <textarea readonly="readonly" style="width:100%; height:100;">제 1 조(목적)
+		        <textarea rows="3" cols="85" readonly="readonly" style="width:100%; height:100;">제 1 조(목적)
 본 약관은 LanTour 웹사이트(이하 "LanTour")가 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 회원과 LanTour의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
 
 제 2 조(약관의 효력과 변경)
