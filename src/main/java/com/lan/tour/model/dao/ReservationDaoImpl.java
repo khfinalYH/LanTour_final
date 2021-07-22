@@ -46,18 +46,23 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<ReservationDto> selectList(String type, int no, int rno) {
 		List<ReservationDto> list = new ArrayList<ReservationDto>();
 		if(type.equals("hotel")) {
-			Map<String, Integer> map = new HashMap<String, Integer>();
-			map.put("hotel_no", no);
-			map.put("room_no", rno);
-			try {
-				int lantour_no = no;
-				list = sqlSession.selectList(NAMESPACE+"selectList_room", map);
-			} catch (Exception e) {
-				e.printStackTrace();
+			if(rno == 0) {
+				try {
+					int hotel_no = no;
+					list = sqlSession.selectList(NAMESPACE+"selectList_hotel", hotel_no);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+				map.put("hotel_no", no);
+				map.put("room_no", rno);
+				try {
+					list = sqlSession.selectList(NAMESPACE+"selectList_room", map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			
-			
-			
 		}else {
 			try {
 				int lantour_no = no;
@@ -161,6 +166,22 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 		try {
 			list = sqlSession.selectList(NAMESPACE+"selectList_M_room", member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type) {
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
+		Map<String, String> map = new HashMap<>();
+		map.put("check_in", check_in);
+		map.put("check_out", check_out);
+		map.put("hotel_type", hotel_type);
+		try {
+			list = sqlSession.selectList(NAMESPACE+"searchHoteldate", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

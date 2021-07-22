@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
 import com.lan.tour.model.biz.HotelBiz;
+import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.biz.RoomBiz;
 import com.lan.tour.model.dto.HotelDto;
+import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.RoomDto;
 
 @Controller
 public class HotelController {
@@ -35,6 +40,9 @@ public class HotelController {
 
 	@Autowired
 	private ReviewBiz Rbiz;
+
+	@Autowired
+	private ReservationBiz Rbiz2;
 
 	@RequestMapping("/hotellist.do")
 	public String hotellist(Model model) {
@@ -94,9 +102,28 @@ public class HotelController {
 	}
 	
 	@RequestMapping("/hotelsearch.do")
-	public String hotelsearch(HotelDto dto,Model model) {
-		model.addAttribute("list", biz.searchList(dto));
-		
+	public String hotelsearch(HotelDto dto,Model model, String check_in, String check_out) {
+		List<HotelDto> list = biz.searchList(dto);
+        List<ReservationDto> resList = Rbiz2.selectListCheckDate(check_in, check_out ,dto.getHotel_type());
+        List<HotelDto> RemoveList = new ArrayList<HotelDto>();
+		if(resList.size() !=0) {
+			int i = 0;
+			for(HotelDto Hdto : list) {
+				if(i>= resList.size()) {
+					break;
+				}
+				if(Hdto.getHotel_no()==resList.get(i).getHotel_no()) {
+					if(biz2.selectList(Hdto.getHotel_no()).size()<=Rbiz2.selectList("hotel", resList.get(i).getHotel_no(), 0).size()) {
+						RemoveList.add(Hdto);
+					}
+					i++;
+				}
+			}
+			for(HotelDto Hdto :RemoveList) {
+				list.remove(Hdto);
+			}
+		}
+		model.addAttribute("list", list);
 		return "hotel";
 	}
 	

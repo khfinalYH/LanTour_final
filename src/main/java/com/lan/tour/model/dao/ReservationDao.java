@@ -18,4 +18,5 @@ public interface ReservationDao {
 	public int updatepay(ReservationDto dto);
 	public List<ReservationDto> selectListLanM(int member_no);
 	public List<ReservationDto> selectListRoomM(int member_no);
+	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type);
 }

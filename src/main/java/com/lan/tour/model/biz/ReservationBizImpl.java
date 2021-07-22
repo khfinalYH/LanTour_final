@@ -66,4 +66,9 @@ public class ReservationBizImpl implements ReservationBiz {
 		return dao.selectListRoomM(member_no);
 	}
 
+	@Override
+	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type) {
+		return dao.selectListCheckDate(check_in,check_out,hotel_type);
+	}
+
 }

@@ -71,7 +71,7 @@
 
 .nav-hotel {
 	width: 30%;
-	height: 550px;
+	height: 750px;
 	float: left;
 	border: 2px solid #3984F3;
 	margin-right: 30px;
@@ -131,6 +131,13 @@
 						<label for="customRange3" class="form-label">최대 가격</label>
 						<input type="range" class="form-range" value="9999999" min="300000" max="9999999" step="10000" name="hotel_maxprice" oninput="document.getElementById('value2').innerHTML=this.value;">
 						<p id="value2"></p>
+					</fieldset>
+					<fieldset class="form-group">
+						<legend class="mt-4">날짜</legend>
+						<label for="customRange3" class="form-label">체크인</label><br/>
+						<input type="date" min="" name="check_in" onchange="document.getElementById('checkoutDate').value=''"><br/>
+						<label for="customRange3" class="form-label">체크아웃</label><br/>
+						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate">
 					</fieldset>
 					<button type="submit" class="btn btn-primary">검색</button>
 				</form>
