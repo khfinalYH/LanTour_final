@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.biz.RoomBiz;
 import com.lan.tour.model.dto.RoomDto;
 
@@ -27,6 +28,9 @@ public class RoomController {
 
 	@Autowired
 	private RoomBiz biz;
+	
+	@Autowired
+	private ReservationBiz biz2;
 
 	@RequestMapping("/roominsert.do")
 	public String roominsert(int hotel_no, Model model) {
@@ -124,7 +128,10 @@ public class RoomController {
 
 	@RequestMapping("/roomdetail.do")
 	public String roomdetail(Model model, int room_no) {
-		model.addAttribute("dto", biz.selectOne(room_no));
+		RoomDto dto = biz.selectOne(room_no);
+		model.addAttribute("dto", dto);
+		model.addAttribute("ResDto", biz2.selectList("hotel", dto.getHotel_no(), room_no));
+
 		return "roomdetail";
 	}
 }
