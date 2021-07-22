@@ -87,16 +87,18 @@
 
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>INSERT</h1>
+	
 	<div class="container">
+	<br>
+	<h3>공지사항</h3><hr>
+	<br>
 	<div class="row flex-center mb-5">
 	<form action="noticeInsertRes.do" method="post">
 		<input type="hidden" name="member_no" value="${login.member_no }">
 		
 		<div class="form-group row">
-			<label for="staticEmail" class="col-sm-2 col-form-label">제목</label>
 			<div class="col-sm-10">
-		    	<input type="text" class="form-control-plaintext" id="staticEmail" name="notice_title" style="border:1px solid blue;" />
+		    	<input type="text" placeholder="제목을 입력해 주세요." class="form-control-plaintext" id="staticEmail" name="notice_title" style="border:1px solid blue;" />
 		    </div>
 			<br><br><br>
 		    <textarea id="summernote" rows="10" cols="60" name="notice_content" ></textarea>

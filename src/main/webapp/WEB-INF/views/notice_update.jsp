@@ -83,17 +83,20 @@
 </style>
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>UPDATE</h1>
+
 	
 	<div class="container">
+	<br>
+	<h3>공지사항</h3><hr>
+	<br>
 	<div class="row flex-center mb-5">
 	<form action="noticeUpdateRes.do" method="post">
 		<input type="hidden" name="notice_no" value="${dto.notice_no }" />
 		
 		<div class="form-group row">
-			<label for="staticEmail" class="col-sm-2 col-form-label">제목</label>
+			
 			<div class="col-sm-10">
-		    	<input type="text" class="form-control-plaintext" id="staticEmail" name="notice_title" value="${dto.notice_title }" style="border:1px solid blue;" />
+		    	<input type="text" class="form-control-plaintext"  id="staticEmail" name="notice_title" value="${dto.notice_title }" style="border:1px solid blue;" />
 		    </div>
 			<br><br><br>
 		    <textarea id="summernote" rows="10" cols="60" name="notice_content" >${dto.notice_content }</textarea>
