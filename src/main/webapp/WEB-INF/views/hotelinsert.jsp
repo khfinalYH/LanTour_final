@@ -26,6 +26,8 @@
 			dataType : "json",
 			success : function(msg) {
 				$("#hotel_img").prop("src", msg.path);
+				$("#hotel_img").css("width","100%");
+				$("#hotel_img").css("height","500px");
 				$("#hotel_image").val(msg.path);
 			},
 			error : function() {
@@ -201,9 +203,7 @@
 					<div>
 						<div class="form-group">
 							<label for="exampleInputEmail1" class="form-label mt-4">사진 등록</label>
-							<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1">
-							<br>
-							<button type="button" style="display: block;" class="btn btn-primary" id="img_button" onclick="upload()">사진 업로드</button>
+							<input class="form-control" style="width: 50%; color: black;" type="file" id="file1" name="file1" onchange="upload();">
 							<img id="hotel_img" src="" /> <br>
 						</div>
 					</div>

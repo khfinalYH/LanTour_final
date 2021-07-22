@@ -149,7 +149,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:set var="i" value="0" />
-						<c:set var="j" value="0" />
+						<c:set var="j" value="1" />
 						<c:forEach items="${list }" var="dto">
 							<div id="${j }" class="card mb-3 hover-top" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
 								<img src="${dto.hotel_image }">
@@ -173,6 +173,7 @@
 								</ul>
 								<div class="card-footer text-muted">${dto.hotel_price }원</div>
 							</div>
+							<c:set var="j" value="${j + 1 }" />
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
