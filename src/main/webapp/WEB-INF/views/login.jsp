@@ -17,11 +17,10 @@ response.setContentType("text/html; charset=UTF-8");
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
-//sdk를 초기화, 사용할 앱의 javascript키
-Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-//sdk 초기화 여부를 판단
-Kakao.isInitialized();
-
+	//sdk를 초기화, 사용할 앱의 javascript키
+	Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+	//sdk 초기화 여부를 판단
+	Kakao.isInitialized();
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -33,7 +32,6 @@ Kakao.isInitialized();
 		xhr.open('POST', 'googleTokensignin.do');
 		xhr.setRequestHeader('Content-Type',
 				'application/x-www-form-urlencoded');
-
 		xhr.onload = function() {
 			console.log('Signed in as: ' + xhr.responseText);
 			switch (xhr.responseText) {
@@ -63,21 +61,16 @@ Kakao.isInitialized();
 		};
 		xhr.send('idtoken=' + id_token);
 	}
-	
-
 	$(function() {
 		$("#loginChk").hide();
 	});
-
 	function login() {
 		var member_id = $('#member_id').val().trim();
 		var member_password = $('#member_password').val().trim();
-
 		var sendByIdPw = {
 			"member_id" : member_id,
 			"member_password" : member_password
 		}
-
 		if (member_id == null || member_id == "" || member_password == null
 				|| member_password == "") {
 			alert("Id와 Password를 다시 확인해주세요");
@@ -103,10 +96,8 @@ Kakao.isInitialized();
 			});
 		}
 	}
-
-	function kakologinpage(){
-		
-		location.href="https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
+	function kakologinpage() {
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
@@ -117,36 +108,6 @@ Kakao.isInitialized();
 	</form>
 
 	<jsp:include page="header.jsp" />
-
-	<table style="display:inline;">
-		<tbody>
-			<tr>
-				<td>
-					<input type="text" id="member_id" placeholder="Id" /><br/>
-				</td>
-				<td rowspan="2">
-					<input type="button" value="login" onclick="login();">
-				</td>
-				<tr>
-					<td>
-						<input type="password" id="member_password" placeholder="Password" /><br/><br/>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center" id="loginChk"></td>
-				</tr>
-				<tr>
-					<td colspan = "2">
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>						
-						<div class ="kakaologin"><img width="120" height ="36"  src="resources/kakaologin/kakao_login_small.png"  onclick="kakologinpage()" ></div>
-						<a href="findid.do">아이디 찾기</a>&nbsp;&nbsp;&nbsp;
-						<a href="findpassword.do">비밀번호 찾기</a>&nbsp;&nbsp;&nbsp;
-						<a href="registselect.do">회원가입</a>
-						
-					</td>
-				</tr>
-		</tbody>
-	</table>
 	<section class="py-0">
 		<div class="bg-holder d-none d-md-block" style="background-image: url(./resources/assets/img/illustrations/hero.png); background-position: right bottom; background-size: contain;"></div>
 		<!--/.bg-holder-->
@@ -170,7 +131,11 @@ Kakao.isInitialized();
 					</div>
 					<div style="padding-bottom: 50px;">
 						<div class="g-signin2" style="float: right;" data-onsuccess="onSignIn"></div>
+						<div class="kakaologin" style="float: right; margin-right: 10px;">
+							<img src="resources/kakaologin/kakao_login_medium.png" onclick="kakologinpage()">
+						</div>
 					</div>
+					<div style="padding-bottom: 50px;"></div>
 					<div>
 						<a href="findid.do">아이디 찾기</a>
 						&nbsp;&nbsp;&nbsp;

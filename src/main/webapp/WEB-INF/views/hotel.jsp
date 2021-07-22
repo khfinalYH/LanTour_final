@@ -41,9 +41,6 @@
 		}
 
 	}
-	function SetValue(this) {
-		$("#hotel_maxprice").val(this.val());
-	}
 	function paging(i) {
 		var count = ${fn:length(list)} - ((i-1) * 9);
 		var leng = document.querySelectorAll(".page-item")
@@ -89,10 +86,6 @@
 .hotel-list {
 	width: 65%;
 	float: left;
-}
-
-.card:hover {
-	background: #3984F3;
 }
 
 .paging-div {
@@ -151,7 +144,7 @@
 						<c:set var="i" value="0" />
 						<c:set var="j" value="0" />
 						<c:forEach items="${list }" var="dto">
-							<div id="${j }" class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
+							<div id="${j }" class="card mb-3 hover-top" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
 								<img src="${dto.hotel_image }">
 								<div class="card-body">
 									<h5 class="card-title">${dto.hotel_title }</h5>

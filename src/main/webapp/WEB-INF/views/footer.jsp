@@ -11,8 +11,8 @@
 			<div class="row flex-center">
 				<div class="col-auto mb-4">
 					<ul class="list-unstyled list-inline mb-0">
-						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Home</a></li>
-						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Video</a></li>
+						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="./main.do">Home</a></li>
+						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="https://github.com/khfinalYH/LanTour_final">git</a></li>
 						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Destinations</a></li>
 						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Booking</a></li>
 						<li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Contact</a></li>
