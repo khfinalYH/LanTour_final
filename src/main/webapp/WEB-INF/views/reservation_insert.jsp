@@ -20,6 +20,9 @@
 <%HotelDto Hdto =  (HotelDto)request.getAttribute("HotelDto");%>
 <%RoomDto Roodto =  (RoomDto)request.getAttribute("RoomDto");%>
 <%Map<String,Integer> map = (Map<String,Integer>)request.getAttribute("map");%>
+<%String check_in = (String)request.getAttribute("check_in"); %>
+<%String check_out = (String)request.getAttribute("check_out"); %>
+
 
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
@@ -72,6 +75,10 @@ var countmb = [
 ]
 
 $(function() {
+	<%if(Ldto==null){%>
+	  priceSet()
+	<%}%>
+
 	function available(date) {
 		var thismonth = date.getMonth()+1;
 		var thisday = date.getDate();
@@ -134,14 +141,7 @@ $(function() {
 		      dateFormat: 'yy-mm-dd',
 		      minDate: Dday,
 		      maxDate: Ldate,
-		      onClose: function() {
-		    	  first = new Date($("#datepicker").val())
-		    	  second = new Date($("#datepicker2").val())
-		    	  var time = parseInt(second-first)/60/60/24/1000
-		    	  $("#reservation_price").val(time*<%=Roodto.getRoom_price()%>)
-		    	  document.getElementById("bak").innerText = time
-
-		      }
+		      onClose: priceSet
 		    })
 		}
 		<%}%>
@@ -149,6 +149,15 @@ $(function() {
 		
     });
   } );
+  function priceSet(){
+
+	  first = new Date($("#datepicker").val())
+	  second = new Date($("#datepicker2").val())
+	  var time = parseInt(second-first)/60/60/24/1000
+	  $("#reservation_price").val(time*<%=Roodto.getRoom_price()%>)
+	  document.getElementById("bak").innerText = time
+	  
+  }
 
 function count(date){
 	<%if(Ldto!=null){%>
@@ -257,7 +266,7 @@ function count(date){
 			<div class="form-group">
 				<div>
 					<div class="form-label mt-4">투어일자</div>
-					<div><input onchange="count(this)" class="form-control" style="color:black;" type="text" id="datepicker" name="reservation_date"  readonly="readonly"></div>
+					<div><input onchange="count(this)" class="form-control" style="color:black;" type="text" id="datepicker" name="reservation_date" required="required" readonly="readonly"></div>
 					<div>잔여인원 : </div>	
 					<div id="countMember">일자를 선택해 주세요</div>
 				</div> 
@@ -288,11 +297,11 @@ function count(date){
 			<div class="form-group">
 				<div>
 					<div class="form-label mt-4">체크인</div>
-					<div><input class="form-control" style="color:black;" type="text" id="datepicker" name="reservation_date" readonly="readonly"></div>
+					<div><input class="form-control" style="color:black;" type="text" required="required" id="datepicker" value="<%=check_in %>"name="reservation_date" readonly="readonly"></div>
 				</div> 
 				<div>
 					<div class="form-label mt-4">체크아웃</div>
-					<div><input class="form-control" type="text" style="color:black;" id="datepicker2" name="reservation_checkout_date" readonly="readonly"></div>
+					<div><input class="form-control" type="text" style="color:black;" required="required" id="datepicker2" value="<%=check_out %>"name="reservation_checkout_date" readonly="readonly"></div>
 				</div>
 			</div>
 			<div class="form-group">

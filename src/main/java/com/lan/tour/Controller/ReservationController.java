@@ -48,7 +48,7 @@ public class ReservationController {
 	
 	
 	@RequestMapping("reservation.do")
-	public String reservation(Model model, String type, int no, int rno) {
+	public String reservation(Model model, String type, int no, int rno, String check_in, String check_out) {
 		
 		
 		if(type.equals("lantour")) {
@@ -62,11 +62,13 @@ public class ReservationController {
 			model.addAttribute("map", map);
 			model.addAttribute("lantourDto", Ldto);
 			model.addAttribute("ResDto", Resbiz.selectList(type, no, 0));
+			model.addAttribute("check_in", check_in);
 		}else {
 			model.addAttribute("ResDto", Resbiz.selectList(type, no, rno));
-			model.addAttribute("Resbiz",Resbiz.selectList(type, no, rno));
 			model.addAttribute("HotelDto", Hbiz.selectOne(no));
 			model.addAttribute("RoomDto", Roobiz.selectOne(rno));
+			model.addAttribute("check_in", check_in);
+			model.addAttribute("check_out", check_out);
 		}
 		return "reservation_insert";
 	}
