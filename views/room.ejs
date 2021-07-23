@@ -162,7 +162,7 @@
 
     if (member_grade == 'H') {
         $.ajax({
-			 url: 'http://localhost:8787/tour/updateRtcAddr.do',
+			 url: 'http://3.17.76.13:8787/tour/updateRtcAddr.do',
 			 type: 'POST',
 			 data: {
                 'room_id' : ROOM_ID,
@@ -177,7 +177,7 @@
     window.onbeforeunload = function() {
         if (member_grade == 'H') {
             $.ajax({
-			 url: 'http://localhost:8787/tour/updateRtcAddr.do',
+			 url: 'http://3.17.76.13:8787/tour/updateRtcAddr.do',
 			 type: 'POST',
 			 data: {
                 'room_id' : 'aaa',
