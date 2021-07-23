@@ -1,14 +1,23 @@
 package com.lan.tour.Controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.MemberBiz;
+import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.dto.MemberDto;
+import com.lan.tour.model.dto.ReservationDto;
 
 @Controller
 public class AdminController {
@@ -21,6 +30,9 @@ public class AdminController {
 
 	@Autowired
 	private CommentBiz comment_biz;
+	
+	@Autowired
+	private ReservationBiz reser_biz;
 
 	// 관리자 페이지로 이동
 	@RequestMapping("/adminmember.do")
@@ -63,4 +75,21 @@ public class AdminController {
 		}
 		return "redirect:main.do";
 	}
+	
+	@RequestMapping("/adminchart.do")
+	public String adminchart() {
+		return "adminchart";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/adminreservationchart.do")
+	public Map<String, List<ReservationDto>> reservation(){
+		List<ReservationDto> list = reser_biz.selectchart();
+		
+		Map<String, List<ReservationDto>> map = new HashMap<String, List<ReservationDto>>();
+		map.put("list", list);
+		
+		return map;
+	}
+	
 }

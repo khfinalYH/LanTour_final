@@ -71,4 +71,10 @@ public class ReservationBizImpl implements ReservationBiz {
 		return dao.selectListCheckDate(check_in,check_out,hotel_type);
 	}
 
+	@Override
+	public List<ReservationDto> selectchart() {
+		// TODO Auto-generated method stub
+		return dao.selectchart();
+	}
+
 }

@@ -110,6 +110,5 @@
 		ORDER BY NOTICE_NO DESC
 	</select>
 	
-	
 
 </mapper>
