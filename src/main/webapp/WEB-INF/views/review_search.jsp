@@ -197,7 +197,7 @@
 	</div>
 			<%} %>	
 	
-	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 475px; margin-top: 0; margin-left: 50px">	
+	<div class="bs-component card border-secondary mb-3" id="reviewSearch"  style="width: 475px; margin-top: 0;<%if(login!=null){%>margin-left: 50px<%} %>">	
 		<div class="card-header" style="background-color: #ecf3fd;">
 			<h3>리뷰 검색</h3>
 		</div>
@@ -242,7 +242,9 @@
 
 <div class="bs-docs-section">
 <%if(list.size()==0){ %>
-	<div>리뷰가 존재하지 않습니다</div>
+<div class="bs-component card border-secondary mb-3">
+	<div class="card-header" style="background-color: #ecf3fd">리뷰가 존재하지 않습니다</div>
+</div>
 <%}else{ 
 	int i = 0;%>
 	<%for(ReviewDto dto : list){ %>
@@ -251,8 +253,10 @@
 				<div class="card-header" style="background-color: #ecf3fd">
 					<span><b><%=map.get(""+dto.getMember_no()) %></b></span>
 					<span style="position: absolute; right: 0; margin-right: 20px">
+					<%if(login!=null&& login.getMember_no()==dto.getMember_no()){ %>
 					<input type="button" class="btn btn-outline-primary" value="수정" onclick="location.href='ReviewUpdate.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>
 					<input type="button" class="btn btn-outline-primary" value="삭제" onclick="location.href='ReviewDelete.do?type=<%=type %>&review_no=<%=dto.getReview_no()%>'"/>	
+					<%} %>
 					</span>
 					<br/>
 					<span><%for(int k=0; k < dto.getReview_score();k++){%>★<%} %><%for(double k= (5-dto.getReview_score()) ; k > 0;k--){%>☆<%} %></span>

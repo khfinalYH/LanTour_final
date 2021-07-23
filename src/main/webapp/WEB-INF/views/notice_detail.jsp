@@ -51,11 +51,8 @@
 					</c:if>
 					<button type="button" class="btn btn-primary" onclick="location.href='noticeList_category.do?nowPage=1'">목록</button>
 				</div>
-
 		</div>
-
 	</div>
-
 	<jsp:include page="footer.jsp" />
 </body>	
 </html>

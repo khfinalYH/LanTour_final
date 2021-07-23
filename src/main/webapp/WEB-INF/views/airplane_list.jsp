@@ -277,7 +277,7 @@
 		</div>
 			<%} %>
 		</div >
-		<div id="defaultSearch" style="display: inline-block; margin-left: 35%;margin-top: 5%;">
+		<div id="defaultSearch" style="display: block; left : 40%;margin-top: 5%; position: absolute;bottom: 300px;">
 			<ul class="pagination">
 				<li onclick="pagingBefore()"> <a class="page-link" ><<</a>  </li>
 		<%for(int i = 0;i<=planelist.size()/10;i++){%>

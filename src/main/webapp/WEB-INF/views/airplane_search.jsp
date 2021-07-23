@@ -138,7 +138,7 @@
 		<div class="col-12 py-8 text-white">
 			<form action="airplaneList.do" class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
 					<div class="col-6 col-md-3">
-						<select class="form-select" id="dep" onchange="port(this)" name = "depAirportId">
+						<select class="form-select" id="dep" onchange="port(this)" name = "depAirportId" required="required">
 							<option>출발공항</option>
 						<%for(Map<String, String> map : list){ %>
 							<option id = "<%=map.get("airportId")%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
@@ -146,7 +146,7 @@
 						</select>
 					</div>
 					<div class="col-6 col-md-3">
-						<select class="form-select" required="required" name = "arrAirportId">
+						<select class="form-select" required="required" name = "arrAirportId"  required="required">
 							<option>도착공항</option>
 						<%for(Map<String, String> map : list){ %>
 							<option hidden="hidden" id ="<%=map.get("airportId")+"a"%>" value="<%=map.get("airportId") %>"><%=map.get("airportNm") %></option>
@@ -154,7 +154,7 @@
 						</select>
 					</div>
 					<div class="col-6 col-md-3">
-						<input class="form-control" id = "date"type="date" name="date" >
+						<input class="form-control" id = "date"type="date" name="date"  required="required">
 					</div>
 					<div class="col-6 col-md-3">				
 						<select class="form-select"  name="time">
