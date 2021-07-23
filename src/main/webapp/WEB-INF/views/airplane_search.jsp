@@ -11,6 +11,13 @@
 <meta charset="UTF-8">
 <title>LanTour</title>
 <style type="text/css">
+#js-weather {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
 .wea{
 	background-color: gray;
 	opacity: 0.7;

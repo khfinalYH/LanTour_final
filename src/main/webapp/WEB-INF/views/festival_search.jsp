@@ -13,6 +13,13 @@
 <script type="text/javascript" src="resources/js/koreaWeather.js" ></script>
 <style type="text/css">
 
+#js-weather {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
 .wea{
 	background-color: gray;
 	opacity: 0.7;
