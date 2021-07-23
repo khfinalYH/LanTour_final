@@ -137,6 +137,70 @@
 			</li>
 		</ul>
 	</div>
+	<section class="pt-5">
+		<div class="container">
+			<div class="row flex-center mb-5">
+				<div class="col-lg-8 text-center">
+					<h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">투어</h1>
+					<hr class="mx-auto text-primary my-4" style="height: 3px; width: 70px;" />
+					<p class="mx-auto">저희 사이트에서 체험 할 수 있는 투어 리스트입니다</p>
+					<a href="lantourlist.do" style="float: right;">더 보기</a>
+				</div>
+			</div>
+			<div style="display: inline-block;">
+				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
+					<div class="card h-100 w-100 text-white">
+						<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(0).lantour_no }">
+							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+						</a>
+						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+							<h5 class="text-white fs--1">${l_list.get(0).lantour_title }</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
+					<div class="card h-100 w-100 text-white">
+						<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(1).lantour_no }">
+							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+						</a>
+						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+							<h5 class="text-white fs--1">${l_list.get(1).lantour_title}</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
+					<div class="card h-100 w-100 text-white">
+						<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(2).lantour_no }">
+							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+						</a>
+						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+							<h5 class="text-white fs--1">${l_list.get(2).lantour_title }</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
+					<div class="card h-100 w-100 text-white">
+						<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(3).lantour_no }">
+							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+						</a>
+						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+							<h5 class="text-white fs--1">${l_list.get(3).lantour_title }</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;" onclick="location.href='./lantourdetail.do?lantour_no=${l_list.get(4).lantour_no } '">
+					<div class="card h-100 w-100 text-white">
+						<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(4).lantour_no }">
+							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+						</a>
+						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+							<h5 class="text-white fs--1">${l_list.get(4).lantour_title }</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<section class="pt-5">
@@ -146,12 +210,13 @@
 					<h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">숙소</h1>
 					<hr class="mx-auto text-primary my-4" style="height: 3px; width: 70px;" />
 					<p class="mx-auto">저희 사이트에서 예약 할 수 있는 숙소 리스트입니다</p>
+					<a href="./hotellist.do" style="float: right;">더 보기</a>
 				</div>
 			</div>
 			<div style="display: inline-block;">
 				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
 					<div class="card h-100 w-100 text-white">
-						<a class="stretched-link" href="!#">
+						<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(0).hotel_no } ">
 							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
 						</a>
 						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
@@ -161,7 +226,7 @@
 				</div>
 				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
 					<div class="card h-100 w-100 text-white">
-						<a class="stretched-link" href="!#">
+						<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(1).hotel_no }">
 							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
 						</a>
 						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
@@ -171,7 +236,7 @@
 				</div>
 				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
 					<div class="card h-100 w-100 text-white">
-						<a class="stretched-link" href="!#">
+						<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(2).hotel_no }">
 							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
 						</a>
 						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
@@ -181,7 +246,7 @@
 				</div>
 				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
 					<div class="card h-100 w-100 text-white">
-						<a class="stretched-link" href="!#">
+						<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(3).hotel_no }">
 							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
 						</a>
 						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
@@ -191,7 +256,7 @@
 				</div>
 				<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
 					<div class="card h-100 w-100 text-white">
-						<a class="stretched-link" href="!#">
+						<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(4).hotel_no }">
 							<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
 						</a>
 						<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
