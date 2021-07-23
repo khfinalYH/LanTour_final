@@ -41,7 +41,7 @@ var enableDay = [
 				if(map.get(Ldto.getLantour_date().split(",")[i]) < Ldto.getLantour_maxcount())
 				if(i==Ldto.getLantour_date().split(",").length-1){%>
 					"<%=Ldto.getLantour_date().split(",")[i]%>"
-				<%}else{%>
+					<%}else{%>
 					"<%=Ldto.getLantour_date().split(",")[i]%>",
 				<%}%>
 		<%	}
@@ -149,6 +149,8 @@ $(function() {
 		
     });
   } );
+  
+  <%if(Ldto==null){%>
   function priceSet(){
 
 	  first = new Date($("#datepicker").val())
@@ -158,7 +160,7 @@ $(function() {
 	  document.getElementById("bak").innerText = time
 	  
   }
-
+<%}%>
 function count(date){
 	<%if(Ldto!=null){%>
 	if(enableDay.indexOf(date.value)>=0){
@@ -257,7 +259,6 @@ function count(date){
 	<form action="insertReservation.do" method="post">
 		<input type="hidden" name="no" value="<%=Ldto.getLantour_no()%>">
 		<input type="hidden" name="rno" value="0">
-		<input type="hidden" name="reservation_price" value="<%=Ldto.getLantour_price() %>">
 		<input type="hidden" name="member_no" value="<%=Mdto.getMember_no() %>">
 			<div class="form-group">
 				<div style="width: 100%; margin-bottom: 20px;"><img style="width: 100%; height: 20%" alt="" src="<%=Ldto.getLantour_image()%>"></div>

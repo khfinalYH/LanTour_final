@@ -124,6 +124,8 @@ public class HotelController {
 			}
 		}
 		model.addAttribute("list", list);
+		model.addAttribute("check_in", check_in);
+		model.addAttribute("check_out", check_out);
 		return "hotel";
 	}
 	

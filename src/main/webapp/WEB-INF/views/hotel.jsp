@@ -135,9 +135,9 @@
 					<fieldset class="form-group">
 						<legend class="mt-4">날짜</legend>
 						<label for="customRange3" class="form-label">체크인</label><br/>
-						<input type="date" min="" name="check_in" onchange="document.getElementById('checkoutDate').value=''"><br/>
+						<input type="date" min="" name="check_in" onchange="document.getElementById('checkoutDate').value=''" value="<%=request.getAttribute("check_in")!=null?(String)request.getAttribute("check_in"):""%>"><br/>
 						<label for="customRange3" class="form-label">체크아웃</label><br/>
-						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate">
+						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate" value="<%=request.getAttribute("check_out")!=null?(String)request.getAttribute("check_out"):""%>">
 					</fieldset>
 					<button type="submit" class="btn btn-primary">검색</button>
 				</form>

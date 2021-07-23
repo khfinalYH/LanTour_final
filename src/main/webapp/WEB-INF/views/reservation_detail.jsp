@@ -247,9 +247,9 @@ function payment(){
 				Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
 				언제나 금융 사기에 조심하세요
 			</div>
-		</div>
 		
 		<%} %>
+		</div>
 </div>
 
 <jsp:include page="./footer.jsp" />
