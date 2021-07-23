@@ -26,6 +26,7 @@
 		<ul class="nav nav-pills">
 			<li class="nav-item"><a class="nav-link" href="adminmember.do">회원관리</a></li>
 			<li class="nav-item"><a class="nav-link active" href="admincommunity.do">커뮤니티 게시판 글 목록</a></li>
+			<li class="nav-item"><a class="nav-link" href="adminchart.do">차트 보기</a></li>
 		</ul>
 		<br>
 		<table border="1" class="table table-hover text-center" >
