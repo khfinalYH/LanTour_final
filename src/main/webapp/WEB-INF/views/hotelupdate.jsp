@@ -117,7 +117,6 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>숙소 update, ${login.member_id },${login.member_no }</h1>
 	<div class="container" style="display: flex; min-height: 550px;">
 		<div class="list-group" style="width: 20%; float: left; margin-right: 10%; margin-top: 20px;">
 			<span class="list-group-item list-group-item-action active">타입,이름,인원,위치</span>

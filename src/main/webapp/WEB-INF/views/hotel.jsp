@@ -95,7 +95,6 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<h1>숙소 list</h1>
 	<div id="hotel">
 		<div>
 			<div class="nav-hotel">
