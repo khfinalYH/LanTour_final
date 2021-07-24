@@ -201,7 +201,7 @@ response.setContentType("text/html; charset=UTF-8");
 		        <input type="text" id="email" class="form-control" name="member_email" style="color: black;" required />
 		        <button type="button" class="btn btn-primary btn-sm" id="mailceck" onclick="Emailceck();" style="float: right;">인증메일 발송</button>
 		        <br><br>
-				<input type="text" id="EmailRandom" class="form-control" placeholder="인증번호를 입력해주세요." disabled>
+				<input type="text" id="EmailRandom" class="form-control" style="color:black;" placeholder="인증번호를 입력해주세요." disabled>
 				<button type="button" name="" class="btn btn-primary btn-sm" id="mailRandceck" style="color: black; float: right;" onclick="EmailRandceck();" disabled>확인</button>
 		      </div>
 		    </div>
