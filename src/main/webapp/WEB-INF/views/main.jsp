@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 	width: 45%;
 	margin-right: 30px;
 }
-
 .slider .indicators .indicator-item {
 	background-color: #666666;
 	border: 3px solid #ffffff;
@@ -28,16 +28,13 @@
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
 		rgba(0, 0, 0, 0.12);
 }
-
 .slider .indicators .indicator-item.active {
 	background-color: #ffffff;
 }
-
 .slider {
 	width: 100%;
 	margin: 0 auto;
 }
-
 .slider .indicators {
 	bottom: 60px;
 	z-index: 100;
@@ -148,57 +145,21 @@
 				</div>
 			</div>
 			<c:if test="${not empty l_list }">
-				<div style="display: inline-block;">
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(0).lantour_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${l_list.get(0).lantour_title }</h5>
+				<div style="display: flex;">
+					<c:forEach var="i" begin="0" end="${fn:length(l_list) - 1}">
+						<c:if test="${i lt '5' }">
+							<div class="hover-top" style="width: 17%; float: left; margin-right: 20px;">
+								<div class="card text-white">
+									<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(i).lantour_no }">
+										<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+									</a>
+									<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+										<h5 class="text-white fs--1">${l_list.get(i).lantour_title }</h5>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(1).lantour_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${l_list.get(1).lantour_title}</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(2).lantour_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${l_list.get(2).lantour_title }</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(3).lantour_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${l_list.get(3).lantour_title }</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;" onclick="location.href='./lantourdetail.do?lantour_no=${l_list.get(4).lantour_no } '">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(4).lantour_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${l_list.get(4).lantour_title }</h5>
-							</div>
-						</div>
-					</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</c:if>
 		</div>
@@ -216,57 +177,21 @@
 				</div>
 			</div>
 			<c:if test="${not empty h_list }">
-				<div style="display: inline-block;">
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(0).hotel_no } ">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${h_list.get(0).hotel_title }</h5>
+				<div style="display: flex;">
+					<c:forEach var="i" begin="0" end="${fn:length(h_list) - 1}">
+						<c:if test="${i lt '5' }">
+							<div class="hover-top" style="width: 17%; float: left; margin-right: 20px;">
+								<div class="card text-white">
+									<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(i).hotel_no } ">
+										<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+									</a>
+									<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
+										<h5 class="text-white fs--1">${h_list.get(i).hotel_title }</h5>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(1).hotel_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${h_list.get(1).hotel_title }</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(2).hotel_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${h_list.get(2).hotel_title }</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(3).hotel_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${h_list.get(3).hotel_title }</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-6 col-sm-4 col-xl-2 mb-3 hover-top px-2" style="float: left; margin-right: 20px;">
-						<div class="card h-100 w-100 text-white">
-							<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(4).hotel_no }">
-								<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
-							</a>
-							<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
-								<h5 class="text-white fs--1">${h_list.get(4).hotel_title }</h5>
-							</div>
-						</div>
-					</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</c:if>
 		</div>
@@ -275,85 +200,38 @@
 		<div class="container" style="display: flex;">
 			<div class="table-class">
 				<h4 style="padding-bottom: 15px; border-bottom: 1px solid #adadad">정보게시판</h4>
-				<
 				<c:if test="${not empty c_list }">
-					<c:choose>
-						<c:when test="${c_list.get(0).community_delflag eq 'N'}">
-							<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
-								<h5>${c_list.get(0).community_title }</h5>
-								<p style="font-size: 10px;">${c_list.get(0).member_name }</p>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div>
-								<h5>삭제 된 게시글 입니다.</h5>
-								<p style="font-size: 10px;">확인이 불가능 합니다</p>
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${c_list.get(1).community_delflag  eq 'N'}">
-							<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(1).community_no }'">
-								<h5>${c_list.get(1).community_title }</h5>
-								<p style="font-size: 10px;">${c_list.get(1).member_name }</p>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div>
-								<h5>삭제 된 게시글 입니다.</h5>
-								<p style="font-size: 10px;">확인이 불가능 합니다</p>
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${c_list.get(2).community_delflag  eq 'N'}">
-							<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(2).community_no }'">
-								<h5>${c_list.get(2).community_title }</h5>
-								<p style="font-size: 10px;">${c_list.get(2).member_name }</p>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div>
-								<h5>삭제 된 게시글 입니다.</h5>
-								<p style="font-size: 10px;">확인이 불가능 합니다</p>
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${c_list.get(3).community_delflag  eq 'N'}">
-							<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(3).community_no }'">
-								<h5>${c_list.get(3).community_title }</h5>
-								<p style="font-size: 10px;">${c_list.get(3).member_name }</p>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div>
-								<h5>삭제 된 게시글 입니다.</h5>
-								<p style="font-size: 10px;">확인이 불가능 합니다</p>
-							</div>
-						</c:otherwise>
-					</c:choose>
+					<c:forEach var="i" begin="0" end="${fn:length(c_list) - 1}">
+						<c:if test="${i lt '4' }">
+							<c:choose>
+								<c:when test="${c_list.get(0).community_delflag eq 'N'}">
+									<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
+										<h5>${c_list.get(0).community_title }</h5>
+										<p style="font-size: 10px;">${c_list.get(0).member_name }</p>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div>
+										<h5>삭제 된 게시글 입니다.</h5>
+										<p style="font-size: 10px;">확인이 불가능 합니다</p>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+					</c:forEach>
 				</c:if>
 			</div>
 			<div class="table-class">
 				<h4 style="padding-bottom: 15px; border-bottom: 1px solid #adadad">공지사항</h4>
 				<c:if test="${not empty n_list }">
-					<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(0).notice_no }'">
-						<h5>[공지]${n_list.get(0).notice_title }</h5>
-						<p style="font-size: 10px;">관리자</p>
-					</div>
-					<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(1).notice_no }'">
-						<h5>[공지]${n_list.get(1).notice_title }</h5>
-						<p style="font-size: 10px;">관리자</p>
-					</div>
-					<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(2).notice_no }'">
-						<h5>[공지]${n_list.get(2).notice_title }</h5>
-						<p style="font-size: 10px;">관리자</p>
-					</div>
-					<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(3).notice_no }'">
-						<h5>[공지]${n_list.get(3).notice_title }</h5>
-						<p style="font-size: 10px;">관리자</p>
-					</div>
+					<c:forEach var="i" begin="0" end="${fn:length(n_list) - 1}">
+						<c:if test="${i lt '4' }">
+							<div class="hover-top" onclick="location.href='./noticeSelectOne.do?notice_no=${n_list.get(i).notice_no }'">
+								<h5>[공지]${n_list.get(i).notice_title }</h5>
+								<p style="font-size: 10px;">관리자</p>
+							</div>
+						</c:if>
+					</c:forEach>
 				</c:if>
 			</div>
 

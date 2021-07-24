@@ -118,6 +118,7 @@
 	min-height: 50px;
 }
 .reply_content {
+	resize : none;
 	width: 100%;
 }
 .board_comment_date {

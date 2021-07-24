@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,33 +92,65 @@
 			datatype : "json",
 			success : function (msg) { 
 				var list = msg.list;
+				var $div = $("<div>")
 				for(var i = 0; i < list.length; i++){
-					var $div = $("<div>");
+					$div = $("<div id = "+ (i+1) +">");
 					$div.append($("<div>"+list[i].member_name+"</div>"))
-					$(".replyListParent").append($div);
-					$div = $("<div>");
 					if(list[i].comment_delflag == 'N'){
 						$div.append($("<div><textarea rows='1' cols='80' disable='disable' readonly='readonly' class='reply_content'>"+list[i].comment_content+"</textarea></div>"))
 					} else {
 						$div.append($("<div>---------삭제된 댓글입니다------------</div>"));
 					}
-					$(".replyListParent").append($div);
 					if(list[i].member_name == "${login.member_name}"){
-						$div = $("<div>");
 						$div.append($("<input type='button' value='수정' name="+list[i].comment_no+" class='commentupdate'/>"))
 						$div.append($("<input type='button' value='삭제' name="+list[i].comment_no+" class='commentdelete'/>"))
-						$(".replyListParent").append($div);
 					}
+					$(".replyListParent").append($div);
 					
 				}
+				$(".replyListParent").append($("<input type='hidden' value='"+list.length+"' id = 'count'/>"));
+				
+				var $ul = $("<ul class='pagination'>");
+				$ul.append($("<li class='page-item disabled'><span class='page-link'>&laquo;</span></li>"));
+				for(var i = 0; i < list.length / 6; i++){
+					$ul.append($("<li class='page-item' onclick='paging("+(i+1)+")'><a class='page-link' href='#'>"+ (i+1) +"</li>"));
+				}
+				$ul.append($("<li class='page-item disabled'><span class='page-link'>&raquo;</span></li>"));
+				$(".paging-div").append($ul);
+				paging(1);
 			},
 			error : function () {
 				alert("통신 실패")
 			}
 		});
 	}
+	
+	function paging(i) {
+		var co = $("#count").val();
+		var count = $("#count").val() - ((i-1) * 6);
+		var leng = $(".page-item");
+		for (var j = 1; j < leng.length - 1; j++){
+			if(i == j){
+				leng.eq(j).attr("class","page-item active");
+			} else{
+				leng.eq(j).attr("class","page-item");
+			}
+		}
+		for(var i = 0; i <= $("#count").val(); i++){
+			if(i > count-6 && i <= count){
+				$("#"+i).css("display","");
+			} else{
+				$("#"+i).css("display","none");
+			}
+		}
+	}
+	
 </script>
-
+<style type="text/css">
+.paging-div {
+	margin-left: 45%;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -168,7 +201,7 @@
 				<div class="comment_nicname">
 					<span> ${login.member_name } </span>
 				</div>
-				<input type="text" class="comment_content"  id="comment_content">
+				<input type="text" class="comment_content" id="comment_content">
 
 				<div class="comment_btn">
 					<span class="comment_input">
@@ -181,6 +214,7 @@
 		<div class="comment_watch">
 			<div class="replyListParent"></div>
 		</div>
+		<div class="paging-div"></div>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>
