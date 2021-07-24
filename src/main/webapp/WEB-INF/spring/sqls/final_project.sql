@@ -179,4 +179,6 @@ CREATE TABLE CALENDAR(
 	CONSTRAINT CAL_MEMBER_NO_FK FOREIGN KEY(MEMBER_NO) REFERENCES MEMBER(MEMBER_NO)
 );
 
-select count(*) as count TO_CHAR(reservation_paydate,'YYYY-MM-DD') as da from RESERVATION group by TO_CHAR(reservation_paydate,'YYYY-MM-DD');
+select count(*) as count, TO_CHAR(reservation_paydate,'YYYY-MM-DD') as da from RESERVATION group by TO_CHAR(reservation_paydate,'YYYY-MM-DD');
+
+select * from COMMENT_TABLE;

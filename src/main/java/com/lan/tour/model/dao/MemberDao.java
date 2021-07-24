@@ -31,4 +31,6 @@ public interface MemberDao {
 	public int updatepw(MemberDto dto);
 
 	public MemberDto checkEmail(String member_email);
+	
+	public List<MemberDto> searchmember(String member_id);
 }

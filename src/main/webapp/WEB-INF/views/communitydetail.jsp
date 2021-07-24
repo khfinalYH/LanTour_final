@@ -101,6 +101,7 @@
 					} else {
 						$div.append($("<div>---------삭제된 댓글입니다------------</div>"));
 					}
+					$div.append($("<span class='board_comment_date'>"+list[i].comment_date+"</span>"));
 					if(list[i].member_name == "${login.member_name}"){
 						$div.append($("<input type='button' value='수정' name="+list[i].comment_no+" class='commentupdate'/>"))
 						$div.append($("<input type='button' value='삭제' name="+list[i].comment_no+" class='commentdelete'/>"))

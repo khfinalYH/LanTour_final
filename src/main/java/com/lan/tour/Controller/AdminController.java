@@ -92,4 +92,37 @@ public class AdminController {
 		return map;
 	}
 	
+	@RequestMapping("admincommunity_titlesearch.do")
+	public String communitytitlesearch(Model model, String community_content) {
+		model.addAttribute("c_list", com_biz.selecttitlesearchList(community_content));
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "title");
+
+		return "admincommunity";
+	}
+
+	@RequestMapping("admincommunity_contentsearch.do")
+	public String communitycontentsearch(Model model, String community_content) {
+		model.addAttribute("c_list", com_biz.selectcontentsearchList(community_content));
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "content");
+
+		return "admincommunity";
+	}
+
+	@RequestMapping("admincommunity_namesearch.do")
+	public String communitynamesearch(Model model, String community_content) {
+		model.addAttribute("c_list", com_biz.selectnamesearchList(community_content));
+		model.addAttribute("community_content", community_content);
+		model.addAttribute("filter", "name");
+
+		return "admincommunity";
+	}
+	
+	@RequestMapping("/adminmembersearch.do")
+	public String adminmembersearch(Model model, String member_id) {
+		model.addAttribute("m_list", mem_biz.searchmember(member_id));
+		return "adminmember";
+	}
+	
 }

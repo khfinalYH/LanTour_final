@@ -105,4 +105,13 @@
 		MEMBER_PASSWORD = #{member_password}
 		WHERE MEMBER_ID = #{member_id}
 	</update>
+	
+	<select id="adminsearch" parameterType="String" resultType="memberDto">
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
+		MEMBER_GRADE,
+		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
+		MEMBER_SECESSION
+		FROM MEMBER
+		WHERE MEMBER_ID LIKE '%' || #{member_id} || '%'
+	</select>
 </mapper>

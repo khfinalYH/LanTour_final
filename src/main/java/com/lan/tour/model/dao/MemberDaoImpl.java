@@ -178,4 +178,20 @@ public class MemberDaoImpl implements MemberDao {
 		return dto;
 	}
 
+
+
+
+	@Override
+	public List<MemberDto> searchmember(String member_id) {
+		// TODO Auto-generated method stub
+		List<MemberDto> res = new ArrayList<MemberDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE+"adminsearch",member_id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 }

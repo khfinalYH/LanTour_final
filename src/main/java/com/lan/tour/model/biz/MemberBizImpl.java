@@ -78,6 +78,12 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.checkEmail(member_email);
 	}
 
+	@Override
+	public List<MemberDto> searchmember(String member_id) {
+		// TODO Auto-generated method stub
+		return dao.searchmember(member_id);
+	}
+
 	
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$(".btn").click(
+		paging(1);
+		$(".btn-sm").click(
 				function() {
 					var tr = $(this).parent().parent();
 					var td = tr.children();
@@ -20,11 +22,37 @@
 							+ member_no + "&member_grade=" + member_grade;
 				});
 	})
+	function paging(j) {
+		var count = ${fn:length(m_list)} - ((j-1) * 10);
+		var leng = document.querySelectorAll(".page-item")
+		for (var i = 1; i < leng.length - 1; i++){
+			if(i == j){
+				leng[i].setAttribute("class","page-item active");
+			} else{
+				leng[i].setAttribute("class","page-item");
+			}
+		}
+		for(var i = 0; i <= ${fn:length(list)}; i++){
+			if(i>count-10&&i<=count){
+				$("#"+i).css("display","");
+			} else{
+				$("#"+i).css("display","none");
+			}
+		}
+	}
+	function search() {
+		var member_id = $("#member_idname").val();
+		location.href = "./adminmembersearch.do?member_id="+member_id;
+	}
 </script>
 <style type="text/css">
-.admin{
+.admin {
 	margin: auto;
 	width: 1000px;
+}
+
+.paging-div {
+	margin-left: 46%;
 }
 </style>
 
@@ -40,7 +68,12 @@
 			<li class="nav-item"><a class="nav-link" href="adminchart.do">차트 보기</a></li>
 		</ul>
 		<br>
-		<table border="1" class="table table-hover text-center" >
+		<div class="form-group">
+			<input type="text" id="member_idname" class="form-label mt-4" value="${member_id }" />
+			<button type="button" class="btn btn-primary" onclick="search()">검색</button>
+		</div>
+		<br>
+		<table border="1" class="table table-hover text-center">
 			<thead>
 				<tr style="background-color: #4582ec; color: #ffffff;">
 					<th scope="col">번호</th>
@@ -58,8 +91,9 @@
 							</tr>
 						</c:when>
 						<c:otherwise>
+							<c:set var="i" value="0" />
 							<c:forEach items="${m_list }" var="dto">
-								<tr>
+								<tr id="${i }">
 									<td>${dto.member_no }</td>
 									<td>${dto.member_id }</td>
 									<td>${dto.member_name }</td>
@@ -81,14 +115,24 @@
 											</c:choose>
 										</select>
 									</td>
-									<td >
+									<td>
 										<button type="button" class="btn btn-primary btn-sm">수정</button>
 									</td>
 								</tr>
+								<c:set var="i" value="${i+1 }"></c:set>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 		</table>
+		<div class="paging-div">
+			<ul class="pagination">
+				<li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+				<c:forEach var="i" begin="0" end="${fn:length(m_list)/10 }">
+					<li class="page-item" onclick="paging(${i+1});"><a class="page-link" href="#">${i+1 }</a></li>
+				</c:forEach>
+				<li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+			</ul>
+		</div>
 	</div>
 
 
