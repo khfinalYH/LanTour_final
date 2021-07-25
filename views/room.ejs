@@ -42,6 +42,15 @@
             <!-- 기능 버튼 -->
             <div class="main__controls">
                 <div class="main__controls_block">
+
+                    <% if (member_grade == 'H') { %>
+                        <!-- 비디오 on/off 는 호스트에게만 출력해준다. -->
+                        <div class="main__controls_button" id="playPauseVideo" onclick="playStop()">
+                        <i class="fa fa-video-camera"></i>
+                        <span>Pause Video</span>
+                        </div>
+                    <% } %>
+
                     <!-- 소리 on/off -->
                     <div class="main__controls_button" id="muteButton" onclick="muteUnmute()">
                     <i class="fa fa-microphone"></i>
@@ -76,13 +85,7 @@
                         <span>TTS</span>
                     </div>
 
-                    <% if (member_grade == 'H') { %>
-                    <!-- 비디오 on/off 는 호스트에게만 출력해준다. -->
-                    <div class="main__controls_button" id="playPauseVideo" onclick="playStop()">
-                    <i class="fa fa-video-camera"></i>
-                    <span>Pause Video</span>
-                    </div>
-                    <% } %>
+                    
                 </div>
 
                 <!-- 화상채팅방 나가기 -->
