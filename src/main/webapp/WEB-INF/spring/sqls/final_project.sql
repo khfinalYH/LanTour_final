@@ -181,4 +181,6 @@ CREATE TABLE CALENDAR(
 
 select count(*) as count, TO_CHAR(reservation_paydate,'YYYY-MM-DD') as da from RESERVATION group by TO_CHAR(reservation_paydate,'YYYY-MM-DD');
 
-select * from COMMENT_TABLE;
+select count(*) as count, TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD') as regdate from COMMUNITY group by TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD') order by TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD') ;
+
+select count(*) as count,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') as regdate ,MEMBER_GENDER from member group by MEMBER_GENDER ,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') order by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') 

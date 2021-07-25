@@ -12,7 +12,7 @@
 		ORDER BY
 		MEMBER_NO DESC
 	</select>
-	
+
 	<select id="emailcheck" parameterType="String"
 		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
@@ -51,9 +51,12 @@
 
 	<update id="update" parameterType="memberDto">
 		UPDATE MEMBER
-		SET MEMBER_NAME = #{member_name}, MEMBER_PASSWORD = #{member_password},
-		MEMBER_EMAIL = #{member_email}, MEMBER_PHONE = #{member_phone}
-		WHERE MEMBER_NO = #{member_no}
+		SET MEMBER_NAME =
+		#{member_name}, MEMBER_PASSWORD = #{member_password},
+		MEMBER_EMAIL =
+		#{member_email}, MEMBER_PHONE = #{member_phone}
+		WHERE MEMBER_NO =
+		#{member_no}
 	</update>
 
 	<update id="delete" parameterType="int">
@@ -89,29 +92,41 @@
 	<select id="findpassword" parameterType="memberDto"
 		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID,
-		MEMBER_NAME, MEMBER_PASSWORD, MEMBER_GRADE,
+		MEMBER_NAME, MEMBER_PASSWORD,
+		MEMBER_GRADE,
 		MEMBER_AGE, MEMBER_GENDER,
 		MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
 		WHERE MEMBER_ID = #{member_id}
-		AND MEMBER_NAME = #{member_name}
+		AND
+		MEMBER_NAME = #{member_name}
 		AND MEMBER_EMAIL = #{member_email}
 	</select>
-	
+
 	<update id="updatepassword" parameterType="memberDto">
 		UPDATE MEMBER
 		SET
 		MEMBER_PASSWORD = #{member_password}
 		WHERE MEMBER_ID = #{member_id}
 	</update>
-	
-	<select id="adminsearch" parameterType="String" resultType="memberDto">
+
+	<select id="adminsearch" parameterType="String"
+		resultType="memberDto">
 		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_PASSWORD,
 		MEMBER_GRADE,
 		MEMBER_AGE, MEMBER_GENDER, MEMBER_EMAIL, MEMBER_PHONE,
 		MEMBER_SECESSION
 		FROM MEMBER
-		WHERE MEMBER_ID LIKE '%' || #{member_id} || '%'
+		WHERE MEMBER_ID LIKE '%' || #{member_id} ||
+		'%'
+	</select>
+
+	<select id="chartmember" resultType="memberDto">
+		select count(*) as
+		count,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') as regdate ,MEMBER_GENDER
+		from member group by MEMBER_GENDER
+		,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') order by
+		TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD')
 	</select>
 </mapper>

@@ -12,13 +12,15 @@ public class MemberDto {
 	private String member_email;
 	private String member_phone;
 	private String member_secession;
-	
+	private int count;
+	private String regdate;
+
 	public MemberDto() {
 	}
 
 	public MemberDto(int member_no, String member_id, String member_name, String member_password, String member_grade,
-			int member_age, String member_gender, String member_email, String member_phone, String member_secession) {
-		super();
+			int member_age, String member_gender, String member_email, String member_phone, String member_secession,
+			int count, String regdate) {
 		this.member_no = member_no;
 		this.member_id = member_id;
 		this.member_name = member_name;
@@ -29,6 +31,8 @@ public class MemberDto {
 		this.member_email = member_email;
 		this.member_phone = member_phone;
 		this.member_secession = member_secession;
+		this.count = count;
+		this.regdate = regdate;
 	}
 
 	public int getMember_no() {
@@ -111,14 +115,20 @@ public class MemberDto {
 		this.member_secession = member_secession;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberDto [member_no=" + member_no + ", member_id=" + member_id + ", member_name=" + member_name
-				+ ", member_password=" + member_password + ", member_grade=" + member_grade + ", member_age="
-				+ member_age + ", member_gender=" + member_gender + ", member_email=" + member_email + ", member_phone="
-				+ member_phone + ", member_secession=" + member_secession + "]";
+	public int getCount() {
+		return count;
 	}
-	
-	
-	
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
 }

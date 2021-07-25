@@ -33,4 +33,6 @@ public interface MemberDao {
 	public MemberDto checkEmail(String member_email);
 	
 	public List<MemberDto> searchmember(String member_id);
+	
+	public List<MemberDto> chartmember();
 }

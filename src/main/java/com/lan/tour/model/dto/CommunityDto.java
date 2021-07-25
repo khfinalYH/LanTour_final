@@ -11,14 +11,16 @@ public class CommunityDto {
 	private int community_readcount;
 	private String community_delflag;
 	private String member_name;
+	private int count;
+	private String regdate;
 
 	public CommunityDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public CommunityDto(int community_no, int member_no, String community_title, String community_content,
-			Date community_regdate, int community_readcount, String community_delflag, String member_name) {
-
+			Date community_regdate, int community_readcount, String community_delflag, String member_name, int count,
+			String regdate) {
 		this.community_no = community_no;
 		this.member_no = member_no;
 		this.community_title = community_title;
@@ -27,6 +29,8 @@ public class CommunityDto {
 		this.community_readcount = community_readcount;
 		this.community_delflag = community_delflag;
 		this.member_name = member_name;
+		this.count = count;
+		this.regdate = regdate;
 	}
 
 	public int getCommunity_no() {
@@ -93,12 +97,20 @@ public class CommunityDto {
 		this.member_name = member_name;
 	}
 
-	@Override
-	public String toString() {
-		return "CommunityDto [community_no=" + community_no + ", member_no=" + member_no + ", community_title="
-				+ community_title + ", community_content=" + community_content + ", community_regdate="
-				+ community_regdate + ", community_readcount=" + community_readcount + ", community_delflag="
-				+ community_delflag + ", member_name=" + member_name + "]";
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 
 }

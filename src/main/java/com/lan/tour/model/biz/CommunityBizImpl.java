@@ -92,5 +92,11 @@ public class CommunityBizImpl implements CommunityBiz {
 		return dao.community_refaire(community_no);
 	}
 
+	@Override
+	public List<CommunityDto> communitychart() {
+		// TODO Auto-generated method stub
+		return dao.communitychart();
+	}
+
 
 }

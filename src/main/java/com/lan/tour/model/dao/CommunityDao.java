@@ -34,4 +34,6 @@ public interface CommunityDao {
 	
 	public int community_refaire(int community_no);
 	
+	public List<CommunityDto> communitychart();
+	
 }

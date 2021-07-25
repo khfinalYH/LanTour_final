@@ -16,6 +16,7 @@ import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.biz.ReservationBiz;
+import com.lan.tour.model.dto.CommunityDto;
 import com.lan.tour.model.dto.MemberDto;
 import com.lan.tour.model.dto.ReservationDto;
 
@@ -84,9 +85,31 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping("/adminreservationchart.do")
 	public Map<String, List<ReservationDto>> reservation(){
-		List<ReservationDto> list = reser_biz.selectchart();
+		List<ReservationDto> r_list = reser_biz.selectchart();
 		
 		Map<String, List<ReservationDto>> map = new HashMap<String, List<ReservationDto>>();
+		map.put("r_list", r_list);
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/adminmemberchart.do")
+	public Map<String,List<MemberDto>> chartmember(){
+		List<MemberDto> list = mem_biz.chartmember();
+		
+		Map<String, List<MemberDto>> map = new HashMap<String, List<MemberDto>>();
+		map.put("list", list);
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/admincommunitychart.do")
+	public Map<String,List<CommunityDto>> admincommunitychart(){
+		List<CommunityDto> list = com_biz.communitychart();
+		
+		Map<String, List<CommunityDto>> map = new HashMap<String, List<CommunityDto>>();
 		map.put("list", list);
 		
 		return map;

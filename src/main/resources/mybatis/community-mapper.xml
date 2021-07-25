@@ -100,7 +100,8 @@
 		SET
 		COMMUNITY_READCOUNT = COMMUNITY_READCOUNT + 1
 		WHERE
-		COMMUNITY_NO = #{community_no}
+		COMMUNITY_NO =
+		#{community_no}
 	</update>
 
 	<select id="boardlist" resultType="communityDto">
@@ -120,7 +121,8 @@
 
 	<delete id="communityAlldelete" parameterType="int">
 		DELETE
-		FROM COMMUNITY
+		FROM
+		COMMUNITY
 		WHERE COMMUNITY_NO = #{community_no}
 	</delete>
 
@@ -130,4 +132,10 @@
 		WHERE COMMUNITY_NO = #{community_no}
 	</update>
 
+	<select id="communitychart" resultType="communityDto">
+		select count(*) as count,
+		TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD') as regdate from COMMUNITY
+		group by TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD') order by
+		TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD')
+	</select>
 </mapper>
