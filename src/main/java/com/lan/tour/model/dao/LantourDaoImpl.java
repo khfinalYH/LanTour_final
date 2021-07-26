@@ -1,5 +1,6 @@
 package com.lan.tour.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.LantourDto;
 
+import com.lan.tour.model.dto.LantourPagingDto;
+
 @Repository
 public class LantourDaoImpl implements LantourDao {
 
@@ -15,11 +18,24 @@ public class LantourDaoImpl implements LantourDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<LantourDto> selectList() {
+	public List<LantourDto> selectList(LantourPagingDto dto) {
 
-		List<LantourDto> res = null;
+		List<LantourDto> list = new ArrayList<LantourDto>();
 		try {
-			res = sqlSession.selectList(NAMESPACE + "lantourlist");
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	@Override
+	public List<LantourDto> selectList(int member_no) {
+		
+		List<LantourDto> res = new ArrayList<LantourDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE+"lantourlist_member",member_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,6 +111,110 @@ public class LantourDaoImpl implements LantourDao {
 			list = sqlSession.selectList(NAMESPACE + "lantourchart");
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public int countTotal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countTotal");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> selectTitleList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_title", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<LantourDto> selectContentList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<LantourDto> selectTCList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_title_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public int countT(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countT", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countTC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countTC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> lantourList() {
+		// TODO Auto-generated method stub
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"lantourlist");
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return list;

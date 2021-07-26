@@ -14,6 +14,7 @@
 		<typeAlias type="com.lan.tour.model.dto.NoticeDto" alias="noticeDto"/>
 		<typeAlias type="com.lan.tour.model.dto.ReviewDto" alias="ReviewDto"/>
 		<typeAlias type="com.lan.tour.model.dto.NoticePagingDto" alias="NoticePagingDto"/>
+		<typeAlias type="com.lan.tour.model.dto.LantourPagingDto" alias="LantourPagingDto"/>
 		<typeAlias type="com.lan.tour.model.dto.CalendarDto" alias="CalendarDto"/>
 	</typeAliases>
 

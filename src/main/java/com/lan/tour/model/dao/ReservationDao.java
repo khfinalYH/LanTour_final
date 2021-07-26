@@ -29,6 +29,8 @@ public interface ReservationDao {
 	public List<ReservationDto> selectListRoomM(int member_no);
 
 	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type);
+	public List<ReservationDto> selectListJoin(int member_no);
+	public ReservationDto selectcount(String type, int no);
 
 	public List<ReservationDto> selectchart();
 

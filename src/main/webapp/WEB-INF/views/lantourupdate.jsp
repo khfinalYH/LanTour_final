@@ -41,17 +41,6 @@
 		}
 	}
 	
-	$(function(){
-		$(".maxcount").click(
-				function(){
-					var tr = $(this).parent().parent();
-					var td = tr.children();
-					var lantour_title = td.eq(0).text();
-					var lantour_maxcount = td.eq(4).children().val();
-					
-				});
-	})
-	
 </script>
 <style type="text/css">
 .tour{
@@ -65,6 +54,7 @@
 		<form action="./lantourupdateres.do" method="post" enctype ="multipart/form-data">
 		<input type ="hidden" name = "member_no" value = "${login.member_no }">
 		<input type ="hidden" name = "lantour_rtc" value = "aaa">
+		<input type ="hidden" name = "lantour_no" value = "${dto.lantour_no }">
 		<input type="hidden" id="lantour_image" name="lantour_image" />
 		
 	<div class="container">
@@ -73,28 +63,29 @@
 			<tr style="backgound-color:#adadad; color:#ffffff;">
 				<th colspan="2" scope="col" class="text-center" style="text-align: center;">투어정보</th>
 			</tr>
-		</thead>
+		</thead>    
 		<tbody>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어명</p></th>
-			<td>${dto.lantour_title }</td>
+			<td><input name="lantour_title" value="${dto.lantour_title }"></td>
 		</tr>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어소개</p></th>
-			<td><textarea rows="10" cols="60">${dto.lantour_content }</textarea></td>
+			<td><textarea rows="10" cols="60" name="lantour_content">${dto.lantour_content }</textarea></td>
 		</tr>
 		
 		<tr>
 			<th scope="row" style="text-align: center;"><p>투어장소</p></th>
-			<td><textarea rows="2" cols="60">${dto.lantour_addr }</textarea></td>
+			<td><textarea rows="2" cols="60" name="lantour_addr">${dto.lantour_addr }</textarea></td>
 		</tr>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>미리보기</p></th>
-			<td><img src = "${dto.lantour_image }"></td>
+			<td><img name="lantour_image" src = "${dto.lantour_image }"></td>
 		</tr>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>최대인원</p></th>
-			<td><select name="lantour_maxcount" id="maxcount">
+			<td>
+			<select name="lantour_maxcount" id="maxcount">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -130,21 +121,22 @@
 		</tr>
 		<tr>
 			<th scope="row" style="text-align: center;"><p>가격</p></th>
-			<td>${dto.lantour_price }</td>
+			<td><input name="lantour_price" value="${dto.lantour_price }"></td>
 		</tr>
 		
 	</tbody>
 			<tr>
 				<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
 				<td id="DateTd">
-					<input class="DateContent" type="date" name="lantour_date">
+					<input class="DateContent" type="date" name="lantour_date" value="${dto.lantour_date }">
 					<input type="button" onclick="insertDate()" value="추가">
 					<input type="button" onclick="deleteDate()" value="삭제">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" class="btn btn-primary" value="글 수정" onclick="location.href='lantourinsert.do?lantour_no=${dto.lantour_no}'"/>
+					<input type="submit" class="btn btn-primary" value="글 수정" />
+					<input type="button" class="btn btn-outline-danger" value="취소"	 onclick="location.href='lantourlist_category.do?nowPage=1'">
 				</td>
 			</tr>
 		</table>

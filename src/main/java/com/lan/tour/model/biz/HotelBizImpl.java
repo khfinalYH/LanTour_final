@@ -21,6 +21,12 @@ public class HotelBizImpl implements HotelBiz {
 	}
 
 	@Override
+	public List<HotelDto> selectList(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.selectList(member_no);
+	}
+
+	@Override
 	public HotelDto selectOne(int hotel_no) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(hotel_no);

@@ -55,7 +55,7 @@ public class MemberController {
 	public String loginRedirect() {
 		return "login_redirect";
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
 	public Map<String, Boolean> loginCheck(@RequestBody MemberDto dto, HttpSession session) {

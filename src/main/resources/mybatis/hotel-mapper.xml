@@ -10,6 +10,15 @@
 		ORDER BY HOTEL_NO
 	</select>
 
+	<select id="hotellist_member" resultType="hotelDto">
+		SELECT HOTEL_NO,
+		MEMBER_NO,HOTEL_TYPE,HOTEL_TITLE,HOTEL_CONTENT,HOTEL_REGDATE,
+		HOTEL_PRICE,HOTEL_ADDR,HOTEL_IMAGE,HOTEL_CONVINENCE,HOTEL_MAXCOUNT
+		FROM HOTEL
+		WHERE MEMBER_NO = #{member_no}
+		ORDER BY HOTEL_NO
+	</select>
+
 	<select id="hotelOne" parameterType="int" resultType="hotelDto">
 		SELECT
 		HOTEL_NO,

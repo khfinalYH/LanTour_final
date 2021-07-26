@@ -16,7 +16,7 @@
 <!--// jQuery UI 라이브러리 js파일 -->
 <script  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="  crossorigin="anonymous"></script>
 
-<%List<ReservationDto> Resdto = (List<ReservationDto>)request.getAttribute("ReservationDto"); %>
+<%List<ReservationDto> Resdto = (List<ReservationDto>)request.getAttribute("ResDto"); %>
 <%RoomDto Roodto = (RoomDto)request.getAttribute("RoomDto"); %>
 <script type="text/javascript">
 	function delete_room() {

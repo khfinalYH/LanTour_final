@@ -28,9 +28,8 @@ import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.dto.LantourDto;
+import com.lan.tour.model.dto.LantourPagingDto;
 import com.lan.tour.model.dto.ReservationDto;
-
-
 
 @Controller
 public class LantourController {
@@ -44,9 +43,46 @@ public class LantourController {
 	@Autowired
 	private ReviewBiz Rbiz2;
 	
+
+	@RequestMapping("/lantourlist_category.do")
+	public String selectKeywordList(Model model, LantourPagingDto dto) {
+
+		int count = 0;
+		
+		String category = dto.getCategory();
+		String keyword = dto.getKeyword();
+		int nowPage = dto.getNowPage();
+		
+		if (category == null || category.equals("")) {
+			count = biz.countTotal();
+			System.out.println(count);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage);
+			
+			model.addAttribute("list", biz.selectList(dtoN));
+			model.addAttribute("dto", dtoN);
+		} else if (category.equals("l_t")) {
+			count = biz.countT(keyword);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
+			
+			model.addAttribute("list", biz.selectTitleList(dtoN));
+			model.addAttribute("dto", dtoN);
+			
+		} else if (category.equals("l_c")) {
+			count = biz.countC(keyword);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
+			
+			model.addAttribute("list", biz.selectContentList(dtoN));
+			model.addAttribute("dto", dtoN);
+			
+		
+		}
+		
+		return "lantour";
+	}
+	
 	@RequestMapping("/lantourlist.do")
-	public String lantourlist(Model model) {
-		model.addAttribute("list", biz.selectList());
+	public String lantourList(Model model) {
+		model.addAttribute("list", biz.lantourList());
 		model.addAttribute("scorelist", Rbiz2.scoreList("lantour"));
 		return "lantour";
 	}
@@ -57,12 +93,11 @@ public class LantourController {
 		
 	}
 	
-	
 	@RequestMapping("/lantourinsertres.do")
 	public String lantourinsertres(LantourDto dto, String[] lantour_date) {
 		StringBuilder sb = new StringBuilder();
 		for(String date : lantour_date) {
-			sb.append(date+",");
+			sb.append(date+"/");
 		}
 		System.out.println(sb.toString());
 		dto.setLantour_date(sb.toString());
@@ -90,6 +125,9 @@ public class LantourController {
 	}
 	@RequestMapping("/lantourupdateres.do")
 	public String updateres(LantourDto dto) {
+		System.out.println("updatedto:"+dto.getLantour_no() );
+		System.out.println("updatedto:"+dto.getLantour_content() );
+		System.out.println("updatedto:"+dto.getLantour_image() );   
 		if (biz.update(dto) > 0) {
 			return "redirect:lantourdetail.do?lantour_no=" + dto.getLantour_no();
 		}
@@ -163,7 +201,7 @@ public class LantourController {
 	
 	@RequestMapping("/updateRtcAddr.do")
 	public void updateRtcAddr(String room_id, int lantour_no) {
-		String lantour_rtc = "https://3.17.76.13:3000/" + room_id;
+		String lantour_rtc = "https://localhost:3000/" + room_id;
 		LantourDto dto = new LantourDto(lantour_no, lantour_rtc);
 		dto.setLantour_rtc(lantour_rtc);
 		dto.setLantour_no(lantour_no);

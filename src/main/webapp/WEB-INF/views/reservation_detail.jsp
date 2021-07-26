@@ -178,20 +178,20 @@ function payment(){
 					<input type='button' class="btn btn-outline-primary"  value='결제' onclick='payment()'>
 					<%}else if(!Resdto.getReservation_pay().equals("cancelled")){ %>
 						<%if((time2.getTime()-time.getTime())/(24*60*60*1000)<=7){ %>
-							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
+								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+								언제나 금융 사기에 조심하세요</div>					
 						<%}else{ %>
 							<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
-							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
+								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+								언제나 금융 사기에 조심하세요</div>					
 						<%} %>
 					<%}else{ %>
 					<div>결제 취소된 예약입니다.</div>
 					
 					<%} %>
 				</div>
-			</div>
-			<div>
-				Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
-				언제나 금융 사기에 조심하세요
 			</div>
 	</form>
 		<%}else{ %>
@@ -232,20 +232,22 @@ function payment(){
 					<input type='button' class="btn btn-outline-primary"  value='결제' onclick='payment()'>
 					<%}else if(!Resdto.getReservation_pay().equals("cancelled")){ %>
 						<%if((time2.getTime()-time.getTime())/(24*60*60*1000)<=7){ %>
-							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
+								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+								언제나 금융 사기에 조심하세요
+								</div>					
 						<%}else{ %>
 							<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
-							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.</div>					
+							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
+								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
+								언제나 금융 사기에 조심하세요
+							</div>					
 						<%} %>
 					<%}else{ %>
 					<div>결제 취소된 예약입니다.</div>
 					
 					<%} %>
 				</div>
-			</div>
-			<div>
-				Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
-				언제나 금융 사기에 조심하세요
 			</div>
 		
 		<%} %>

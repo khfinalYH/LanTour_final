@@ -181,6 +181,29 @@ public class ReviewDaoImpl implements ReviewDao {
 		return list;
 	}
 
+	@Override
+	public ReviewDto selectscore(String type, int no) {
+		ReviewDto dto = new ReviewDto();
+		switch(type){
+			case "hotel":
+				try {
+					int hotel_no = no;
+					dto = sqlSession.selectOne(NAMESPACE+"selectscore_hotel", hotel_no);
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+			case "lantour":
+				try {
+					int lantour_no = no;
+					dto = sqlSession.selectOne(NAMESPACE+"selectscore_lantour", lantour_no);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+		return dto;
+	}
+
 
 	
 

@@ -1,5 +1,6 @@
 package com.lan.tour.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,6 +28,19 @@ public class HotelDaoImpl implements HotelDao {
 		return res;
 	}
 
+
+	@Override
+	public List<HotelDto> selectList(int member_no) {
+		// TODO Auto-generated method stub
+		List<HotelDto> res = new ArrayList<HotelDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE + "hotellist_member",member_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
 	@Override
 	public HotelDto selectOne(int hotel_no) {
 		// TODO Auto-generated method stub

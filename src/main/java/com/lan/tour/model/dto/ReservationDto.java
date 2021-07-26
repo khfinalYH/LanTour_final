@@ -14,6 +14,9 @@ public class ReservationDto {
 	private int reservation_price;
 	private String reservation_pay;
 	private Date reservation_paydate;
+	private String lantour_title;
+	private String hotel_title;
+	private String room_name;
 	private int count;
 	private String pay_date;
 
@@ -131,6 +134,30 @@ public class ReservationDto {
 		this.count = count;
 	}
 
+	public String getLantour_title() {
+		return lantour_title;
+	}
+
+	public void setLantour_title(String lantour_title) {
+		this.lantour_title = lantour_title;
+	}
+
+	public String getHotel_title() {
+		return hotel_title;
+	}
+
+	public void setHotel_title(String hotel_title) {
+		this.hotel_title = hotel_title;
+	}
+
+	public String getRoom_name() {
+		return room_name;
+	}
+
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
+	}
+	
 	public String getPay_date() {
 		return pay_date;
 	}
