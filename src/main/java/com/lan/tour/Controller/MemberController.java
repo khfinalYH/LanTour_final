@@ -40,9 +40,9 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
-	
+
 	@Autowired
-	private JavaMailSender  mailSender;
+	private JavaMailSender mailSender;
 
 	// ---------------------------------------------
 	// 로그인------------------------------------------
@@ -78,6 +78,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:main.do";
 	}
+
 	// ---------------------------------------------
 	// 회원가입------------------------------------------
 	// singup.do -> registerform.do 로 변경(회원가입 페이지로 가는것이 없음)
@@ -85,63 +86,60 @@ public class MemberController {
 	public String singup() {
 		return "registselect";
 	}
-	
+
 	@RequestMapping("/registerform.do")
 	public String signupform() {
 		// 회원 가입 페이지로 이동 (페이지 이름을 몰라서 register로 작성)
 		return "singnup_general";
 	}
 
-	//이메일 인증
+	// 이메일 인증
 	@ResponseBody
 	@RequestMapping("/emailcheck.do")
 	public Map<String, String> emailcheck(@RequestBody String email, HttpSession session) {
 		email = email.split("\":\"")[1].split("\"")[0];
-        Map <String,String> map = new HashMap<String, String>();
-        if(biz.checkEmail(email)==null) {
-    		try {
-                MimeMessage msg = mailSender.createMimeMessage();
-                MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
-                int random = (int)(Math.random()*10000);
-                messageHelper.setSubject("[Lantour] 랜투어 회원가입 이메일 인증 메일입니다.");
-                messageHelper.setText("인증번호는 "+random+" 입니다.");
-                messageHelper.setTo(email);
-                msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email));
-                mailSender.send(msg);
-                map.put("success", "true");
-                session.setMaxInactiveInterval(180);
-                session.setAttribute("random", random);
-            }catch(MessagingException e) {
-                System.out.println("MessagingException");
-                e.printStackTrace();
-                map.put("error", "메일 발송에 실패했습니다.");
-            }	
-        }else {
-            map.put("error", "이미 가입되어있는 메일입니다.");
-        }
+		Map<String, String> map = new HashMap<String, String>();
+		if (biz.checkEmail(email) == null) {
+			try {
+				MimeMessage msg = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+				int random = (int) (Math.random() * 10000);
+				messageHelper.setSubject("[Lantour] 랜투어 회원가입 이메일 인증 메일입니다.");
+				messageHelper.setText("인증번호는 " + random + " 입니다.");
+				messageHelper.setTo(email);
+				msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
+				mailSender.send(msg);
+				map.put("success", "true");
+				session.setMaxInactiveInterval(180);
+				session.setAttribute("random", random);
+			} catch (MessagingException e) {
+				System.out.println("MessagingException");
+				e.printStackTrace();
+				map.put("error", "메일 발송에 실패했습니다.");
+			}
+		} else {
+			map.put("error", "이미 가입되어있는 메일입니다.");
+		}
 		return map;
 	}
+
 	@ResponseBody
 	@RequestMapping("/emailrandomcheck.do")
 	public Map<String, Boolean> emailrandomcheck(@RequestBody String random, HttpSession session) {
 		random = random.split("\":\"")[1].split("\"")[0];
-        Map <String, Boolean> map = new HashMap<String, Boolean>();
-        if(Integer.parseInt(random) == (int)session.getAttribute("random")) {
-        	map.put("result", true);
-        }
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		if (Integer.parseInt(random) == (int) session.getAttribute("random")) {
+			map.put("result", true);
+		}
 		return map;
 	}
-	
-	
-	
+
 	@RequestMapping("/registerhost.do")
 	public String registerForm() {
 		return "signup_host";
-		
+
 	}
-	
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
 	public Map<String, Boolean> idCheck(@RequestBody MemberDto dto) {
@@ -173,41 +171,40 @@ public class MemberController {
 			return "redirect:loginform.do";
 		}
 		return "redirect:registerform.do";
-	}	
+	}
 
 	@RequestMapping("/memberlist.do")
 	public String memberlist(Model model) {
 		model.addAttribute("list", biz.memberList());
 		return "member";
-		
+
 	}
+
 	@RequestMapping("/memberupdate.do")
 	public String update(int member_no, String member_grade) {
 		MemberDto dto = new MemberDto();
 		dto.setMember_no(member_no);
 		dto.setMember_grade(member_grade);
-		
+
 		biz.memberupdate(dto);
 		return "redirect:memberlist.do";
 	}
-	
-	
-	
-	//구글 로그인
+
+	// 구글 로그인
 	@ResponseBody
 	@RequestMapping("/googleTokensignin.do")
 	public String googleTokensign(String idtoken, HttpSession session) {
 		MemberDto dto = googleTokenTest(idtoken);
-		if(dto==null) {
+		if (dto == null) {
 			return "InvalidEmain";
-		}else if(biz.idCheck(dto)==null) {
-			if(biz.checkEmail(dto.getMember_email())!=null) {
+		} else if (biz.idCheck(dto) == null) {
+			if (biz.checkEmail(dto.getMember_email()) != null) {
 				return "hasemail";
-			}else {
+			} else {
 				return "signup";
-				
+
 			}
-		}else {
+		} else {
 			MemberDto res = biz.idCheck(dto);
 			if (pwEncoder.matches(dto.getMember_password(), res.getMember_password())) {
 				session.setAttribute("login", res);
@@ -216,69 +213,70 @@ public class MemberController {
 		}
 		return "invaild login";
 	}
-	
+
 	@RequestMapping("/googlesignup.do")
-	public String googlesignup(Model model,String idtoken) {
+	public String googlesignup(Model model, String idtoken) {
 		model.addAttribute("idtoken", idtoken);
 		return "singnup_google";
 	}
+
 	@RequestMapping("/googlesignupres.do")
-	public String googlesignupres(Model model, HttpSession session , String idtoken, MemberDto dto) {
+	public String googlesignupres(Model model, HttpSession session, String idtoken, MemberDto dto) {
 		MemberDto Tokendto = googleTokenTest(idtoken);
 		dto.setMember_id(Tokendto.getMember_id());
 		dto.setMember_password(pwEncoder.encode(Tokendto.getMember_password()));
 		dto.setMember_email(Tokendto.getMember_email());
 		dto.setMember_name(Tokendto.getMember_name());
-		if(biz.insert(dto)>0) {
+		if (biz.insert(dto) > 0) {
 			session.setAttribute("login", biz.idCheck(dto));
 
-			return "redirect:main.do";			
+			return "redirect:main.do";
 		}
 		model.addAttribute(idtoken, idtoken);
 		return "redirect:googleTokensignin.do";
 	}
-	
-	public MemberDto googleTokenTest(String idtoken) {	  
+
+	public MemberDto googleTokenTest(String idtoken) {
 		MemberDto dto = null;
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
-			    // Specify the CLIENT_ID of the app that accesses the backend:
-			    .setAudience(Collections.singletonList("869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com"))
-			    // Or, if multiple clients access the backend:
-			    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-			    .build();
+				// Specify the CLIENT_ID of the app that accesses the backend:
+				.setAudience(Collections
+						.singletonList("869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com"))
+				// Or, if multiple clients access the backend:
+				// .setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+				.build();
 
-			// (Receive idTokenString by HTTPS POST)
+		// (Receive idTokenString by HTTPS POST)
 
-			GoogleIdToken idToken = null;
-			try {
-				idToken = verifier.verify(idtoken);
-			} catch (GeneralSecurityException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		GoogleIdToken idToken = null;
+		try {
+			idToken = verifier.verify(idtoken);
+		} catch (GeneralSecurityException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (idToken != null) {
+			Payload payload = idToken.getPayload();
+
+			// Print user identifier
+			String userId = payload.getSubject();
+			System.out.println("User ID: " + userId);
+
+			// Get profile information from payload
+			String email = payload.getEmail();
+			boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+			String name = (String) payload.get("name");
+			// Use or store profile information
+			// ...
+			if (emailVerified) {
+				dto = new MemberDto(0, userId, name, "google", "U", 0, null, email, null, "N", 0, null);
 			}
-			if (idToken != null) {
-			  Payload payload = idToken.getPayload();
 
-			  // Print user identifier
-			  String userId = payload.getSubject();
-			  System.out.println("User ID: " + userId);
+		} else {
+			System.out.println("Invalid ID token.");
+		}
 
-			  // Get profile information from payload
-			  String email = payload.getEmail();
-			  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-			  String name = (String) payload.get("name");
-			  // Use or store profile information
-			  // ...
-			  if(emailVerified) {
-				  dto = new MemberDto(0, userId, name, "google", "U", 0, null, email, null, "N");
-			  }
-
-			} else {
-			  System.out.println("Invalid ID token.");
-			}
-		
 		return dto;
 	}
-	
-	
+
 }

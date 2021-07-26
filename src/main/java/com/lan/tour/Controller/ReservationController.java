@@ -88,7 +88,7 @@ public class ReservationController {
 	@RequestMapping("insertReservation.do")
 	public String InertReservation(int no, int rno, int member_no, String reservation_date, String reservation_checkout_date,int reservation_price ) {
 		
-		ReservationDto dto = new ReservationDto(0, no, rno, no, member_no, reservation_date,reservation_checkout_date ,reservation_price, "N", null); 
+		ReservationDto dto = new ReservationDto(0, no, rno, no, member_no, reservation_date,reservation_checkout_date ,reservation_price, "N", null , 0 , null); 
 		Resbiz.insert(dto);
 		return "redirect:reservationdetail.do";
 	}

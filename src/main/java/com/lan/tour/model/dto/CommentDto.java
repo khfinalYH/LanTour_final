@@ -1,6 +1,5 @@
 package com.lan.tour.model.dto;
 
-import java.util.Date;
 
 public class CommentDto {
 
@@ -8,7 +7,7 @@ public class CommentDto {
 	private int member_no;
 	private int community_no;
 	private String comment_content;
-	private Date comment_date;
+	private String comment_date;
 	private String comment_delflag;
 	private String member_name;
 
@@ -16,7 +15,7 @@ public class CommentDto {
 
 	}
 
-	public CommentDto(int comment_no, int member_no, int community_no, String comment_content, Date comment_date,
+	public CommentDto(int comment_no, int member_no, int community_no, String comment_content, String comment_date,
 			String comment_delflag, String member_name) {
 		this.comment_no = comment_no;
 		this.member_no = member_no;
@@ -59,11 +58,11 @@ public class CommentDto {
 		this.comment_content = comment_content;
 	}
 
-	public Date getComment_date() {
+	public String getComment_date() {
 		return comment_date;
 	}
 
-	public void setComment_date(Date comment_date) {
+	public void setComment_date(String comment_date) {
 		this.comment_date = comment_date;
 	}
 
@@ -83,4 +82,5 @@ public class CommentDto {
 		this.member_name = member_name;
 	}
 
+	
 }

@@ -17,11 +17,13 @@ public class ReservationDto {
 	private String lantour_title;
 	private String hotel_title;
 	private String room_name;
+	private int count;
+	private String pay_date;
 
 	public ReservationDto() {
 
 	}
-	
+
 	public ReservationDto(int lantour_no, int member_no) {
 		this.lantour_no = lantour_no;
 		this.member_no = member_no;
@@ -29,8 +31,7 @@ public class ReservationDto {
 
 	public ReservationDto(int reservation_no, int lantour_no, int room_no, int hotel_no, int member_no,
 			String reservation_date, String reservation_checkout_date, int reservation_price, String reservation_pay,
-			Date reservation_paydate) {
-		super();
+			Date reservation_paydate, int count, String pay_date) {
 		this.reservation_no = reservation_no;
 		this.lantour_no = lantour_no;
 		this.room_no = room_no;
@@ -41,6 +42,8 @@ public class ReservationDto {
 		this.reservation_price = reservation_price;
 		this.reservation_pay = reservation_pay;
 		this.reservation_paydate = reservation_paydate;
+		this.count = count;
+		this.pay_date = pay_date;
 	}
 
 	public int getReservation_no() {
@@ -91,6 +94,14 @@ public class ReservationDto {
 		this.reservation_date = reservation_date;
 	}
 
+	public String getReservation_checkout_date() {
+		return reservation_checkout_date;
+	}
+
+	public void setReservation_checkout_date(String reservation_checkout_date) {
+		this.reservation_checkout_date = reservation_checkout_date;
+	}
+
 	public int getReservation_price() {
 		return reservation_price;
 	}
@@ -115,12 +126,12 @@ public class ReservationDto {
 		this.reservation_paydate = reservation_paydate;
 	}
 
-	public String getReservation_checkout_date() {
-		return reservation_checkout_date;
+	public int getCount() {
+		return count;
 	}
 
-	public void setReservation_checkout_date(String reservation_checkout_date) {
-		this.reservation_checkout_date = reservation_checkout_date;
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public String getLantour_title() {
@@ -147,4 +158,12 @@ public class ReservationDto {
 		this.room_name = room_name;
 	}
 	
+	public String getPay_date() {
+		return pay_date;
+	}
+
+	public void setPay_date(String pay_date) {
+		this.pay_date = pay_date;
+	}
+
 }

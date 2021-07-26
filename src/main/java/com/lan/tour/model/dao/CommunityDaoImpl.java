@@ -125,8 +125,7 @@ public class CommunityDaoImpl implements CommunityDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(list);
+
 		return list;
 	}
 
@@ -179,6 +178,19 @@ public class CommunityDaoImpl implements CommunityDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public List<CommunityDto> communitychart() {
+		// TODO Auto-generated method stub
+		List <CommunityDto> list = new ArrayList<CommunityDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"communitychart");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 
