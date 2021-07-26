@@ -80,6 +80,7 @@ public class ReservationBizImpl implements ReservationBiz {
 	@Override
 	public ReservationDto selectcount(String type, int no) {
 		return dao.selectcount(type,no);
+	}
 	public List<ReservationDto> selectchart() {
 		// TODO Auto-generated method stub
 		return dao.selectchart();
