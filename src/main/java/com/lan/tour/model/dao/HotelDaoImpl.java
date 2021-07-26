@@ -92,4 +92,18 @@ public class HotelDaoImpl implements HotelDao {
 		return list;
 	}
 
+	@Override
+	public List<HotelDto> hotelchart() {
+		// TODO Auto-generated method stub
+		List<HotelDto> list = null;
+
+		try {
+			list = sqlSession.selectList(NAMESPACE + "hotelchart");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

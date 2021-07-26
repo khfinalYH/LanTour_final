@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.LantourDto;
+
 @Repository
 public class LantourDaoImpl implements LantourDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
 	public List<LantourDto> selectList() {
-		
+
 		List<LantourDto> res = null;
 		try {
-			res = sqlSession.selectList(NAMESPACE+"lantourlist");
+			res = sqlSession.selectList(NAMESPACE + "lantourlist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return res;
 	}
 
@@ -31,7 +31,7 @@ public class LantourDaoImpl implements LantourDao {
 	public LantourDto selectOne(int lantour_no) {
 		LantourDto dto = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"lantourOne", lantour_no);
+			dto = sqlSession.selectOne(NAMESPACE + "lantourOne", lantour_no);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -43,11 +43,11 @@ public class LantourDaoImpl implements LantourDao {
 	public int insert(LantourDto dto) {
 		int res = 0;
 		try {
-			res = sqlSession.insert(NAMESPACE+"lantourinsert", dto);
+			res = sqlSession.insert(NAMESPACE + "lantourinsert", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return res;
 	}
 
@@ -55,7 +55,7 @@ public class LantourDaoImpl implements LantourDao {
 	public int delete(int lantour_no) {
 		int res = 0;
 		try {
-			res = sqlSession.delete(NAMESPACE+"lantourdelete", lantour_no);
+			res = sqlSession.delete(NAMESPACE + "lantourdelete", lantour_no);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -66,16 +66,16 @@ public class LantourDaoImpl implements LantourDao {
 	@Override
 	public int update(LantourDto dto) {
 		// TODO Auto-generated method stub
-				int res = 0;
-				try {
-					res = sqlSession.update(NAMESPACE + "lantourupdate", dto);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
-				return res;
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "lantourupdate", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
 	}
-	
+
 	@Override
 	public int rtcupdate(LantourDto dto) {
 		int res = 0;
@@ -84,8 +84,20 @@ public class LantourDaoImpl implements LantourDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> lantourchart() {
+		// TODO Auto-generated method stub
+		List<LantourDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantourchart");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
-  

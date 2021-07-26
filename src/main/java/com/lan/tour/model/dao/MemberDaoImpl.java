@@ -198,11 +198,25 @@ public class MemberDaoImpl implements MemberDao {
 
 
 	@Override
-	public List<MemberDto> chartmember() {
+	public List<MemberDto> manchartmember() {
 		// TODO Auto-generated method stub
 		List<MemberDto> list = new ArrayList<MemberDto>();
 		try {
-			list = sqlSession.selectList(NAMESPACE+"chartmember");
+			list = sqlSession.selectList(NAMESPACE+"menchartmember");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public List<MemberDto> womanchartmember() {
+		// TODO Auto-generated method stub
+		List<MemberDto> list = new ArrayList<MemberDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"womenchartmember");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

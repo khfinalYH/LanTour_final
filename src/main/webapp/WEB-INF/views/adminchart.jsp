@@ -62,21 +62,29 @@
 			type : "post",
 			dataType : "json",
 			success : function(msg) {
-				var list = msg.list;
-				var label_set = new Set;
+				var list = msg.m_list;
+				var label = [];
 				var m_data = [];
 				var f_data = [];
+				var text = '남자 회원수';
+				var color = 'rgba(54, 162, 235, 1)';
 				for (var i = 0; i < list.length; i++) {
-					label_set.add(list[i].regdate);
-					if (list[i].member_gender == 'F') {
-						f_data.push(list[i].count);
-					} else {
-						m_data.push(list[i].count);
-					}
+					label.push(list[i].regdate);
+					m_data.push(list[i].count);
 				}
-				var label = Array.from(label_set);
-				var memberchart = $("#memberchart");
-				linechart(memberchart, m_data, f_data, label);
+				var menmemberchart = $("#menmemberchart");
+				linechart(menmemberchart, m_data, label , text, color);
+				
+				list = msg.w_list;
+				label = [];
+				color = 'rgba(255, 99, 132, 1)';
+				text = '여자 회원수'
+				for (var i = 0; i < list.length; i++) {
+					label.push(list[i].regdate);
+					f_data.push(list[i].count);
+				}
+				var womenmemberchart = $("#womenmemberchart");
+				linechart(womenmemberchart, f_data, label ,text,color);
 			},
 			error : function() {
 				alert("통신 실패");
@@ -84,41 +92,41 @@
 		});
 	}
 	function communitybar(communitychart, label, data) {
-		var myChart = new Chart(communitychart, {
-			type : 'bar',
-			data : {
-				labels : label,
-				datasets : [{
-					label : '게시글 등록 숫자',
-					fill : false,
-					data : data,
-					backgroundColor : [
-						//색상
-						'rgba(255, 99, 132, 0.2)',
-								'rgba(54, 162, 235, 0.2)',
-								'rgba(255, 206, 86, 0.2)',
-								'rgba(75, 192, 192, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
-								'rgba(255, 159, 64, 0.2)' ],
-						borderColor : [
-						//경계선 색상
-						'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
-								'rgba(255, 206, 86, 1)',
-								'rgba(75, 192, 192, 1)',
-								'rgba(153, 102, 255, 1)',
-								'rgba(255, 159, 64, 1)' ],
-						borderWidth : 1
-				}]
-			},
-			options : {
-				title : {
-					display : true,
-					text : '날짜 별 게시글 등록'
-				}
-			}
-		});
+		var myChart = new Chart(communitychart,
+				{
+					type : 'bar',
+					data : {
+						labels : label,
+						datasets : [ {
+							label : '게시글 등록 숫자',
+							fill : false,
+							data : data,
+							backgroundColor : [
+							//색상
+							'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(255, 206, 86, 0.2)',
+									'rgba(75, 192, 192, 0.2)',
+									'rgba(153, 102, 255, 0.2)',
+									'rgba(255, 159, 64, 0.2)' ],
+							borderColor : [
+							//경계선 색상
+							'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
+									'rgba(255, 206, 86, 1)',
+									'rgba(75, 192, 192, 1)',
+									'rgba(153, 102, 255, 1)',
+									'rgba(255, 159, 64, 1)' ],
+							borderWidth : 1
+						} ]
+					},
+					options : {
+						title : {
+							display : true,
+							text : '날짜 별 게시글 등록'
+						}
+					}
+				});
 	}
-
 	function charbar(reservationchart, label, mydata) {
 		var myChart = new Chart(reservationchart,
 				{
@@ -155,24 +163,17 @@
 					}
 				});
 	}
-	function linechart(memberchart, m_data, f_data, label) {
+	function linechart(memberchart, data, label,text,color) {
 		var memberChart = new Chart(memberchart, {
 			type : "line",
 			data : {
 				labels : label,
 				datasets : [ {
-					label : '남자',
+					label : text,
 					fill : false,
-					data : m_data,
-					backgroundColor : "#3e95cd",
-					borderColor : "#3e95cd",
-					borderWidth : 1
-				}, {
-					label : '여자',
-					fill : false,
-					data : f_data,
-					backgroundColor : 'rgba(255, 99, 132, 0.2)',
-					borderColor : 'rgba(255, 99, 132, 0.2)',
+					data : data,
+					backgroundColor : color,
+					borderColor : color,
 					borderWidth : 1
 				} ]
 			},
@@ -194,14 +195,21 @@
 			<li class="nav-item"><a class="nav-link active" href="adminchart.do">차트 보기</a></li>
 		</ul>
 
-		<div style="width: 450px;">
-			<canvas id="reservationchart"></canvas>
+		<div style="display: flex; margin-top: 35px;">
+			<div style="width: 450px; float: left; margin-right: 100px; margin-left: 200px;">
+				<canvas id="reservationchart"></canvas>
+			</div>
+			<div style="width: 450px; float: left;">
+				<canvas id="communitychart"></canvas>
+			</div>
 		</div>
-		<div style="width: 450px;">
-			<canvas id="memberchart"></canvas>
-		</div>
-		<div style="width: 450px;">
-			<canvas id="communitychart"></canvas>
+		<div style="display: flex;">
+			<div style="width: 450px; float: left; margin-right: 100px; margin-left: 200px;">
+				<canvas id="menmemberchart"></canvas>
+			</div>
+			<div style="width: 450px; float: left;">
+				<canvas id="womenmemberchart"></canvas>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />

@@ -15,10 +15,10 @@
 		commentlist();
 		$(document).on("click",".commentupdate",function () {
 			$(this).val("수정완료");
-			$(this).parent().prev().children().children().prop("readonly","");
-			$(this).parent().prev().children().children().focus();
+			$(this).prev().prev().children().prop("readonly","");
+			$(this).prev().prev().children().focus();
 			$(this).attr("value","수정완료").click(function () {
-				var comment_content = $(this).parent().prev().children().children().val();
+				var comment_content = $(this).prev().prev().children().val();
 				var comment_no = $(this).prop("name");
 				$.ajax({
 					type : "post",
@@ -84,6 +84,7 @@
 	}
 	function commentlist() {
 		$(".replyListParent").empty();
+		$(".paging-div").empty();
 		var community_no = ${dto.community_no };
 		$.ajax({
 			type:"post",

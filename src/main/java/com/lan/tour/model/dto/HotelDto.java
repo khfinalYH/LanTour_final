@@ -17,6 +17,8 @@ public class HotelDto {
 	private int hotel_maxcount;;
 	private int hotel_minprice;
 	private int hotel_maxprice;
+	private int count;
+	private String regdate;
 
 	public HotelDto() {
 
@@ -24,7 +26,7 @@ public class HotelDto {
 
 	public HotelDto(int hotel_no, int member_no, String hotel_type, String hotel_title, String hotel_content,
 			Date hotel_regdate, int hotel_price, String hotel_addr, String hotel_image, String hotel_convinence,
-			int hotel_maxcount, int hotel_minprice, int hotel_maxprice) {
+			int hotel_maxcount, int hotel_minprice, int hotel_maxprice, int count, String regdate) {
 		this.hotel_no = hotel_no;
 		this.member_no = member_no;
 		this.hotel_type = hotel_type;
@@ -38,6 +40,8 @@ public class HotelDto {
 		this.hotel_maxcount = hotel_maxcount;
 		this.hotel_minprice = hotel_minprice;
 		this.hotel_maxprice = hotel_maxprice;
+		this.count = count;
+		this.regdate = regdate;
 	}
 
 	public int getHotel_no() {
@@ -144,19 +148,20 @@ public class HotelDto {
 		this.hotel_maxprice = hotel_maxprice;
 	}
 
-	@Override
-	public String toString() {
-		return "HotelDto [hotel_no=" + hotel_no + ", member_no=" + member_no + ", hotel_type=" + hotel_type
-				+ ", hotel_title=" + hotel_title + ", hotel_content=" + hotel_content + ", hotel_regdate="
-				+ hotel_regdate + ", hotel_price=" + hotel_price + ", hotel_addr=" + hotel_addr + ", hotel_image="
-				+ hotel_image + ", hotel_convinence=" + hotel_convinence + ", hotel_maxcount=" + hotel_maxcount
-				+ ", getHotel_no()=" + getHotel_no() + ", getMember_no()=" + getMember_no() + ", getHotel_type()="
-				+ getHotel_type() + ", getHotel_title()=" + getHotel_title() + ", getHotel_content()="
-				+ getHotel_content() + ", getHotel_regdate()=" + getHotel_regdate() + ", getHotel_price()="
-				+ getHotel_price() + ", getHotel_addr()=" + getHotel_addr() + ", getHotel_image()=" + getHotel_image()
-				+ ", getHotel_convinence()=" + getHotel_convinence() + ", getHotel_maxcount()=" + getHotel_maxcount()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 
 }

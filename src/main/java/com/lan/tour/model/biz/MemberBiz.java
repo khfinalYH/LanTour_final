@@ -32,5 +32,7 @@ public interface MemberBiz {
 
 	public List<MemberDto> searchmember(String member_id);
 	
-	public List<MemberDto> chartmember();
+	public List<MemberDto> manchartmember();
+	
+	public List<MemberDto> womanchartmember();
 }

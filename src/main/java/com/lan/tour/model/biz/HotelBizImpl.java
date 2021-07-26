@@ -50,4 +50,10 @@ public class HotelBizImpl implements HotelBiz {
 		return dao.searchList(dto);
 	}
 
+	@Override
+	public List<HotelDto> hotelchart() {
+		// TODO Auto-generated method stub
+		return dao.hotelchart();
+	}
+
 }

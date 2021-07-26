@@ -17,4 +17,6 @@ public interface HotelBiz {
 	public int update(HotelDto dto);
 	
 	public List<HotelDto> searchList(HotelDto dto);
+	
+	public List<HotelDto> hotelchart();
 }
