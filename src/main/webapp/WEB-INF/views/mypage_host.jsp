@@ -156,7 +156,7 @@ function pagingNext() {
 					<td><%=dto.getLantour_no() %></td>
 					<td><%=dto.getLantour_title()%></td>
 					<td><%=dto.getLantour_price() %></td>
-					<td><%=format.format(dto.getLantour_date())%></td>
+					<td><%=format.format(dto.getLantour_regdate())%></td>
 					<%ReservationDto ResDto = ResMap.get("L"+dto.getLantour_no()); %>
 					<td><%= ResDto.getReservation_no()%></td>
 					<td><%=ResDto.getReservation_no()-ResDto.getLantour_no()-ResDto.getHotel_no() %></td>

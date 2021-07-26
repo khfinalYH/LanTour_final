@@ -36,7 +36,7 @@ CREATE SEQUENCE ROOM_NO_SEQ;
 CREATE SEQUENCE CAL_NO_SEQ;
 
 
-select * from member;
+select * from lantour;
 
 UPDATE MEMBER SET  MEMBER_GRADE= 'A' WHERE MEMBER_ID = 'admin'
 
