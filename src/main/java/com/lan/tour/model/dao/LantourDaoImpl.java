@@ -1,5 +1,6 @@
 package com.lan.tour.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,31 +8,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.LantourDto;
+import com.lan.tour.model.dto.LantourPagingDto;
+
 @Repository
 public class LantourDaoImpl implements LantourDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
+
 	@Override
-	public List<LantourDto> selectList() {
-		
-		List<LantourDto> res = null;
+	public List<LantourDto> selectList(LantourPagingDto dto) {
+
+		List<LantourDto> list = new ArrayList<LantourDto>();
 		try {
-			res = sqlSession.selectList(NAMESPACE+"lantourlist");
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		return res;
-	}
 
+		return list;
+	}
+	
 	@Override
 	public LantourDto selectOne(int lantour_no) {
 		LantourDto dto = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"lantourOne", lantour_no);
+			dto = sqlSession.selectOne(NAMESPACE + "lantourOne", lantour_no);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -43,11 +46,11 @@ public class LantourDaoImpl implements LantourDao {
 	public int insert(LantourDto dto) {
 		int res = 0;
 		try {
-			res = sqlSession.insert(NAMESPACE+"lantourinsert", dto);
+			res = sqlSession.insert(NAMESPACE + "lantourinsert", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return res;
 	}
 
@@ -55,7 +58,7 @@ public class LantourDaoImpl implements LantourDao {
 	public int delete(int lantour_no) {
 		int res = 0;
 		try {
-			res = sqlSession.delete(NAMESPACE+"lantourdelete", lantour_no);
+			res = sqlSession.delete(NAMESPACE + "lantourdelete", lantour_no);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -66,16 +69,16 @@ public class LantourDaoImpl implements LantourDao {
 	@Override
 	public int update(LantourDto dto) {
 		// TODO Auto-generated method stub
-				int res = 0;
-				try {
-					res = sqlSession.update(NAMESPACE + "lantourupdate", dto);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
-				return res;
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "lantourupdate", dto);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
 	}
-	
+
 	@Override
 	public int rtcupdate(LantourDto dto) {
 		int res = 0;
@@ -87,5 +90,108 @@ public class LantourDaoImpl implements LantourDao {
 		return 0;
 	}
 
+
+	@Override
+	public int countTotal() {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countTotal");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> selectTitleList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_title", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<LantourDto> selectContentList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<LantourDto> selectTCList(LantourPagingDto dto) {
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantour_selectlist_title_content", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public int countT(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countT", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int countTC(String category) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "lantour_countTC", category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> lantourList() {
+		// TODO Auto-generated method stub
+		List<LantourDto> list = new ArrayList<LantourDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"lantourlist");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }
-  
