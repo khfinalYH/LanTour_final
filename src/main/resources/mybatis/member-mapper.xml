@@ -46,7 +46,7 @@
 
 	<insert id="insert" parameterType="memberDto">
 		INSERT INTO MEMBER
-		VALUES(MEMBER_NO_SEQ.NEXTVAL,#{member_id},#{member_password},#{member_name},#{member_grade},#{member_age},#{member_gender},#{member_email},#{member_phone},'N')
+		VALUES(MEMBER_NO_SEQ.NEXTVAL,#{member_id},#{member_password},#{member_name},#{member_grade},#{member_age},#{member_gender},#{member_email},#{member_phone},'N', SYSDATE)
 	</insert>
 
 	<update id="update" parameterType="memberDto">

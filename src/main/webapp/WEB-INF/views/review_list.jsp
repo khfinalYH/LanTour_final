@@ -127,6 +127,47 @@
 		}
 	}
 
+	function pagingBefore() {
+		var active = document.getElementsByClassName("page-item active")[0]
+		var count = document.querySelectorAll(".page-item").length
+		if(parseInt(active.innerText)>10){
+			for(var i = 0; i <=parseInt(count/10);i++){
+				if(parseInt((active.innerText-1)/10)>=i & parseInt((active.innerText-1)/10)<i+1){
+					for(var j = 0; j <count;j++){
+						if(parseInt(j/10)==i-1){
+							document.getElementById("pageList"+j).style.display = "block"
+						}else{
+							document.getElementById("pageList"+j).style.display = "none"
+
+						}
+
+					}
+					paging((i-1)*10)
+				}
+			}
+		}
+	}
+	
+
+	function pagingNext() {
+		var active = document.getElementsByClassName("page-item active")[0]
+		var count = document.querySelectorAll(".page-item").length
+		if(parseInt((active.innerText-1)/10)<parseInt(count/10)){
+			for(var i = 0; i <=parseInt(count/10);i++){
+				if(parseInt((active.innerText-1)/10)>=i&parseInt((active.innerText-1)/10)<(i+1)){
+					for(var j = 0; j <count;j++){
+						if(parseInt(j/10)==i+1){
+							document.getElementById("pageList"+j).style.display = "block"
+						}else{
+							document.getElementById("pageList"+j).style.display = "none"							
+						}
+					}
+					paging((i+1)*10)
+				}
+			}
+		}
+		
+	}
 	function writeReview(){
 		var write = document.getElementById("writeReview")		
 		write.style.display = "block"
@@ -153,18 +194,6 @@
 		writebox.style.width = "30%"
 	}
 	
-	function ReviewSort(ele){
-		document.getElementById("defaultSearch").style.display = "none"
-		if(ele.value=="asc"){
-			
-		}
-		if(ele.value=="desc"){
-			
-		}
-
-	}
-	
-
 </script>
 <body style="padding: 0;">
 <div style="display: flex;">
@@ -195,7 +224,7 @@
 				</div>
 				<div id="writeReview" style="display: none;">
 					<div>
-						<span><textarea rows="10" cols="30" name="review_title" class="summernote"></textarea> </span>
+						<span><textarea rows="15" cols="30" name="review_title" class="summernote"  style="resize: none;"></textarea> </span>
 					</div>
 					<div>
 						<input type="submit" class="btn btn-outline-primary" value="작성">
@@ -281,9 +310,11 @@
 	<%} %>
 		<div id="defaultSearch" style="margin-left:50% ">
 			<ul class="pagination pagination-sm">
+				<li onclick="pagingBefore()"> <a class="page-link" ><<</a>  </li>
 			<%for(int j = 0;j<=list.size()/10;j++){%>
 				<li class="page-item" onclick="paging(<%=j%>)"><a class="page-link" ><%=j+1 %></a></li>						
 			<% }%>
+				<li onclick="pagingNext()"> <a class="page-link" >>></a>  </li>
 			</ul>
 		</div>
 <%} %>

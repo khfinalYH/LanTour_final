@@ -1,5 +1,6 @@
 package com.lan.tour.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,6 +20,20 @@ public class LantourDaoImpl implements LantourDao {
 		List<LantourDto> res = null;
 		try {
 			res = sqlSession.selectList(NAMESPACE+"lantourlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> selectList(int member_no) {
+		
+		List<LantourDto> res = new ArrayList<LantourDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE+"lantourlist_member",member_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,6 +101,5 @@ public class LantourDaoImpl implements LantourDao {
 		}
 		return 0;
 	}
-
 }
   

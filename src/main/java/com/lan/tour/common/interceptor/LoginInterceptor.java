@@ -20,6 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			request.getRequestURI().contains("Delete")||
 			request.getRequestURI().contains("Update")||
 			request.getRequestURI().contains("payment")||
+			request.getRequestURI().contains("payment")||
 			request.getRequestURI().contains("admin")) {
 			if(request.getSession().getAttribute("login")==null) {
 				response.sendRedirect("loginRedirect.do");

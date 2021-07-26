@@ -18,4 +18,5 @@ public interface ReviewDao {
 	public int update(ReviewDto dto);
 	public List<ReviewDto> scoreList(String type);
 	public List<ReviewDto> selectList(String type, Map<String, Integer> smap, String sort, String filter);
+	public ReviewDto selectscore(String type, int no);
 }

@@ -3,6 +3,7 @@ package com.lan.tour.model.biz;
 import java.util.List;
 
 import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.ReviewDto;
 
 public interface ReservationBiz {
 
@@ -14,8 +15,10 @@ public interface ReservationBiz {
 	public int insert(ReservationDto dto);
 	public List<ReservationDto> selectList(int m_no);
 	public int updatepay(ReservationDto dto);
+	public List<ReservationDto> selectListJoin(int member_no);
 	public List<ReservationDto> selectListLanM(int member_no);
 	public List<ReservationDto> selectListRoomM(int member_no);
 	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type);
+	public ReservationDto selectcount(String type, int no);
 	
 }

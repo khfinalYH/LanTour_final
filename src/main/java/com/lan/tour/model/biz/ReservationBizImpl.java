@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lan.tour.model.dao.ReservationDao;
 import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.ReviewDto;
 
 @Service
 public class ReservationBizImpl implements ReservationBiz {
@@ -69,6 +70,16 @@ public class ReservationBizImpl implements ReservationBiz {
 	@Override
 	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type) {
 		return dao.selectListCheckDate(check_in,check_out,hotel_type);
+	}
+
+	@Override
+	public List<ReservationDto> selectListJoin(int member_no) {
+		return dao.selectListJoin(member_no);
+	}
+
+	@Override
+	public ReservationDto selectcount(String type, int no) {
+		return dao.selectcount(type,no);
 	}
 
 }
