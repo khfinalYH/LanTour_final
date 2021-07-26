@@ -136,8 +136,9 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public ReservationDto selectOne(int reservaition_no) {
+		
+		ReservationDto res = new ReservationDto();
 
-		ReservationDto res = null;
 		try {
 			res = sqlSession.selectOne(NAMESPACE + "selectOne_Res", reservaition_no);
 		} catch (Exception e) {
@@ -149,8 +150,7 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public List<ReservationDto> selectListLanM(int member_no) {
-		List<ReservationDto> list = null;
-
+		List<ReservationDto> list = new  ArrayList<ReservationDto>();
 		try {
 			list = sqlSession.selectList(NAMESPACE + "selectList_M_lan", member_no);
 		} catch (Exception e) {
@@ -162,8 +162,8 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	@Override
 	public List<ReservationDto> selectListRoomM(int member_no) {
-		List<ReservationDto> list = null;
 
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
 		try {
 			list = sqlSession.selectList(NAMESPACE + "selectList_M_room", member_no);
 		} catch (Exception e) {
@@ -190,6 +190,41 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
+	public List<ReservationDto> selectListJoin(int member_no) {
+
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectListJoin",member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public ReservationDto selectcount(String type, int no) {
+		ReservationDto dto = new ReservationDto();
+		if(type.equals("room")) {
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			int room_no = no;
+
+			try {
+				dto = sqlSession.selectOne(NAMESPACE+"selectcount_room", room_no);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		}else {
+			try {
+				int lantour_no = no;
+				dto = sqlSession.selectOne(NAMESPACE+"selectcount_lantour", lantour_no);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
 	public List<ReservationDto> selectchart() {
 		// TODO Auto-generated method stub
 		List<ReservationDto> list = null;

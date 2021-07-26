@@ -136,7 +136,7 @@ function guestrtc() {
 			</div>
 		</c:if>
 	<br><br><br>
-	<embed height="800px" width="100%" src="http://localhost:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
+	<embed height="800px" width="100%" src="http://3.17.76.13:8787/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
 	</div>
 
 	<jsp:include page="footer.jsp" />

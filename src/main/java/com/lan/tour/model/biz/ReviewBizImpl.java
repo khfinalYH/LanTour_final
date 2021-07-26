@@ -50,6 +50,11 @@ public class ReviewBizImpl implements ReviewBiz {
 		return dao.selectList(type, smap, sort, filter);
 	}
 
+	@Override
+	public ReviewDto selectscore(String type, int no) {
+		return dao.selectscore(type,no);
+	}
+
 	
 
 }

@@ -1,3 +1,4 @@
+<%@page import="com.lan.tour.model.dto.MemberDto"%>
 <%@page import="com.lan.tour.model.dto.CalendarDto"%>
 <%@page import="com.lan.tour.model.dto.ReservationDto"%>
 <%@page import="java.util.List"%>
@@ -44,6 +45,7 @@
 <% List<ReservationDto> listLan = (List<ReservationDto>)request.getAttribute("listLan"); %>
 <% List<ReservationDto> listRoom = (List<ReservationDto>)request.getAttribute("listRoom"); %>
 <% List<CalendarDto> listCal = (List<CalendarDto>)request.getAttribute("listCal"); %>
+<% MemberDto Mdto =  (MemberDto)session.getAttribute("login"); %>
 
 function dateFormat(date) {
 
@@ -272,6 +274,11 @@ CalendarDto dto = listCal.get(i);
   <li class="nav-item">
     <a class="nav-link active" href="mytrip.do?member_no=${login.member_no }">여행일정 확인</a>
   </li>
+		  <%if(Mdto.getMember_grade().equals("H")){ %>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypagehost.do">호스트 관리</a>
+		  </li>
+		  <%} %>
 </ul>
 <br><br>
   <div id='top' style="background-color: white;">

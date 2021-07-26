@@ -31,6 +31,20 @@ public class LantourDaoImpl implements LantourDao {
 	}
 	
 	@Override
+	public List<LantourDto> selectList(int member_no) {
+		
+		List<LantourDto> res = new ArrayList<LantourDto>();
+		try {
+			res = sqlSession.selectList(NAMESPACE+"lantourlist_member",member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+
+	@Override
 	public LantourDto selectOne(int lantour_no) {
 		LantourDto dto = null;
 		try {

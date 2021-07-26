@@ -7,6 +7,7 @@ import com.lan.tour.model.dto.HotelDto;
 public interface HotelBiz {
 
 	public List<HotelDto> selectList();
+	public List<HotelDto> selectList(int member_no);
 
 	public HotelDto selectOne(int hotel_no);
 

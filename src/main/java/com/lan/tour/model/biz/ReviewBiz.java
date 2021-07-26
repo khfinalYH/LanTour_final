@@ -11,7 +11,7 @@ public interface ReviewBiz {
 	
 	public List<ReviewDto> selectList(String type, int no);
 	public List<ReviewDto> scoreList(String type);
-
+	public ReviewDto selectscore(String type, int no);
 	public ReviewDto selectOne(String type, int review_no);
 	public int insert(ReviewDto dto);
 	public int delete(int number);

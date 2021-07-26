@@ -67,6 +67,12 @@ public class LantourBizImpl implements LantourBiz {
 	}
 
 	@Override
+	public List<LantourDto> selectList(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.selectList(member_no);
+	}
+
+	@Override
 	public LantourDto selectOne(int lantour_no) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(lantour_no);

@@ -22,4 +22,5 @@ public interface LantourBiz {
 	public int update(LantourDto dto);
 	public int rtcupdate(LantourDto dto);
 	
+	public List<LantourDto> selectList(int member_no);
 }
