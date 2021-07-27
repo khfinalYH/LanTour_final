@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -206,10 +207,22 @@ public class NoticeController {
 		}
 		return map;
 	}
+	
 	@RequestMapping("/noticepopup_open.do")
 	public String noticepopupopen(Model model, int notice_no) {
 		model.addAttribute("dto", biz.selectOne(notice_no));
 
 		return "notice_detail_popup";
 	}
+
+	@ResponseBody
+	@RequestMapping("/notice_popup_close.do")
+	public Map<String, Boolean> noticepopupclose(HttpSession session){
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		session.setAttribute("popupclose", true);
+		map.put("popup",true);
+		return map;
+	}
+	
+	
 }

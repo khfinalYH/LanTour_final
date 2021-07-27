@@ -48,11 +48,12 @@
 
 
 	document.addEventListener('DOMContentLoaded', function() {
-		<%if(popuplist.size()>0){%>
-			<%for(NoticeDto dto : popuplist){%>
-		window.open("http://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8787/tour/noticepopup_open.do?notice_no=<%=dto.getNotice_no()%>")
-			
-			<%}%>		
+		<%if(session.getAttribute("popupclose")==null){%>
+			<%if(popuplist.size()>0){%>
+				<%for(NoticeDto dto : popuplist){%>
+		window.open("http://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8787/tour/noticepopup_open.do?notice_no=<%=dto.getNotice_no()%>","popup","width=800, height=700")
+				<%}%>		
+			<%}%>
 		<%}%>
 		var options = {
 			'height' : 600

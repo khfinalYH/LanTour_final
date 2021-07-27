@@ -10,6 +10,26 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
+<script type="text/javascript">
+	function popupclose(){
+
+		$.ajax({
+			type : 'POST',
+			url : 'notice_popup_close.do',
+			success : function(data) {
+				if (data.popup == true) {
+					window.close()
+				} else {
+					alert("실패했습니다.");
+				}
+			},
+			error : function() {
+				alert("통신 실패");
+			}
+		})
+	}
+
+</script>
 </head>
 <body>
 	<input type="hidden" value="${dto.notice_no }" id="notice_no">
@@ -43,6 +63,11 @@
 			</div>
 			<hr>
 			<div class="board_content">${dto.notice_content }</div>
+			
+				<div class="board_button_div">
+				<a href="#" onclick="popupclose()">오늘은 그만보기</a>
+				
+				</div>
 		</div>
 	</div>
 </body>	
