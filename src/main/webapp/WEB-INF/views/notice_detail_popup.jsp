@@ -65,7 +65,7 @@
 			<div class="board_content">${dto.notice_content }</div>
 			
 				<div class="board_button_div">
-				<a href="#" onclick="popupclose()">오늘은 그만보기</a>
+				<input type="button" class="" onclick="popupclose()" value="오늘은 그만보기"/>
 				
 				</div>
 		</div>
