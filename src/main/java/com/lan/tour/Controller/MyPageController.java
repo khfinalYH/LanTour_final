@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lan.tour.model.biz.CommentBiz;
+import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.HotelBiz;
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.MemberBiz;
@@ -48,6 +50,14 @@ public class MyPageController {
 		
 		@Autowired
 		ReviewBiz Revbiz;
+		
+
+		@Autowired
+		CommunityBiz Cbiz;
+		
+		@Autowired
+		CommentBiz Cmbiz;
+		
 		
 		@Autowired
 		private BCryptPasswordEncoder pwEncoder;
@@ -147,5 +157,16 @@ public class MyPageController {
 			model.addAttribute("list", list);
 			return "mypage_hostreservation";
 		}
+		
+		
+		@RequestMapping("/mypagesecession.do")
+		public String mypagesecession(int member_no, HttpSession session) {
+			session.removeAttribute("login");
+			
+			
+			
+			return "redirect:main.do";
+		}
+		
 		
 }

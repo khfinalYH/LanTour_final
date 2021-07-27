@@ -50,4 +50,10 @@ public class CommentBizImpl implements CommentBiz {
 		return dao.commentlist();
 	}
 
+	@Override
+	public int commentMemberDelete(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.commentMemberDelete(member_no);
+	}
+
 }
