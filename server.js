@@ -1,5 +1,6 @@
 const session = require('express-session')
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const fs = require('fs')
 const { v4: uuidV4 } = require('uuid')
@@ -10,7 +11,7 @@ java.classpath.push('./jar/papago.jar')
 const papagoC = java.import('papago.PapagoController')
 const instance = new papagoC()
 
-
+app.use(cors())
 
 const options = { 
     key: fs.readFileSync('./keys/cert.key'),
