@@ -9,6 +9,7 @@ public interface LantourBiz {
 	
 	public List<LantourDto> selectList(LantourPagingDto dto);
 	public List<LantourDto> lantourList();
+	public List<LantourDto> listAll(String search_option, String keyword, int start, int end);
 	public List<LantourDto> selectTitleList(LantourPagingDto dto);
 	public List<LantourDto> selectContentList(LantourPagingDto dto);
 	public List<LantourDto> selectTCList(LantourPagingDto dto);

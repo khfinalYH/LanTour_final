@@ -47,29 +47,30 @@ public class LantourController {
 	@RequestMapping("/lantourlist_category.do")
 	public String selectKeywordList(Model model, LantourPagingDto dto) {
 
+		
 		int count = 0;
 		
 		String category = dto.getCategory();
 		String keyword = dto.getKeyword();
-		int nowPage = dto.getNowPage();
+		int curPage = dto.getCurPage();
 		
 		if (category == null || category.equals("")) {
 			count = biz.countTotal();
 			System.out.println(count);
-			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage);
+			LantourPagingDto dtoN = new LantourPagingDto(count, curPage);
 			
 			model.addAttribute("list", biz.selectList(dtoN));
 			model.addAttribute("dto", dtoN);
 		} else if (category.equals("l_t")) {
 			count = biz.countT(keyword);
-			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
+			LantourPagingDto dtoN = new LantourPagingDto(count, curPage, keyword, category);
 			
 			model.addAttribute("list", biz.selectTitleList(dtoN));
 			model.addAttribute("dto", dtoN);
 			
 		} else if (category.equals("l_c")) {
 			count = biz.countC(keyword);
-			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
+			LantourPagingDto dtoN = new LantourPagingDto(count, curPage, keyword, category);
 			
 			model.addAttribute("list", biz.selectContentList(dtoN));
 			model.addAttribute("dto", dtoN);
@@ -81,8 +82,24 @@ public class LantourController {
 	}
 	
 	@RequestMapping("/lantourlist.do")
-	public String lantourList(Model model) {
-		model.addAttribute("list", biz.lantourList());
+	public String lantourList(Model model, 
+			@RequestParam(defaultValue="1") int curPage,
+            @RequestParam(defaultValue="") String category,
+            @RequestParam(defaultValue="") String keyword) {
+		System.out.println("start");
+		int count = 0;
+		
+		count = biz.countTotal();
+		System.out.println(count);
+		LantourPagingDto dto = new LantourPagingDto(count, curPage, category, keyword);
+		int start = dto.getPageBegin();
+        int end =  dto.getPageEnd();
+			
+		model.addAttribute("list", biz.listAll(category, keyword, start, end));//search_option, keyword, start, end
+		model.addAttribute("dto", dto);
+		model.addAttribute("count", count);
+		model.addAttribute("category", category);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("scorelist", Rbiz2.scoreList("lantour"));
 		return "lantour";
 	}

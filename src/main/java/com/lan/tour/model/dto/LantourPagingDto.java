@@ -1,198 +1,174 @@
 package com.lan.tour.model.dto;
 
 public class LantourPagingDto {
+	public static final int PAGE_SCALE=9;    //페이지당 게시물수
+    public static final int BLOCK_SCALE=2;    //화면당 페이지수
+    
+ 
 	private String category;
 	private String keyword;
 	
 	public String getCategory() {
 		return category;
 	}
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 	public String getKeyword() {
 		return keyword;
 	}
-
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
 
-	private int display_board = 10;	 // 한 페이지당 출력할 게시글의 수
-	private int display_page = 5;		 // 한 블록당 출력할 페이지 수
-	
-	private int nowPage;	// 현재 페이지
-	private int prevPage; // 이전 페이지
-	private int nextPage; // 다음 페이지
-	private int totalPage; // 전체 페이지 갯수
-
-	private int totalBlock; // 전체 블록 갯수
-	private int nowBlock; // 현제 페이지 블록
-	private int prevBlock; // 이전 페이지 블록
-	private int nextBlock; // 다음 페이지 블록
-
-	private int pageBegin; // 해당 페이지의 첫번째 게시글 no
-	private int pageEnd; // 해당 페이지의 마지막 게시글 no
-
-	private int blockBegin; // 현재 블록의 시작 페이지 번호
-	private int blockEnd; // 현재 블록의 마지막 페이지 번호
-	
-	public LantourPagingDto() {
+    private int curPage;     //현재 페이지
+    private int prevPage;    //이전 페이지
+    private int nextPage;    //다음 페이지
+    private int totPage;    //전체 페이지 갯수
+    private int totBlock;     //전체 페이지블록 갯수
+    private int curBlock;     //현재 블록
+    private int prevBlock;     //이전 블록
+    private int nextBlock;     //다음 블록
+    private int pageBegin;     // #{start} 변수에 전달될 값
+    private int pageEnd;     // #{end} 변수에 전달될 값
+    private int blockBegin; //블록의 시작페이지 번호
+    private int blockEnd;     //블록의 끝페이지 번호
+    
+    
+    
+    public LantourPagingDto() {
 	}
-	
-	public LantourPagingDto(int count, int nowPage) {
-		nowBlock = 1;
-		this.nowPage = nowPage;
-		setTotalPage(count);
+
+    public LantourPagingDto(int count, int curPage) {
+		curBlock = 1;
+		this.curPage = curPage;
+		setTotPage(count);
 		setPageRange();
-		setTotalBlock();
+		setTotBlock();
 		setBlockRange();
 	}
-	public LantourPagingDto(int count, int nowPage, String keyword, String category) {
-		this.keyword = keyword;
-		this.category = category;
-		nowBlock = 1;
-		this.nowPage = nowPage;
-		setTotalPage(count);
-		setPageRange();
-		setTotalBlock();
-		setBlockRange();
-	}
-	
+    
+    //생성자
+    // Pager(레코드갯수, 출력할페이지번호)
+    public LantourPagingDto(int count, int curPage, String keyword, String category) {
+    	this.keyword = keyword;
+    	this.category = category;
+        curBlock = 1; //현재블록 번호
+        this.curPage = curPage; //현재 페이지 번호
+        setTotPage(count); //전체 페이지 갯수 계산
+        setPageRange(); // #{start}, #{end} 값 계산하는 메소드
+        setTotBlock(); // 전체 블록 갯수 계산
+        setBlockRange(); //블록의 시작,끝 번호 계산
+    }
+ 
+ 
+    public void setBlockRange() {
+        //원하는 페이지가 몇번째 블록에 속하는지 계산
+        curBlock=(curPage-1)/BLOCK_SCALE + 1;
+        //블록의 시작페이지,끝페이지 번호 계산
+        blockBegin=(curBlock-1)*BLOCK_SCALE+1;
+        blockEnd=blockBegin+BLOCK_SCALE-1;
+        //마지막 블록 번호가 범위를 초과하지 않도록 처리
+        if(blockEnd > totPage) {
+            blockEnd = totPage;
+        }
+        //[이전][다음]을 눌렀을 때 이동할 페이지 번호
+        prevPage=(curBlock==1) ? 1 : (curBlock-1)*BLOCK_SCALE;
+        nextPage=curBlock>totBlock ? (curBlock*BLOCK_SCALE)
+                : (curBlock*BLOCK_SCALE)+1;
+        //마지막 페이지가 범위를 초과하지 않도록 처리
+        if(nextPage >= totPage) {
+            nextPage=totPage;
+        }
+    }
+    
+    //페이지블록의 총 갯수 계산 (총 100페이지라면 10개의 블록이다)
+    public void setTotBlock() {
+        totBlock = (int)Math.ceil(totPage*1.0 / BLOCK_SCALE);
+    }
+    
+    // where rn between #{start} and #{end}에 입력될 값        
+    public void setPageRange() {
+    // 시작번호=(현재페이지-1)x페이지당 게시물수 + 1
+    // 끝번호=시작번호 + 페이지당 게시물수 - 1        
+        pageBegin = (curPage-1) * PAGE_SCALE + 1;
+        pageEnd = pageBegin + PAGE_SCALE - 1;
+    }
+    
+    
+    public int getCurPage() {
+        return curPage;
+    }
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
+    public int getPrevPage() {
+        return prevPage;
+    }
+    public void setPrevPage(int prevPage) {
+        this.prevPage = prevPage;
+    }
+    public int getNextPage() {
+        return nextPage;
+    }
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
+    }
+    public int getTotPage() {
+        return totPage;
+    }
+    public void setTotPage(int totPage) {
+        this.totPage = totPage;
+    }
+    public int getTotBlock() {
+        return totBlock;
+    }
+    public void setTotBlock(int totBlock) {
+        this.totBlock = totBlock;
+    }
+    public int getCurBlock() {
+        return curBlock;
+    }
+    public void setCurBlock(int curBlock) {
+        this.curBlock = curBlock;
+    }
+    public int getPrevBlock() {
+        return prevBlock;
+    }
+    public void setPrevBlock(int prevBlock) {
+        this.prevBlock = prevBlock;
+    }
+    public int getNextBlock() {
+        return nextBlock;
+    }
+    public void setNextBlock(int nextBlock) {
+        this.nextBlock = nextBlock;
+    }
+    public int getPageBegin() {
+        return pageBegin;
+    }
+    public void setPageBegin(int pageBegin) {
+        this.pageBegin = pageBegin;
+    }
+    public int getPageEnd() {
+        return pageEnd;
+    }
+    public void setPageEnd(int pageEnd) {
+        this.pageEnd = pageEnd;
+    }
+    public int getBlockBegin() {
+        return blockBegin;
+    }
+    public void setBlockBegin(int blockBegin) {
+        this.blockBegin = blockBegin;
+    }
+    public int getBlockEnd() {
+        return blockEnd;
+    }
+    public void setBlockEnd(int blockEnd) {
+        this.blockEnd = blockEnd;
+    }
 
-	public void setBlockRange() {
-		nowBlock = (int) Math.ceil((nowPage - 1) / display_page) + 1;
-		blockBegin = (nowBlock - 1) * display_page + 1;
-		blockEnd = blockBegin + display_page - 1;
-		if (blockEnd > totalPage) {
-			blockEnd = totalPage;
-		} 
-		prevPage = (nowPage == 1) ? 1 : (nowBlock - 1) * display_page;
-		nextPage = (nowBlock > totalBlock) ? (nowBlock * display_page) : (nowBlock * display_page) + 1;
-		if (nextPage >= totalPage) {
-			nextPage = totalPage;
-		}
-	}
-	
-	// 페이지 범위 계산
-	public void setPageRange() {
-		pageBegin = (nowPage - 1) * display_board + 1;
-		pageEnd = pageBegin + display_board - 1;
-	}
-
-	public int getDisplay_board() {
-		return display_board;
-	}
-
-	public void setDisplay_board(int display_board) {
-		this.display_board = display_board;
-	}
-
-	public int getDisplay_page() {
-		return display_page;
-	}
-
-	public void setDisplay_page(int display_page) {
-		this.display_page = display_page;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getPrevPage() {
-		return prevPage;
-	}
-
-	public void setPrevPage(int prevPage) {
-		this.prevPage = prevPage;
-	}
-
-	public int getNextPage() {
-		return nextPage;
-	}
-
-	public void setNextPage(int nextPage) {
-		this.nextPage = nextPage;
-	}
-
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int count) {
-		this.totalPage = (int) Math.ceil(count/ (double)display_board);
-	}
-
-	public int getTotalBlock() {
-		return totalBlock;
-	}
-
-	public void setTotalBlock() {
-		this.totalBlock = (int) Math.ceil(totalPage / (double) display_page);
-	}
-
-	public int getNowBlock() {
-		return nowBlock;
-	}
-
-	public void setNowBlock(int nowBlock) {
-		this.nowBlock = nowBlock;
-	}
-
-	public int getPrevBlock() {
-		return prevBlock;
-	}
-
-	public void setPrevBlock(int prevBlock) {
-		this.prevBlock = prevBlock;
-	}
-
-	public int getNextBlock() {
-		return nextBlock;
-	}
-
-	public void setNextBlock(int nextBlock) {
-		this.nextBlock = nextBlock;
-	}
-
-	public int getPageBegin() {
-		return pageBegin;
-	}
-
-	public void setPageBegin(int pageBegin) {
-		this.pageBegin = pageBegin;
-	}
-
-	public int getPageEnd() {
-		return pageEnd;
-	}
-
-	public void setPageEnd(int pageEnd) {
-		this.pageEnd = pageEnd;
-	}
-
-	public int getBlockBegin() {
-		return blockBegin;
-	}
-
-	public void setBlockBegin(int blockBegin) {
-		this.blockBegin = blockBegin;
-	}
-
-	public int getBlockEnd() {
-		return blockEnd;
-	}
-
-	public void setBlockEnd(int blockEnd) {
-		this.blockEnd = blockEnd;
-	}
 
 	
 }

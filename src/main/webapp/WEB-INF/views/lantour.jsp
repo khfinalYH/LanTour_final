@@ -49,7 +49,12 @@
 			return false;
 		}
 		location.href = 'lantourlist_category.do?category=' + category
-				+ '&keyword=' + keyword + '&nowPage=1';
+				+ '&keyword=' + keyword + '&curPage=1';
+	}
+	
+	function list(page){
+	    console.log("페이지를 이동합니다.");
+	    location.href="lantourlist.do?curPage="+page;
 	}
 	window.onload = function() {
 		var cate = document.getElementById("selected_cate").value;
@@ -69,12 +74,12 @@
 	margin: auto;
 	width: 60%;
 }
-
-.pagination {
+.paging-div {
 	position: absolute;
-	left: 50%;
+	left: 47%;
 	transform: translateX(-50%);
 }
+
 </style>
 
 </head>
@@ -145,37 +150,39 @@
 		</c:if>
 		<br>
 		<br>
-		<div>
+		</div>
+		<div class="paging-div">
 			<ul class="pagination">
-				<li class="page-item">
-					<c:if test="${dto.nowBlock > 1}">
-						<a class="page-link" href="lantour_selectlist_category.do?nowPage=${dto.blockBegin-1}&category=${dto.category}&keyword=${dto.keyword}">&laquo;</a>
-					</c:if>
-				</li>
-					
-				<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}"
-					var="index">
+				<li class="page-item disbled">
+				<span class="page-link">
+				<a href="#" onclick="list('${pager.prevPage}')">&laquo;</a></span>
+				</li>	
+				<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index">
 					<c:choose>
-						<c:when test="${dto.nowPage eq index}">
-							<li class="page-item active">
-								<a class="page-link" href="#">${index}</a>
+						<c:when test="${dto.curPage eq index}">
+							<li class="page-item disbled"><span class="page-link">
+								<a href="#">${index}</a>
+								</span>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item">
-								<a class="page-link" href="lantour_selectlist_category.do?nowPage=${index}&category=${dto.category}&keyword=${dto.keyword}">${index}</a>
+							<li class="page-item disbled"><span class="page-link">
+								<a href="#" onclick="list('${index}')" >${index}</a>
+								</span>
 							</li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-				<c:if test="${dto.nowBlock < dto.totalBlock}">
-					<li class="page-item">
-						<a class="page-link" href="lantour_selectlist_category.do?nowPage=${dto.blockEnd+1}&category=${dto.category}&keyword=${dto.keyword}">&raquo;</a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
-	</div>
+				<li class="page-item disbled"><span class="page-link">
+				<c:if test="${dto.curBlock <= dto.totBlock}">
+                <a href="#" onclick="list('${pager.nextPage}')">&raquo;</a>
+	            </c:if> <!-- 현재 페이지블록이 총 페이지블록보다 작으면 다음으로 갈 수있도록 링크를 추가 -->
+	            </span>
+	            </li>
+	           </ul>
+	          </div>
+	          <br/>
+	          <br/>
 	<jsp:include page="footer.jsp" />
 
 </body>

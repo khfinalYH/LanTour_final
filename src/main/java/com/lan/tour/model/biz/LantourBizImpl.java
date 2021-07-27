@@ -25,6 +25,13 @@ public class LantourBizImpl implements LantourBiz {
 		// TODO Auto-generated method stub
 		return dao.lantourList();
 	}
+	
+	@Override
+	public List<LantourDto> listAll(String search_option, String keyword,int start, int end) {
+		// TODO Auto-generated method stub
+		System.out.println("listAll");
+		return dao.listAll(search_option, keyword, start, end);
+	}
 
 	@Override
 	public List<LantourDto> selectTitleList(LantourPagingDto dto) {
