@@ -12,6 +12,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		if (request.getRequestURI().contains("/updateRtcAddr.do")) {
+			return true;
+		}
+		
 		if(!request.getRequestURI().contains("find")) {
 			if(request.getRequestURI().contains("reservation")||
 					request.getRequestURI().contains("my")||	
