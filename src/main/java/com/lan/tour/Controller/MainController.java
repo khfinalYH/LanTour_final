@@ -24,10 +24,11 @@ public class MainController {
 	
 	@Autowired
 	private LantourBiz l_biz;
-
+	
+	
 	@RequestMapping("/main.do")
 	public String main(Model model) {
-
+		model.addAttribute("popup_list", n_biz.selectPopupList());
 		model.addAttribute("h_list", h_biz.selectList());
 		model.addAttribute("c_list", c_biz.selectList());
 		model.addAttribute("n_list", n_biz.noticelist());

@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.lan.tour.model.dto.NoticeDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -42,7 +44,16 @@
 }
 </style>
 <script type="text/javascript">
+<%List<NoticeDto> popuplist = (List<NoticeDto>)request.getAttribute("popup_list"); %>
+
+
 	document.addEventListener('DOMContentLoaded', function() {
+		<%if(popuplist.size()>0){%>
+			<%for(NoticeDto dto : popuplist){%>
+		window.open("http://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8787/tour/noticepopup_open.do?notice_no=<%=dto.getNotice_no()%>")
+			
+			<%}%>		
+		<%}%>
 		var options = {
 			'height' : 600
 		}
