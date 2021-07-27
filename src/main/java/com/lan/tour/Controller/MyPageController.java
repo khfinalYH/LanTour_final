@@ -162,6 +162,8 @@ public class MyPageController {
 		@RequestMapping("/mypagesecession.do")
 		public String mypagesecession(int member_no, HttpSession session) {
 			session.removeAttribute("login");
+			if(Cmbiz.commentMemberDelete(member_no)>0) {
+			}
 			
 			
 			
