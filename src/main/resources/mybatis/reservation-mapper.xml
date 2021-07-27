@@ -179,5 +179,8 @@
 		WHERE (R.RESERVATION_NO = R2.RESERVATION_no(+) AND R.RESERVATION_NO = R3.RESERVATION_NO(+))
 		AND R.LANTOUR_NO = #{lantour_no}
 	</select>
+	<delete id="deleteByMemberNo">
+	DELETE FROM RESERVATION WHERE MEMBER_NO = #{member_no}
+	</delete>
 
 </mapper>

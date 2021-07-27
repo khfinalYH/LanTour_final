@@ -21,4 +21,6 @@ public interface HotelBiz {
 	public List<HotelDto> searchList(HotelDto dto);
 
 	public List<HotelDto> hotelchart();
+
+	public int deleteByMemberNo(int member_no);
 }

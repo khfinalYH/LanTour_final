@@ -62,4 +62,9 @@ public class HotelBizImpl implements HotelBiz {
 		return dao.hotelchart();
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		return dao.deleteByMemberNo(member_no);
+	}
+
 }

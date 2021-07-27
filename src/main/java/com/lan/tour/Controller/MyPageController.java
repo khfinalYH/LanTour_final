@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lan.tour.model.biz.CalendarBiz;
 import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.HotelBiz;
@@ -22,6 +23,7 @@ import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.biz.RoomBiz;
+import com.lan.tour.model.dto.CommunityDto;
 import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.LantourDto;
 import com.lan.tour.model.dto.MemberDto;
@@ -58,6 +60,9 @@ public class MyPageController {
 		@Autowired
 		CommentBiz Cmbiz;
 		
+		
+		@Autowired
+		CalendarBiz Calbiz;
 		
 		@Autowired
 		private BCryptPasswordEncoder pwEncoder;
@@ -160,13 +165,46 @@ public class MyPageController {
 		
 		
 		@RequestMapping("/mypagesecession.do")
-		public String mypagesecession(int member_no, HttpSession session) {
+		public String mypagesecession(HttpSession session) {
+			Map<String,String> map = new HashMap<String, String>();
+			int member_no = ((MemberDto)session.getAttribute("login")).getMember_no();
 			session.removeAttribute("login");
+			Calbiz.deleteByMemberNo(member_no);
+			Resbiz.deleteByMemberNo(member_no);
+			
 			if(Cmbiz.commentMemberDelete(member_no)>0) {
+				map.put("Comment", "clean");
+			}
+			List<CommunityDto> list = Cbiz.selectlistmember(member_no);
+			int count = 0;
+			int full = list.size();
+			for(CommunityDto dto: list) {
+				if(Cmbiz.selectList(dto.getCommunity_no()).size()>0&&Cmbiz.commentMemberDelete(member_no)>0&&Cbiz.communityAlldelete(dto.getCommunity_no())>0) {
+					count++;
+				}else if(Cbiz.communityAlldelete(dto.getCommunity_no())>0){
+					count++;
+				}
+			}
+			map.put("community", count+"/"+full);
+			if(Revbiz.deleteByMemberNo(member_no)>0) {
+				map.put("review", "clean");
+			}
+			List<HotelDto> Hlist = Hbiz.selectList(member_no);
+			if(Hlist.size()>0) {
+				for(HotelDto dto : Hlist) {
+					Revbiz.deleteByHotelNo(dto.getHotel_no());
+					Roobiz.deleteAll(dto.getHotel_no());
+				}
+				Hbiz.deleteByMemberNo(member_no);
 			}
 			
-			
-			
+			List<LantourDto> Llist = Lbiz.selectList(member_no);
+			for(LantourDto dto : Llist) {
+				int lantour_no=dto.getLantour_no();
+				Revbiz.deleteByLantourNo(lantour_no);
+			}
+			Lbiz.deleteByMemberNo(member_no);
+			biz.deleteByMemberNo(member_no);
 			return "redirect:main.do";
 		}
 		

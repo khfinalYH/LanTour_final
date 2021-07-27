@@ -12,5 +12,6 @@ public interface CalendarBiz {
 	public int update(CalendarDto dto);
 	public int delete(int cal_no);
 	public int dragUpdate(CalendarDto dto);
+	public int deleteByMemberNo(int member_no);
 
 }

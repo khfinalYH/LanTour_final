@@ -35,5 +35,8 @@
 		DELETE FROM CALENDAR
 		WHERE CAL_NO = #{cal_no}
 	</delete>
-	
+	<delete id="deleteByMemberNo">
+		DELETE FROM CALENDAR
+		WHERE MEMBER_NO = #{member_no}
+	</delete>
 </mapper>

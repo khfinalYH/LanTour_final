@@ -14,6 +14,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 		if(!request.getRequestURI().contains("find")) {
 			if(request.getRequestURI().contains("reservation")||
+					request.getRequestURI().contains("my")||	
+					request.getRequestURI().contains("My")||	
 					request.getRequestURI().contains("insert")||			
 					request.getRequestURI().contains("delete")||
 					request.getRequestURI().contains("update")||

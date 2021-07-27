@@ -36,4 +36,6 @@ public interface CommunityDao {
 	
 	public List<CommunityDto> communitychart();
 	
+	public List<CommunityDto> selectlistmember(int member_no);
+	
 }

@@ -23,4 +23,6 @@ public interface HotelDao {
 	public List<HotelDto> hotelchart();
 
 	public List<HotelDto> selectList(int member_no);
+
+	public int deleteByMemberNo(int member_no);
 }

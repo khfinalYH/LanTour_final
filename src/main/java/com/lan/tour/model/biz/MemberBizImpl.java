@@ -97,4 +97,10 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.womanchartmember();
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.deleteByMemberNo(member_no);
+	}
+
 }

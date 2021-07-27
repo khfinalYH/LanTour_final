@@ -93,7 +93,8 @@
          </tr>
          <tr>
             <td colspan="2">
-                <input type="button" value="수정하기" onclick="location.href='mypageupdate.do';"/>               
+                <input type="button" value="수정하기" onclick="location.href='mypageupdate.do';"/>    
+                <input type="button" value="회원탈퇴" onclick="location.href='mypagesecession.do'"/>                 
             </td>
          </tr>
       </table>

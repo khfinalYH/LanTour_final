@@ -86,4 +86,10 @@ public class ReservationBizImpl implements ReservationBiz {
 		return dao.selectchart();
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.deleteByMemberNo(member_no);
+	}
+
 }

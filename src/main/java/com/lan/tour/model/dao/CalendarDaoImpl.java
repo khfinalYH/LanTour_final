@@ -96,5 +96,19 @@ public class CalendarDaoImpl implements CalendarDao {
 		return res;
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteByMemberNo", member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
 
 }

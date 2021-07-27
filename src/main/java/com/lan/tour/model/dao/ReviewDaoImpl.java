@@ -204,6 +204,39 @@ public class ReviewDaoImpl implements ReviewDao {
 		return dto;
 	}
 
+	@Override
+	public int deleteByMemberNo(int Member_no) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"delete_review", Member_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return res;
+	}
+
+	@Override
+	public int deleteByLantourNo(int Lantour_no) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteHotelReview", Lantour_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return res;
+	}
+
+	@Override
+	public int deleteByHotelNo(int hotel_no) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteLantourReview", hotel_no);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return res;
+	}
+
 
 	
 
