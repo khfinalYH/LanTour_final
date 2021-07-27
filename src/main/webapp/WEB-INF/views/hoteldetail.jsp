@@ -105,7 +105,7 @@
 			<p>호텔 소개 : ${dto.hotel_content }</p>
 			<p>편의 시설 : ${dto.hotel_convinence }</p>
 		</div>
-		<div style="display: inline-block;">
+		<div style="display: flex;">
 		<c:choose>
 			<c:when test="${empty roomlist }">
 				<h4>등록된 방이 없습니다</h4>
@@ -113,7 +113,7 @@
 			<c:otherwise>
 				<c:forEach items="${roomlist }" var="dto">
 					<div class="col-md-4 mb-3 mb-md-0" style="float: left; padding-bottom: 10px;"onclick="location.href='./roomdetail.do?room_no=${dto.room_no }'">
-						<div class="card h-100 text-white hover-top">
+						<div class="hover-top">
 							<img class="img-fluid" style="height: 200px;" src="${dto.room_image }" alt="" />
 							<div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
 								<div class="pt-3">
@@ -139,7 +139,7 @@
 		</c:if>
 	</div>
 	<br />
-	<embed width="1000px" style="display: block ;margin: 0 auto;height: 100vh" src="http://3.17.76.13:8787/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
+	<embed width="1000px" style="display: block ;margin: 0 auto;height: 100vh" src="https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

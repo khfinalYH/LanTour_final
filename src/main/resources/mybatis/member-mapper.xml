@@ -122,11 +122,22 @@
 		'%'
 	</select>
 
-	<select id="chartmember" resultType="memberDto">
+	<select id="menchartmember" resultType="memberDto">
 		select count(*) as
-		count,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') as regdate ,MEMBER_GENDER
-		from member group by MEMBER_GENDER
-		,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') order by
-		TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD')
+		count,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') as regdate 
+		from member 
+		where member_gender = 'M'
+		group by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') 
+		order by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD')
 	</select>
+	
+	<select id="womenchartmember" resultType="memberDto">
+		select count(*) as
+		count,TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') as regdate 
+		from member 
+		where member_gender = 'F'
+		group by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') 
+		order by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD')
+	</select>
+	
 </mapper>

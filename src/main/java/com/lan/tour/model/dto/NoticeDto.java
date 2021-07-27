@@ -9,6 +9,9 @@ public class NoticeDto {
 	private String notice_title;
 	private String notice_content;
 	private Date notice_date;
+	private String notice_popup;
+	
+	
 	public NoticeDto() {
 	}
 	
@@ -50,10 +53,12 @@ public class NoticeDto {
 	public void setNotice_date(Date notice_date) {
 		this.notice_date = notice_date;
 	}
-	
-	
-	
-	
-	
-	
+
+	public String getNotice_popup() {
+		return notice_popup;
+	}
+
+	public void setNotice_popup(String notice_popup) {
+		this.notice_popup = notice_popup;
+	}
 }

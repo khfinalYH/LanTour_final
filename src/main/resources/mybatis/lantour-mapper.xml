@@ -123,5 +123,13 @@
 		SET LANTOUR_RTC = #{lantour_rtc} 
 		WHERE LANTOUR_NO = #{lantour_no}
 	</update>
+
+	<select id="lantourchart" resultType="lantourDto">
+		select count(*) as
+		count,TO_CHAR(LANTOUR_REGDATE,'YYYY-MM-DD') as regdate 
+		from LANTOUR 
+		group by TO_CHAR(LANTOUR_REGDATE,'YYYY-MM-DD') 
+		order by TO_CHAR(LANTOUR_REGDATE,'YYYY-MM-DD')
+	</select>
 	
 </mapper>

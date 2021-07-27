@@ -108,4 +108,10 @@ public class LantourBizImpl implements LantourBiz {
 		return dao.rtcupdate(dto);
 	}
 
+	@Override
+	public List<LantourDto> lantourchart() {
+		// TODO Auto-generated method stub
+		return dao.lantourchart();
+	}
+
 }

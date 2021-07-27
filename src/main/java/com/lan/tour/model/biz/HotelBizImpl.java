@@ -26,7 +26,6 @@ public class HotelBizImpl implements HotelBiz {
 		return dao.selectList(member_no);
 	}
 
-
 	@Override
 	public HotelDto selectOne(int hotel_no) {
 		// TODO Auto-generated method stub
@@ -55,6 +54,12 @@ public class HotelBizImpl implements HotelBiz {
 	public List<HotelDto> searchList(HotelDto dto) {
 		// TODO Auto-generated method stub
 		return dao.searchList(dto);
+	}
+
+	@Override
+	public List<HotelDto> hotelchart() {
+		// TODO Auto-generated method stub
+		return dao.hotelchart();
 	}
 
 }

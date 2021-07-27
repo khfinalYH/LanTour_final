@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.LantourDto;
+
 import com.lan.tour.model.dto.LantourPagingDto;
 
 @Repository
@@ -17,7 +18,6 @@ public class LantourDaoImpl implements LantourDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
 
 	@Override
 	public List<LantourDto> selectList(LantourPagingDto dto) {
@@ -41,8 +41,7 @@ public class LantourDaoImpl implements LantourDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return res;
 	}
 
@@ -103,7 +102,20 @@ public class LantourDaoImpl implements LantourDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return res;
+	}
+
+	@Override
+	public List<LantourDto> lantourchart() {
+		// TODO Auto-generated method stub
+		List<LantourDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE + "lantourchart");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 

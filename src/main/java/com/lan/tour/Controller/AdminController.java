@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lan.tour.model.biz.CommentBiz;
 import com.lan.tour.model.biz.CommunityBiz;
+import com.lan.tour.model.biz.HotelBiz;
+import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.dto.CommunityDto;
+import com.lan.tour.model.dto.HotelDto;
+import com.lan.tour.model.dto.LantourDto;
 import com.lan.tour.model.dto.MemberDto;
 import com.lan.tour.model.dto.ReservationDto;
 
@@ -31,9 +35,15 @@ public class AdminController {
 
 	@Autowired
 	private CommentBiz comment_biz;
-	
+
 	@Autowired
 	private ReservationBiz reser_biz;
+
+	@Autowired
+	private HotelBiz ho_biz;
+
+	@Autowired
+	private LantourBiz lan_biz;
 
 	// 관리자 페이지로 이동
 	@RequestMapping("/adminmember.do")
@@ -76,45 +86,69 @@ public class AdminController {
 		}
 		return "redirect:main.do";
 	}
-	
+
 	@RequestMapping("/adminchart.do")
 	public String adminchart() {
 		return "adminchart";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/adminreservationchart.do")
-	public Map<String, List<ReservationDto>> reservation(){
+	public Map<String, List<ReservationDto>> reservation() {
 		List<ReservationDto> r_list = reser_biz.selectchart();
-		
+
 		Map<String, List<ReservationDto>> map = new HashMap<String, List<ReservationDto>>();
 		map.put("r_list", r_list);
-		
+
 		return map;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/adminmemberchart.do")
-	public Map<String,List<MemberDto>> chartmember(){
-		List<MemberDto> list = mem_biz.chartmember();
-		
+	public Map<String, List<MemberDto>> chartmember() {
+		List<MemberDto> m_list = mem_biz.manchartmember();
+		List<MemberDto> w_list = mem_biz.womanchartmember();
+
 		Map<String, List<MemberDto>> map = new HashMap<String, List<MemberDto>>();
-		map.put("list", list);
-		
+		map.put("m_list", m_list);
+		map.put("w_list", w_list);
+
 		return map;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/admincommunitychart.do")
-	public Map<String,List<CommunityDto>> admincommunitychart(){
+	public Map<String, List<CommunityDto>> admincommunitychart() {
 		List<CommunityDto> list = com_biz.communitychart();
-		
+
 		Map<String, List<CommunityDto>> map = new HashMap<String, List<CommunityDto>>();
 		map.put("list", list);
-		
+
 		return map;
 	}
-	
+
+	@ResponseBody
+	@RequestMapping("/adminhotelchart.do")
+	public Map<String, List<HotelDto>> adminhotelchart() {
+		List<HotelDto> list = ho_biz.hotelchart();
+
+		Map<String, List<HotelDto>> map = new HashMap<String, List<HotelDto>>();
+		map.put("list", list);
+
+		return map;
+	}
+
+	@ResponseBody
+	@RequestMapping("/adminlantourchart.do")
+	public Map<String, List<LantourDto>> adminlantourchart() {
+		List<LantourDto> list = lan_biz.lantourchart();
+
+		Map<String, List<LantourDto>> map = new HashMap<String, List<LantourDto>>();
+		map.put("list", list);
+
+		return map;
+	}
+
 	@RequestMapping("admincommunity_titlesearch.do")
 	public String communitytitlesearch(Model model, String community_content) {
 		model.addAttribute("c_list", com_biz.selecttitlesearchList(community_content));
@@ -141,11 +175,11 @@ public class AdminController {
 
 		return "admincommunity";
 	}
-	
+
 	@RequestMapping("/adminmembersearch.do")
 	public String adminmembersearch(Model model, String member_id) {
 		model.addAttribute("m_list", mem_biz.searchmember(member_id));
 		return "adminmember";
 	}
-	
+
 }

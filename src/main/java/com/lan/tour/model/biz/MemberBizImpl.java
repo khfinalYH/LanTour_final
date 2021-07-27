@@ -43,6 +43,7 @@ public class MemberBizImpl implements MemberBiz {
 	public MemberDto idCheck(MemberDto dto) {
 		return dao.idCheck(dto);
 	}
+
 	@Override
 	public List<MemberDto> memberList() {
 		// TODO Auto-generated method stub
@@ -85,11 +86,15 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
-	public List<MemberDto> chartmember() {
+	public List<MemberDto> manchartmember() {
 		// TODO Auto-generated method stub
-		return dao.chartmember();
+		return dao.manchartmember();
 	}
 
-	
+	@Override
+	public List<MemberDto> womanchartmember() {
+		// TODO Auto-generated method stub
+		return dao.womanchartmember();
+	}
 
 }

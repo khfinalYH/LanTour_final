@@ -9,10 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -187,6 +189,40 @@ public class NoticeController {
 
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/notice_popup.do")
+	public Map<String, Boolean> noticepopup(@RequestBody String notice_no){
+		System.out.println(notice_no);
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		notice_no = notice_no.split(":\"")[1].split("\"")[0];
+		int no  = Integer.parseInt(notice_no);
+		NoticeDto dto = biz.selectOne(no);
+		dto.setNotice_popup(dto.getNotice_popup()==null?"Y":null);
+		if(biz.popUpdate(dto)>0) {
+			map.put("popup", true);
+		}else {
+			map.put("popup", false);
+			
+		}
+		return map;
+	}
+	
+	@RequestMapping("/noticepopup_open.do")
+	public String noticepopupopen(Model model, int notice_no) {
+		model.addAttribute("dto", biz.selectOne(notice_no));
 
+		return "notice_detail_popup";
+	}
+
+	@ResponseBody
+	@RequestMapping("/notice_popup_close.do")
+	public Map<String, Boolean> noticepopupclose(HttpSession session){
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		session.setAttribute("popupclose", true);
+		map.put("popup",true);
+		return map;
+	}
+	
 	
 }
