@@ -117,7 +117,7 @@ public class HotelDaoImpl implements HotelDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 
 }

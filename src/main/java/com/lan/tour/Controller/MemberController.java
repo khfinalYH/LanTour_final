@@ -55,7 +55,7 @@ public class MemberController {
 	public String loginRedirect() {
 		return "login_redirect";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/loginCheck.do", method = RequestMethod.POST)
 	public Map<String, Boolean> loginCheck(@RequestBody MemberDto dto, HttpSession session) {
@@ -279,4 +279,29 @@ public class MemberController {
 		return dto;
 	}
 
+	@RequestMapping("/naverlogin.do")
+	public String naverlogin() {
+		return "naver_redirect";
+	}
+
+	@RequestMapping("/naverloginres.do")
+	public String naverloginres(MemberDto dto, Model model, HttpSession session) {
+		MemberDto login = biz.idCheck(dto);
+
+		if (login != null) {
+			session.setAttribute("login", login);
+			return "redirect:main.do";
+		}
+		model.addAttribute("dto", dto);
+		return "signup_naver";
+	}
+	
+	@RequestMapping("/naversingupres.do")
+	public String naversignupres(MemberDto dto ,Model model , HttpSession session) {
+		if(biz.insert(dto) > 0) {
+			session.setAttribute("login", biz.idCheck(dto));
+			return "redirect:main.do";
+		}
+		return "redirect:loginform.do";
+	}
 }

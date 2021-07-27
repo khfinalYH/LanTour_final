@@ -13,6 +13,14 @@
 			WHERE ROWNUM <![CDATA[<=]]> #{pageEnd}) X
 			WHERE X.RNUM <![CDATA[>=]]> #{pageBegin}
 		</select>
+	<select id="listAll" parameterType="hashMap" resultType="lantourDto">
+		select *
+        from (
+            select rownum as rn, A.*
+            from ( SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_DATE FROM LANTOUR
+            ) A
+        ) where rn between #{start} and #{end} 
+	</select>	
 		
 	<select id="lantourlist" parameterType="LantourPagingDto" resultType="lantourDto">
 		SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_DATE

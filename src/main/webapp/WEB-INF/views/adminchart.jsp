@@ -13,6 +13,8 @@
 		reservation();
 		member();
 		community();
+		hotel();
+		lantour();
 	});
 	function community() {
 		$.ajax({
@@ -56,6 +58,44 @@
 			}
 		});
 	}
+	function hotel() {
+		$.ajax({
+			url : "adminhotelchart.do",
+			type : "post",
+			dataType : "json",
+			success : function(msg) {
+				var list = msg.list;
+				var label = [];
+				var data = [];
+				var text = '호텔 등록 수'
+				for (var i = 0; i < list.length; i++) {
+					label.push(list[i].regdate);
+					data.push(list[i].count);
+				}
+				var hotelchart = $("#hotelchart");
+				hotel_lan_chart(hotelchart, data, label, text);
+			}
+		});
+	}
+	function lantour() {
+		$.ajax({
+			url : "adminlantourchart.do",
+			type : "post",
+			dataType : "json",
+			success : function(msg) {
+				var list = msg.list;
+				var label = [];
+				var data = [];
+				var text = '랜선투어 등록 수'
+				for (var i = 0; i < list.length; i++) {
+					label.push(list[i].regdate);
+					data.push(list[i].count);
+				}
+				var lantourchart = $("#lantourchart");
+				hotel_lan_chart(lantourchart, data, label, text);
+			}
+		});
+	}
 	function member() {
 		$.ajax({
 			url : "adminmemberchart.do",
@@ -73,8 +113,8 @@
 					m_data.push(list[i].count);
 				}
 				var menmemberchart = $("#menmemberchart");
-				linechart(menmemberchart, m_data, label , text, color);
-				
+				linechart(menmemberchart, m_data, label, text, color);
+
 				list = msg.w_list;
 				label = [];
 				color = 'rgba(255, 99, 132, 1)';
@@ -84,7 +124,7 @@
 					f_data.push(list[i].count);
 				}
 				var womenmemberchart = $("#womenmemberchart");
-				linechart(womenmemberchart, f_data, label ,text,color);
+				linechart(womenmemberchart, f_data, label, text, color);
 			},
 			error : function() {
 				alert("통신 실패");
@@ -127,7 +167,7 @@
 					}
 				});
 	}
-	function charbar(reservationchart, label, mydata) {
+	function charbar(reservationchart, label, mydata, text) {
 		var myChart = new Chart(reservationchart,
 				{
 					type : 'bar',
@@ -163,7 +203,7 @@
 					}
 				});
 	}
-	function linechart(memberchart, data, label,text,color) {
+	function linechart(memberchart, data, label, text, color) {
 		var memberChart = new Chart(memberchart, {
 			type : "line",
 			data : {
@@ -184,6 +224,42 @@
 				}
 			}
 		});
+	}
+	function hotel_lan_chart(chart, data, label, text) {
+		var myChart = new Chart(chart,
+				{
+					type : 'bar',
+					data : { // 차트에 들어갈 데이터
+						labels : label,
+						datasets : [ { //데이터
+							label : text, //차트 제목
+							fill : false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+							data : data,
+							backgroundColor : [
+							//색상
+							'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(255, 206, 86, 0.2)',
+									'rgba(75, 192, 192, 0.2)',
+									'rgba(153, 102, 255, 0.2)',
+									'rgba(255, 159, 64, 0.2)' ],
+							borderColor : [
+							//경계선 색상
+							'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
+									'rgba(255, 206, 86, 1)',
+									'rgba(75, 192, 192, 1)',
+									'rgba(153, 102, 255, 1)',
+									'rgba(255, 159, 64, 1)' ],
+							borderWidth : 1
+						} ]
+					},
+					options : {
+						title : {
+							display : true,
+							text : '날짜 별 예약 횟수'
+						}
+					}
+				});
 	}
 </script>
 <body>
@@ -209,6 +285,14 @@
 			</div>
 			<div style="width: 450px; float: left;">
 				<canvas id="womenmemberchart"></canvas>
+			</div>
+		</div>
+		<div style="display: flex;">
+			<div style="width: 450px; float: left; margin-right: 100px; margin-left: 200px;">
+				<canvas id="hotelchart"></canvas>
+			</div>
+			<div style="width: 450px; float: left;">
+				<canvas id="lantourchart"></canvas>
 			</div>
 		</div>
 	</div>
