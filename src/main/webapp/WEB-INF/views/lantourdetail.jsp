@@ -130,7 +130,7 @@ function guestrtc() {
 				  		<input type="hidden" value="${login.member_no }" name="member_no">
 				  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
 				  		<input type="hidden" value="${login.member_name }" name="member_name">
-				  		<input type="submit" class="btn btn-success" id="open" value="방 생성 (호스트)">
+				  		<input type="submit" class="btn btn-success" id="open" value="랜선투어 방 생성">
 					</form>		
 				</div>
 			</div>

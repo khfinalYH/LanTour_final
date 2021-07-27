@@ -16,8 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,30 +48,29 @@ public class LantourController {
 	@RequestMapping("/lantourlist_category.do")
 	public String selectKeywordList(Model model, LantourPagingDto dto) {
 
-		
 		int count = 0;
 		
 		String category = dto.getCategory();
 		String keyword = dto.getKeyword();
-		int curPage = dto.getCurPage();
+		int nowPage = dto.getNowPage();
 		
 		if (category == null || category.equals("")) {
 			count = biz.countTotal();
 			System.out.println(count);
-			LantourPagingDto dtoN = new LantourPagingDto(count, curPage);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage);
 			
 			model.addAttribute("list", biz.selectList(dtoN));
 			model.addAttribute("dto", dtoN);
 		} else if (category.equals("l_t")) {
 			count = biz.countT(keyword);
-			LantourPagingDto dtoN = new LantourPagingDto(count, curPage, keyword, category);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
 			
 			model.addAttribute("list", biz.selectTitleList(dtoN));
 			model.addAttribute("dto", dtoN);
 			
 		} else if (category.equals("l_c")) {
 			count = biz.countC(keyword);
-			LantourPagingDto dtoN = new LantourPagingDto(count, curPage, keyword, category);
+			LantourPagingDto dtoN = new LantourPagingDto(count, nowPage, keyword, category);
 			
 			model.addAttribute("list", biz.selectContentList(dtoN));
 			model.addAttribute("dto", dtoN);
@@ -82,24 +82,8 @@ public class LantourController {
 	}
 	
 	@RequestMapping("/lantourlist.do")
-	public String lantourList(Model model, 
-			@RequestParam(defaultValue="1") int curPage,
-            @RequestParam(defaultValue="") String category,
-            @RequestParam(defaultValue="") String keyword) {
-		System.out.println("start");
-		int count = 0;
-		
-		count = biz.countTotal();
-		System.out.println(count);
-		LantourPagingDto dto = new LantourPagingDto(count, curPage, category, keyword);
-		int start = dto.getPageBegin();
-        int end =  dto.getPageEnd();
-			
-		model.addAttribute("list", biz.listAll(category, keyword, start, end));//search_option, keyword, start, end
-		model.addAttribute("dto", dto);
-		model.addAttribute("count", count);
-		model.addAttribute("category", category);
-		model.addAttribute("keyword", keyword);
+	public String lantourList(Model model) {
+		model.addAttribute("list", biz.lantourList());
 		model.addAttribute("scorelist", Rbiz2.scoreList("lantour"));
 		return "lantour";
 	}
@@ -216,14 +200,16 @@ public class LantourController {
 		return map;
 	}
 	
-	@RequestMapping("/updateRtcAddr.do")
-	public void updateRtcAddr(String room_id, int lantour_no) {
-		String lantour_rtc = "https://localhost:3000/" + room_id;
-		LantourDto dto = new LantourDto(lantour_no, lantour_rtc);
-		dto.setLantour_rtc(lantour_rtc);
-		dto.setLantour_no(lantour_no);
+	@ResponseBody
+	@RequestMapping(value = "/updateRtcAddr.do", method = RequestMethod.GET)
+	public void updateRtcAddr(@RequestParam("room_id") String room_id, @RequestParam("lantour_no") String lantour_no) {
+		String lantour_rtc = "https://3.17.76.13:3000/" + room_id;
+		int lan_no = Integer.parseInt(lantour_no);
+		LantourDto dto = new LantourDto(lan_no, lantour_rtc);
 		biz.rtcupdate(dto);
 	}
+
+
 	
 	@ResponseBody
 	@RequestMapping("/guestCheck.do")
