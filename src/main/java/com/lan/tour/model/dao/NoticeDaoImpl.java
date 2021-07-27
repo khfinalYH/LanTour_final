@@ -194,6 +194,28 @@ public class NoticeDaoImpl implements NoticeDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int popUpdate(NoticeDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"popupdate", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<NoticeDto> selectPopupList() {
+		List<NoticeDto> list =new ArrayList();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectPopupList");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 }

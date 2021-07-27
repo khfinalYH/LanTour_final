@@ -24,4 +24,6 @@ public interface NoticeBiz {
 	
 	public int noticeupdate(NoticeDto dto);
 
+	public List<NoticeDto> selectPopupList();
+	public int popUpdate(NoticeDto dto);
 }

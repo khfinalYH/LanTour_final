@@ -88,6 +88,7 @@ response.setContentType("text/html; charset=UTF-8");
 						location.href = "main.do";
 					} else {
 						$("#loginChk").show();
+						alert("Id 혹은 Password를 다시 확인해주세요.")
 						$("#loginChk").html("Id 혹은 Password를 다시 확인해주세요.");
 					}
 				},

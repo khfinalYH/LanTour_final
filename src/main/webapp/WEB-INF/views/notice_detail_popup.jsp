@@ -10,27 +10,15 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
-</head>
 <script type="text/javascript">
-function popupUpdate(popup){
-	var popupVal = {
-		"notice_no" : document.getElementById("notice_no").value
-	}
+	function popupclose(){
+
 		$.ajax({
 			type : 'POST',
-			url : 'notice_popup.do',
-			data : JSON.stringify(popupVal),
-			contentType : "application/json",
-			dataType : "json",
+			url : 'notice_popup_close.do',
 			success : function(data) {
 				if (data.popup == true) {
-					if(popup.value=="팝업띄우기"){
-						alert('설정되었습니다.')
-						popup.value="팝업취소"
-					}else{
-						alert('취소되었습니다.')
-						popup.value="팝업띄우기"
-					}
+					window.close()
 				} else {
 					alert("실패했습니다.");
 				}
@@ -39,14 +27,12 @@ function popupUpdate(popup){
 				alert("통신 실패");
 			}
 		})
-}
-
+	}
 
 </script>
-
+</head>
 <body>
 	<input type="hidden" value="${dto.notice_no }" id="notice_no">
-	<jsp:include page="header.jsp" />
 	<c:set var="member_grade" value="${login.member_grade }" />
 	
 	
@@ -77,22 +63,12 @@ function popupUpdate(popup){
 			</div>
 			<hr>
 			<div class="board_content">${dto.notice_content }</div>
-
+			
 				<div class="board_button_div">
-					<c:if test="${member_grade == 'A' }">
-					<button type="button" class="btn btn-primary" onclick="location.href='noticeUpdateForm.do?notice_no=${dto.notice_no}'">수정</button>
-					<button type="button" class="btn btn-primary" onclick="location.href='noticeDelete.do?notice_no=${dto.notice_no}'">삭제</button>
-						<c:if test="${empty dto.notice_popup }">
-						<input type="button" class="btn btn-primary" onclick="popupUpdate(this)" value="팝업띄우기"/>
-						</c:if>
-						<c:if test="${dto.notice_popup eq 'Y' }">
-						<input type="button" class="btn btn-primary" onclick="popupUpdate(this)" value="팝업취소"/>
-						</c:if>
-					</c:if>
-					<button type="button" class="btn btn-primary" onclick="location.href='noticeList_category.do?nowPage=1'">목록</button>
+				<input type="button" class="btn btn-primary" onclick="popupclose()" value="오늘은 그만보기"/>
+				
 				</div>
 		</div>
 	</div>
-	<jsp:include page="footer.jsp" />
 </body>	
 </html>

@@ -20,14 +20,14 @@
 	</select>
 	
 	<select id="notice_selectOne" parameterType="int" resultType="noticeDto">
-		SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE
+		SELECT NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_DATE, NOTICE_POPUP
 		FROM NOTICE
 		WHERE NOTICE_NO = #{notice_no}
 	</select>
 	
 	<insert id="notice_insert" parameterType="noticeDto">
 		INSERT INTO NOTICE 
-		VALUES (NOTICE_NO_SEQ.NEXTVAL,#{member_no},#{notice_title},#{notice_content},sysdate)
+		VALUES (NOTICE_NO_SEQ.NEXTVAL,#{member_no},#{notice_title},#{notice_content},sysdate, NULL)
 	</insert>
 	
 	<delete id="notice_delete" parameterType="int">
@@ -110,5 +110,16 @@
 		ORDER BY NOTICE_NO DESC
 	</select>
 	
-
+	<update id="popupdate" parameterType="noticeDto">
+		UPDATE NOTICE SET NOTICE_POPUP = #{notice_popup}
+		WHERE NOTICE_NO = #{notice_no}	
+	</update>
+	
+	
+	<select id="selectPopupList" resultType="noticeDto">
+		SELECT *
+		FROM NOTICE
+		WHERE NOTICE_POPUP = 'Y'
+		ORDER BY NOTICE_NO DESC
+	</select>
 </mapper>

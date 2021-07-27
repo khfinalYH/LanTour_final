@@ -83,7 +83,6 @@ public class NoticeBizImpl implements NoticeBiz {
 
 	@Override
 	public int countTC(String category) {
-
 		return dao.countTC(category);
 	}
 	
@@ -98,5 +97,19 @@ public class NoticeBizImpl implements NoticeBiz {
 		// TODO Auto-generated method stub
 		return dao.noticeupdate(dto);
 	}
+
+	@Override
+	public int popUpdate(NoticeDto dto) {
+		return dao.popUpdate(dto);
+	}
+
+	@Override
+	public List<NoticeDto> selectPopupList() {
+		// TODO Auto-generated method stub
+		return dao.selectPopupList();
+	}
+
+	
+	
 	
 }

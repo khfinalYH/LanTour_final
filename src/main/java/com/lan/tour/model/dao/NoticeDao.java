@@ -37,4 +37,8 @@ public interface NoticeDao {
 
 	public int noticeupdate(NoticeDto dto);
 
+	public int popUpdate(NoticeDto dto);
+
+	public List<NoticeDto> selectPopupList();
+
 }

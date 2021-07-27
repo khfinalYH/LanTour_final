@@ -1,7 +1,9 @@
 package com.lan.tour.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -218,6 +220,17 @@ public class LantourDaoImpl implements LantourDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	@Override
+	public List<LantourDto> listAll(String search_option, String keyword, int start, int end) {
+		Map<String,Object> map = new HashMap<>();
+        map.put("search_option", search_option);
+        map.put("keyword", keyword);
+        map.put("start", start); 
+        map.put("end", end);
+		
+		return sqlSession.selectList(NAMESPACE+"listAll",map);
 	}
 
 }
