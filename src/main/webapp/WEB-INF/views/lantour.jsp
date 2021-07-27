@@ -76,7 +76,7 @@
 }
 .paging-div {
 	position: absolute;
-	left: 47%;
+	left: 50%;
 	transform: translateX(-50%);
 }
 

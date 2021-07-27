@@ -16,7 +16,6 @@ public interface LantourBiz {
 	public List<LantourDto> selectTCList(LantourPagingDto dto);
 	public int countT(String category);
 	public int countC(String category);
-	public int countTC(String category);
 	public int countTotal();
 	public LantourDto selectOne(int lantour_no);
 	public int insert(LantourDto dto);

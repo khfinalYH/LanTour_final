@@ -61,11 +61,6 @@ public class LantourBizImpl implements LantourBiz {
 		// TODO Auto-generated method stub
 		return dao.countC(category);
 	}
-	@Override
-	public int countTC(String category) {
-		// TODO Auto-generated method stub
-		return dao.countTC(category);
-	}
 
 	@Override
 	public int countTotal() {

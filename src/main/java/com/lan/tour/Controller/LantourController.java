@@ -159,7 +159,7 @@ public class LantourController {
 			return "redirect:lantourlist.do";
 		}
 		
-		return "redirect:lantourdetail";
+		return "redirect:lantourdetail.do";
 	}
 	
 	@ResponseBody
