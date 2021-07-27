@@ -12,6 +12,7 @@ response.setContentType("text/html; charset=UTF-8");
 <meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 
 <title>Insert title here</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -115,10 +116,10 @@ response.setContentType("text/html; charset=UTF-8");
 			<div class="row align-items-center min-vh-75 my-lg-8">
 				<div class="col-md-7 col-lg-6 text-center text-md-start py-8">
 					<h1 class="mb-4 display-1 lh-sm">
-						Travel around <br class="d-block d-lg-none d-xl-block" />the world
+						한국의 대표 장소를 <br class="d-block d-lg-none d-xl-block" />체험해보세요
 					</h1>
 					<p class="mt-4 mb-5 fs-1 lh-base">
-						Plan and book your perfect trip with expert advice, <br class="d-none d-lg-block" />travel tips, destination information and <br class="d-none d-lg-block" />inspiration from us.
+						한국 여행을 계획하시고 있으신가요 <br class="d-none d-lg-block" />여행에 도움이 되는 각종 예약 및 온라인 체험이 가능합니다. <br class="d-none d-lg-block" />로그인을 통해 다양하게 누려보세요.
 					</p>
 					<div style="padding-bottom: 50px;">
 						<input type="text" style="width: 40%; float: right; color: black; border-color: black;" class="form-control" id="member_id" placeholder="Id" />
@@ -130,10 +131,20 @@ response.setContentType("text/html; charset=UTF-8");
 						<button type="button" class="btn btn-primary" onclick="login();">로그인</button>
 					</div>
 					<div style="padding-bottom: 50px;">
-						<div class="g-signin2" style="float: right;" data-onsuccess="onSignIn"></div>
+						<div id="naver_id_login" style="float: right;"></div>
+						<script type="text/javascript">
+							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "http://localhost:8787/tour/naverlogin.do");
+							var state = naver_id_login.getUniqState();
+							naver_id_login.setButton("green", 2, 40);
+							naver_id_login.setDomain("http://localhost:8787/tour/loginform.do");
+							naver_id_login.setState(state);
+							naver_id_login.init_naver_id_login();
+						</script>
+						<div class="g-signin2" style="float: right; margin-right: 10px;" data-onsuccess="onSignIn"></div>
 						<div class="kakaologin" style="float: right; margin-right: 10px;">
 							<img src="resources/kakaologin/kakao_login_medium.png" onclick="kakologinpage()">
 						</div>
+					
 					</div>
 					<div style="padding-bottom: 50px;"></div>
 					<div>
