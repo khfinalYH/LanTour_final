@@ -101,9 +101,7 @@ function guestrtc() {
 				</tr>
 				<tr>
 					<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
-					<td id="DateTd">
-						<input class="DateContent" type="date" name="lantour_date">
-					</td>
+					<td>${dto.lantour_date }</td>
 				</tr>
 			</tbody>
 			<tr>

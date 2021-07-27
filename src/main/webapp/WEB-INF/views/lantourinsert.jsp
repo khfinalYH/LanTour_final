@@ -133,7 +133,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" class="btn btn-primary" value="등록하기"/>
-					<input type="button" class="btn btn-outline-danger" value="취소"	 onclick="location.href='lantourlist.do';">
+					<input type="button" class="btn btn-outline-danger" value="취소" onclick="location.href='lantourlist.do';">
 				</td>
 			</tr>
 		</table>

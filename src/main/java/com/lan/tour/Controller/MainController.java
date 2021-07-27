@@ -32,7 +32,7 @@ public class MainController {
 		model.addAttribute("h_list", h_biz.selectList());
 		model.addAttribute("c_list", c_biz.selectList());
 		model.addAttribute("n_list", n_biz.noticelist());
-		model.addAttribute("l_list", l_biz.selectList());
+		model.addAttribute("l_list", l_biz.lantourList());
 
 		return "main";
 	}

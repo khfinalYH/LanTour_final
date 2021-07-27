@@ -19,6 +19,8 @@ public interface HotelDao {
 	public int update (HotelDto dto);
 	
 	public List<HotelDto> searchList(HotelDto dto);
+	
+	public List<HotelDto> hotelchart();
 
 	public List<HotelDto> selectList(int member_no);
 }
