@@ -120,7 +120,7 @@
 			</tr>
 			<tr>
 				<th scope="row" style="text-align: center;"><p>가격</p></th>
-				<td><input onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="lantour_price">${dto.lantour_price }</td>
+				<td><input type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="lantour_price">${dto.lantour_price }</td>
 			</tr>
 			<tr>
 				<th scope="row" style="text-align: center;"><p>투어 일정</p></th>
