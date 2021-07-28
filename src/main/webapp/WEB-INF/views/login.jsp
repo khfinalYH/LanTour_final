@@ -134,10 +134,10 @@ response.setContentType("text/html; charset=UTF-8");
 					<div style="padding-bottom: 50px;">
 						<div id="naver_id_login" style="float: right;"></div>
 						<script type="text/javascript">
-							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "http://localhost:8787/tour/naverlogin.do");
+							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "http://3.17.76.13:8787/tour/naverlogin.do");
 							var state = naver_id_login.getUniqState();
 							naver_id_login.setButton("green", 2, 40);
-							naver_id_login.setDomain("http://localhost:8787/tour/loginform.do");
+							naver_id_login.setDomain("http://3.17.76.13:8787/tour/loginform.do");
 							naver_id_login.setState(state);
 							naver_id_login.init_naver_id_login();
 						</script>
