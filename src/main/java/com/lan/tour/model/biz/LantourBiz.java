@@ -25,4 +25,5 @@ public interface LantourBiz {
 	public int rtcupdate(LantourDto dto);
 	
 	public List<LantourDto> selectList(int member_no);
+	public List<LantourDto> lantourchart();
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lan.tour.model.biz.CommunityBiz;
 import com.lan.tour.model.biz.HotelBiz;
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.MemberBiz;
@@ -33,6 +34,9 @@ public class MyPageController {
 	
 		@Autowired
 		private MemberBiz biz;
+		
+		@Autowired
+		private CommunityBiz communitybiz;
 		
 		@Autowired
 		HotelBiz Hbiz;
@@ -79,11 +83,6 @@ public class MyPageController {
 				return "redirect:mypage.do?member_no=" + dto.getMember_no();
 			}
 			return "redirect:mypageupdate.do?member_no=" + dto.getMember_no();
-		}
-		
-		@RequestMapping("/mypost.do")
-		public String mypost() {
-			return "mypost";
 		}
 		
 		
@@ -146,6 +145,15 @@ public class MyPageController {
 			model.addAttribute("map", map);
 			model.addAttribute("list", list);
 			return "mypage_hostreservation";
+		}
+		
+		@RequestMapping("/mypost.do")
+		public String mypost(Model model,HttpSession session) {
+			MemberDto dto = (MemberDto)session.getAttribute("login"); 
+
+			model.addAttribute("list", communitybiz.mypostList(dto.getMember_no()));
+			
+			return "mypost";
 		}
 		
 }

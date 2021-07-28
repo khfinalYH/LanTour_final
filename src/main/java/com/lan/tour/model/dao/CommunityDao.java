@@ -36,4 +36,6 @@ public interface CommunityDao {
 	
 	public List<CommunityDto> communitychart();
 	
+	public List<CommunityDto> mypostList(int member_no);
+
 }

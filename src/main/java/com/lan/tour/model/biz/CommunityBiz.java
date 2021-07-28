@@ -33,5 +33,7 @@ public interface CommunityBiz {
 	public int community_refaire(int community_no);
 	
 	public List<CommunityDto> communitychart();
+	
+	public List<CommunityDto> mypostList(int member_no);
 
 }

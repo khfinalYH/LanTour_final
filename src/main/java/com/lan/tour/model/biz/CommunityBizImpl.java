@@ -97,6 +97,12 @@ public class CommunityBizImpl implements CommunityBiz {
 		// TODO Auto-generated method stub
 		return dao.communitychart();
 	}
+	
+	@Override
+	public List<CommunityDto> mypostList(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.mypostList(member_no);
+	}
 
 
 }
