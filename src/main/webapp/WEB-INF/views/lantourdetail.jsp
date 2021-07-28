@@ -135,6 +135,19 @@ function guestrtc() {
 				</div>
 			</div>
 		</c:if>
+		<c:if test="${login_member eq user_member }">
+			<div>
+				<div class="form-group" align="center">
+					<form action="https://3.17.76.13:3000/" method="post" style="display: inline;">
+				  		<input type="hidden" value="${login.member_grade }" name="member_grade">
+				  		<input type="hidden" value="${login.member_no }" name="member_no">
+				  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
+				  		<input type="hidden" value="${login.member_name }" name="member_name">
+				  		<input type="submit" class="btn btn-success" id="open" value="참여하기">
+					</form>		
+				</div>
+			</div>
+		</c:if>
 	<br><br><br>
 	<embed height="800px" width="100%" src="https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
 	</div>

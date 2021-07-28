@@ -85,7 +85,7 @@ response.setContentType("text/html; charset=UTF-8");
 			<br><br><br>
 
 			<div style="margin:0 auto; width: 60%; float: right;">
-				<input id="submit" class="btn btn-outline-primary" type="submit" value="회원가입" disabled/>
+				<input id="submit" class="btn btn-outline-primary" type="submit" value="회원가입"/>
 				<input type="button" class="btn btn-outline-primary" value="취소" onclick="location.href='main.do'" />
 			</div>
 			</fieldset>
