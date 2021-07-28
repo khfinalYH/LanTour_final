@@ -109,4 +109,10 @@ public class LantourBizImpl implements LantourBiz {
 		return dao.lantourchart();
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		return dao.deleteByMemberNo(member_no);
+	}
+	
+	
 }

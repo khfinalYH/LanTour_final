@@ -19,4 +19,7 @@ public interface ReviewDao {
 	public List<ReviewDto> scoreList(String type);
 	public List<ReviewDto> selectList(String type, Map<String, Integer> smap, String sort, String filter);
 	public ReviewDto selectscore(String type, int no);
+	public int deleteByMemberNo(int Member_no);
+	public int deleteByLantourNo(int Lantour_no);
+	public int deleteByHotelNo(int hotel_no);
 }

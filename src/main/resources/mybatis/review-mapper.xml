@@ -188,6 +188,16 @@
 		DELETE FROM REVIEW WHERE REVIEW_NO = #{review_no}
 	</delete>
 	
+	<delete id="deleteMyReview" parameterType="int">
+		DELETE FROM REVIEW WHERE MEMBER_NO = #{member_no}
+	</delete>
 	
+	<delete id="deleteHotelReview" parameterType="int">
+		DELETE FROM REVIEW WHERE HOTEL_NO = #{hotel_no}
+	</delete>
+	
+	<delete id="deleteLantourReview" parameterType="int">
+		DELETE FROM REVIEW WHERE LANTOUR_NO = #{lantour_no}
+	</delete>
 	
 </mapper>

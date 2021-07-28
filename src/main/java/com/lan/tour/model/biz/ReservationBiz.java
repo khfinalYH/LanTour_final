@@ -20,5 +20,6 @@ public interface ReservationBiz {
 	public List<ReservationDto> selectListRoomM(int member_no);
 	public List<ReservationDto> selectListCheckDate(String check_in, String check_out, String hotel_type);
 	public ReservationDto selectcount(String type, int no);
-	public List<ReservationDto> selectchart();	
+	public List<ReservationDto> selectchart();
+	public int deleteByMemberNo(int member_no);	
 }

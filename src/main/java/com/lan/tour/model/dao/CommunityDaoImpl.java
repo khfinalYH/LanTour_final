@@ -193,5 +193,18 @@ public class CommunityDaoImpl implements CommunityDao {
 		return list;
 	}
 
+	@Override
+	public List<CommunityDto> selectlistmember(int member_no) {
+		// TODO Auto-generated method stub
+		List <CommunityDto> list = new ArrayList<CommunityDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectlistmember", member_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
 
 }

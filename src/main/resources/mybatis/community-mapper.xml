@@ -139,8 +139,8 @@
 		TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD')
 	</select>
 	
-	<select id="selectlistcommunity">
-		SELECT * FROM COUMMUNITY WHERE MEMBER_NO = #{member_no}
+	<select id="selectlistmember" resultType="communityDto">
+		SELECT * FROM COMMUNITY WHERE MEMBER_NO = #{member_no}
 	</select>
 	
 </mapper>

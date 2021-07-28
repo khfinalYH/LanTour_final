@@ -22,7 +22,7 @@ public interface LantourBiz {
 	public int delete(int lantour_no);
 	public int update(LantourDto dto);
 	public int rtcupdate(LantourDto dto);
-	
+	public List<LantourDto> lantourchart();
 	public List<LantourDto> selectList(int member_no);
-	List<LantourDto> lantourchart();
+	public int deleteByMemberNo(int member_no);
 }

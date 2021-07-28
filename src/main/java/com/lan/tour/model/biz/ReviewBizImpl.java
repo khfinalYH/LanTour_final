@@ -1,6 +1,7 @@
 package com.lan.tour.model.biz;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,22 @@ public class ReviewBizImpl implements ReviewBiz {
 	@Override
 	public ReviewDto selectscore(String type, int no) {
 		return dao.selectscore(type,no);
+	}
+
+	@Override
+	public int deleteByMemberNo(int Member_no) {
+		return dao.deleteByMemberNo(Member_no);
+	}
+
+	@Override
+	public int deleteByLantourNo(int Lantour_no) {
+		return dao.deleteByLantourNo(Lantour_no);
+	}
+
+	@Override
+	public int deleteByHotelNo(int hotel_no) {
+		// TODO Auto-generated method stub
+		return dao.deleteByHotelNo(hotel_no);
 	}
 
 	

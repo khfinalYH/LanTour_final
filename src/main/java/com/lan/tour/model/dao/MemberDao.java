@@ -37,4 +37,7 @@ public interface MemberDao {
 	public List<MemberDto> manchartmember();
 	
 	public List<MemberDto> womanchartmember();
+
+	public int deleteByMemberNo(int member_no);
+	
 }

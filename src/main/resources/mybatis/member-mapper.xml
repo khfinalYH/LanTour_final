@@ -139,5 +139,9 @@
 		group by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD') 
 		order by TO_CHAR(MEMBER_REGDATE,'YYYY-MM-DD')
 	</select>
+	<delete id="deleteByMemberNo">
+		DELETE FROM MEMBER WHERE MEMBER_NO = #{member_no}
+	</delete>
+	
 	
 </mapper>

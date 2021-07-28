@@ -50,4 +50,10 @@ public class CalendarBizImpl implements CalendarBiz {
 		return dao.dragUpdate(dto);
 	}
 
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.deleteByMemberNo(member_no);
+	}
+
 }

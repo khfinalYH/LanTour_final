@@ -33,7 +33,7 @@
 
 
 	<delete id="commentmemberdelete" parameterType="int">
-		DELETE FROM COMMENT
+		DELETE FROM COMMENT_TABLE
 		WHERE MEMBER_NO = #{member_no}
 	</delete>
 

@@ -17,7 +17,9 @@ public interface ReviewBiz {
 	public int delete(int number);
 	public int update(ReviewDto dto);
 	public List<ReviewDto> selectList(String type, Map<String, Integer> smap, String sort, String filter);
-	
+	public int deleteByMemberNo(int Member_no);
+	public int deleteByLantourNo(int Lantour_no);
+	public int deleteByHotelNo(int hotel_no);
 
 	
 	

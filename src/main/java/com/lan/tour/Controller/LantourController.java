@@ -16,8 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -216,14 +217,16 @@ public class LantourController {
 		return map;
 	}
 	
-	@RequestMapping("/updateRtcAddr.do")
-	public void updateRtcAddr(String room_id, int lantour_no) {
-		String lantour_rtc = "https://localhost:3000/" + room_id;
-		LantourDto dto = new LantourDto(lantour_no, lantour_rtc);
-		dto.setLantour_rtc(lantour_rtc);
-		dto.setLantour_no(lantour_no);
+	@ResponseBody
+	@RequestMapping(value = "/updateRtcAddr.do", method = RequestMethod.GET)
+	public void updateRtcAddr(@RequestParam("room_id") String room_id, @RequestParam("lantour_no") String lantour_no) {
+		String lantour_rtc = "https://3.17.76.13:3000/" + room_id;
+		int lan_no = Integer.parseInt(lantour_no);
+		LantourDto dto = new LantourDto(lan_no, lantour_rtc);
 		biz.rtcupdate(dto);
 	}
+
+
 	
 	@ResponseBody
 	@RequestMapping("/guestCheck.do")
