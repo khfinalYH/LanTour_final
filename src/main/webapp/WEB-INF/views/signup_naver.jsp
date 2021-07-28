@@ -8,7 +8,10 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+		
+	
 	<div class="container">
+
 		<h3 style="text-align: center;">일반 회원가입</h3>
 		<hr class="mx-auto text-primary my-4" style="height: 3px; width: 60%;" />
 		<br> <br>
@@ -19,7 +22,33 @@
 			<input type="hidden" name="member_grade" value="U" />
 			<input type="hidden" name="member_password" value="naver" />
 			<input type="hidden" name="member_secession" value="N" />
-
+		
+			<fieldset>
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">이름</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" name="member_name" style="color: black;" required>
+		      </div>
+		    </div>
+		    <br>
+		    
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">나이</label>
+		      <div class="col-sm-10">
+		        <input type="text" class="form-control" name="member_age" style="color: black;" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
+		      </div>
+		    </div>
+		  	<br>
+		  	
+		    <div class="form-group row" style="margin:0 auto; width: 60%;">
+		      <label class="col-sm-2 col-form-label">성별</label>
+		      <div class="col-sm-10">
+		        <input type="radio" name="member_gender" value="M" checked>남
+				<input type="radio" name="member_gender" value="F">여
+		      </div>
+		    </div>
+		    <br>
+		    
 
 			<div class="form-group row" style="margin: 0 auto; width: 60%;">
 				<label class="col-sm-2 col-form-label">나이</label>
@@ -66,6 +95,7 @@
 				<input type="button" class="btn btn-outline-primary" value="취소" onclick="location.href='main.do'" />
 			</div>
 		</form>
+
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

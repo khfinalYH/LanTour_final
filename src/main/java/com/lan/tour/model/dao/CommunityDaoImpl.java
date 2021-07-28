@@ -194,6 +194,19 @@ public class CommunityDaoImpl implements CommunityDao {
 	}
 
 	@Override
+	public List<CommunityDto> mypostList(int member_no) {
+		
+		List<CommunityDto> list = new ArrayList<CommunityDto>();
+		try {
+			list = sqlSession.selectList(NAMESPACE + "mypost_selectList", member_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Override
 	public List<CommunityDto> selectlistmember(int member_no) {
 		// TODO Auto-generated method stub
 		List <CommunityDto> list = new ArrayList<CommunityDto>();
@@ -205,6 +218,5 @@ public class CommunityDaoImpl implements CommunityDao {
 
 		return list;
 	}
-
 
 }

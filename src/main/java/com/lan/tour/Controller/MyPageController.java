@@ -39,6 +39,9 @@ public class MyPageController {
 		private MemberBiz biz;
 		
 		@Autowired
+		private CommunityBiz communitybiz;
+		
+		@Autowired
 		HotelBiz Hbiz;
 
 		@Autowired
@@ -94,11 +97,6 @@ public class MyPageController {
 				return "redirect:mypage.do?member_no=" + dto.getMember_no();
 			}
 			return "redirect:mypageupdate.do?member_no=" + dto.getMember_no();
-		}
-		
-		@RequestMapping("/mypost.do")
-		public String mypost() {
-			return "mypost";
 		}
 		
 		
@@ -162,7 +160,14 @@ public class MyPageController {
 			model.addAttribute("list", list);
 			return "mypage_hostreservation";
 		}
-		
+		@RequestMapping("/mypost.do")
+		public String mypost(Model model,HttpSession session) {
+			MemberDto dto = (MemberDto)session.getAttribute("login"); 
+
+			model.addAttribute("list", communitybiz.mypostList(dto.getMember_no()));
+			
+			return "mypost";
+		}
 		
 		@RequestMapping("/mypagesecession.do")
 		public String mypagesecession(HttpSession session) {
