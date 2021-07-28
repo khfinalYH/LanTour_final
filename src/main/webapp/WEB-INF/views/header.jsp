@@ -23,24 +23,24 @@
 	}
 	function signOut() {
 		
-		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-		Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
 		var auth2 = gapi.auth2.getAuthInstance();
 		auth2.signOut().then(function () {
 		  console.log('User signed out.');
 		});
 		auth2.disconnect();
 		//카카오 로그아웃
-		if (!Kakao.Auth.getAccessToken()) {
-		  console.log('Not logged in.');
-		  
-		}
-		if("<%=(String)session.getAttribute("token") %>" != ""){
+		<%if(session.getAttribute("token")!=null){%>
+			Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+			Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
+			if (!Kakao.Auth.getAccessToken()) {
+			  console.log('Not logged in.');
+			  
+			}
 			Kakao.Auth.logout(function() {
 				  console.log(Kakao.Auth.getAccessToken());
 				  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/logout.do";
 				});
-		} 
+		<%}%> 
 		location.href="logout.do"
 	}
 	function onLoad() {

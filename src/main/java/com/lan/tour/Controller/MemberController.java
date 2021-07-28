@@ -76,7 +76,6 @@ public class MemberController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		session.removeAttribute("token");
 		return "redirect:main.do";
 	}
 
