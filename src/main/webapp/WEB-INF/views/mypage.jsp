@@ -14,6 +14,30 @@
 		var member_no = $('#member_no').val();
 		
 	}
+function mypagesecession() {
+		
+		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+		Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+		  console.log('User signed out.');
+		});
+		auth2.disconnect();
+		//카카오 로그아웃
+		if (!Kakao.Auth.getAccessToken()) {
+		  console.log('Not logged in.');
+		  
+		}
+		if("<%=(String)session.getAttribute("token") %>" != ""){
+			Kakao.Auth.logout(function() {
+				  console.log(Kakao.Auth.getAccessToken());
+				  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/mypagesecession.do";
+				});
+		} 
+		location.href="mypagesecession.do"
+	}
+	
+	
 </script>
 <body>`
 	<jsp:include page="header.jsp" />
@@ -42,6 +66,7 @@
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
+
 
 		<table class="container col-1 col-lg-2" border="1">
 		 	 <tr>
