@@ -38,5 +38,4 @@ public interface CommunityBiz {
 
 	public List<CommunityDto> selectlistmember(int member_no);
 
-
 }
