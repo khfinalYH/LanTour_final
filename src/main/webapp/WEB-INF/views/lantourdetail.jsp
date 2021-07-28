@@ -108,7 +108,7 @@ function guestrtc() {
 				<td colspan="2" align="center">
 					<input type="button" class="btn btn-primary" value="예약" onclick="location.href='reservation.do?type=lantour&no=${dto.lantour_no}&rno=0'" />
 					<input type="button" class="btn btn-primary" value="목록" onclick="location.href='lantourlist.do'" /> 
-						<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://3.17.76.13:3000/aaa' }">
+						<c:if test="${lantour_rtc != 'aaa' && lantour_rtc != 'https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:3000/aaa' }">
 							<input type="hidden" id="member_no" name="member_no" value="${login.member_no }" />
 							<input type="hidden" id="lantour_no" name="lantour_no" value="${dto.lantour_no }" />
 							<input type="hidden" id="lantour_rtc" name="lantour_rtc" value="${lantour_rtc}" />
@@ -125,7 +125,7 @@ function guestrtc() {
 				<div class="form-group" align="center">
 					<input type="button" class="btn btn-primary" value="수정" onclick="location.href='lantourupdate.do?lantour_no=${dto.lantour_no}'" />
 					<input type="button" class="btn btn-primary" value="삭제" onclick="location.href='lantourdelete.do?lantour_no=${dto.lantour_no}'" />
-					<form action="https://3.17.76.13:3000/" method="post" style="display: inline;">
+					<form action="https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:3000" method="post" style="display: inline;">
 				  		<input type="hidden" value="${login.member_grade }" name="member_grade">
 				  		<input type="hidden" value="${login.member_no }" name="member_no">
 				  		<input type="hidden" value="${dto.lantour_no }" name="lantour_no">
@@ -136,7 +136,7 @@ function guestrtc() {
 			</div>
 		</c:if>
 	<br><br><br>
-	<embed height="800px" width="100%" src="https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
+	<embed height="800px" width="100%" src="https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=lantour&no=${dto.lantour_no}" ></embed>	
 	</div>
 
 	<jsp:include page="footer.jsp" />

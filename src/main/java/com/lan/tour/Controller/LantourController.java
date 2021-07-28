@@ -220,7 +220,7 @@ public class LantourController {
 	@ResponseBody
 	@RequestMapping(value = "/updateRtcAddr.do", method = RequestMethod.GET)
 	public void updateRtcAddr(@RequestParam("room_id") String room_id, @RequestParam("lantour_no") String lantour_no) {
-		String lantour_rtc = "https://3.17.76.13:3000/" + room_id;
+		String lantour_rtc = "https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:3000/" + room_id;
 		int lan_no = Integer.parseInt(lantour_no);
 		LantourDto dto = new LantourDto(lan_no, lantour_rtc);
 		biz.rtcupdate(dto);

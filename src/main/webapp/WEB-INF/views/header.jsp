@@ -38,7 +38,7 @@
 		if("<%=(String)session.getAttribute("token") %>" != ""){
 			Kakao.Auth.logout(function() {
 				  console.log(Kakao.Auth.getAccessToken());
-				  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/logout.do";
+				  location.href="https://kauth.kakao.com/oauth/logout?client_id=0051e1df68b8e3c9d056c9adaf343151&logout_redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/logout.do";
 				});
 		} 
 		location.href="logout.do"

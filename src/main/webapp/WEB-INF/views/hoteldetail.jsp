@@ -139,7 +139,7 @@
 		</c:if>
 	</div>
 	<br />
-	<embed width="1000px" style="display: block ;margin: 0 auto;height: 100vh" src="https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
+	<embed width="1000px" style="display: block ;margin: 0 auto;height: 100vh" src="https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/reviewlist.do?type=hotel&no=${dto.hotel_no}"></embed>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

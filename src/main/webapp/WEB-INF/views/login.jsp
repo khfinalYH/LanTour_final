@@ -103,7 +103,7 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 	}
 	function kakologinpage() {
-		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
@@ -138,7 +138,7 @@ response.setContentType("text/html; charset=UTF-8");
 					<div style="padding-bottom: 50px;">
 						<div id="naver_id_login" style="float: right;"></div>
 						<script type="text/javascript">
-							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour/naverlogin.do");
+							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/naverlogin.do");
 							var state = naver_id_login.getUniqState();
 							naver_id_login.setButton("green", 2, 40);
 							naver_id_login.setDomain("http://3.17.76.13:8787/tour/loginform.do");
