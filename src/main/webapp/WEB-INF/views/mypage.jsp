@@ -83,7 +83,8 @@
 	         <tr>
 	         <th>
 	            <td colspan="2">
-	                <input class="btn btn-primary float-right" type="button" value="수정하기" onclick="location.href='mypageupdate.do';"/>               
+	                <input class="btn btn-primary float-right" type="button" value="수정하기" onclick="location.href='mypageupdate.do';"/>
+	                <input class="btn btn-primary float-right" type="button" value="회원탈퇴" onclick="location.href='mypagesecession.do'"/>               
 	            </td>
 	         </tr>
 	      </table>

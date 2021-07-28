@@ -18,6 +18,7 @@
 		COMMENT_NO
 	</select>
 
+
 	<insert id="insert" parameterType="CommentDto">
 		INSERT INTO COMMENT_TABLE
 		VALUES(COMMENT_NO_SEQ.NEXTVAL,#{member_no},#{community_no},#{comment_content},SYSDATE,'N')
@@ -29,6 +30,12 @@
 		comment_content = #{comment_content}
 		WHERE COMMENT_NO = #{comment_no}
 	</update>
+
+
+	<delete id="commentmemberdelete" parameterType="int">
+		DELETE FROM COMMENT_TABLE
+		WHERE MEMBER_NO = #{member_no}
+	</delete>
 
 	<delete id="delete" parameterType="int">
 		UPDATE COMMENT_TABLE

@@ -104,5 +104,11 @@ public class CommunityBizImpl implements CommunityBiz {
 		return dao.mypostList(member_no);
 	}
 
+	@Override
+	public List<CommunityDto> selectlistmember(int member_no) {
+		// TODO Auto-generated method stub
+		return dao.selectlistmember(member_no);
+	}
+
 
 }

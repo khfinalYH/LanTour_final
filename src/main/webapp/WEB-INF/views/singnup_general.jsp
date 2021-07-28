@@ -227,7 +227,7 @@ response.setContentType("text/html; charset=UTF-8");
 		  	
 			<div class="form-check" style="margin:0 auto; width: 60%;">
 		        <label class="form-check-label">
-		          회원 이용약간 동의 (필수)&nbsp;&nbsp;
+		          회원 이용약관 동의 (필수)&nbsp;&nbsp;
 		        </label>
 		        <input type="checkbox" required>
 		        <br>

@@ -34,4 +34,6 @@ public interface ReservationDao {
 
 	public List<ReservationDto> selectchart();
 
+	public int deleteByMemberNo(int member_no);
+
 }

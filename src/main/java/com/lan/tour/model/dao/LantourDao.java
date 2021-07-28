@@ -43,4 +43,6 @@ public interface LantourDao {
 
 	public List<LantourDto> selectList(int member_no);
 
+	public int deleteByMemberNo(int member_no);
+
 }

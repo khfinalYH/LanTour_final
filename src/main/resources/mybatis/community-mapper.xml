@@ -139,7 +139,6 @@
 		TO_CHAR(COMMUNITY_REGDATE,'YYYY-MM-DD')
 	</select>
 	
-	
 	<select id="mypost_selectList" resultType="CommunityDto">
 		SELECT	COMMUNITY_NO, COMMUNITY_TITLE, COMMUNITY_CONTENT,
 		COMMUNITY_REGDATE, COMMUNITY_READCOUNT, COMMUNITY_DELFLAG
@@ -147,5 +146,8 @@
 		WHERE MEMBER_NO = #{member_no}	
 	</select>	
 	
+	<select id="selectlistmember" resultType="communityDto">
+		SELECT * FROM COMMUNITY WHERE MEMBER_NO = #{member_no}
+	</select>
 	
 </mapper>

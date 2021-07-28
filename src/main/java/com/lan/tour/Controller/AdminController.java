@@ -71,8 +71,12 @@ public class AdminController {
 
 	@RequestMapping("/admincommunityAlldelete.do")
 	public String admincommunityAlldelete(int community_no) {
-		if (com_biz.communityAlldelete(community_no) > 0) {
-			if (comment_biz.deleteAll(community_no) > 0) {
+		if (comment_biz.selectList(community_no).size()>=0&&comment_biz.deleteAll(community_no) > 0) {
+			if (com_biz.communityAlldelete(community_no) > 0) {
+				return "redirect:admincommunity.do";
+			}
+		}else {
+			if (com_biz.communityAlldelete(community_no) > 0) {
 				return "redirect:admincommunity.do";
 			}
 		}

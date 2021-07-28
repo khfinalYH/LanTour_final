@@ -237,4 +237,17 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		return list;
 	}
+
+	@Override
+	public int deleteByMemberNo(int member_no) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "deleteByMemberNo", member_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

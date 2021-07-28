@@ -19,5 +19,6 @@ public interface CommentDao {
 	public int deleteAll(int community_no);
 	
 	public List<CommentDto> commentlist();
+	public int commentMemberDelete(int member_no);
 	
 }

@@ -93,4 +93,17 @@ public class CommentDaoImpl implements CommentDao {
 		return list;
 	}
 
+	@Override
+	public int commentMemberDelete(int member_no) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE+"commentmemberdelete", member_no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }
