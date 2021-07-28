@@ -208,7 +208,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int deleteByMemberNo(int Member_no) {
 		int res = 0;
 		try {
-			res = sqlSession.delete(NAMESPACE+"delete_review", Member_no);
+			res = sqlSession.delete(NAMESPACE+"deleteMyReview", Member_no);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}			
