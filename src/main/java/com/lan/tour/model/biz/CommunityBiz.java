@@ -34,10 +34,9 @@ public interface CommunityBiz {
 	
 	public List<CommunityDto> communitychart();
 	
-<<<<<<< HEAD
 	public List<CommunityDto> mypostList(int member_no);
-=======
+
 	public List<CommunityDto> selectlistmember(int member_no);
->>>>>>> f0230af2d0f4073493a1f02686550258fa262036
+
 
 }
