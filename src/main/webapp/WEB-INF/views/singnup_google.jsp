@@ -19,7 +19,6 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-			<input type="hidden" name="idtoken" value="<%=request.getAttribute("idtoken") %>" />
 	
 	
 	<div class="container">
@@ -29,21 +28,12 @@ response.setContentType("text/html; charset=UTF-8");
 		<hr class="mx-auto text-primary my-4" style="height:3px; width:60%;" />
 		<br><br>
 		<form action="googlesignupres.do" method="post">
-		
+			<input type="hidden" name="idtoken" value="<%=(String)request.getAttribute("idtoken") %>" />		
 		<input type="hidden" name="member_grade" value="U" />
-		<input type="hidden" name="member_password" value="kakao" />
+		<input type="hidden" name="member_password" value="google" />
 		<input type="hidden" name="member_secession" value="N" />
 		
 			<fieldset>
-			<div class="form-group row" style="margin:0 auto; width: 60%;">
-		      <label class="col-sm-2 col-form-label">아이디</label>
-		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="idChk" name="member_id" title="n" style="color: black;" required>
-		        <button type="button" class="btn btn-primary btn-sm" onclick="idCheck();" style="float: right;">중복체크</button>
-		      </div>
-		    </div>
-		    <br>
-		    
 		    <div class="form-group row" style="margin:0 auto; width: 60%;">
 		      <label class="col-sm-2 col-form-label">이름</label>
 		      <div class="col-sm-10">
@@ -96,7 +86,7 @@ response.setContentType("text/html; charset=UTF-8");
 			<br><br><br>
 
 			<div style="margin:0 auto; width: 60%; float: right;">
-				<input id="submit" class="btn btn-outline-primary" type="submit" value="회원가입" disabled/>
+				<input id="submit" class="btn btn-outline-primary" type="submit" value="회원가입" />
 				<input type="button" class="btn btn-outline-primary" value="취소" onclick="location.href='main.do'" />
 			</div>
 			</fieldset>

@@ -33,15 +33,6 @@ response.setContentType("text/html; charset=UTF-8");
 		<input type="hidden" name="member_secession" value="N" />
 		
 			<fieldset>
-			<div class="form-group row" style="margin:0 auto; width: 60%;">
-		      <label class="col-sm-2 col-form-label">아이디</label>
-		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="idChk" name="member_id" title="n" style="color: black;" required>
-		        <button type="button" class="btn btn-primary btn-sm" onclick="idCheck();" style="float: right;">중복체크</button>
-		      </div>
-		    </div>
-		    <br>
-		    
 		    <div class="form-group row" style="margin:0 auto; width: 60%;">
 		      <label class="col-sm-2 col-form-label">이름</label>
 		      <div class="col-sm-10">
