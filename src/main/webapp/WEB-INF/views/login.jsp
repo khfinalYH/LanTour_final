@@ -18,10 +18,6 @@ response.setContentType("text/html; charset=UTF-8");
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
-	//sdk를 초기화, 사용할 앱의 javascript키
-	Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-	//sdk 초기화 여부를 판단
-	Kakao.isInitialized();
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -103,7 +99,12 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 	}
 	function kakologinpage() {
-		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/kakaologin.do&response_type=code";
+		//sdk를 초기화, 사용할 앱의 javascript키
+		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+		//sdk 초기화 여부를 판단
+		Kakao.isInitialized();
+		
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=localhost:8443/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
