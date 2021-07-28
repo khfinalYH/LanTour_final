@@ -165,7 +165,7 @@
 
     if (member_grade == 'H') {
         $.ajax({
-			 url: 'https://3.17.76.13:8443/tour/updateRtcAddr.do',
+			 url: 'https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/updateRtcAddr.do',
 			 type: 'GET',
 			 data: {
                 'room_id' : ROOM_ID,
@@ -180,7 +180,7 @@
     window.onbeforeunload = function() {
         if (member_grade == 'H') {
             $.ajax({
-			 url: 'https://3.17.76.13:8443/tour/updateRtcAddr.do',
+			 url: 'https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/updateRtcAddr.do',
 			 type: 'GET',
 			 data: {
                 'room_id' : 'aaa',
