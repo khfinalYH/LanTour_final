@@ -41,12 +41,16 @@ response.setContentType("text/html; charset=UTF-8");
 				break;
 			case "signup":
 				document.getElementById("id_token").value = id_token
-				alert("회원가입 페이지로 넘어갑니다")
-				var f = document.google
-				f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
-				f.action = "googlesignup.do";//이동할 페이지
-				f.method = "post";//POST방식
-				f.submit();
+				
+				if(confirm("구글 계정으로 회원가입 하시겠습니까?")){
+					var f = document.google
+					f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
+					f.action = "googlesignup.do";//이동할 페이지
+					f.method = "post";//POST방식
+					f.submit();
+				}else{
+					signOut()
+				}
 				break;
 			case "login":
 				alert("로그인되었습니다.")
