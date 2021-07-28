@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A","http://3.17.76.13:8787/tour/naverlogin.do");
+		var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A","https://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8443/tour//naverlogin.do");
 		// 접근 토큰 값 출력
 		//alert(naver_id_login.oauthParams.access_token);
 		// 네이버 사용자 프로필 조회

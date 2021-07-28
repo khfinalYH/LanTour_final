@@ -41,12 +41,16 @@ response.setContentType("text/html; charset=UTF-8");
 				break;
 			case "signup":
 				document.getElementById("id_token").value = id_token
-				alert("회원가입 페이지로 넘어갑니다")
-				var f = document.google
-				f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
-				f.action = "googlesignup.do";//이동할 페이지
-				f.method = "post";//POST방식
-				f.submit();
+				
+				if(confirm("구글 계정으로 회원가입 하시겠습니까?")){
+					var f = document.google
+					f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
+					f.action = "googlesignup.do";//이동할 페이지
+					f.method = "post";//POST방식
+					f.submit();
+				}else{
+					signOut()
+				}
 				break;
 			case "login":
 				alert("로그인되었습니다.")
@@ -99,7 +103,7 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 	}
 	function kakologinpage() {
-		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
@@ -134,7 +138,7 @@ response.setContentType("text/html; charset=UTF-8");
 					<div style="padding-bottom: 50px;">
 						<div id="naver_id_login" style="float: right;"></div>
 						<script type="text/javascript">
-							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "http://3.17.76.13:8787/tour/naverlogin.do");
+							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/naverlogin.do");
 							var state = naver_id_login.getUniqState();
 							naver_id_login.setButton("green", 2, 40);
 							naver_id_login.setDomain("http://3.17.76.13:8787/tour/loginform.do");
