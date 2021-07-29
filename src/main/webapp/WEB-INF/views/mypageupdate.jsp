@@ -75,7 +75,7 @@
 			<div class="form-group row" style="margin:0 auto; width: 60%;">
 			    <label class="col-sm-2 col-form-label">전화번호</label>
 			    <div class="col-sm-10">
-			        <input type="text" class="form-control" name="member_phone" value="${login.member_phone }" style="background-color: white; color: black;">
+			        <input type="text" class="form-control" name="member_phone" value="${login.member_phone }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="background-color: white; color: black;">
 			    </div>
 			</div>
 			<br>
