@@ -53,6 +53,7 @@
 		}
 		for(var i = 0; i <= ${fn:length(list)}; i++){
 			if(i > count-9 && i <= count){
+				console.log(i);
 				$("#"+i).css("display","");
 			} else{
 				$("#"+i).css("display","none");
@@ -101,6 +102,16 @@
 	word-wrap: break-word;
 	line-height: 1.2em;
 	height: 2.4em;
+}
+.card-subtitle{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	line-height: 1.2em;
+	height: 1.2em;
 }
 </style>
 </head>
@@ -162,9 +173,9 @@
 					</c:when>
 					<c:otherwise>
 						<c:set var="i" value="0" />
-						<c:set var="j" value="1" />
+						<c:set var="j" value="${fn:length(list)}" />
 						<c:forEach items="${list }" var="dto">
-							<div id="${j }" class="card mb-3 hover-top" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
+							<div id="${j }" class="card mb-3 hover-top" style="width: 30%; float: left; max-height: 450px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./hoteldetail.do?hotel_no=${dto.hotel_no } '">
 								<img style="height: 200px;" src="${dto.hotel_image }">
 								<div class="card-body">
 									<h5 class="card-title">${dto.hotel_title }</h5>
@@ -186,7 +197,7 @@
 								</ul>
 								<div class="card-footer text-muted">${dto.hotel_price }원</div>
 							</div>
-							<c:set var="j" value="${j + 1 }" />
+							<c:set var="j" value="${j - 1 }" />
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
