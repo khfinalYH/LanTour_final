@@ -32,7 +32,7 @@
 				leng[i].setAttribute("class","page-item");
 			}
 		}
-		for(var i = 0; i <= ${fn:length(list)}; i++){
+		for(var i = 0; i <= ${fn:length(m_list)}; i++){
 			if(i>count-10&&i<=count){
 				$("#"+i).css("display","");
 			} else{

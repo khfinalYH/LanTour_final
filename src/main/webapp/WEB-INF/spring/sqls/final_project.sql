@@ -163,11 +163,5 @@ CREATE TABLE CALENDAR(
 	CAL_ENDDATE VARCHAR2(22),
 	CONSTRAINT CAL_MEMBER_NO_FK FOREIGN KEY(MEMBER_NO) REFERENCES MEMBER(MEMBER_NO)
 );
-select * from MEMBER
-select * from review where member_no =  6
-DELETE FROM MEMBER WHERE MEMBER_NO = 5
-select count(*) as
-		count,TO_CHAR(HOTEL_REGDATE,'YYYY-MM-DD') as regdate
-		from HOTEL
-		group by TO_CHAR(HOTEL_REGDATE,'YYYY-MM-DD')
-		order by TO_CHAR(HOTEL_REGDATE,'YYYY-MM-DD')
+
+select * from hotel;

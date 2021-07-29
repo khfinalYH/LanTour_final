@@ -17,7 +17,7 @@
 	});
 	
 	function paging(j) {
-		var count = ${fn:length(m_list)} - ((j-1) * 10);
+		var count = ${fn:length(c_list)} - ((j-1) * 10);
 		var leng = document.querySelectorAll(".page-item")
 		for (var i = 1; i < leng.length - 1; i++){
 			if(i == j){
@@ -26,7 +26,7 @@
 				leng[i].setAttribute("class","page-item");
 			}
 		}
-		for(var i = 0; i <= ${fn:length(list)}; i++){
+		for(var i = 0; i <= ${fn:length(c_list)}; i++){
 			if(i>count-10&&i<=count){
 				$("#"+i).css("display","");
 			} else{
@@ -105,7 +105,7 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:set var="i" value="0" />
+					<c:set var="i" value="${fn:length(c_list) }" />
 					<c:forEach items="${c_list }" var="dto">
 
 						<tr id="${i }">
@@ -121,7 +121,7 @@
 								<input type="button" value="삭제" class="btn btn-primary btn-sm" onclick="location.href='admincommunityAlldelete.do?community_no=${dto.community_no }'" />
 							</td>
 						</tr>
-						<c:set var="i" value="${i+1 }"></c:set>
+						<c:set var="i" value="${i-1 }"></c:set>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
