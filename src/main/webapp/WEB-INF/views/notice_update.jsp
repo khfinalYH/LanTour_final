@@ -97,7 +97,7 @@
 		<div class="form-group row">
 			
 			<div class="col-sm-10">
-		    	<input type="text" class="form-control"  style="color: black;" value="${dto.notice_title }"  />
+		    	<input type="text" class="form-control" name="notice_title"  style="color: black;" value="${dto.notice_title }"  />
 		    </div>
 			<br><br><br>
 		    <textarea id="summernote" rows="10" cols="60" name="notice_content" >${dto.notice_content }</textarea>
