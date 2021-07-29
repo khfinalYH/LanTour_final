@@ -124,7 +124,7 @@ function pagingNext() {
 
 <div id="main-content" >
 	<div class="col-lg-6" style="position:absolute ;border: 1px solid #8080805c; margin-left: 2%; width: 20%; margin-top: 5.5%">
-		<form action="airplaneList.do" method="post">
+		<form action="rentCarList.do" method="post">
 			<div class="bs-component">
 				<div class="form-group" >
 					<label for="dep" class="form-label mt-4">검색 타입</label>
