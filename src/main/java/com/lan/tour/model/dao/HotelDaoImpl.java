@@ -126,9 +126,7 @@ public class HotelDaoImpl implements HotelDao {
 		// TODO Auto-generated method stub
 		int res = 0;
 		try {
-			sqlSession.update(NAMESPACE+"disableFK");
 			res = sqlSession.delete(NAMESPACE + "deleteByMemberNo", member_no);
-			sqlSession.update(NAMESPACE+"enableFK");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

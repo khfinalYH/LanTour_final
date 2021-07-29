@@ -31,12 +31,6 @@
 		WHERE
 		ROOM_NO = #{room_no}
 	</delete>
-	<update id="disableFK">
-      		ALTER TABLE RESERVATION DISABLE CONSTRAINT RESERVATION_ROOM_NO_FK
-	</update>
-	<update id="enableFK">
-      		ALTER TABLE RESERVATION ENABLE CONSTRAINT RESERVATION_ROOM_NO_FK
-	</update>
 	<delete id="roomdeleteAll" parameterType="int">
 			DELETE FROM ROOM WHERE HOTEL_NO = #{hotel_no}
 	</delete>

@@ -14,7 +14,6 @@
 <script type="text/javascript">
 	$(function() {
 		StarSetting();
-		paging(1);
 	})
 	function StarSetting() {
 		var score = document.getElementsByClassName('score')

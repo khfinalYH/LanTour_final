@@ -184,14 +184,14 @@ function payment(){
 							<div>결제가 완료되었습니다. 이용일로부터 7일 이내이므로 이용 불가시에 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
 								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
 								언제나 금융 사기에 조심하세요<br/>
-								<input type="button"  class="btn btn-outline-primary" value="숙소 페이지로 이동" onclick="location.href='roomdetail.do?room_no=<%=%>'">
+								<input type="button"  class="btn btn-outline-primary" value="숙소 페이지로 이동" onclick="location.href='roomdetail.do?room_no=<%=Roodto.getRoom_no()%>'">
 								</div>					
 						<%}else{ %>
 							<input type="button" class="btn btn-outline-primary"  value="결제 취소" onclick="location.href='canclepay.do?no=<%=Resdto.getReservation_no()%>&id=<%=Resdto.getReservation_pay()%>'">
 							<div>예약일 일주일 전까지는 100% 예약취소 가능합니다. 이후로는 호스트와 직접 연락하여 환불받으셔야 합니다.<br/>	
 								Lantour에서는 회원님께 절대 송금을 요구하지 않습니다.<br/>
 								언제나 금융 사기에 조심하세요<br/>
-								<input type="button"  class="btn btn-outline-primary" value="숙소 페이지로 이동" onclick="location.href=''">
+								<input type="button"  class="btn btn-outline-primary" value="숙소 페이지로 이동" onclick="location.href='roomdetail.do?room_no=<%=Roodto.getRoom_no()%>'">
 								</div>					
 						<%} %>
 					<%}else{ %>
