@@ -88,7 +88,7 @@ public class MyPageController {
 			if (biz.update(dto) > 0) {
 				MemberDto memberdto = (MemberDto)session.getAttribute("login");
 				memberdto.setMember_name(dto.getMember_name());
-				memberdto.setMember_password(pwEncoder.encode(dto.getMember_password()));
+				
 				
 				memberdto.setMember_phone(dto.getMember_phone());
 				memberdto.setMember_email(dto.getMember_email());

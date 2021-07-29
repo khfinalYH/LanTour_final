@@ -63,7 +63,7 @@
 			</div>
 			<br>
 			
-			<input type="hidden" name="member_password" value="${login.member_password}">
+			
 			
 			<div class="form-group row" style="margin:0 auto; width: 60%;">
 			    <label class="col-sm-2 col-form-label">이메일</label>
