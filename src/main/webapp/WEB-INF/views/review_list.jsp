@@ -226,7 +226,7 @@
 				</div>
 				<div id="writeReview" style="display: none;">
 					<div>
-						<span><textarea rows="15" cols="30" name="review_title" class="summernote"  style="resize: none;"></textarea> </span>
+						<span><textarea rows="15" cols="30" name="review_title" class="summernote"  style="resize: none;" required="required"></textarea> </span>
 					</div>
 					<div>
 						<input type="submit" class="btn btn-outline-primary" value="작성">
