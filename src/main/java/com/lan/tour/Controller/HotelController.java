@@ -76,7 +76,7 @@ public class HotelController {
 
 	@RequestMapping("/hoteldelete.do")
 	public String hoteldelete(int hotel_no) {
-		if (biz2.deleteAll(hotel_no) > 0) {
+		if (biz2.deleteAll(hotel_no) >= 0) {
 			if (biz.delete(hotel_no) > 0) {
 				return "redirect:hotellist.do";
 			}

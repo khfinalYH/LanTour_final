@@ -22,7 +22,7 @@
 		swal("호텔 수정","호텔 정보를 수정하시겠습니까?", {buttons:["취소",true]} )
 		.then(conf=>{
 			if(conf){
-				location.href = "./hoteldelete.do?hotel_no=${dto.hotel_no }";
+				location.href = "./hotelupdate.do?hotel_no=${dto.hotel_no }";
 			}
 		})
 	}
