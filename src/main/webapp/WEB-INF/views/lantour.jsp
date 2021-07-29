@@ -46,7 +46,7 @@
 		var category = $(".search_category option:selected").val();
 		var keyword = $(".search_keyword").val();
 		if (keyword.trim() == '') {
-			swwal('검색어를 입력해주세요.');
+			swal('검색어를 입력해주세요.');
 			return false;
 		}
 		location.href = 'lantourlist_category.do?category=' + category
