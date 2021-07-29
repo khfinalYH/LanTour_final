@@ -17,9 +17,9 @@
 		select *
         from (
             select rownum as rn, A.*
-            from ( SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_DATE FROM LANTOUR
+            from ( SELECT LANTOUR_NO, MEMBER_NO, LANTOUR_TITLE, LANTOUR_CONTENT, LANTOUR_DATE FROM LANTOUR ORDER BY LANTOUR_NO DESC
             ) A
-        ) where rn between #{start} and #{end} 
+        ) where rn between #{start} and #{end}
 	</select>	
 		
 	<select id="lantourlist" parameterType="LantourPagingDto" resultType="lantourDto">

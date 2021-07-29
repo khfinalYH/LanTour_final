@@ -156,7 +156,7 @@
 			<ul class="pagination">
 				<li class="page-item disbled">
 				<span class="page-link">
-				<a href="#" onclick="list('${pager.prevPage}')">&laquo;</a></span>
+				<a href="#" onclick="list('${dto.prevPage}')">&laquo;</a></span>
 				</li>	
 				<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index">
 					<c:choose>
@@ -176,7 +176,7 @@
 				</c:forEach>
 				<li class="page-item disbled"><span class="page-link">
 				<c:if test="${dto.curBlock <= dto.totBlock}">
-                <a href="#" onclick="list('${pager.nextPage}')">&raquo;</a>
+                <a href="#" onclick="list('${dto.nextPage}')">&raquo;</a>
 	            </c:if> <!-- 현재 페이지블록이 총 페이지블록보다 작으면 다음으로 갈 수있도록 링크를 추가 -->
 	            </span>
 	            </li>
