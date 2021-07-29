@@ -34,7 +34,7 @@ function guestrtc() {
 		data: checkGuest,
 		success: function(data) {
 			// reservation_pay가 y인 경우
-			if(data == 'Y') {
+			if(data != 'N'&&data != 'cancelled') {
 				swal("환영합니다.").then(ok=>{
 					location.href = lantour_rtc + "?member_name=" + member_name;					
 				});

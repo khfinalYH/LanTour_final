@@ -242,7 +242,7 @@ public class LantourController {
 
 		ReservationDto res = Rbiz.selectOne(dto);
 		if (res == null) {
-			return "redirect:lantourlist.do";
+			return null;
 		}
 		String payYN = res.getReservation_pay();
 		
