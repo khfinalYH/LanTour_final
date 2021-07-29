@@ -26,20 +26,20 @@
 ### 역할
 
 #### 이장근
-#### 공공 API (항공,렌트카), 음성인식, 채팅, 구글 Auth(SNS로그인), import 결제,SMTP 메일발송,카카오 지도
+#### 기능 : 공공 API (항공,렌트카), 음성인식, 채팅, 구글 Auth(SNS로그인), import 결제,SMTP 메일발송,카카오 지도
 #### 게시판(항공, 렌트카, 예약, 후기)
 
 #### 곽채호
-#### TTS , 채팅, 카카오 Auth(SNS로그인)
+#### 기능 : TTS , 채팅, 카카오 Auth(SNS로그인)
 #### 게시판(마이페이지)
 
 #### 양나림
 #### 게시판(랜선투어, RTC 페이지,관리자 페이지) 관리자 회원가입
 
 #### 이수연
-#### 공공 API(축제), RTC(1:N 화상송출),OpenWeatherMap API, FullCalendar API, 카카오 지도, summerNote API
+#### 기능 : 공공 API(축제), RTC(1:N 화상송출),OpenWeatherMap API, FullCalendar API, 카카오 지도, summerNote API
 #### 게시판(랜선투어, RTC페이지, 공지사항, 축제게시판)
 
 #### 최태준
-#### papago api, google 페이지 번역 api, 카카오 지도, chart.js, summernote API, Naver Auth(SNS로그인)
+#### 기능 : papago api, google 페이지 번역 api, 카카오 지도, chart.js, summernote API, Naver Auth(SNS로그인)
 #### 메인,게시판(숙박, 정보, 관리자 페이지)
