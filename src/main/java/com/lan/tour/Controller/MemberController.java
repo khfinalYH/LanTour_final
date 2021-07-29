@@ -116,6 +116,9 @@ public class MemberController {
 				System.out.println("MessagingException");
 				e.printStackTrace();
 				map.put("error", "메일 발송에 실패했습니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+				map.put("error", "메일 발송에 실패했습니다.");
 			}
 		} else {
 			map.put("error", "이미 가입되어있는 메일입니다.");

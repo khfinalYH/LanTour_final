@@ -13,11 +13,10 @@
 	<select id="roomselectOne" parameterType="int"
 		resultType="roomDto">
 		SELECT
-		r.ROOM_NO,r.HOTEL_NO,r.ROOM_CONTENT,r.ROOM_PRICE,r.ROOM_CONVINENCE,r.ROOM_MAXCOUNT,
-		r.ROOM_IMAGE,r.ROOM_NAME,h.MEMBER_NO
-		FROM ROOM r,HOTEL h
+		ROOM_NO,HOTEL_NO,ROOM_CONTENT,ROOM_PRICE,ROOM_CONVINENCE,ROOM_MAXCOUNT,
+		ROOM_IMAGE,ROOM_NAME
+		FROM ROOM
 		WHERE ROOM_NO = #{room_no}
-		AND r.HOTEL_NO = h.HOTEL_NO
 	</select>
 
 	<insert id="roominsert" parameterType="roomDto">

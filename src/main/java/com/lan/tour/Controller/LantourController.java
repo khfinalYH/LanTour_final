@@ -114,8 +114,12 @@ public class LantourController {
 	@RequestMapping("/lantourinsertres.do")
 	public String lantourinsertres(LantourDto dto, String[] lantour_date) {
 		StringBuilder sb = new StringBuilder();
+		int i = 0;
 		for(String date : lantour_date) {
-			sb.append(date+"/");
+			if(lantour_date.length>i) {
+				sb.append(date+",");
+				i++;				
+			}
 		}
 		System.out.println(sb.toString());
 		dto.setLantour_date(sb.toString());

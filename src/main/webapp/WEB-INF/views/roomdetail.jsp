@@ -3,28 +3,21 @@
 <%@page import="com.lan.tour.model.dto.ReservationDto"%>
 <%@page import="com.lan.tour.model.dto.HotelDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-<!-- jQuery UI CSS파일  -->
+<!-- jQuery UI CSS파일  -->  
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
 <!-- // jQuery 기본 js파일 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script  src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>
 <!--// jQuery UI 라이브러리 js파일 -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="  crossorigin="anonymous"></script>
 
-<%
-List<ReservationDto> Resdto = (List<ReservationDto>) request.getAttribute("ResDto");
-%>
-<%
-RoomDto Roodto = (RoomDto) request.getAttribute("RoomDto");
-%>
+<%List<ReservationDto> Resdto = (List<ReservationDto>)request.getAttribute("ResDto"); %>
+<%RoomDto Roodto = (RoomDto)request.getAttribute("RoomDto"); %>
 <script type="text/javascript">
 	function delete_room() {
 		var del = confirm('방 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?');
@@ -54,15 +47,15 @@ RoomDto Roodto = (RoomDto) request.getAttribute("RoomDto");
 	}
 	
 	var disabledDays = [
-		<%if (Resdto != null) {
-	for (int i = 0; i < Resdto.size(); i++) {
-		if (i == Resdto.size() - 1) {%>
+		<%if(Resdto!=null){
+			for(int i = 0; i < Resdto.size(); i++){
+				if(i==Resdto.size()-1){%>
 					["<%=Resdto.get(i).getReservation_date()%>","<%=Resdto.get(i).getReservation_checkout_date()%>"]
-				<%} else {%>
+				<%}else{%>
 					["<%=Resdto.get(i).getReservation_date()%>","<%=Resdto.get(i).getReservation_checkout_date()%>"],
 				<%}%>
-		<%}
-}%>
+		<%	}
+		}%>
 	]
 	
 	
@@ -126,32 +119,31 @@ RoomDto Roodto = (RoomDto) request.getAttribute("RoomDto");
 <body>
 	<jsp:include page="header.jsp" />
 	<form action="reservation.do">
-		<input type="hidden" name="type" value="hotel">
-		<input type="hidden" name="no" value="${dto.hotel_no}">
-		<input type="hidden" name="rno" value="${dto.room_no}">
-		<div id="room-detail">
-			<img src="${dto.room_image }" style="width: 100%; height: 500px;">
-			<div style="width: 80%; margin-top: 20px; margin-bottom: 20px" class="col-6">
-				<label class="visually-hidden" for="datepicker">Date</label>
+	<input type="hidden" name="type" value="hotel">
+	<input type="hidden" name="no" value="${dto.hotel_no}">
+	<input type="hidden" name="rno" value="${dto.room_no}">
+	<div id="room-detail">
+		<img src="${dto.room_image }" style="width: 100%; height: 500px;">
+		<div style="width: 80%; margin-top: 20px; margin-bottom: 20px" class="col-6">
+			<label class="visually-hidden" for="datepicker">Date</label>
 				<div class="input-group">
 					<h5 style="padding-top: 2%; margin-right: 15px;">체크인</h5>
-					<input class="form-control" style="color: black; margin-right: 30px;" name="check_in" id="datepicker" type="text" required="required" readonly="readonly" />
+					<input class="form-control" style="color: black; margin-right: 30px;" name="check_in" id="datepicker" type="text" required="required" readonly="readonly"/>
 					<h5 style="padding-top: 2%; margin-right: 15px;">체크 아웃</h5>
-					<input class="form-control" style="color: black;" name="check_out" id="datepicker2" type="text" required="required" readonly="readonly" />
+					<input class="form-control" style="color: black;" name="check_out" id="datepicker2" type="text" required="required" readonly="readonly"/>
 				</div>
-			</div>
-			<div>
-				<p>이름 : ${dto.room_name }</p>
-				<p>방 소개 : ${dto.room_content } / 인원 : ${dto.room_maxcount }</p>
-				<p>편의 시설 : ${dto.room_convinence }</p>
-				<p>가격 : ${dto.room_price }</p>
-			</div>
-			<c:if test="${dto.member_no eq login.member_no }">
-			<button type="button" class="btn btn-primary" onclick="delete_room()">방 삭제</button>
-			</c:if>
-			<input type="submit" class="btn btn-primary" value="예약">
 		</div>
-	</form>
+		<div>
+			<p>이름 : ${dto.room_name }</p>
+			<p>방 소개 : ${dto.room_content } / 인원 : ${dto.room_maxcount }</p>
+			<p>편의 시설 : ${dto.room_convinence }</p>
+			<p>가격 : ${dto.room_price }</p>
+		</div>
+
+		<button type="button" class="btn btn-primary" onclick="delete_room()">방 삭제</button>
+		<input type="submit" class="btn btn-primary" value="예약" >
+	</div>
+	</form>	
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

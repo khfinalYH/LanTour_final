@@ -30,8 +30,8 @@
 		auth2.disconnect();
 		//카카오 로그아웃
 		<%if(session.getAttribute("token")!=null){%>
-		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-		Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
+			Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+			Kakao.Auth.setAccessToken("<%=(String)session.getAttribute("token") %>");
 			if (!Kakao.Auth.getAccessToken()) {
 			  console.log('Not logged in.');
 			  
