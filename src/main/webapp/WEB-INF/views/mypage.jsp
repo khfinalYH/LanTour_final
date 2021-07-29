@@ -1,3 +1,4 @@
+<%@page import="com.lan.tour.model.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,80 +43,94 @@ function mypagesecession() {
 </script>
 <body>`
 	<jsp:include page="header.jsp" />
+	<% MemberDto Mdto =  (MemberDto)session.getAttribute("login"); %>
 	
-	
-	
+	<br><br>
 	<div class="container">
-      <div class="row">
-        <h1>내 정보</h1>
-        <div class="col-2">
-          <br><br><br>
-          <h3>마이페이지 목록</h3>
-          <ul class="list-group">
-            <li class="list-group-item active"><a href="mypage.do" style="color:white"> 내 정보 확인</a></li>
-            <li class="list-group-item"><a href="mypageupdate.do" style="color:black"> 내 정보 수정</a></li>
-            <li class="list-group-item" ><a href="mypost.do" style="color:black"> 내 게시글 확인</a></li>
-            <li class="list-group-item"><a href="mypayment.do" style="color:black"> 내 결제내역 확인</a></li>
-            <li class="list-group-item"><a href="mytrip.do?member_no=${login.member_no }" style="color:black"> 내 여행 계획</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <ul class="nav nav-pills" >
+		  <li class="nav-item">
+		    <a class="nav-link active" href="mypage.do">정보 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypageupdate.do">정보 수정</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypost.do">게시글 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypayment.do">결제내역 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mytrip.do?member_no=${login.member_no }">여행일정 확인</a>
+		  </li>
+				  <%if(Mdto.getMember_grade().equals("H")){ %>
+				  <li class="nav-item">
+				    <a class="nav-link" href="mypagehost.do">호스트 관리</a>
+				  </li>
+				  <%} %>
+		</ul>
+		<br><br><br>
     
     
-	<form action="./mypage.do" method="post" >
+
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
-
-
-		<table class="container col-1 col-lg-2" border="1">
-		 	 <tr>
-	            <th class="list-group-item">아이디</th>
-	            <td>
-	               ${login.member_id }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th class="list-group-item">이름</th>
-	            <td>
-	               ${login.member_name }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th class="list-group-item">나이</th>
-	            <td>
-	               ${login.member_age }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th class="list-group-item">성별</th>
-	            <td>
-	               ${login.member_gender }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th class="list-group-item">이메일</th>
-	            <td>
-	               ${login.member_email }
-	            </td>
-	         </tr>
-	         <tr>
-	            <th class="list-group-item">전화번호</th>
-	            <td>
-	               ${login.member_phone }
-	            </td>
-	         </tr>
-	         <tr>
-	         <th>
-	            <td colspan="2">
-	                <input class="btn btn-primary float-right" type="button" value="수정하기" onclick="location.href='mypageupdate.do';"/>
-	                <input class="btn btn-primary float-right" type="button" value="회원탈퇴" onclick="location.href='mypagesecession.do'"/>               
-	            </td>
-	         </tr>
-	      </table>
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">아이디</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_id }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">이름</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_name }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">나이</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_age }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">성별</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_gender }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">이메일</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_email }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		
+		<div class="form-group row" style="margin:0 auto; width: 60%;">
+		    <label class="col-sm-2 col-form-label">전화번호</label>
+		    <div class="col-sm-10">
+		        <input type="text" class="form-control" value="${login.member_phone }" readonly="readonly" style="background-color: white; color: black;">
+		    </div>
+		</div>
+		<br>
+		<div style="margin:0 auto; width: 60%; float: right;">
+	      <input class="btn btn-outline-primary" type="button" value="수정하기" onclick="location.href='mypageupdate.do'"/>
+	      <input class="btn btn-outline-primary" type="button" value="회원탈퇴" onclick="location.href='mypagesecession.do'"/>
+	    </div>
       </div>
-      </form>
+
+   </div>
+   <br><br>
 <jsp:include page="footer.jsp" />
 </body>
 </html>
