@@ -2,7 +2,7 @@ package com.lan.tour.model.dto;
 
 public class LantourPagingDto {
 	public static final int PAGE_SCALE=9;    //페이지당 게시물수
-    public static final int BLOCK_SCALE=2;    //화면당 페이지수
+    public static final int BLOCK_SCALE=5;    //화면당 페이지수
     
  
 	private String category;
