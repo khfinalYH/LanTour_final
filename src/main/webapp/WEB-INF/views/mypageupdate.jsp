@@ -43,6 +43,7 @@
 	
 	
 	<form action="./mypageupdateres.do" method="post">
+		<fieldset>
 		<input type="hidden" name="member_no" value="${login.member_no }">
 		<!--  목록 -->
 		<div>
@@ -85,14 +86,15 @@
 			    </div>
 			</div>
 			<br>
-
 			
-			<div style="margin:0 auto; width: 60%; float: right;">
-		      <input class="btn btn-outline-primary" type="submit" value="수정완료"/>
-		      <input class="btn btn-outline-primary" type="button" value="취소" onclick="location.href='mypage.do?mypage=${login.member_id}';"/>
-		    </div>
+			
 
 		</div>
+		<div style="margin:0 auto; width: 60%; float: right;">
+		      <input class="btn btn-outline-primary" type="submit" value="수정완료"/>
+		      <input class="btn btn-outline-primary" type="button" value="취소" onclick="location.href='mypage.do?mypage=${login.member_id}';"/>
+		</div>
+		</fieldset>
 	</form>
 	</div>
 <jsp:include page="footer.jsp" />

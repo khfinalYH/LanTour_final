@@ -76,6 +76,7 @@ function mypagesecession() {
 	<input type ="hidden" name = "member_no" value = "${login.member_no }">
 	<!--  목록 -->
 	<div>
+		
 		<div class="form-group row" style="margin:0 auto; width: 60%;">
 		    <label class="col-sm-2 col-form-label">아이디</label>
 		    <div class="col-sm-10">
