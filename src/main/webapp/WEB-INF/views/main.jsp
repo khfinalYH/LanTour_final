@@ -163,7 +163,7 @@
 							<div class="hover-top" style="width: 17%; float: left; margin-right: 20px;">
 								<div class="card text-white">
 									<a class="stretched-link" href="./lantourdetail.do?lantour_no=${l_list.get(i).lantour_no }">
-										<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+										<img class="img-fluid" style="height: 200px;" src="${l_list.get(i).lantour_image }" alt="" />
 									</a>
 									<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
 										<h5 class="text-white fs--1">${l_list.get(i).lantour_title }</h5>
@@ -195,7 +195,7 @@
 							<div class="hover-top" style="width: 17%; float: left; margin-right: 20px;">
 								<div class="card text-white">
 									<a class="stretched-link" href="./hoteldetail.do?hotel_no=${h_list.get(i).hotel_no } ">
-										<img class="img-fluid" style="height: 200px;" src="./resources/imgtest/test.jpg" alt="" />
+										<img class="img-fluid" style="height: 200px;" src="${h_list.get(i).hotel_image }" alt="" />
 									</a>
 									<div class="card-img-overlay d-flex align-items-end bg-dark-gradient">
 										<h5 class="text-white fs--1">${h_list.get(i).hotel_title }</h5>

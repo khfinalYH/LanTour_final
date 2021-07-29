@@ -91,6 +91,17 @@
 .paging-div {
 	margin-left: 60%;
 }
+
+.card-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	line-height: 1.2em;
+	height: 2.4em;
+}
 </style>
 </head>
 <body>
@@ -133,10 +144,13 @@
 					</fieldset>
 					<fieldset class="form-group">
 						<legend class="mt-4">날짜</legend>
-						<label for="customRange3" class="form-label">체크인</label><br/>
-						<input type="date" min="" name="check_in" onchange="document.getElementById('checkoutDate').value=''" value="<%=request.getAttribute("check_in")!=null?(String)request.getAttribute("check_in"):""%>"><br/>
-						<label for="customRange3" class="form-label">체크아웃</label><br/>
-						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate" value="<%=request.getAttribute("check_out")!=null?(String)request.getAttribute("check_out"):""%>">
+						<label for="customRange3" class="form-label">체크인</label>
+						<br />
+						<input type="date" min="" name="check_in" onchange="document.getElementById('checkoutDate').value=''" value="<%=request.getAttribute("check_in") != null ? (String) request.getAttribute("check_in") : ""%>">
+						<br />
+						<label for="customRange3" class="form-label">체크아웃</label>
+						<br />
+						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate" value="<%=request.getAttribute("check_out") != null ? (String) request.getAttribute("check_out") : ""%>">
 					</fieldset>
 					<button type="submit" class="btn btn-primary">검색</button>
 				</form>
@@ -198,6 +212,7 @@
 
 
 	</div>
+
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
