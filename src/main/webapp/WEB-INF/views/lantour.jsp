@@ -124,7 +124,7 @@
 									style="border-bottom: 1px solid #adadad;">
 									<c:choose>
 										<c:when test="${dto.lantour_no eq scorelist[i].lantour_no}">
-											<li class="list-group-item"><span class="scoreStar"></span>${scorelist[i].review_score }<span>/5(${scorelist[i].review_no })</span></li>
+											<li class="list-group-item"><span class="scoreStar"></span><span class="score">${scorelist[i].review_score }</span><span>/5(${scorelist[i].review_no })</span></li>
 											<c:set var="i" value="${i+1 }"></c:set>
 										</c:when>
 										<c:otherwise>

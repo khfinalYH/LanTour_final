@@ -118,7 +118,7 @@
 				</h3>
 				<div id="writeReview"">
 					<div>
-						<span><textarea rows="10" cols="30" name="review_title" class="summernote"><%=Rdto.getReview_title() %></textarea> </span>
+						<span><textarea rows="10" cols="30" name="review_title" class="summernote" required="required"><%=Rdto.getReview_title() %></textarea> </span>
 					</div>
 					<div>
 						<input type="submit" class="btn btn-outline-primary" value="작성">

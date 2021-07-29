@@ -87,7 +87,7 @@ public class NoticeController {
 			return "redirect:noticeList_category.do?nowPage=" + 1;
 		}
 		
-		return "redirect:noticeInsert.do";
+		return "redirect:noticeInsertForm.do";
 	}
 	
 	@RequestMapping("/noticeSelectOne.do")
