@@ -96,6 +96,8 @@ public class LantourController {
 		LantourPagingDto dto = new LantourPagingDto(count, curPage, category, keyword);
 		int start = dto.getPageBegin();
         int end =  dto.getPageEnd();
+        
+        System.out.println(dto);
 			
 		model.addAttribute("list", biz.listAll(category, keyword, start, end));//search_option, keyword, start, end
 		model.addAttribute("dto", dto);
