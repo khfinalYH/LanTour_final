@@ -97,7 +97,7 @@
 		FROM RESERVATION
 		WHERE MEMBER_NO =
 		#{member_no}
-		ORDER BY RESERVATION_NO DESC
+		ORDER BY RESERVATION_NO ASC
 	</select>
 	<update id="update_pay" parameterType="ReservationDto">
 		UPDATE RESERVATION SET

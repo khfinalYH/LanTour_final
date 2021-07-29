@@ -1,3 +1,4 @@
+<%@page import="com.lan.tour.model.dto.MemberDto"%>
 <%@page import="com.lan.tour.model.dto.RoomDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lan.tour.model.dto.ReservationDto"%>
@@ -139,8 +140,9 @@
 			<p>편의 시설 : ${dto.room_convinence }</p>
 			<p>가격 : ${dto.room_price }</p>
 		</div>
-
+	<%if(((MemberDto)request.getAttribute("login")).getMember_no()==((HotelDto)request.getAttribute("hotel")).getHotel_no()){ %>
 		<button type="button" class="btn btn-primary" onclick="delete_room()">방 삭제</button>
+	<%} %>
 		<input type="submit" class="btn btn-primary" value="예약" >
 	</div>
 	</form>	

@@ -197,7 +197,7 @@
 					<div>
 						<div class="form-group">
 							<label for="exampleInputEmail1" class="form-label mt-4">편의 시설</label>
-							<input type="text" name="hotel_convinence" style="width: 70%; color: black;" class="form-control" placeholder="숫자를 입력하세요">
+							<textarea class="form-control" name="hotel_convinence" style="width: 70%; color: black;"  rows="10" placeholder="내용을 입력하세요"></textarea>
 						</div>
 					</div>
 					<div>
