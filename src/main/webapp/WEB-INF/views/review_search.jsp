@@ -158,7 +158,7 @@
 </script>
 <body style="padding: 0;">
 <div class="bs-docs-section" style="display: flex;">
-		<%if(login!=null){ %>	
+		<%if(login!=null&&login.getMember_no()!=(int)request.getAttribute("host_no")){ %>	
 	<div id="writebox" class="bs-component card border-secondary mb-3" style="width: 475px;">
 		<form action="ReviewInsert.do" method="post">
 			<input type="hidden" name="no" value="<%=(int)request.getAttribute("no")%>">

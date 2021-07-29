@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.lan.tour.model.biz.HotelBiz;
+import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.MemberBiz;
 import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.dto.ReviewDto;
@@ -35,6 +37,12 @@ public class ReviewController {
 	@Autowired
 	MemberBiz Mbiz;
 
+	@Autowired
+	LantourBiz Lbiz;
+
+	@Autowired
+	HotelBiz Hbiz;
+	
 	@RequestMapping("reviewlist.do")
 	public String reviewList(Model model,String type,int no) {
 		List<ReviewDto> list = biz.selectList(type, no);
@@ -45,6 +53,13 @@ public class ReviewController {
 			Mdto.getMember_name();
 			map.put(""+num, Mdto.getMember_name());
 		}
+		int host_no=0;
+		if(type.equals("hotel")) {
+			host_no =  Hbiz.selectOne(no).getMember_no();
+		}else {
+			host_no =  Lbiz.selectOne(no).getMember_no();
+		}
+		model.addAttribute("host_no", host_no);
 		model.addAttribute("type", type);
 		model.addAttribute("map", map);
 		model.addAttribute("list", list);
