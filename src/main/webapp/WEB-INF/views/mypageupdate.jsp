@@ -63,13 +63,6 @@
 			</div>
 			<br>
 			
-			<div class="form-group row" style="margin:0 auto; width: 60%;">
-			    <label class="col-sm-2 col-form-label">비밀번호</label>
-			    <div class="col-sm-10">
-			        <input type="text" class="form-control" name="member_password" value="${login.member_password }" style="background-color: white; color: black;">
-			    </div>
-			</div>
-			<br>
 			
 			<div class="form-group row" style="margin:0 auto; width: 60%;">
 			    <label class="col-sm-2 col-form-label">이메일</label>
