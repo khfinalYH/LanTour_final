@@ -135,7 +135,7 @@ function pagingNext() {
 			int i = 0;
 			for(ReservationDto rdto :list){%>
 			<%if(rdto.getHotel_title()==null){rdto.setHotel_title("삭제된 호텔입니다.");}if(rdto.getRoom_name()==null){rdto.setRoom_name("삭제된 방입니다.");}if(rdto.getLantour_title()==null){rdto.setLantour_title("삭제된 투어입니다.");} %>
-			<tr class = "reservations" id="reservation<%=i++%>"onclick="location.href='reservation_detail_one.do?no=<%=rdto.getReservation_no() %>'" >
+			<tr class = "reservations" id="reservation<%=i++%>" <%if(rdto.getRoom_no()==0){ if(!rdto.getRoom_name().equals("삭제된 방입니다.")){ %>onclick="location.href='reservation_detail_one.do?no=<%=rdto.getReservation_no() %>'"<%}}else{if(!rdto.getLantour_title().equals("삭제된 투어입니다.")){ %>onclick="location.href='reservation_detail_one.do?no=<%=rdto.getReservation_no() %>'"<%}} %> >
 				<td scope="row"><%=rdto.getReservation_no() %></td>
 				<td><%=rdto.getRoom_no()==0? rdto.getLantour_title():rdto.getHotel_title()+"-"+rdto.getRoom_name() %></td>
 				<td><%=rdto.getRoom_no()==0? rdto.getReservation_date():rdto.getReservation_date()+"~"+rdto.getReservation_checkout_date() %></td>

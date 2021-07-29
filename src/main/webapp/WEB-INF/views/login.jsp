@@ -60,8 +60,10 @@ response.setContentType("text/html; charset=UTF-8");
 				})
 				break;
 			case "login":
-				swal("로그인되었습니다.")
-				location.href = "main.do"
+				swal("로그인 성공","성공적으로 로그인되었습니다.", "success")
+				.then(confirm=>{
+					location.href = "main.do";
+				})
 				break;
 			case "hasemail":
 				swal("이미 가입되어있는 이메일입니다")
@@ -118,7 +120,7 @@ response.setContentType("text/html; charset=UTF-8");
 		//sdk 초기화 여부를 판단
 		Kakao.isInitialized();
 		
-		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=localhost:8443/tour/kakaologin.do&response_type=code";
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/3/tour/kakaologin.do&response_type=code";
 	}
 </script>
 

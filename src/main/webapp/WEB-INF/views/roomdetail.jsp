@@ -17,28 +17,32 @@
 <!--// jQuery UI 라이브러리 js파일 -->
 <script  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="  crossorigin="anonymous"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%List<ReservationDto> Resdto = (List<ReservationDto>)request.getAttribute("ResDto"); %>
 <%RoomDto Roodto = (RoomDto)request.getAttribute("RoomDto"); %>
 <script type="text/javascript">
 	function delete_room() {
-		var del = confirm('방 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?');
-		if (del) {
-			$.ajax({
-				type: "post",
-				url : "./roomdelete.do",
-				data:{"room_no":${dto.room_no}},
-				dataType:"json",
-				success : function (msg) {
-					if(msg.check == true){
-						alert("삭제 되었습니다");
-						location.href = "./hoteldetail.do?hotel_no=${dto.hotel_no }";
+		swal('방 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?',{buttons:["취소",true]})
+		.then(conf=>{
+			if(conf){
+				$.ajax({
+					type: "post",
+					url : "./roomdelete.do",
+					data:{"room_no":${dto.room_no}},
+					dataType:"json",
+					success : function (msg) {
+						if(msg.check == true){
+							swal("삭제 되었습니다");
+							location.href = "./hoteldetail.do?hotel_no=${dto.hotel_no }";
+						}
+					},
+					error : function () {
+						swal("통신 실패");
 					}
-				},
-				error : function () {
-					alert("통신 실패");
-				}
-			});
-		}
+				});
+				
+			}
+		})
 	}
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -140,7 +144,7 @@
 			<p>편의 시설 : ${dto.room_convinence }</p>
 			<p>가격 : ${dto.room_price }</p>
 		</div>
-	<%if(((MemberDto)request.getAttribute("login")).getMember_no()==((HotelDto)request.getAttribute("hotel")).getHotel_no()){ %>
+	<%if(((MemberDto)session.getAttribute("login")).getMember_no()==((HotelDto)request.getAttribute("hotel")).getMember_no()){ %>
 		<button type="button" class="btn btn-primary" onclick="delete_room()">방 삭제</button>
 	<%} %>
 		<input type="submit" class="btn btn-primary" value="예약" >
