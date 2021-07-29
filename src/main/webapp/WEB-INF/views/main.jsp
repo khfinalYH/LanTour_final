@@ -216,10 +216,10 @@
 					<c:forEach var="i" begin="0" end="${fn:length(c_list) - 1}">
 						<c:if test="${i lt '4' }">
 							<c:choose>
-								<c:when test="${c_list.get(0).community_delflag eq 'N'}">
-									<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(0).community_no }'">
-										<h5>${c_list.get(0).community_title }</h5>
-										<p style="font-size: 10px;">${c_list.get(0).member_name }</p>
+								<c:when test="${c_list.get(i).community_delflag eq 'N'}">
+									<div class="hover-top" onclick="location.href='./communitydetail.do?community_no=${c_list.get(i).community_no }'">
+										<h5>${c_list.get(i).community_title }</h5>
+										<p style="font-size: 10px;">${c_list.get(i).member_name }</p>
 									</div>
 								</c:when>
 								<c:otherwise>
