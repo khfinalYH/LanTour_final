@@ -2,9 +2,17 @@ package com.lan.tour.model.dto;
 
 public class LantourPagingDto {
 	public static final int PAGE_SCALE=9;    //페이지당 게시물수
-    public static final int BLOCK_SCALE=5;    //화면당 페이지수
+//    public static final int BLOCK_SCALE=5;    //화면당 페이지수
     
  
+	private int BLOCK_SCALE;
+	public int getBLOCK_SCALE() {
+		return BLOCK_SCALE;
+	}
+	public void setBLOCK_SCALE(int bLOCK_SCALE) {
+		BLOCK_SCALE = bLOCK_SCALE;
+	}
+
 	private String category;
 	private String keyword;
 	
@@ -51,6 +59,12 @@ public class LantourPagingDto {
     //생성자
     // Pager(레코드갯수, 출력할페이지번호)
     public LantourPagingDto(int count, int curPage, String keyword, String category) {
+    	if(count != 0) {
+    		this.BLOCK_SCALE = ((count % PAGE_SCALE) <= 0)? (count / PAGE_SCALE):(count / PAGE_SCALE)+1;
+    	} else {
+    		this.BLOCK_SCALE = 5;
+    	}
+    	
     	this.keyword = keyword;
     	this.category = category;
         curBlock = 1; //현재블록 번호
