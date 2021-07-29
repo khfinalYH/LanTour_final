@@ -110,6 +110,7 @@ public class LantourPagingDto {
     }
     
     
+    
     public int getCurPage() {
         return curPage;
     }
