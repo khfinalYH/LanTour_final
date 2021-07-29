@@ -1,3 +1,4 @@
+<%@page import="com.lan.tour.model.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -59,22 +60,33 @@ function select_change() {
 </script>
 <body>
 	<jsp:include page="header.jsp" />
-		<div class="container">
-	      <div class="row">
-	        <h1>내 게시글 확인</h1>
-	        <div class="col-2">
-	          <br><br><br>
-	          <h3>마이페이지 목록</h3>
-	          <ul class="list-group">
-	            <li class="list-group-item"><a href="mypage.do" style="color:black"> 내 정보 확인</a></li>
-	            <li class="list-group-item"><a href="mypageupdate.do" style="color:black"> 내 정보 수정</a></li>
-	            <li class="list-group-item active"><a href="mypost.do" style="color:white"> 내 게시글 확인</a></li>
-	            <li class="list-group-item"><a href="mypayment.do" style="color:black"> 내 결제내역 확인</a></li>
-	            <li class="list-group-item"><a href="mytrip.do?member_no=${login.member_no }" style="color:black"> 내 여행 계획</a></li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
+	<% MemberDto Mdto =  (MemberDto)session.getAttribute("login"); %>
+	
+	<br><br>
+	<div class="container">
+      <ul class="nav nav-pills" >
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypage.do">정보 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypageupdate.do">정보 수정</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link active" href="mypost.do">게시글 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mypayment.do">결제내역 확인</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="mytrip.do?member_no=${login.member_no }">여행일정 확인</a>
+		  </li>
+				  <%if(Mdto.getMember_grade().equals("H")){ %>
+				  <li class="nav-item">
+				    <a class="nav-link" href="mypagehost.do">호스트 관리</a>
+				  </li>
+				  <%} %>
+		</ul>
+		<br><br>
 	    
 	<form action="./mypost.do" method="post" >
 	<!--  목록 -->
@@ -128,7 +140,7 @@ function select_change() {
 					</c:otherwise>
 				</c:choose>
 			</table>
-			<div class="paging-div">
+			<div class="paging-div" style="display: flex; justify-content: center;">
 				<ul class="pagination">
 					<li class="page-item disabled"><span class="page-link">&laquo;</span></li>
 					<c:forEach var="i" begin="0" end="${fn:length(list)/10 }">
@@ -140,7 +152,7 @@ function select_change() {
 		</div>
 	</div>
 	</form>
-	
+	</div>
 <jsp:include page="footer.jsp" />
 </body>
 </html>
