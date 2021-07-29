@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -222,6 +223,7 @@ public class LantourController {
 	}
 	
 	@ResponseBody
+	@CrossOrigin(origins="https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:3000")
 	@RequestMapping(value = "/updateRtcAddr.do", method = RequestMethod.GET)
 	public void updateRtcAddr(@RequestParam("room_id") String room_id, @RequestParam("lantour_no") String lantour_no) {
 		String lantour_rtc = "https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:3000/" + room_id;

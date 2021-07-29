@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  }
       },
       eventDrop : function(info) {
-    	  swal("일정", "일정을 변경하시겠습니까?", true))
+    	  swal("일정", "일정을 변경하시겠습니까?", {buttons:["취소",true]} )
 		 .then(conf=>{
 			 if(conf){
 	    		  var msg = dragUpdate(info);
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       eventResize : function(info) {
 
-    	  swal("일정", "일정을 변경하시겠습니까?", true))
+    	  swal("일정", "일정을 변경하시겠습니까?", {buttons:["취소",true]} )
 		 .then(conf=>{			 
 	    	  if(conf) {
 	    		  var msg = dragUpdate(info);

@@ -153,6 +153,10 @@
 						<input type="date" style="margin-bottom: 20px" min="" name="check_out" id="checkoutDate" value="<%=request.getAttribute("check_out") != null ? (String) request.getAttribute("check_out") : ""%>">
 					</fieldset>
 					<button type="submit" class="btn btn-primary">검색</button>
+					
+		<c:if test="${login.member_grade eq 'H' }">
+					<input type="button" class="btn btn-primary" value="숙소 등록" onclick="location.href='./hotelinsert.do'" />
+		</c:if>
 				</form>
 			</div>
 			<div class="hotel-list">
@@ -192,13 +196,6 @@
 				</c:choose>
 			</div>
 		</div>
-		<c:if test="${login.member_grade eq 'H' }">
-			<div>
-				<div class="form-group">
-					<input type="button" class="btn btn-primary" value="숙소 등록" onclick="location.href='./hotelinsert.do'" />
-				</div>
-			</div>
-		</c:if>
 		<div class="paging-div">
 			<ul class="pagination">
 				<li class="page-item disabled"><span class="page-link">&laquo;</span></li>
