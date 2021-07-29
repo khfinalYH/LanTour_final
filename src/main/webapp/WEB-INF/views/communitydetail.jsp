@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
 	$(function () {
 		commentlist();
@@ -29,11 +31,11 @@
 						if(msg.check == true){
 							commentlist();
 						}else {
-							alert("댓글 수정 실패");
+							swal("댓글 수정 실패");
 						}
 					},
 					error : function () {
-						alert("통신 실패");
+						swal("통신 실패");
 					}
 					
 				});
@@ -50,11 +52,11 @@
 					if(msg.check == true){
 						commentlist();
 					}else {
-						alert("댓글 삭제 실패");
+						swal("댓글 삭제 실패");
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			});
 			
@@ -74,11 +76,11 @@
 					$("#comment_content").val("");
 					commentlist();
 				} else {
-					alert("댓글 등록 실패");
+					swal("댓글 등록 실패");
 				}
 			},
 			error : function () {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}
@@ -122,7 +124,7 @@
 				paging(1);
 			},
 			error : function () {
-				alert("통신 실패")
+				swal("통신 실패")
 			}
 		});
 	}

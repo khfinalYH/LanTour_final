@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript">
 
 	function upload() {
@@ -25,7 +26,7 @@
 				$("#lantour_image").val(msg.path)
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		})
 	}

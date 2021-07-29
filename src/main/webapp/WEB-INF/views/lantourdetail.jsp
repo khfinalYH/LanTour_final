@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript">
 function update_hotel() {
 	var update = confirm("투어 정보를 수정하시겠습니까?")
@@ -34,14 +35,15 @@ function guestrtc() {
 		success: function(data) {
 			// reservation_pay가 y인 경우
 			if(data == 'Y') {
-				alert("환영합니다.");
-				location.href = lantour_rtc + "?member_name=" + member_name;
+				swal("환영합니다.").then(ok=>{
+					location.href = lantour_rtc + "?member_name=" + member_name;					
+				});
 			} else {
-				alert("예약한 사용자만 입장이 가능합니다.");
+				swal("예약한 사용자만 입장이 가능합니다.");
 			}
 		},
 		error: function() {
-			alert("통신 실패");
+			swal("통신 실패");
 		}
 	});
 
@@ -118,7 +120,7 @@ function guestrtc() {
 								</c:if>
 						</c:when>
 						<c:otherwise>
-							<span>일반 회원만 이용 가능한 서비스 입니다.</span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="로그인 하러가기" onclick="location.href='loginform.do'"/> 
+							<span>일반 회원만 이용 가능한 서비스 입니다.</span>&nbsp;&nbsp;&nbsp;&nbsp; 
 						</c:otherwise>	
 					</c:choose>
 				</td>

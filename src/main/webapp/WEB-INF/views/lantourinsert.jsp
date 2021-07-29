@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript">
 	function upload() {
 		var form = new FormData();
@@ -25,7 +26,7 @@
 				$("#lantour_image").val(msg.path)
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		})
 	}

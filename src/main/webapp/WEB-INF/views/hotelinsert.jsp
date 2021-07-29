@@ -3,10 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#second").css("display", "none");
@@ -31,7 +32,7 @@
 				$("#hotel_image").val(msg.path);
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		})
 	}

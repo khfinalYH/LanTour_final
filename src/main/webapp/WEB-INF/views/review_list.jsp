@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>랜선투어</title>
+<title>LanTour</title>
 </head>
 <link rel="stylesheet" href="./resources/5/litera/bootstrap.css">
 <link rel="stylesheet" href="./resources/_vendor/font-awesome/css/font-awesome.min.css">
@@ -22,6 +22,8 @@
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+
 <%List<ReviewDto> list = (List<ReviewDto>)request.getAttribute("list"); %>
 <%Map<String,String> map = (Map<String,String>)request.getAttribute("map"); %>
 <%MemberDto login = (MemberDto)session.getAttribute("login"); %>
@@ -30,7 +32,7 @@
 <script type="text/javascript">
 	$(function() {
 		<%if(request.getParameter("error")!=null){%>
-			alert("작성 실패했습니다. 글자수를 줄여주세요.")
+			swal("작성 실패했습니다. 글자수를 줄여주세요.")
 		<%}%>
 		
 		paging(0)
@@ -65,7 +67,7 @@
 				$(el).summernote('editor.insertImage', msg.path);
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}

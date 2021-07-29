@@ -11,11 +11,12 @@ response.setContentType("text/html; charset=UTF-8");
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 
-<title>Insert title here</title>
+<title>LanTour</title>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	function onSignIn(googleUser) {
@@ -33,30 +34,40 @@ response.setContentType("text/html; charset=UTF-8");
 			console.log('Signed in as: ' + xhr.responseText);
 			switch (xhr.responseText) {
 			case "InvalidEmain":
-				alert("구글 이메일 인증이 되어있지 않습니다.")
+				swal("구글 이메일 인증이 되어있지 않습니다.")
 				break;
 			case "signup":
 				document.getElementById("id_token").value = id_token
 				
-				if(confirm("구글 계정으로 회원가입 하시겠습니까?")){
-					var f = document.google
-					f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
-					f.action = "googlesignup.do";//이동할 페이지
-					f.method = "post";//POST방식
-					f.submit();
-				}else{
-					signOut()
-				}
+				swal({
+					title:"구글로그인",
+					text:"회원가입으로 넘어가시겠습니까?",
+					buttons: ["돌아가기",true]
+				}).then((check)=>{
+					if(check){
+						var f = document.google
+						f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
+						f.action = "googlesignup.do";//이동할 페이지
+						f.method = "post";//POST방식
+						f.submit();						
+					}else{
+						var auth2 = gapi.auth2.getAuthInstance();
+						auth2.signOut().then(function () {
+						  console.log('User signed out.');
+						});
+						auth2.disconnect();
+					}
+				})
 				break;
 			case "login":
-				alert("로그인되었습니다.")
+				swal("로그인되었습니다.")
 				location.href = "main.do"
 				break;
 			case "hasemail":
-				alert("이미 가입되어있는 이메일입니다")
+				swal("이미 가입되어있는 이메일입니다")
 				break;
 			default:
-				alert("부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)")
+				swal("부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)")
 				break;
 			}
 		};
@@ -74,7 +85,7 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 		if (member_id == null || member_id == "" || member_password == null
 				|| member_password == "") {
-			alert("Id와 Password를 다시 확인해주세요");
+			swal("로그인 실패","Id와 Password를 다시 확인해주세요","error");
 		} else {
 			$.ajax({
 				url : 'loginCheck.do',
@@ -84,16 +95,19 @@ response.setContentType("text/html; charset=UTF-8");
 				dataType : 'json',
 				success : function(data) {
 					if (data.check == true) {
-						alert("성공적으로 로그인되었습니다.");
-						location.href = "main.do";
+						swal("로그인 성공","성공적으로 로그인되었습니다.", "success")
+						.then(confirm=>{
+							location.href = "main.do";
+							
+						})
 					} else {
 						$("#loginChk").show();
-						alert("Id 혹은 Password를 다시 확인해주세요.")
+						swal("로그인 실패","Id 혹은 Password를 다시 확인해주세요.", "error")
 						$("#loginChk").html("Id 혹은 Password를 다시 확인해주세요.");
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			});
 		}

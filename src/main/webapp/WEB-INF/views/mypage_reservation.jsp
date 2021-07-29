@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 </head>
 <%List<ReservationDto> list = (List<ReservationDto>)request.getAttribute("list");%>
 <% MemberDto Mdto =  (MemberDto)session.getAttribute("login"); %>

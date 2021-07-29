@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>랜선투어</title>
+<title>LanTour</title>
 </head>
 <style>
 	

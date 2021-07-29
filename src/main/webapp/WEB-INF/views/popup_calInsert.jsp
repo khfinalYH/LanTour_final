@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#cal_insert").click(function(){
@@ -40,17 +42,17 @@ $(document).ready(function(){
         var end_date = new Date(endArray[0], endArray[1], endArray[2]);
 
         if(start_date.getTime() > end_date.getTime()) {
-        	alert("종료날짜보다 시작날짜가 작아야합니다.");
+        	swal("종료날짜보다 시작날짜가 작아야합니다.");
             return false;
         }
 
         if (cal_title.trim() == "") {
-        	alert("제목을 입력해주세요");
+        	swal("제목을 입력해주세요");
             return false;
         }
 
         if (!Date.parse(start_date)) {
-        	alert("시작날짜를 입력해주세요");
+        	swal("시작날짜를 입력해주세요");
             return false;
         }
         
@@ -65,9 +67,10 @@ $(document).ready(function(){
         		"cal_enddate" : end_dt
         	},
         	success: function(){
-        		alert("일정이 등록되었습니다.");
+        		swal("일정이 등록되었습니다.").then(conf=>{
         		opener.location.reload();
-        		window.close();
+        		window.close();        			
+        		})
         	}
         });
 

@@ -9,12 +9,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <link href='resources/fullcalendar/main.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="resources/fullcalendar/main.js" ></script>
 <script type="text/javascript" src="resources/fullcalendar/locale.js" ></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 
 <style type="text/css">
 
@@ -102,7 +103,7 @@ function dragUpdate(info) {
 			}
 		},
 		error: function() {
-			alert("통신오류")
+			swal("통신오류")
 		}
 	});
 	return msg;
@@ -135,20 +136,27 @@ document.addEventListener('DOMContentLoaded', function() {
     	  }
       },
       eventDrop : function(info) {
-    	  if(confirm("일정을 변경하시겠습니까?")) {
-    		  var msg = dragUpdate(info);
-    		  alert(msg);
-    	  } else {
-    		  info.revert();
-    	  }
+    	  swal("일정", "일정을 변경하시겠습니까?", true))
+		 .then(conf=>{
+			 if(conf){
+	    		  var msg = dragUpdate(info);
+	    		  swal(msg);
+	    	  } else {
+	    		  info.revert();
+	    	  }
+  		 })
       },
       eventResize : function(info) {
-    	  if(confirm("일정을 변경하시겠습니까?")) {
-    		  var msg = dragUpdate(info);
-    		  alert(msg);
-    	  } else {
-    		  info.revert();
-    	  }
+
+    	  swal("일정", "일정을 변경하시겠습니까?", true))
+		 .then(conf=>{			 
+	    	  if(conf) {
+	    		  var msg = dragUpdate(info);
+	    		  swal(msg);
+	    	  } else {
+	    		  info.revert();
+	    	  }
+  		 })
       },
       eventSources : [
     	  {	  // 랜선투어

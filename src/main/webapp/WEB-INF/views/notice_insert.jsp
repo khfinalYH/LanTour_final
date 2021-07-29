@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 </head>
 <script type="text/javascript">
 		function insertChk(frm) {
@@ -24,12 +25,14 @@
 			notice_content = notice_content.replace(/&nbsp;/gi, '');
 			
 			if (notice_title.trim() == '') {
-				alert("제목을 입력해주세요.");
-				return false;
+				swal("제목을 입력해주세요.").then(conf=>{
+					return false
+				})
 			}
 			if (notice_content.trim() == '') {
-				alert("내용을 입력해주세요.");
-				return false;
+				swal("내용을 입력해주세요.").then(conf=>{
+					return false
+				})
 			}
 			frm.submit();
 		}
@@ -72,7 +75,7 @@
 					
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			});
 		}

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>랜선투어</title>
+<title>LanTour</title>
 </head>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

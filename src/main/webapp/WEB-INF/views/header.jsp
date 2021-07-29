@@ -54,7 +54,7 @@
 	height: 100px;
 }
 </style>
-<title>Insert title here</title>
+<title>LanTour</title>
 </head>
 <body>
 

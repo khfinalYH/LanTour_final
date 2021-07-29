@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link rel="stylesheet" href="./resources/materialize/materialize.css">
 <script type="text/javascript" src="resources/js/currentWeather.js" charset='utf-8'></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -51,7 +51,7 @@
 		<%if(session.getAttribute("popupclose")==null){%>
 			<%if(popuplist.size()>0){%>
 				<%for(NoticeDto dto : popuplist){%>
-		window.open("http://ec2-3-17-76-13.us-east-2.compute.amazonaws.com:8787/tour/noticepopup_open.do?notice_no=<%=dto.getNotice_no()%>","popup","width=800, height=700")
+		window.open("https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/noticepopup_open.do?notice_no=<%=dto.getNotice_no()%>","popup","width=800, height=700")
 				<%}%>		
 			<%}%>
 		<%}%>

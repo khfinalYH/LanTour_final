@@ -7,10 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <link rel="stylesheet" href="./resources/assets/css/theme.min.css">
 <link rel="stylesheet" href="./resources/assets/css/theme-rtl.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -24,9 +25,10 @@
 					"cal_no":cal_no
 				},
 				success: function(){
-					alert("일정이 삭제되었습니다.");
-					opener.location.reload();
-					window.close();
+					swal("일정이 삭제되었습니다.").then(conf=>{
+						opener.location.reload();
+						window.close();						
+					});
 				}
 			});
 		});

@@ -3,12 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- summernote js,css 링크 -->
 <script type="text/javascript" src="./resources/summernote/summernote-lite.js"></script>
 <script type="text/javascript" src="./resources/summernote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="./resources/summernote/summernote-lite.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
@@ -42,7 +43,7 @@
 				$(el).summernote('editor.insertImage', msg.path);
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}

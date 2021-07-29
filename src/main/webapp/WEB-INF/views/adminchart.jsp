@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		reservation();
@@ -33,7 +34,7 @@
 				communitybar(communitychart, label, data)
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}
@@ -54,7 +55,7 @@
 				charbar(reservationchart, label, mydata);
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}
@@ -127,7 +128,7 @@
 				linechart(womenmemberchart, f_data, label, text, color);
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		});
 	}

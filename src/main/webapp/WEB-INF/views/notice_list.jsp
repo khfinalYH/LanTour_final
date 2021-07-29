@@ -5,15 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+
 <script type="text/javascript">
 	function search() {
 		var category = $(".search_category option:selected").val();
 		var keyword = $(".search_keyword").val();
 		if (keyword.trim() == '') {
-			alert('검색어를 입력해주세요.');
+			swal('검색어를 입력해주세요.');
 			return false;
 		}
 		location.href = 'noticeList_category.do?category=' + category

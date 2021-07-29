@@ -9,8 +9,10 @@ response.setContentType("text/html; charset=UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -157,7 +159,7 @@ response.setContentType("text/html; charset=UTF-8");
 							marker.setMap(map);
 						},
 						error : function() {
-							alert("통신 실패");
+							swal("통신 실패");
 						}
 					});
 		}

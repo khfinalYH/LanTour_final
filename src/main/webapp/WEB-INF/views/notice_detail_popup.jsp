@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanToure</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript">
 	function popupclose(){
 
@@ -20,11 +21,11 @@
 				if (data.popup == true) {
 					window.close()
 				} else {
-					alert("실패했습니다.");
+					swal("실패했습니다.");
 				}
 			},
 			error : function() {
-				alert("통신 실패");
+				swal("통신 실패");
 			}
 		})
 	}

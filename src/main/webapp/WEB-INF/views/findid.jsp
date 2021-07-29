@@ -3,9 +3,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 </head>
+<script type="text/javascript">
+
+<%if(request.getAttribute("fail")!=null){%>
+	swal("입력한 정보를 확인해주세요")
+<%}%>
+</script>
 <body>
 	<jsp:include page="header.jsp" />
 	

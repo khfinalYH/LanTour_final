@@ -5,21 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function delete_hotel() {
-		var del = confirm('호텔 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?');
-		if (del) {
-			location.href = "./hoteldelete.do?hotel_no=${dto.hotel_no }";
-		}
+		swal("호텔 삭제","'호텔 정보를 삭제 하겠습니까? 삭제를 하시면 복구가 불가능 하며 새롭게 등록하셔야 합니다 정말로 삭제하시겠습니까?'", true )
+		.then(conf=>{
+			if(conf){
+				location.href = "./hoteldelete.do?hotel_no=${dto.hotel_no }";
+			}
+		})
 	}
 	function update_hotel() {
-		var update = confirm("호텔 정보를 수정하시겠습니까?")
-		if (update) {
-			location.href = "./hotelupdate.do?hotel_no=${dto.hotel_no }";
-		}
+		swal("호텔 수정","호텔 정보를 수정하시겠습니까?", true )
+		.then(conf=>{
+			if(conf){
+				location.href = "./hoteldelete.do?hotel_no=${dto.hotel_no }";
+			}
+		})
 	}
 	function before_first() {
 		$("#first").css("display", "");

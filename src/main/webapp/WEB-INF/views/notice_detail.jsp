@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./resources/css/board_detail.css">
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 </head>
 <script type="text/javascript">
 function popupUpdate(popup){
@@ -25,18 +26,18 @@ function popupUpdate(popup){
 			success : function(data) {
 				if (data.popup == true) {
 					if(popup.value=="팝업띄우기"){
-						alert('설정되었습니다.')
+						swal('설정되었습니다.')
 						popup.value="팝업취소"
 					}else{
-						alert('취소되었습니다.')
+						('취소되었습니다.')
 						popup.value="팝업띄우기"
 					}
 				} else {
-					alert("실패했습니다.");
+					("실패했습니다.");
 				}
 			},
 			error : function() {
-				alert("통신 실패");
+				("통신 실패");
 			}
 		})
 }

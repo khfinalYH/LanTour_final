@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <%MemberDto Mdto =  (MemberDto)session.getAttribute("login");%>
 <%LantourDto Ldto =  (LantourDto)request.getAttribute("lantourDto");%>
 <%List<ReservationDto> Resdto =  (List<ReservationDto>)request.getAttribute("ResDto");%>

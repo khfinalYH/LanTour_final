@@ -10,10 +10,10 @@ response.setContentType("text/html; charset=UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LanTour</title>
 <link href='resources/css/bootstrap.min.css' rel='stylesheet' />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <script type="text/javascript">
 	var MailRandNum = "";
 	// 아이디 중복 확인
@@ -23,7 +23,7 @@ response.setContentType("text/html; charset=UTF-8");
 			"member_id" : member_id
 		}
 		if (member_id.trim() == "" || member_id == null) {
-			alert("아이디를 입력해 주세요");
+			swal("아이디를 입력해 주세요");
 		} else {
 			$.ajax({
 				type : 'POST',
@@ -34,15 +34,15 @@ response.setContentType("text/html; charset=UTF-8");
 				success : function(data) {
 					if (data.check == false) {
 						$("#idChk").attr("title", "y");
-						alert("사용가능한 아이디입니다.");
+						swal("사용가능한 아이디입니다.");
 						document.getElementById("idChk").setAttribute(
 								"readonly", "readonly")
 					} else {
-						alert("이미 존재하는 아이디입니다.");
+						swal("이미 존재하는 아이디입니다.");
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			})
 		}
@@ -51,7 +51,7 @@ response.setContentType("text/html; charset=UTF-8");
 	function idCheckConfirm() {
 		var chk = document.getElementsByName("member_id")[0].title;
 		if (chk == "n") {
-			alert("아이디 중복체크를 먼저 해주세요.");
+			swal("아이디 중복체크를 먼저 해주세요.");
 			document.getElementsByName("member_id")[0].focus();
 		}
 	};
@@ -78,7 +78,7 @@ response.setContentType("text/html; charset=UTF-8");
 			"email" : email.value
 		}
 		if (email.value.trim() == "" || email.value == null) {
-			alert("이메일을 입력해 주세요");
+			swal("이메일을 입력해 주세요");
 		} else {
 			$.ajax({
 				type : 'POST',
@@ -88,18 +88,18 @@ response.setContentType("text/html; charset=UTF-8");
 				dataType : "json",
 				success : function(data) {
 					if (data.success != null) {
-						alert("메일이 발송되었습니다.");
+						swal("메일이 발송되었습니다.");
 						document.getElementById("EmailRandom").removeAttribute(
 								"disabled")
 						document.getElementById("mailRandceck")
 								.removeAttribute("disabled")
 						MailRandNum = data.success
 					} else {
-						alert(data.error);
+						swal(data.error);
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			})
 		}
@@ -111,7 +111,7 @@ response.setContentType("text/html; charset=UTF-8");
 			"random" : rand
 		}
 		if (rand.trim() == "" || rand == null) {
-			alert("인증번호를 입력해 주세요");
+			swal("인증번호를 입력해 주세요");
 		} else {
 			$.ajax({
 				type : 'POST',
@@ -121,7 +121,7 @@ response.setContentType("text/html; charset=UTF-8");
 				dataType : "json",
 				success : function(data) {
 					if (data.result) {
-						alert("인증되었습니다.")
+						swal("인증되었습니다.")
 						document.getElementById("mailceck").setAttribute(
 								"readonly", "readonly")
 						document.getElementById("email").setAttribute(
@@ -133,11 +133,11 @@ response.setContentType("text/html; charset=UTF-8");
 						document.getElementById("submit").removeAttribute(
 								"disabled")
 					} else {
-						alert("부정확한 값입니다.")
+						swal("부정확한 값입니다.")
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			})
 		}

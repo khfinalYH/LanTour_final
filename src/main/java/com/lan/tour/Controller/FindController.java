@@ -42,7 +42,8 @@ public class FindController {
 			model.addAttribute("dto", biz.findpw(dto));
 			return "findupdatepw";
 		}
-		return "redirect:findpassword.do";
+		model.addAttribute("fail", "fail");
+		return "findpassword";
 
 	}
 	

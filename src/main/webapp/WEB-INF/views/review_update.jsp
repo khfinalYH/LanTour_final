@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>랜선투어</title>
+<title>LanTour</title>
 </head>
 <link rel="stylesheet" href="./resources/5/litera/bootstrap.css">
 <link rel="stylesheet" href="./resources/_vendor/font-awesome/css/font-awesome.min.css">

@@ -11,17 +11,17 @@ response.setContentType("text/html; charset=UTF-8");
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="869891537807-u606s04umnomhs5tg7sufpd9c5g7fv6a.apps.googleusercontent.com">
 
-<title>Insert title here</title>
+<title>LanTour</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script type="text/javascript">
-	alert("로그인해주세요.")
-	//sdk를 초기화, 사용할 앱의 javascript키
-	Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
-	//sdk 초기화 여부를 판단
-	Kakao.isInitialized();
+	window.onload=function(){
+		swal("로그인해주세요")
+	}
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -37,26 +37,40 @@ response.setContentType("text/html; charset=UTF-8");
 			console.log('Signed in as: ' + xhr.responseText);
 			switch (xhr.responseText) {
 			case "InvalidEmain":
-				alert("구글 이메일 인증이 되어있지 않습니다.")
+				swal("구글 이메일 인증이 되어있지 않습니다.")
 				break;
 			case "signup":
 				document.getElementById("id_token").value = id_token
-				alert("회원가입 페이지로 넘어갑니다")
-				var f = document.google
-				f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
-				f.action = "googlesignup.do";//이동할 페이지
-				f.method = "post";//POST방식
-				f.submit();
+				
+				swal({
+					title:"구글로그인",
+					text:"회원가입으로 넘어가시겠습니까?",
+					buttons: ["돌아가기",true]
+				}).then((check)=>{
+					if(check){
+						var f = document.google
+						f.idtoken.value = id_token; //POST방식으로 넘기고 싶은 값
+						f.action = "googlesignup.do";//이동할 페이지
+						f.method = "post";//POST방식
+						f.submit();						
+					}else{
+						var auth2 = gapi.auth2.getAuthInstance();
+						auth2.signOut().then(function () {
+						  console.log('User signed out.');
+						});
+						auth2.disconnect();
+					}
+				})
 				break;
 			case "login":
-				alert("로그인되었습니다.")
+				swal("로그인되었습니다.")
 				location.href = "main.do"
 				break;
 			case "hasemail":
-				alert("이미 가입되어있는 이메일입니다")
+				swal("이미 가입되어있는 이메일입니다")
 				break;
 			default:
-				alert("부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)")
+				swal("부적합한 접근입니다(이메일과 토큰이 일치하지 않습니다.)")
 				break;
 			}
 		};
@@ -74,7 +88,7 @@ response.setContentType("text/html; charset=UTF-8");
 		}
 		if (member_id == null || member_id == "" || member_password == null
 				|| member_password == "") {
-			alert("Id와 Password를 다시 확인해주세요");
+			swal("로그인 실패","Id와 Password를 다시 확인해주세요","error");
 		} else {
 			$.ajax({
 				url : 'loginCheck.do',
@@ -84,21 +98,30 @@ response.setContentType("text/html; charset=UTF-8");
 				dataType : 'json',
 				success : function(data) {
 					if (data.check == true) {
-						alert("성공적으로 로그인되었습니다.");
-						location.href = "main.do";
+						swal("로그인 성공","성공적으로 로그인되었습니다.", "success")
+						.then(confirm=>{
+							location.href = "main.do";
+							
+						})
 					} else {
 						$("#loginChk").show();
+						swal("로그인 실패","Id 혹은 Password를 다시 확인해주세요.", "error")
 						$("#loginChk").html("Id 혹은 Password를 다시 확인해주세요.");
 					}
 				},
 				error : function() {
-					alert("통신 실패");
+					swal("통신 실패");
 				}
 			});
 		}
 	}
 	function kakologinpage() {
-		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=http://localhost:8787/tour/kakaologin.do&response_type=code";
+		//sdk를 초기화, 사용할 앱의 javascript키
+		Kakao.init('b0ad0b9e43ffa36c9151c79f86f2db3d');
+		//sdk 초기화 여부를 판단
+		Kakao.isInitialized();
+		
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=0051e1df68b8e3c9d056c9adaf343151&redirect_uri=localhost:8443/tour/kakaologin.do&response_type=code";
 	}
 </script>
 
@@ -116,10 +139,10 @@ response.setContentType("text/html; charset=UTF-8");
 			<div class="row align-items-center min-vh-75 my-lg-8">
 				<div class="col-md-7 col-lg-6 text-center text-md-start py-8">
 					<h1 class="mb-4 display-1 lh-sm">
-						Travel around <br class="d-block d-lg-none d-xl-block" />the world
+						한국의 대표 장소를 <br class="d-block d-lg-none d-xl-block" />체험해보세요
 					</h1>
 					<p class="mt-4 mb-5 fs-1 lh-base">
-						Plan and book your perfect trip with expert advice, <br class="d-none d-lg-block" />travel tips, destination information and <br class="d-none d-lg-block" />inspiration from us.
+						한국 여행을 계획하시고 있으신가요 <br class="d-none d-lg-block" />여행에 도움이 되는 각종 예약 및 온라인 체험이 가능합니다. <br class="d-none d-lg-block" />로그인을 통해 다양하게 누려보세요.
 					</p>
 					<div style="padding-bottom: 50px;">
 						<input type="text" style="width: 40%; float: right; color: black; border-color: black;" class="form-control" id="member_id" placeholder="Id" />
@@ -131,10 +154,20 @@ response.setContentType("text/html; charset=UTF-8");
 						<button type="button" class="btn btn-primary" onclick="login();">로그인</button>
 					</div>
 					<div style="padding-bottom: 50px;">
-						<div class="g-signin2" style="float: right;" data-onsuccess="onSignIn"></div>
+						<div id="naver_id_login" style="float: right;"></div>
+						<script type="text/javascript">
+							var naver_id_login = new naver_id_login("NiPSHx6Om9O_VYFPHn9A", "https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/naverlogin.do");
+							var state = naver_id_login.getUniqState();
+							naver_id_login.setButton("green", 2, 40);
+							naver_id_login.setDomain("https://ec2-3-144-4-252.us-east-2.compute.amazonaws.com:8443/tour/loginform.do");
+							naver_id_login.setState(state);
+							naver_id_login.init_naver_id_login();
+						</script>
+						<div class="g-signin2" style="float: right; margin-right: 10px;" data-onsuccess="onSignIn"></div>
 						<div class="kakaologin" style="float: right; margin-right: 10px;">
 							<img src="resources/kakaologin/kakao_login_medium.png" onclick="kakologinpage()">
 						</div>
+					
 					</div>
 					<div style="padding-bottom: 50px;"></div>
 					<div>

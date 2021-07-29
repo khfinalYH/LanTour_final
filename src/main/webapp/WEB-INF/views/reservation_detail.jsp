@@ -29,6 +29,8 @@
 <script
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
+  
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 //결제
@@ -60,18 +62,19 @@ function payment(){
 	    		dataType: 'json',
 	    		data: {imp_uid : rsp.imp_uid},
 	    		success: function(data){
-	    			alert(data.status)
 	    			if (data.status =="paid" ) {
-		    			location.href="reservation_pay.do?no=<%=Resdto.getReservation_no()%>&m_id="+Merchant_uid
-	    			}
-	    			
+						swal("겔제 완료되었습니다").then(conf=>{
+		    				location.href="reservation_pay.do?no=<%=Resdto.getReservation_no()%>&m_id="+Merchant_uid
+	    			    				
+	    				})
+					}	
 	    		}
 	    	});
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
 	        
-	        alert(msg);
+	        swal(msg);
 	    }
 	});
 }
