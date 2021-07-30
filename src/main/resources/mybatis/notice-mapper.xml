@@ -111,7 +111,7 @@
 	</select>
 	
 	<update id="popupdate" parameterType="noticeDto">
-		UPDATE NOTICE SET NOTICE_POPUP = #{notice_popup}
+		UPDATE NOTICE SET NOTICE_POPUP = #{notice_popup, jdbcType = VARCHAR}
 		WHERE NOTICE_NO = #{notice_no}	
 	</update>
 	

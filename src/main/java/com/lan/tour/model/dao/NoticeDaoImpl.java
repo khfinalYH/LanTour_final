@@ -208,7 +208,7 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public List<NoticeDto> selectPopupList() {
-		List<NoticeDto> list =new ArrayList();
+		List<NoticeDto> list =new ArrayList<NoticeDto>();
 		try {
 			list = sqlSession.selectList(NAMESPACE+"selectPopupList");
 		} catch (Exception e) {
