@@ -113,10 +113,10 @@
 
 							<div class="card mb-3" style="width: 30%; float: left; min-height: 400px; margin-right: 20px; border: 1px solid #3984C0;" onclick="location.href='./lantourdetail.do?lantour_no=${dto.lantour_no } '">
 
-								<div class="card-body">
-									<h5 class="card-title">${dto.lantour_title }</h5>
-								</div>
 								<img src="${dto.lantour_image }">
+								<div style="padding: 15px">
+									<h5 >${dto.lantour_title }</h5>
+								</div>
 								<div class="card-body">
 									<p class="card-text">${dto.lantour_content }</p>
 								</div>
