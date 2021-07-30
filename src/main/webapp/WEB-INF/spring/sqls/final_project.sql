@@ -166,3 +166,5 @@ select * from notice
 update notice set notice_popup= NULL where notice_no = 1
 
 select * from hotel ORDER BY hotel_no;
+
+select * from member
