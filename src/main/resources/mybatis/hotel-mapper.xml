@@ -66,6 +66,7 @@
 		#{hotel_maxprice}
 		AND HOTEL_PRICE <![CDATA[>=]]>
 		#{hotel_minprice}
+		ORDER BY HOTEL_NO DESC
 	</select>
 
 	<select id="hotelchart" resultType="hotelDto">

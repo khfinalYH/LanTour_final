@@ -62,7 +62,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<div class="community-update">
+	<div class="community-update" style="padding-bottom: 80px;">
 		<form action="communityupdateres.do" method="post">
 			<input type="hidden" name="community_no" value="${dto.community_no }" />
 			<div class="form-group row">

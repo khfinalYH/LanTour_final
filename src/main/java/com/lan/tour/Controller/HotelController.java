@@ -27,6 +27,7 @@ import com.lan.tour.model.biz.ReviewBiz;
 import com.lan.tour.model.biz.RoomBiz;
 import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.ReviewDto;
 import com.lan.tour.model.dto.RoomDto;
 
 @Controller
@@ -106,6 +107,7 @@ public class HotelController {
 		List<HotelDto> list = biz.searchList(dto);
         List<ReservationDto> resList = Rbiz2.selectListCheckDate(check_in, check_out ,dto.getHotel_type());
         List<HotelDto> RemoveList = new ArrayList<HotelDto>();
+        List<ReviewDto> reviewList = new ArrayList<ReviewDto>();
 		if(resList.size() !=0) {
 			int i = 0;
 			for(HotelDto Hdto : list) {
@@ -115,6 +117,12 @@ public class HotelController {
 				if(Hdto.getHotel_no()==resList.get(i).getHotel_no()) {
 					if(biz2.selectList(Hdto.getHotel_no()).size()<=Rbiz2.selectList("hotel", resList.get(i).getHotel_no(), 0).size()) {
 						RemoveList.add(Hdto);
+					}else{
+						ReviewDto rdto = Rbiz.selectscore("hotel", Hdto.getHotel_no());
+						System.out.println(rdto.toString());
+						if(rdto!= null) {
+							reviewList.add(rdto);
+						}
 					}
 					i++;
 				}
@@ -122,7 +130,15 @@ public class HotelController {
 			for(HotelDto Hdto :RemoveList) {
 				list.remove(Hdto);
 			}
+		}else {
+			for(HotelDto Hdto : list) {
+				ReviewDto rdto = Rbiz.selectscore("hotel", Hdto.getHotel_no());
+				if(rdto!= null) {
+					reviewList.add(rdto);
+				}
+			}
 		}
+		model.addAttribute("scorelist", reviewList);
 		model.addAttribute("list", list);
 		model.addAttribute("check_in", check_in);
 		model.addAttribute("check_out", check_out);

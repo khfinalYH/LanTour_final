@@ -53,8 +53,7 @@
 		GROUP BY ROOM_NO
 	</select>
 
-	<select id="selectList_room" parameterType="hashMap"
-		resultType="ReservationDto">
+	<select id="selectList_room" parameterType="hashMap" resultType="ReservationDto">
 		SELECT
 		RESERVATION_NO,LANTOUR_NO,ROOM_NO,HOTEL_NO,MEMBER_NO,RESERVATION_DATE,RESERVATION_CHECKOUT_DATE,RESERVATION_PRICE,
 		RESERVATION_PAY,RESERVATION_PAYDATE
@@ -133,18 +132,13 @@
 		parameterType="HashMap">
 		SELECT R.HOTEL_NO FROM RESERVATION R, HOTEL H
 		WHERE
-		TO_DATE(R.RESERVATION_DATE, 'YYYY-MM-DD')
-		>=TO_DATE(#{check_in},'YYYY-MM-DD')
-		AND TO_DATE(R.RESERVATION_DATE,
-		'YYYY-MM-DD') <![CDATA[ < ]]>
-		TO_DATE(#{check_out},'YYYY-MM-DD')
+		TO_DATE(R.RESERVATION_DATE, 'YYYY-MM-DD')>=TO_DATE(#{check_in},'YYYY-MM-DD')
+		AND TO_DATE(R.RESERVATION_DATE,'YYYY-MM-DD') <![CDATA[ < ]]> TO_DATE(#{check_out},'YYYY-MM-DD')
 		AND R.HOTEL_NO IS NOT NULL
-		AND
-		R.HOTEL_NO = H.HOTEL_NO
+		AND R.HOTEL_NO = H.HOTEL_NO
 		AND H.HOTEL_TYPE = #{hotel_type}
-		GROUP BY
-		R.HOTEL_NO
-		ORDER BY R.HOTEL_NO
+		GROUP BY R.HOTEL_NO
+		ORDER BY R.HOTEL_NO DESC
 	</select>
 
 	<select id="reservationchart" resultType="ReservationDto">
@@ -163,9 +157,6 @@
 		AND R.MEMBER_NO = #{member_no}
 		ORDER BY RESERVATION_NO DESC
 	</select>
-	
-
-
 	<select id="selectcount_room" resultType="ReservationDto" parameterType="int">
 		SELECT COUNT(R.RESERVATION_NO) AS RESERVATION_NO, COUNT(R2.RESERVATION_NO) AS LANTOUR_NO, COUNT(R3.RESERVATION_NO) AS HOTEL_NO
 		FROM RESERVATION R, (SELECT * FROM RESERVATION WHERE RESERVATION_PAY = 'N') R2, (SELECT * FROM RESERVATION WHERE RESERVATION_PAY = 'cancelled' ) R3

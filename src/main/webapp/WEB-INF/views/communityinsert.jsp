@@ -63,7 +63,7 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="community-insert">
-		<form action="communityinsertres.do">
+		<form action="communityinsertres.do" method="post">
 			<input type="hidden" name="member_no" value="${login.member_no }" />
 			<div class="form-group row">
 				<input type="text" class="form-control" style="color: black;" name="community_title" id="community_title" placeholder="제목을 입력하세요">

@@ -176,14 +176,14 @@
 			<c:forEach begin="${dto.blockBegin}" end="${dto.blockEnd}" var="index">
 				<c:choose>
 					<c:when test="${dto.curPage eq index}">
-						<li class="page-item disbled"><span class="page-link">
-								<a href="#">${index}</a>
-							</span></li>
+						<li class="page-item active disbled">
+								<a class="page-link" class="">${index}</a>
+						</li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item disbled"><span class="page-link">
-								<a href="#" onclick="list('${index}')">${index}</a>
-							</span></li>
+						<li class="page-item disbled">
+								<a href="#" class= "page-link" onclick="list('${index}')">${index}</a>
+						</li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>

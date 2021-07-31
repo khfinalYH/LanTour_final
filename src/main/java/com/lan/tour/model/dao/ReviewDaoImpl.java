@@ -188,7 +188,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			case "hotel":
 				try {
 					int hotel_no = no;
-					dto = sqlSession.selectOne(NAMESPACE+"selectscore_hotel", hotel_no);
+					dto = sqlSession.selectOne(NAMESPACE+"select_score_hotel", hotel_no);
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -196,7 +196,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			case "lantour":
 				try {
 					int lantour_no = no;
-					dto = sqlSession.selectOne(NAMESPACE+"selectscore_lantour", lantour_no);
+					dto = sqlSession.selectOne(NAMESPACE+"select_score_lantour", lantour_no);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

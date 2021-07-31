@@ -6,8 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,9 +30,11 @@ import org.springframework.web.util.WebUtils;
 import com.lan.tour.model.biz.LantourBiz;
 import com.lan.tour.model.biz.ReservationBiz;
 import com.lan.tour.model.biz.ReviewBiz;
+import com.lan.tour.model.dto.HotelDto;
 import com.lan.tour.model.dto.LantourDto;
 import com.lan.tour.model.dto.LantourPagingDto;
 import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.ReviewDto;
 
 @Controller
 public class LantourController {
@@ -96,15 +99,21 @@ public class LantourController {
 		LantourPagingDto dto = new LantourPagingDto(count, curPage, category, keyword);
 		int start = dto.getPageBegin();
         int end =  dto.getPageEnd();
-        
-        System.out.println(dto);
+		List<LantourDto> list = biz.listAll(category, keyword, start, end);//search_option, keyword, start, end
+        List<ReviewDto> reviewList = new ArrayList<ReviewDto>();
+		for(LantourDto Ldto : list) {
+			ReviewDto rdto = Rbiz2.selectscore("lantour", Ldto.getLantour_no());
+			if(rdto!= null) {
+				reviewList.add(rdto);
+			}
+		}
 			
-		model.addAttribute("list", biz.listAll(category, keyword, start, end));//search_option, keyword, start, end
+		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
 		model.addAttribute("count", count);
 		model.addAttribute("category", category);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("scorelist", Rbiz2.scoreList("lantour"));
+		model.addAttribute("scorelist", reviewList);
 		return "lantour";
 	}
 	

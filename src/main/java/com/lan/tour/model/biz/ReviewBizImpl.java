@@ -68,7 +68,6 @@ public class ReviewBizImpl implements ReviewBiz {
 
 	@Override
 	public int deleteByHotelNo(int hotel_no) {
-		// TODO Auto-generated method stub
 		return dao.deleteByHotelNo(hotel_no);
 	}
 

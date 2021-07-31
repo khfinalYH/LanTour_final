@@ -9,7 +9,9 @@
 		FROM REVIEW
 		WHERE
 		HOTEL_NO = #{hotel_no}
+		ORDER BY HOTEL_NO DESC
 	</select>
+		
 
 	<select id="select_lantour" parameterType="int"
 		resultType="ReviewDto">
@@ -32,15 +34,18 @@
 		ORDER BY REVIEW_SCORE DESC
 	</select>
 	
-	<select id="select_score_hotel" parameterType="int">
+	<select id="select_score_hotel" parameterType="int"
+		resultType="ReviewDto">
 	
-		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, COUNT(*) AS REVIEW_NO
+		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, COUNT(*) AS REVIEW_NO, HOTEL_NO
 		FROM REVIEW GROUP BY HOTEL_NO
 		HAVING HOTEL_NO = #{hotel_no}
 	</select>
-	<select id="select_score_lantour" parameterType="int">
+	
+	<select id="select_score_lantour" parameterType="int"
+		resultType="ReviewDto">
 
-		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, COUNT(*) AS REVIEW_NO
+		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, COUNT(*) AS REVIEW_NO, LANTOUR_NO
 		FROM REVIEW GROUP BY LANTOUR_NO
 		HAVING LANTOUR_NO = #{lantour_no}
 	</select>
@@ -112,9 +117,7 @@
 		resultType="ReviewDto">
 		SELECT REVIEW_NO , LANTOUR_NO,
 		MEMBER_NO,REVIEW_DATE,REVIEW_TITLE,REVIEW_SCORE
-		FROM REVIEW
-		WHERE
-		LANTOUR_NO = #{lantour_no}
+		FROM REVIEW	WHERE LANTOUR_NO = #{lantour_no}
 		AND (REVIEW_SCORE = #{zero} OR REVIEW_SCORE = #{one} OR REVIEW_SCORE = #{two} OR REVIEW_SCORE = #{three} OR
 		REVIEW_SCORE = #{four} OR REVIEW_SCORE = #{five})
 		ORDER BY REVIEW_NO ASC
@@ -132,19 +135,14 @@
 		ORDER BY REVIEW_NO DESC
 	</select>
 	
-	
-	
-	
 	<select id="select_hotel_score_avg"	resultType="ReviewDto">
-
 		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, HOTEL_NO, COUNT(*) AS REVIEW_NO
 		FROM REVIEW GROUP BY HOTEL_NO
 		HAVING HOTEL_NO>0
-		ORDER BY HOTEL_NO
+		ORDER BY HOTEL_NO DESC
 	</select>
 
 	<select id="select_lantour_score_avg" resultType="ReviewDto">
-
 		SELECT AVG(REVIEW_SCORE) AS REVIEW_SCORE, LANTOUR_NO, COUNT(*) AS REVIEW_NO
 		FROM REVIEW GROUP BY LANTOUR_NO
 		HAVING LANTOUR_NO>0
