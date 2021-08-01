@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lan.tour.model.dto.MemberDto;
+
 public class LoginInterceptor implements HandlerInterceptor {
 
 	
@@ -27,13 +29,17 @@ public class LoginInterceptor implements HandlerInterceptor {
 					request.getRequestURI().contains("Delete")||
 					request.getRequestURI().contains("Update")||
 					request.getRequestURI().contains("payment")||
-					request.getRequestURI().contains("payment")||
-					request.getRequestURI().contains("admin")) {
+					request.getRequestURI().contains("payment")) {
 					if(request.getSession().getAttribute("login")==null) {
 						response.sendRedirect("loginRedirect.do");
 						return false;
 					}
 				}
+		}
+		
+		if(request.getRequestURI().contains("admin")&&((MemberDto)request.getSession().getAttribute("login")).getMember_grade().equals("A")) {
+			response.sendRedirect("main.do");
+			return false;
 		}
 			
 		return true;

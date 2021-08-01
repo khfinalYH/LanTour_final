@@ -2,6 +2,7 @@ package com.lan.tour.model.dao;
 
 import java.util.List;
 
+
 import com.lan.tour.model.dto.ReservationDto;
 
 public interface ReservationDao {
@@ -35,5 +36,7 @@ public interface ReservationDao {
 	public List<ReservationDto> selectchart();
 
 	public int deleteByMemberNo(int member_no);
+
+	public List<ReservationDto> selectListRooomByDate(String check_in, String check_out, int hotel_no);
 
 }

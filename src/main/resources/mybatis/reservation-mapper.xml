@@ -39,7 +39,7 @@
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
 		WHERE LANTOUR_NO =
-		${lantour_no} AND RESERVATION_PAY != 'cancelled'
+		#{lantour_no} AND RESERVATION_PAY != 'cancelled'
 		ORDER BY
 		RESERVATION_NO
 	</select>
@@ -48,7 +48,7 @@
 		resultType="ReservationDto">
 		SELECT ROOM_NO
 		FROM RESERVATION
-		WHERE HOTEL_NO = ${hotel_no}
+		WHERE HOTEL_NO = #{hotel_no}
 		AND RESERVATION_PAY != 'cancelled'
 		GROUP BY ROOM_NO
 	</select>
@@ -59,8 +59,7 @@
 		RESERVATION_PAY,RESERVATION_PAYDATE
 		FROM RESERVATION
 		WHERE ROOM_NO =
-		${room_no} AND HOTEL_NO = ${hotel_no} AND RESERVATION_PAY !=
-		'cancelled'
+		#{room_no} AND HOTEL_NO = #{hotel_no} AND RESERVATION_PAY !='cancelled'
 		ORDER BY RESERVATION_NO
 	</select>
 
@@ -139,6 +138,18 @@
 		AND H.HOTEL_TYPE = #{hotel_type}
 		GROUP BY R.HOTEL_NO
 		ORDER BY R.HOTEL_NO DESC
+	</select>
+
+	<select id="searchRoomdate" resultType="ReservationDto"
+		parameterType="HashMap">
+		SELECT R.ROOM_NO  FROM RESERVATION R, HOTEL H
+		WHERE
+		TO_DATE(R.RESERVATION_DATE, 'YYYY-MM-DD')>=TO_DATE(#{check_in},'YYYY-MM-DD')
+		AND TO_DATE(R.RESERVATION_DATE,'YYYY-MM-DD') <![CDATA[ < ]]> TO_DATE(#{check_out},'YYYY-MM-DD')
+		AND R.HOTEL_NO IS NOT NULL
+		AND R.HOTEL_NO = H.HOTEL_NO
+		AND R.HOTEL_NO = TO_NUMBER(#{hotel_no})
+		GROUP BY R.ROOM_NO
 	</select>
 
 	<select id="reservationchart" resultType="ReservationDto">

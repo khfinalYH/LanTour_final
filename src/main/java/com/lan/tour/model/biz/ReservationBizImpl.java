@@ -2,12 +2,12 @@ package com.lan.tour.model.biz;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lan.tour.model.dao.ReservationDao;
 import com.lan.tour.model.dto.ReservationDto;
-import com.lan.tour.model.dto.ReviewDto;
 
 @Service
 public class ReservationBizImpl implements ReservationBiz {
@@ -90,6 +90,11 @@ public class ReservationBizImpl implements ReservationBiz {
 	public int deleteByMemberNo(int member_no) {
 		// TODO Auto-generated method stub
 		return dao.deleteByMemberNo(member_no);
+	}
+
+	@Override
+	public List<ReservationDto> selectListRooomByDate(String check_in, String check_out, int hotel_no) {
+		return dao.selectListRooomByDate( check_in,  check_out,  hotel_no);
 	}
 
 }

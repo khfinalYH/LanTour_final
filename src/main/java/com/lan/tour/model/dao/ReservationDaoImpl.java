@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lan.tour.model.dto.ReservationDto;
+import com.lan.tour.model.dto.ReviewDto;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
@@ -249,5 +250,20 @@ public class ReservationDaoImpl implements ReservationDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public List<ReservationDto> selectListRooomByDate(String check_in, String check_out, int hotel_no) {
+		List<ReservationDto> list = new ArrayList<ReservationDto>();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("check_in", check_in);
+		map.put("check_out", check_out);
+		map.put("hotel_no", Integer.toString(hotel_no));
+		try {
+			list = sqlSession.selectList(NAMESPACE + "searchRoomdate", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

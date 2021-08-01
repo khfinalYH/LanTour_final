@@ -2,8 +2,8 @@ package com.lan.tour.model.biz;
 
 import java.util.List;
 
+
 import com.lan.tour.model.dto.ReservationDto;
-import com.lan.tour.model.dto.ReviewDto;
 
 public interface ReservationBiz {
 
@@ -22,4 +22,5 @@ public interface ReservationBiz {
 	public ReservationDto selectcount(String type, int no);
 	public List<ReservationDto> selectchart();
 	public int deleteByMemberNo(int member_no);	
+	public List<ReservationDto> selectListRooomByDate(String check_in, String check_out, int hotel_no);
 }

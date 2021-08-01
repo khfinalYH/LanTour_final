@@ -161,7 +161,6 @@ function pagingNext() {
 					<td><%= ResDto.getReservation_no()%></td>
 					<td><%=ResDto.getReservation_no()-ResDto.getLantour_no()-ResDto.getHotel_no() %></td>
 					<td><%= ResDto.getLantour_no()%></td>
-					<td><%= ResDto.getHotel_no()%></td>
 					<td><%=RevMap.get("L"+dto.getLantour_no()).getReview_score()+"/5.0("+RevMap.get("L"+dto.getLantour_no()).getReview_no()+")" %></td>						
 					<td><input type="button" class="btn btn-primary" onclick="location.href='./lantourdetail.do?lantour_no=<%=dto.getLantour_no() %>'" value="자세히 보기"/><br/> <input type="button" class="btn btn-primary" style="margin-top: 5px;" onclick="location.href='mypage_hostreservation.do?no=<%=dto.getLantour_no() %>&rno=0'" value="예약확인"/></td>
 				</tr>

@@ -115,14 +115,8 @@ public class HotelController {
 					break;
 				}
 				if(Hdto.getHotel_no()==resList.get(i).getHotel_no()) {
-					if(biz2.selectList(Hdto.getHotel_no()).size()<=Rbiz2.selectList("hotel", resList.get(i).getHotel_no(), 0).size()) {
+					if(biz2.selectList(Hdto.getHotel_no()).size()<=Rbiz2.selectListRooomByDate(check_in, check_out, Hdto.getHotel_no()).size()) {
 						RemoveList.add(Hdto);
-					}else{
-						ReviewDto rdto = Rbiz.selectscore("hotel", Hdto.getHotel_no());
-						System.out.println(rdto.toString());
-						if(rdto!= null) {
-							reviewList.add(rdto);
-						}
 					}
 					i++;
 				}
@@ -130,12 +124,11 @@ public class HotelController {
 			for(HotelDto Hdto :RemoveList) {
 				list.remove(Hdto);
 			}
-		}else {
-			for(HotelDto Hdto : list) {
-				ReviewDto rdto = Rbiz.selectscore("hotel", Hdto.getHotel_no());
-				if(rdto!= null) {
-					reviewList.add(rdto);
-				}
+		}
+		for(HotelDto Hdto : list) {
+			ReviewDto rdto = Rbiz.selectscore("hotel", Hdto.getHotel_no());
+			if(rdto!= null) {
+				reviewList.add(rdto);
 			}
 		}
 		model.addAttribute("scorelist", reviewList);
